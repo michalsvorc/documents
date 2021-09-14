@@ -6,11 +6,20 @@ Overview:
 * [Learn RxJS](https://www.learnrxjs.io)
 * [API](https://rxjs-dev.firebaseapp.com/api)
 * [Glossary](https://rxjs-dev.firebaseapp.com/guide/glossary-and-semantics)
+
+Operators:
+
+* [Guide](https://rxjs-dev.firebaseapp.com/guide/operators)
 * [Operator Decision Tree](https://rxjs-dev.firebaseapp.com/operator-decision-tree)
+* [Categories of operators](https://rxjs-dev.firebaseapp.com/guide/operators#categories-of-operators)
+* [API](https://rxjs-dev.firebaseapp.com/api)
+* [Learn RxJS](https://www.learnrxjs.io/learn-rxjs/operators/complete)
+* [RxJS Marbles](https://rxmarbles.com/)
 
 Playground:
 
 * [RxFiddle](https://rxfiddle.net)
+* [Rx Visualizer](https://rxviz.com/examples/custom)
 
 Topics:
 
@@ -136,11 +145,12 @@ returning a custom unsubscribe function from within `subscribe()` function.
 
 ### Cold and Hot Observables
 
-* *Cold*: The data is produced by the Observable itself.
-* *Hot*: The data is produced outside of the Observable.
+* *Cold* observables: The data is produced by the Observable itself.
 
 *Cold* observables start running upon subscription, i.e., the observable sequence only starts pushing values to the
 observers when Subscribe is called.
+
+* *Hot* observables: The data is produced outside of the Observable.
 
 *Hot* observables such as mouse move events or stock tickers are already producing values even before a subscription is
 active. 
