@@ -36,14 +36,30 @@ property access, not values. Reading is dereferencing an object's property, whic
 
 * [Documentation](https://mobx.js.org/the-gist-of-mobx.html)
 
-*Anything that can be derived from the application state, should be. Automatically.* This includes the UI, data
-serialization, server communication, etc.
+MobX makes state management simple again by addressing the root issue: it makes it impossible to produce an inconsistent
+state. The strategy to achieve that is simple:
 
-MobX distinguishes between the following three concepts in your application:
+*Anything that can be derived from the application state, should be. Automatically.*
 
-1. [State](https://mobx.js.org/observable-state.html): State is the data that drives your application (store).
-2. [Actions](https://mobx.js.org/actions.html): Update state using actions.
-3. *Derivations*: Create derivations that automatically respond to state changes.
+This includes the UI, data serialization, server communication, etc.
+
+1. [State](https://mobx.js.org/observable-state.html)
+  Graphs of objects, arrays, primitives, references that forms the model of your application. These values are the “data
+  cells” of your application.
+
+2. [Actions](https://mobx.js.org/actions.html)
+  Actions are all the things that alter the state. MobX will make sure that all changes to the application state caused
+  by your actions are automatically processed by all derivations and reactions.
+
+3. *Derivations*
+  Any value that can be computed automatically from the state of your application. These derivations, or computed
+  values, can range from simple values, like the number of unfinished todos, to complex stuff like a visual HTML
+  representation of your todos. In spreadsheet terms: these are the formulas and charts of your application.
+
+4. *Reactions*
+  Reactions are very similar to derivations. The main difference is these functions don't produce a value. Instead, they
+  run automatically to perform some task. Usually this is I/O related. They make sure that the DOM is updated or that
+  network requests are made automatically at the right time. 
 
 MobX is inspired by reactive programming principles as found in the spreadsheets.
 
