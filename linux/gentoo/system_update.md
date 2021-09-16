@@ -74,3 +74,14 @@ Every time a kernel is built, it is necessary to reinstall the NVIDIA kernel mod
 ```console
 emerge @module-rebuild
 ```
+
+## Portage
+
+* [Portage Handbook - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/Portage)
+* [Portage - Gentoo Wiki](https://wiki.gentoo.org/wiki/Portage)
+* [dispatch-conf - Gentoo Wiki](https://wiki.gentoo.org/wiki/Dispatch-conf)
+* [Satisfying REQUIRED_USE conditions - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/USE#Satisfying_REQUIRED_USE_conditions)
+* [Verify distfiles - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/Features#Verify_distfiles)
+
+Don't use Layman: [PSA: stop using Layman - reddit](https://www.reddit.com/r/Gentoo/comments/lxnktm/psa_stop_using_layman/)
+

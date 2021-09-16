@@ -1,139 +1,122 @@
 # GnuPG
 
-- [Useful IT Policies](https://github.com/lfit/itpol/blob/master/protecting-code-integrity.md)
+* [User guides](https://www.gnupg.org/documentation/guides.html)
+* [GnuPG - ArchWiki](https://wiki.archlinux.org/title/GnuPG)
+* [GnuPG Frequently Asked Questions](https://www.gnupg.org/faq/gnupg-faq.html#glossary)
 
-## RSA
+Primary key must be capable of making signatures.
 
-- [Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+Deleting user IDs and subkeys on your own key, however, is not always wise since it complicates key distribution. By
+default, when a user imports your updated public key it will be merged with the old copy of your public key on his ring
+if it exists. The components from both keys are combined in the merge, and this effectively restores any components you
+deleted. Consequently, for updating your own key it is better to revoke key components instead of deleting them. See
+https://www.gnupg.org/gph/en/manual.html#AEN305
 
-RSA can be used for both asymmetric encryption and for digital signatures. An RSA key pair includes a private and a
-public key.
+## Concepts
 
-The RSA private key is used to generate digital signatures, and the RSA public key is used to verify digital signatures.
-The RSA public key is also used for key encryption of DES or AES DATA keys and the RSA private key for key recovery.
+A symmetric cipher is a cipher that uses the same key for both encryption and decryption.
 
-## Key pairs
+In a public-key system, each user has a pair of keys consisting of a private key and a public key. GnuPG uses a somewhat
+more sophisticated scheme in which a user has a primary keypair and then zero or more additional subordinate keypairs.
+The primary and subordinate keypairs are bundled to facilitate key management and the bundle can often be considered
+simply as one keypair.
 
-- [Useful IT
-  Policies](https://github.com/lfit/itpol/blob/master/protecting-code-integrity.md#understanding-the-certification-key)
+A primary key must be capable of making signatures.it is possible to later add additional subkeys for encryption and
+signing.
 
-By default, a master signing key and an encryption subkey are generated when you create a new keypair. This is
-convenient, because the roles of the two keys are different, and you may therefore want the keys to have different
-lifetimes.
+### Key size
 
-- The master signing key is used to make digital signatures, and it also collects the signatures of others who have
-  confirmed your identity.
-- The encryption key is used only for decrypting encrypted documents sent to you.
-
-Typically, a digital signature has a long lifetime, e.g., forever, and you also do not want to lose the signatures on
-your key that you worked hard to collect. On the other hand, the encryption subkey may be changed periodically for extra
-security, since if an encryption key is broken, the attacker can read all documents encrypted to that key both in the
-future and from the past.
-
-## Key roles
-
-- E: encryption
-- S: signing
-- C: certification
-- A: authentication
-
-## Key Ids
-
-Key IDs can be represented in three different forms:
-
-- fingerprint, a full 40-character key identifier (111122223333444455556666AAAABBBBCCCCDDDD)
-- long, last 16-characters of the fingerprint (AAAABBBBCCCCDDDD)
-- short, last 8 characters of the fingerprint (CCCCDDDD)
-
-## Create new key pair
-
-- [Arch wiki](https://wiki.archlinux.org/title/GnuPG#Create_a_key_pair)
-- [Gentoo wiki](https://wiki.gentoo.org/wiki/GnuPG#Creating_a_key)
-
-```console
-$ gpg --full-gen-key
-```
-
-- The default 'RSA and RSA'
-- Use a keysize of the default 3072 value.
-- Expiration date: 0 (never expire). Set expiration date for encryption subkey later, unless revoked (see Subkeys
-  section).
-
-After creating a key pair, backup your private key and revocation certificate to offline encrypted device.
-
-### Backup revocation certificate
-
-- [Arch wiki](https://wiki.archlinux.org/title/GnuPG#Backup_your_revocation_certificate)
-- [Gentoo wiki](https://wiki.gentoo.org/wiki/GnuPG#Generating_a_revocation_certificate)
-- [GnuPG manual](https://www.gnupg.org/gph/en/manual.html#REVOCATION)
-
-Revocation certificates are automatically generated for newly generated keys. These are by default located in
-~/.gnupg/openpgp-revocs.d/. 
-
-The certificate should not be stored where others can access it since anybody can publish the revocation certificate and
-render the corresponding public key useless.
-
-### Backup your private key
-
-- [Arch wiki](https://wiki.archlinux.org/title/GnuPG#Backup_your_private_key)
-
-## Subkeys
-
-It only makes sense to have one valid encryption subkey on a keyring. There is no additional security gained by having
-two or more active subkeys. There may of course be any number of expired keys on a keyring so that documents encrypted
-in the past may still be decrypted, but only one subkey needs to be active at any given time.
+The longer the key the more secure it is against brute-force attacks, but for almost all purposes the default keysize is
+adequate since it would be cheaper to circumvent the encryption than try to break it. Also, encryption and decryption
+will be slower as the key size is increased, and a larger key size may affect signature length. Once selected, the key
+size can never be changed.
 
 ### Expiration date
 
-- [Arch wiki](https://wiki.archlinux.org/title/GnuPG#Extending_expiration_date)
-- [GPG manual](https://www.gnupg.org/gph/en/manual.html#AEN526)
+For most users a key that does not expire is adequate. The expiration time should be chosen with care, however, since
+although it is possible to change the expiration date after the key is created, it may be difficult to communicate a
+change to users who have your public key.
 
-It is almost always the case that you will not want the master key to expire. One reason for master key expiration might
-be that if you lose control of the key and do not have a revocation certificate with which to revoke the key, having an
-expiration date on the master key ensures that the key will eventually fall into disuse.
+### User ID
 
-It is good practice to set an expiration date on your subkeys, so that if you lose access to the key (e.g. you forget
-the passphrase) the key will not continue to be used indefinitely by others. 
+A user ID should be created carefully since it cannot be edited after it is created.
 
-```console
-$ gpg --edit-key <user_id>
-$ key <N> # select subkey by index N
-$ expire
-$ save
-```
+### Revocation certificate
 
-Alternatively, if you prefer to stop using subkeys entirely once they have expired, you can create new ones. Do this a few weeks in advance to allow others to update their keyring.
+After your keypair is created you should immediately generate a revocation certificate for the primary public key using
+the option --gen-revoke. 
 
-GPG key's expiration can also be extended at any time unless it's been revoked.
+A revoked public key can still be used to verify signatures made by you in the past, but it cannot be used to encrypt
+future messages to you. It also does not affect your ability to decrypt messages sent to you in the past if you still do
+have access to the private key.
 
-! Never delete your expired or revoked subkeys unless you have a good reason. Doing so will cause you to lose the ability to decrypt files encrypted with the old subkey. Please only delete expired or revoked keys from other users to clean your keyring.
+Since the certificate is short, you may wish to print a hardcopy of the certificate to store somewhere safe such as your
+safe deposit box. The certificate should not be stored where others can access it since anybody can publish the
+revocation certificate and render the corresponding public key useless.
 
-### Exporting subkey
+## Public keys
 
-- [Arch wiki](https://wiki.archlinux.org/title/GnuPG#Exporting_subkey)
+* [Manual](https://www.gnupg.org/gph/en/manual/x56.html)
 
-If you plan to use the same key across multiple devices, you may want to strip out your master key and only keep the bare minimum encryption subkey on less secure systems. 
+## Validation
 
-## GPG agent
+Once a public key is imported to your public keyring it should be validated. GnuPG uses a powerful and flexible trust
+model that does not require you to personally validate each key you import. 
 
-- [Arch wiki](https://wiki.archlinux.org/title/GnuPG#gpg-agent)
-- [Gentoo wiki](https://wiki.gentoo.org/wiki/GnuPG#Using_a_GPG_agent)
+A key is validated by verifying the key's fingerprint and then signing the key to certify it as a valid key. A key's
+fingerprint is verified with the key's owner. After checking the fingerprint, you may sign the key to validate it. 
 
-Set GPG agent using Gentoo wiki.
+Once signed you can check the key to list the signatures on it and see the signature that you have added. Every user ID
+on the key will have one or more self-signatures as well as a signature for each user that has validated the key.
 
-## Additional notes
+## Encrypting and decrypting documents
 
-If a user has several email addresses they would like to use with the key, the user can run gpg `--edit-key <USER_ID>` then use the adduid command.
-It will ask the user for the name, email, and comment of the second ID to be used.
+* [Manual](https://www.gnupg.org/gph/en/manual/x110.html)
 
-## Pass
+A public key may be thought of as an open safe. When a correspondent encrypts a document using a public key, that
+document is put in the safe, the safe shut, and the combination lock spun several times. 
 
-- [Arch wiki](https://wiki.archlinux.org/title/Pass)
+The corresponding private key is the combination that can reopen the safe and retrieve the document. In other words,
+only the person who holds the private key can recover a document encrypted using the associated public key.
 
-To be able to use pass, set up GnuPG. The trust level of the key used for pass must be "ultimate".
+To encrypt a document the option --encrypt is used. You must have the public keys of the intended recipients.
 
-Upon initialization of pass store, you provide GPG identity. Plaintext identity will be stored as.gpg-id. This tells pass which key to use for pass operations.
+If you want to encrypt a message to Alice, you encrypt it using Alice's public key, and she decrypts it with her private
+key. In particular, you cannot decrypt a document encrypted by you unless you included your own public key in the
+recipient list.
 
-Passphrase for the private key will become passphrase for document encryption/decryption.
+## Symmetric encryption (passphrase only)
 
-You can still decrypt passwords using expired encryption key.
+Documents may also be encrypted without using public-key cryptography. Instead, only a symmetric cipher is used to
+encrypt the document. The key used to drive the symmetric cipher is derived from a passphrase supplied when the document
+is encrypted, and for good security, it should not be the same passphrase that you use to protect your private key.
+
+## [Digital signature](https://www.gnupg.org/gph/en/manual/x135.html)
+
+A digital signature certifies and timestamps a document. A signature is created using the private key of the signer. The
+signature is verified using the corresponding public key.
+
+### Signed document
+
+The command-line option [--sign](https://www.gnupg.org/gph/en/manual/r606.html) is used to make a digital signature. The
+document to sign is input, and the signed document is output.
+
+The document is compressed before signed, and the output is in binary format. Given a signed document, you can either
+check the signature or check the signature and recover the original document.
+
+### Clearsigned documents
+
+The option [--clearsign](https://www.gnupg.org/gph/en/manual/r684.html) causes the document to be wrapped in an
+ASCII-armored signature but otherwise does not modify the document.
+
+### Detached signatures
+
+A signed document has limited usefulness. Other users must recover the original document from the signed version, and
+even with clearsigned documents, the signed document must be edited to recover the original.
+
+ Therefore, there is a third method for signing a document that creates a detached signature. A detached signature is
+ created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) option.
+
+Both the document and detached signature are needed to verify the signature. The --verify option can be to check the
+signature.
+
