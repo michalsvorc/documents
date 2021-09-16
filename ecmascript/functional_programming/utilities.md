@@ -34,3 +34,13 @@ Creates a function that invokes func with partials prepended to the arguments it
 except it does not alter the this binding.
 
 See also `partialRight`, `curry`.
+
+## curry
+
+Returns a curried equivalent of the provided function.
+
+* [Ramda](https://ramdajs.com/docs/#curry)
+* [Lodash](https://lodash.com/docs/#curry)
+* [Functional Light JS](https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch3.md#one-at-a-time)
+
+See also `curryN`, `partial`.

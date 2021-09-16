@@ -46,6 +46,10 @@ JS](https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch3.md#
 
 ## Currying
 
+* [Functional Light JS](https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch3.md#one-at-a-time)
+
+Currying unwinds a single higher-arity function into a series of chained unary functions.
+
 Currying is a special form of partial application, where a function that expects multiple arguments is broken down into
 successive chained functions that each take a single argument (arity: 1) and return another function to accept the next
 argument.
@@ -53,14 +57,32 @@ argument.
 Once all arguments have been specified by these function calls, the original function is executed with all the collected
 arguments.
 
-Currying is similar to partial application in that each successive curried call partially applies another argument to
-the original function, until all arguments have been passed.
-
-The main difference is that curried function will return a function that expects only the next argument data, not one
-that can receive all the rest of the arguments.
+The advantage of currying is that each call to pass in an argument produces another function that's more specialized,
+and we can capture and use that new function later in the program. Partial application specifies all the partially
+applied arguments up front, producing a function that's waiting for all the rest of the arguments on the next call.
 
 Think about the order of arguments from least specific arguments to most specific arguments. The least specific argument
 might be the data.
+
+Both currying and partial application use closure to remember the arguments over time until all have been received, and
+then the original function can be invoked.
+
+## Point-free programming
+
+* [Functional Light JS](https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch3.md#no-points)
+
+Point-free is a style of writing code that eliminates unnecessary verbosity of mapping parameters ("points") to
+arguments, with the goal of making code easier to read/understand.
+
+The term "point" here is referring to a function's parameter input.
+
+```javascript
+function double(x) {
+    return x * 2;
+}
+
+[1,2,3,4,5].map( double ); // point-free style
+```
 
 ## Loops
 
