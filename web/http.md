@@ -2,10 +2,16 @@
 
 * [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
+Overview:
+
+* [Methods - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+* [Status codes - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+* [Headers - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
+* [Messages - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages)
+* [Common MIME types - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
+
 Topics:
 
-* [HTTP Messages - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages)
-* [Common MIME types - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
 * [Persistent connections - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Connection_management_in_HTTP_1.x#persistent_connections)
 
 HTTP is:
@@ -120,8 +126,8 @@ sniffing, or, in other words, to say that the MIME types are deliberately config
 * [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
 
 The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a
-page in a `<frame>`, `<iframe>`, `<embed>` or `<object>`. Sites can use this to avoid click-jacking attacks, by ensuring that
-their content is not embedded into other sites.
+page in a `<frame>`, `<iframe>`, `<embed>` or `<object>`. Sites can use this to avoid click-jacking attacks, by ensuring
+that their content is not embedded into other sites.
 
 ### X-XSS-Protection
 
@@ -160,7 +166,8 @@ and the Fetch API follow the same-origin policy.
 This means that a web application using those APIs can only request resources from the same origin the application was
 loaded from unless the response from other origins includes the right CORS headers.
 
-The only headers which are allowed to be manually set are those which the Fetch spec defines as a CORS-safelisted request-header, which are:
+The only headers which are allowed to be manually set are those which the Fetch spec defines as a CORS-safelisted
+request-header, which are:
 
 * Accept
 * Accept-Language
@@ -269,3 +276,223 @@ set third-party cookies.
 
 These are mainly used for advertising and tracking across the web.
 
+## Authentication
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+* [WWW-Authenticate header - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/WWW-Authenticate)
+* [Authorization header - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)
+
+Common authentication schemes include:
+
+* Basic
+* Bearer
+* Digest
+* HOBA
+* Mutual
+* AWS4-HMAC-SHA256
+
+The "Basic" HTTP authentication scheme is defined in RFC 7617, which transmits credentials as user ID/password pairs,
+encoded using base64.
+
+### The challenge and response flow
+
+1. The server responds to a client with a `401` (Unauthorized) response status and provides information on how to
+   authorize with a `WWW-Authenticate` *response header* containing at least one challenge.
+2. A client that wants to authenticate itself with the server can then do so by including an `Authorization` *request
+   header* with the credentials.
+3. Usually a client will present a password prompt to the user and will then issue the request including the correct
+   `Authorization` header.
+
+In the case of a "Basic" authentication, the exchange must happen over an HTTPS (TLS) connection to be secure.
+
+The same challenge and response mechanism can be used for proxy authentication with `407` (Proxy Authentication
+Required), the `Proxy-Authenticate` *response header* and the `Proxy-Authorization` *request header*.
+
+The `WWW-Authenticate` and `Proxy-Authenticate` response headers define the authentication method that should be used to
+gain access to a resource. They must specify which authentication scheme is used, so that the client that wishes to
+authorize knows how to provide the credentials.
+
+The `Authorization` and `Proxy-Authorization` request headers contain the credentials to authenticate a user agent with
+a (proxy) server.
+
+## Caching
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+* [Revving - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#revved_resources)
+
+A *shared cache* is a cache that stores responses for reuse by more than one user.
+
+A *private cache* is dedicated to a single user.
+
+### Cache-Control header
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control)
+
+The `Cache-Control` header field is used to specify directives for caching mechanisms in both requests and responses. 
+
+`no-cache`: A cache will send the request to the origin server for validation before releasing a cached copy. This
+directive is not effective in preventing caches from storing your response. If you mean to not store the response in any
+cache, use no-store instead. 
+
+`no-store`: The response may not be stored in any cache. Note that this will not prevent a valid pre-existing cached
+response being returned. Clients can set `max-age=0` to also clear existing cache responses, as this forces the cache to
+revalidate with the server (no other directives have an effect when used with no-store).
+
+`max-age=<seconds>`: The maximum amount of time in which a resource will be considered fresh. This directive is relative
+to the time of the request, and overrides the Expires header (if set). 
+
+`must-revalidate`: The cache must verify the status of the stale resources before using it and expired ones should not
+be used. 
+
+`Pragma` header should only be used for backwards compatibility with HTTP/1.0 caches where the `Cache-Control` HTTP/1.1
+header is not yet present.
+
+### Freshness
+
+* [Cache diagram - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching/http_staleness.png)
+* [Heuristic freshness checking - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#heuristic_freshness_checking)
+
+Caches have finite storage so items are periodically removed from storage. This process is called *cache eviction*.
+
+Note that a stale resource is not evicted or ignored; when the cache receives a request for a stale resource, it
+forwards this request with a `If-None-Match` to check if it is in fact still fresh. If so, the server returns a `304`
+(Not Modified) header without sending the body of the requested resource, saving some bandwidth.
+
+If a `Cache-Control: max-age=N` header is specified, then the freshness lifetime is equal to N. If an origin server does
+not explicitly specify freshness (e.g. using `Cache-Control` or `Expires` header) then a heuristic approach may be used.
+
+### Validation
+
+When a cached document's expiration time has been reached, it is either validated or fetched again. Validation can only
+occur if the server provided either a strong validator or a weak validator.
+
+Revalidation is triggered when the user presses the reload button. It is also triggered under normal browsing if the
+cached response includes the "Cache-Control: must-revalidate" header.
+
+The `ETag` response header is an opaque-to-the-useragent value that can be used as a strong validator.
+
+The `Last-Modified` response header can be used as a weak validator.
+
+Validators are cached with the resource (like all headers) and will be used to craft conditional requests, once the
+cache becomes stale.
+
+See conditional requests.
+
+### Varying responses
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#varying_responses)
+* [Vary header - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary)
+* [Normalization - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#normalization)
+
+The Vary HTTP response header determines how to match future request headers to decide whether a cached response can be
+used rather than requesting a fresh one from the origin server. It is used by the server to indicate which headers it
+used when selecting a representation of a resource in a content negotiation algorithm.
+
+The Vary header should be set on a `304 Not Modified` response exactly like it would have been set on an equivalent `200
+OK` response.
+
+The Vary header can be useful for serving different content to desktop and mobile users, or to allow search engines to
+discover the mobile version of a page (and perhaps also tell them that no Cloaking is intended). This is usually
+achieved with the `Vary: User-Agent` header.
+
+To avoid unnecessary requests and duplicated cache entries, caching servers should use `normalization` to pre-process
+the request and cache only files that are needed. For example, in the case of Accept-Encoding you could check for gzip
+and other compression types in the header before doing further processing, and otherwise unset the header.
+
+## Conditional requests
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests)
+
+HTTP has a concept of conditional requests, where the result, and even the success of a request, can be changed by
+comparing the affected resources with the value of a *validator*.
+
+All conditional headers try to check if the resource stored on the server matches a specific version. To achieve this,
+the conditional requests need to indicate the version of the resource.
+
+Such values describing the version are called validators, and are of two kinds:
+
+* The date of last modification of the document, the last-modified date.
+* An opaque string, uniquely identifying each version, called the entity tag, or the etag.
+
+Comparing versions of the same resource is a bit tricky: depending on the context, there are two kinds of equality
+checks:
+
+* Strong validation is used when byte to byte identity is expected, for example when resuming a download.
+* Weak validation is used when the user-agent only needs to determine if the two resources have the same content. This
+  is even if they are minor differences; like different ads, or a footer with a different date.
+
+### Conditional headers
+
+* [If-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match)
+* [If-None-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
+* [If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since)
+* [If-Unmodified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Unmodified-Since)
+* [If-Range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Range)
+
+### Optimistic locking
+
+Conditional requests allow implementing the optimistic locking algorithm (used by most wikis or source control systems).
+The concept is to allow all clients to get copies of the resource, then let them modify it locally, controlling
+concurrency by successfully allowing the first client to submit an update. All subsequent updates, based on the now
+obsolete version of the resource, are rejected
+
+## Compression
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
+
+All modern browsers and servers do support compression and the only thing to negotiate is the compression algorithm to
+use. Nowadays, only two are relevant: `gzip`, and `br`.
+
+* *End-to-end* compression refers to a compression of the body of a message that is done by the server and will last
+  unchanged until it reaches the client. Whatever the intermediate nodes are, they leave the body untouched.
+* *Hop-by-hop* compression doesn't happen on the resource in the server, creating a specific representation that is then
+  transmitted, but on the body of the message between any two nodes on the path between the client and the server.
+
+## Redirection
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections)
+
+In HTTP, redirection is triggered by a server sending a special redirect response to a request. Redirect responses have
+status codes that start with 3, and a `Location` header holding the URL to redirect to.
+
+Alternative way of specifying redirections:
+
+* HTML redirections with the `<meta>` element
+* JavaScript redirections via the DOM
+
+## Partial requests
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
+* [Range header - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range)
+
+If the `Accept-Ranges` is present in HTTP responses (and its value isn't "none"), the server supports range requests.
+
+If the server supports range requests, you can issue such a request by using the `Range` header.
+
+The `Transfer-Encoding` header allows chunked encoding, which is useful when larger amounts of data are sent to the
+client and the total size of the response is not known until the request has been fully processed. The server sends data
+to the client straight away without buffering the response or determining the exact length, which leads to improved
+latency. Range requests and chunking are compatible and can be used with or without each other.
+
+## Content negotiation
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation)
+
+In HTTP, content negotiation is the mechanism that is used for serving different representations of a resource at the
+same URI, so that the user agent can specify which is best suited for the user (for example, which language of a
+document, which image format, or which content encoding).
+
+HTML5 provides alternatives to content negotiation via, for example, the `<source>` element.
+
+### Server-driven negotiation
+
+The HTTP/1.1 standard defines list of the standard headers that start server-driven negotiation (such as `Accept`,
+`Accept-Encoding`, and `Accept-Language`). Server-driven negotiation suffers from a few downsides: it doesn't scale
+well. There is one header per feature used in the negotiation. 
+
+### Agent-driven negotiation
+
+When facing an ambiguous request, the server sends back a page containing links to the available alternative resources.
+The user is presented the resources and choose the one to use. This method is almost always used in conjunction with
+scripting, especially with JavaScript redirection: after having checked for the negotiation criteria, the script
+performs the redirection. 
