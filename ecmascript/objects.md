@@ -107,14 +107,19 @@ Use case for spreading:
 
 ## in operator
 
-* [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)
+* [in operator - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)
+* [Object.prototype.hasOwnProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
 
- The in operator returns true if the specified property is in the specified object or its prototype chain.
+The `in` operator returns `true` for properties in the prototype chain. If you want to check for only non-inherited
+properties, use `Object.prototype.hasOwnProperty()` instead.
 
 ```js
 const car = { make: 'Honda', model: 'Accord', year: 1998 };
-
 console.log('make' in car); // true
+
+// Beware:
+const dict = {};
+console.log('toString' in dict); // true
 ```
 
 ## delete operator 
