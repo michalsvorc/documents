@@ -189,11 +189,20 @@ Types:
 * [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
 * [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
 
-Operators:
+## Operators
 
 * [break](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break)
 * [continue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue)
 * [label](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label)
+
+The `break` statement terminates the current loop, switch, or label statement and transfers program control to the
+statement following the terminated statement.
+
+The `continue` statement terminates execution of the statements in the current iteration of the current or labeled loop,
+and continues execution of the loop with the next iteration.
+
+You can use a `label` to identify a loop, and then use the `break` or `continue` statements to indicate whether a
+program should interrupt the loop or continue its execution.
 
 ### Difference between for...of and for...in
 
@@ -237,6 +246,85 @@ An *iterable* is an object whose contents can be traversed sequentially. Built-i
 * The *iterator protocol* defines a standard way to produce a sequence of values (either finite or infinite), and
   potentially a return value when all values have been generated. An object is an iterator when it implements a `next()`
   method and returns `{ value: <any>, done: <boolean> }` object.
+
+## Rest parameters
+
+* [Rest parameters - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+* [The arguments object - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
+
+A function definition's last parameter can be prefixed with `...` , which will cause all remaining (user supplied)
+parameters to be placed within a standard JavaScript array.
+
+Only the last parameter in a function definition can be a rest parameter.
+
+Always prefer rest parameters to `arguments` object.
+
+```js
+function multiply(n, ...m) {
+ return m.map((x) => n * x);
+}
+
+const a = multiply(10, 1, 2, 3, 4); // [10, 20, 30, 40]
+```
+
+## Spread syntax
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+```js
+// Pass all elements of iterableObj as arguments to function myFunction:
+myFunction(...iterableObj); // pass all elements of iterableObj as arguments to function myFunction
+
+// Combine two arrays by inserting all elements from iterableObj:
+[...iterableObj, '4', 'five', 6];
+
+// Pass all key:value pairs from an object:
+let objClone = { ...obj };
+```
+
+Similar to spreading into object literals, spreading into Array literals creates *shallow copies*. That is, nested
+objects are not copied.
+
+## Destructuring assignment
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+
+Array destructuring:
+
+```js
+const [a, b, ...rest] = [10, 20, 30, 40, 50];
+
+console.log(a);     // 10
+console.log(b);     // 20
+console.log(rest);  // [30, 40, 50]
+```
+
+Two variables values can be swapped in one destructuring expression:
+
+```js
+let a = 1;
+let b = 3;
+
+[a, b] = [b, a];
+console.log(a);     // 3
+console.log(b);     // 1
+```
+
+Object destructuring:
+
+```js
+const {a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});
+
+console.log(a);     // 10
+console.log(b);     // 20
+console.log(rest);  // {c: 30, d: 40}
+```
+
+Iteration and destructuring:
+
+```js
+for (const [key,value] of Object.entries({a: 10, b: 20}))
+```
 
 ## Generator
 
