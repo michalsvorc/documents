@@ -306,6 +306,25 @@ A simple way to avoid this gotcha with global declarations: always use `var` for
 
 Reserve `let` and `const` for block scopes.
 
+## Closures
+
+* [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the
+lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function. In
+JavaScript, closures are created every time a function is created, at function creation time.
+
+Closures are useful because they let you associate data (the lexical environment) with a function that operates on that
+data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (the object's
+properties) with one or more methods.
+
+Consequently, you can use a closure anywhere that you might normally use an object with only a single method.
+
+Closure values in memory are live links, not snapshots. Closure is per variable rather than per scope, meaning that
+closures are typically assumed to close over only what they explicitly reference. Though the enclosing scope of a
+closure is typically from a function, that's not actually required; there only needs to be an inner function present
+inside an outer scope.
+
 ## Temporal Dead Zone (TDZ)
 
 * [You Don't Know JS Yet](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch5.md#uninitialized-variables-aka-tdz)
