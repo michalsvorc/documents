@@ -19,13 +19,10 @@ Topics:
 * [Scope & Closures - You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
 * [(Video) Stack & Event loop - youtube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
-New features:
-
-* [New JavaScript features - exploringjs.com](https://exploringjs.com/impatient-js/ch_new-javascript-features.html)
-
 Resources:
 
 * [Reference Books](https://github.com/codesONLY/JavaScriptONLY/tree/master/ReferenceBooks)
+* [New features - exploringjs.com](https://exploringjs.com/impatient-js/ch_new-javascript-features.html)
 
 ## Data types and data structures
 
@@ -240,12 +237,15 @@ An *iterable* is an object whose contents can be traversed sequentially. Built-i
 
 *Object* is not a built-in iterable. To iterate over the properties of objects, you need helpers such as `Object.keys()` and `Object.entries()`.
 
-* The *iterable protocol* allows JavaScript objects to define or customize their iteration behavior. The protocol is not
-  meant to be used directly - it is meant to be used via higher-level language constructs built on top of it.
-* An *iterator* is the pointer used for the traversal.
-* The *iterator protocol* defines a standard way to produce a sequence of values (either finite or infinite), and
-  potentially a return value when all values have been generated. An object is an iterator when it implements a `next()`
-  method and returns `{ value: <any>, done: <boolean> }` object.
+* Iterable: an object that signals that it can be iterated over, via a method whose key is Symbol.iterator.
+* Iterator: an object returned by invoking `[Symbol.iterator]()` on an iterable. It wraps each iterated element in an
+  object and returns it via its method `next()` – one at a time.
+* IteratorResult: an object returned by `next()`:
+
+  `{ value: <any>, done: <boolean> }`
+
+  Property `value` contains an iterated element, property `done` is true after the last element (value can usually be
+  ignored then; it’s almost always undefined).
 
 ## Rest parameters
 
@@ -423,7 +423,6 @@ Modules are executed within their own scope, not in the global scope. This means
 etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the export
 forms. Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to
 be imported using one of the import forms.
-
 
 * Import a module for side-effects only: `import "./my-module.js";`
 * Loading modules dynamically via import() (ES2020): [Exploring JS](https://exploringjs.com/impatient-js/ch_modules.html#dynamic-imports)
