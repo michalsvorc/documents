@@ -59,25 +59,31 @@ Type assertions don't change the runtime behavior of your code.
 
 Narrowing types:
 
-* [in](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#the-in-operator-narrowing): acts as a narrowing
-  expression for type guards or index signatures
-* [is](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates): type predicates
-  (user-defined type guard functions)
-* [as](https://basarat.gitbook.io/typescript/type-system/type-assertion): type assertion
-* [as const](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions): const
-  assertion
+* [in](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#the-in-operator-narrowing): Acts as a narrowing
+  expression for type guards or index signatures.
+* [is](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates): Type predicates.
+* [as](https://basarat.gitbook.io/typescript/type-system/type-assertion): Type assertion.
+* [as const](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions): Const
+  assertion.
 
 Extends keyword:
 
-* [extends](https://skovy.dev/typescript-explained-in-javascript-extends/): 
+* [extends](https://skovy.dev/typescript-explained-in-javascript-extends/)
 * [Extending classes](https://www.typescriptlang.org/docs/handbook/2/classes.html#extends-clauses)
 * [Extending interfaces](https://www.typescriptlang.org/docs/handbook/2/objects.html#extending-types)
 * [Extending Type parameters (constraint)](https://www.typescriptlang.org/docs/handbook/2/functions.html#constraints)
 
-Modules:
+Declarations:
 
-* [declare](https://www.typescriptlang.org/docs/handbook/modules.html): The declare keyword is used for ambient
-  declarations where you want to define a variable that may not have originated from a TypeScript file.
+The `declare` keyword is used for ambient declarations where you want to define a variable that may not have originated
+from a TypeScript file.
+
+* [declare](https://basarat.gitbook.io/typescript/type-system/intro): Ambient declarations.
+* [declare var](https://basarat.gitbook.io/typescript/type-system/intro/variables): Ambient variable declarations.
+* [declare module](https://www.typescriptlang.org/docs/handbook/modules.html#ambient-modules): Ambient module
+  declarations.
+* [declare namespace](https://www.typescriptlang.org/docs/handbook/namespaces.html#ambient-namespaces): Ambient
+  namespace declarations.
 
 Classes:
 
