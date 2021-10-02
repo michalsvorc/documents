@@ -22,6 +22,11 @@ available in the global scope (and therefore to modules as well).
 * [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/intro/d.ts)
 * [Modules .d.ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
 
+Libraries:
+
+* [DefinitelyTyped](https://definitelytyped.org/)
+* [microsoft/dts-gen](https://github.com/Microsoft/dts-gen)
+
 The `d.ts` file is used to provide typescript type information about an API that's written in pure JavaScript. The idea
 is that you're using something like `jQuery` or underscore, an existing JavaScript library. You want to consume those
 from your TypeScript code.
@@ -44,6 +49,14 @@ Add path for TypeScript `.d.ts` file to regular `.ts` file:
 ```typescript
 ///<reference path="path/to/file.d.ts" />
 ```
+
+### lib.d.ts
+
+* [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/lib.d.ts)
+
+A special declaration file `lib.d.ts` ships with every installation of TypeScript. This file contains the ambient
+declarations for various common JavaScript constructs present in JavaScript runtimes and the DOM (e.g. window, document,
+math and a bunch of similar interface declarations e.g. Window , Document, Math).
 
 ## Ambient declarations
 
@@ -92,8 +105,6 @@ declaration to get started quickly.
 ```
 
 All imports from a shorthand module will have the `any` type.
-
-See [DefinitelyTyped](https://definitelytyped.org/) repository for TypeScript type definitions.
 
 ### Ambient variables
 

@@ -34,6 +34,8 @@ Topics:
 * [Handbook - Advanced Types (+Type Guards)](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
 * [Type Compatibility - Documentation](https://www.typescriptlang.org/docs/handbook/type-compatibility.html)
 * [Type Compatibility - TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/type-compatibility)
+* [Type Retrospective
+  Versioning](https://basarat.gitbook.io/typescript/type-system/discriminated-unions#retrospective-versioning)
 
 Exercises:
 
@@ -597,13 +599,12 @@ nest?: {
   2.8](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#type-inference-in-conditional-types)
 * [Documentation](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)
 * [TypeScript Tutorial - DEV Community](https://dev.to/aexol/typescript-tutorial-infer-keyword-2cn)
+* [Why is the infer keyword needed in Typescript? - stackoverflow.com](https://stackoverflow.com/questions/60067100/why-is-the-infer-keyword-needed-in-typescript)
 
 Within the `extends` clause of a conditional type, it is now possible to have `infer` declarations that introduce a type
 variable to be inferred.
 
 Such inferred type variables may be referenced in the true branch of the conditional type.
-
-### Examples
 
 Extract the type from the promise:
 
@@ -767,4 +768,12 @@ var x = Tristate.False; // JS generates: var x = 0;
 1. Inline any usage of the enum (`0` instead of `Tristate.False`).
 2. Does not generate any JavaScript for the enum definition (there is no `Tristate` variable at runtime) as its usages
    are inline.
+
+## Declaration merging
+
+* [TypeScript Deep Dive](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+
+Declaration merging means that the compiler merges two separate declarations declared with the same name into a single
+definition. This merged definition has the features of both of the original declarations. Any number of declarations can
+be merged; it’s not limited to just two declarations.
 
