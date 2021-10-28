@@ -6,7 +6,7 @@
 - [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts): The FromSchema method lets you infer TS types
   directly from JSON schemas.
 - [tsdx](https://github.com/formium/tsdx): Zero-config CLI for TypeScript package development.
-- [Zod](https://github.com/colinhacks/zod): TypeScript-first schema validation with static type inference.
+- [zod](https://github.com/colinhacks/zod): TypeScript-first schema validation with static type inference.
 
 ## ECMAScript
 
@@ -52,3 +52,7 @@
 
 - [pkg2appimage](https://github.com/AppImage/pkg2appimage/tree/master/recipes): Tool and recipes to convert existing deb
   packages to AppImage.
+
+## CSS
+
+- [typestyle](https://github.com/typestyle/typestyle): Writing CSS with TypeStyle will be just as fluent as writing JavaScript with TypeScript.
