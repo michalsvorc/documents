@@ -6,6 +6,7 @@
 - [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts): The FromSchema method lets you infer TS types
   directly from JSON schemas.
 - [tsdx](https://github.com/formium/tsdx): Zero-config CLI for TypeScript package development.
+- [Zod](https://github.com/colinhacks/zod): TypeScript-first schema validation with static type inference.
 
 ## ECMAScript
 
