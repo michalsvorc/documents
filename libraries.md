@@ -5,7 +5,6 @@
   type inference.
 - [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts): The FromSchema method lets you infer TS types
   directly from JSON schemas.
-- [tsdx](https://github.com/formium/tsdx): Zero-config CLI for TypeScript package development.
 - [zod](https://github.com/colinhacks/zod): TypeScript-first schema validation with static type inference.
 
 ## ECMAScript
@@ -19,7 +18,8 @@
 - [date-fns](https://github.com/date-fns/date-fns): date-fns provides the most comprehensive, yet simple and consistent
   toolset for manipulating JavaScript dates in a browser & Node.js.
 - [node-deep-equal](https://github.com/inspect-js/node-deep-equal): assert.deepEqual algorithm.
-- [husky](https://basarat.gitbook.io/typescript/intro-2/husky): Husky can prevent bad commits, pushes and more.
+- [shelljs](https://github.com/shelljs/shelljs): Portable Unix shell commands for Node.js (API).
+- [shx](https://github.com/shelljs/shx): Portable Unix shell commands for Node.js (CLI).
 
 ## React.js
 
