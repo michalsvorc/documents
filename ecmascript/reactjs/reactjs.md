@@ -1,4 +1,4 @@
-# React
+# React.js
 
 Overview:
 

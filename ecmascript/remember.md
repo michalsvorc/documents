@@ -93,6 +93,8 @@ This property might help with debugging.
 
 ## Comparisons and checks
 
+* [Equality comparisons and sameness - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+
 ### Check if number is NaN
 
 * [Number.isNaN() - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN) 
