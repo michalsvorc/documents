@@ -1,12 +1,12 @@
 # TypeScript examples
 
-## Get the values of an object
+## Get values of an object
 
 ```typescript
 type ValueOf<T> = T[keyof T];
 ```
 
-## Get property of a type
+## Get property of an object
 
 ```typescript
 function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
@@ -87,3 +87,127 @@ function logName(something: { name: string, [key: string]: string }) {
   console.log(something.name);
 }
 ```
+
+## Index signatures
+
+### Using a limited set of string literals
+
+- [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/index-signatures#using-a-limited-set-of-string-literals)
+
+An index signature can require that index strings be members of a union of literal strings by using Mapped Types:
+
+```typescript
+type Index = 'a' | 'b' | 'c'
+type FromIndex = { [k in Index]: number }
+type FromSomeIndex<K extends string> = { [key in K]: number }
+
+const obj1: FromIndex = {a: 1, b:2, c:3}
+const obj2: FromSomeIndex<Index> = {a: 1, b:2, c:3}
+```
+
+### Nested index signature
+
+- [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/index-signatures#design-pattern-nested-index-signature)
+
+Try not to mix string indexers with *valid* values this way, it might introduce typos in NestedCSS type:
+
+```typescript
+interface NestedCSS {
+  color?: string;
+  [selector: string]: string | NestedCSS | undefined;
+}
+
+const failsSilently: NestedCSS = {
+  colour: 'red', // No error as `colour` is a valid string selector
+}
+```
+
+Instead separate out the nesting into its own property e.g. in a name like nest (or children or subnodes etc.):
+
+```typescript
+interface NestedCSS {
+  color?: string;
+  nest?: {
+   [selector: string]: NestedCSS;
+  }
+}
+```
+
+## Mapped types
+
+Remove `optional` attributes from a type's properties:
+
+```typescript
+[Property in keyof Type]-?: Type[Property];
+```
+
+Remove `readonly` attributes from a type's properties:
+
+```typescript
+-readonly [Property in keyof Type]: Type[Property];
+```
+
+### Key Remapping via as
+
+- [Release notes - TypeScript 4.1](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#key-remapping-via-as)
+
+You can leverage features like template literal types to create new property names from prior ones:
+
+```typescript
+type Getters<Type> = {
+  [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property]
+};
+```
+
+You can filter out keys by producing never via a conditional type:
+
+```typescript
+type RemoveKindField<Type> = {
+  [Property in keyof Type as Exclude<Property, "kind">]: Type[Property]
+};
+```
+
+You can map over arbitrary unions, not just unions of `string | number | symbol`, but unions of any type:
+
+```typescript
+type EventConfig<Events extends { kind: string }> = {
+  [E in Events as E["kind"]]: (event: E) => void;
+}
+```
+
+ A mapped type using a conditional type which returns either a `true` or `false` depending on whether an object has the
+ property `pii` set to the literal `true`:
+
+```typescript
+type ExtractPII<Type> = {
+  [Property in keyof Type]: Type[Property] extends { pii: true } ? true : false;
+};
+```
+
+## Variadic tuple types
+
+* [Release notes - TypeScript 4.0](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#variadic-tuple-types)
+
+Example of concatenate function in JavaScript:
+
+```javascript
+function concat(arr1, arr2) {
+  return [...arr1, ...arr2];
+}
+```
+
+We can write a single well-typed signature for concat:
+
+```typescript
+type Arr = readonly any[];
+
+function concat<T extends Arr, U extends Arr>(arr1: T, arr2: U): [...T, ...U] {
+ return [...arr1, ...arr2];
+}
+```
+
+## Type Retrospective Versioning
+
+- [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/discriminated-unions#retrospective-versioning)
+
+You can add versioning retrospectively by creating a new union with literal number (or string if you want).

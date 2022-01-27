@@ -1,15 +1,14 @@
 # Modules
 
-* [Documentation](https://www.typescriptlang.org/docs/handbook/2/modules.html)
-* [Reference](https://www.typescriptlang.org/docs/handbook/modules.html)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/2/modules.html)
 
 Depending on the module target specified during compilation, the compiler will generate appropriate code for:
 
-* [CommonJS](http://wiki.commonjs.org/wiki/CommonJS)
-* [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)
-* [UMD](https://github.com/umdjs/umd)
-* [SystemJS](https://github.com/systemjs/systemjs)
-* [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules)
+- [CommonJS](http://wiki.commonjs.org/wiki/CommonJS)
+- [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)
+- [UMD](https://github.com/umdjs/umd)
+- [SystemJS](https://github.com/systemjs/systemjs)
+- [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules)
 
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level import or export is considered a module.
 
@@ -18,26 +17,30 @@ available in the global scope (and therefore to modules as well).
 
 ## Declaration files
 
-* [Documentation](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html)
-* [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/intro/d.ts)
-* [Modules .d.ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html)
+- [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/intro/d.ts)
+- [Modules .d.ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
+- [lib.d.ts - basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/lib.d.ts)
 
 Libraries:
 
-* [DefinitelyTyped](https://definitelytyped.org/)
-* [microsoft/dts-gen](https://github.com/Microsoft/dts-gen)
+- [DefinitelyTyped](https://definitelytyped.org/): The repository for high quality TypeScript type definitions.
+- [microsoft/dts-gen](https://github.com/Microsoft/dts-gen): A TypeScript Definition File Generator.
 
 The `d.ts` file is used to provide typescript type information about an API that's written in pure JavaScript. The idea
-is that you're using something like `jQuery` or underscore, an existing JavaScript library. You want to consume those
-from your TypeScript code.
+is that you're using an existing JavaScript library and you want to consume those from your TypeScript code.
 
 Rather than rewriting JavaScript library in typescript, you can instead write the `d.ts` file, which contains only the
 type annotations. Then from your typescript code you get the TypeScript benefits of static type checking while still
 using a pure JS library.
 
+A special declaration file `lib.d.ts` ships with every installation of TypeScript. This file contains the ambient
+declarations for various common JavaScript constructs present in JavaScript runtimes and the DOM (e.g. window, document,
+math and a bunch of similar interface declarations e.g. Window , Document, Math).
+
 ### Triple-Slash Directives
 
-* [Documentation](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html)
 
 The `/// <reference path="..." />` directive serves as a declaration of dependency between files.
 
@@ -47,28 +50,12 @@ flag `--noResolve` is specified, triple-slash references are ignored.
 Add path for TypeScript `.d.ts` file to regular `.ts` file:
 
 ```typescript
-///<reference path="path/to/file.d.ts" />
+/// <reference path="path/to/file.d.ts" />
 ```
-
-### lib.d.ts
-
-* [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/lib.d.ts)
-
-A special declaration file `lib.d.ts` ships with every installation of TypeScript. This file contains the ambient
-declarations for various common JavaScript constructs present in JavaScript runtimes and the DOM (e.g. window, document,
-math and a bunch of similar interface declarations e.g. Window , Document, Math).
-
-## Ambient declarations
-
-Ambient declarations are promises that you are making with the compiler. If these do not exist at runtime and you try to
-use them, things will break without warning.
-
-Ambient declarations are like docs. If the source changes the docs need to be kept updated. So you might have new
-behaviours that work at runtime but no one's updated the ambient declaration and hence you get compiler errors.
 
 ### Ambient modules
 
-* [Documentation](https://www.typescriptlang.org/docs/handbook/modules.html#working-with-other-javascript-libraries)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/modules.html#working-with-other-javascript-libraries)
 
 To describe the shape of libraries not written in TypeScript, we need to `declare` the API that the library exposes.
 
@@ -88,7 +75,7 @@ declare module "path" {
 }
 ```
 
-Regular `.ts` file:
+Example regular `.ts` file:
 
 ```typescript
 /// <reference path="node.d.ts"/>
@@ -108,7 +95,7 @@ All imports from a shorthand module will have the `any` type.
 
 ### Ambient variables
 
-* [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/intro/variables)
+- [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/intro/variables)
 
 `declare var process: any;`
 
@@ -126,63 +113,25 @@ This allows you to use the process variable without TypeScript complaining.
 
 ## Module resolution
 
-* [Documentation](https://www.typescriptlang.org/docs/handbook/module-resolution.html)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/module-resolution.html)
 
 1. First, the compiler will try to locate a file that represents the imported module. To do so the compiler follows one
    of two different strategies. These strategies tell the compiler where to look for *moduleA*:
-   * [Classic](https://www.typescriptlang.org/docs/handbook/module-resolution.html#classic)
-   * [Node](https://www.typescriptlang.org/docs/handbook/module-resolution.html#node). 
+   - [Classic](https://www.typescriptlang.org/docs/handbook/module-resolution.html#classic)
+   - [Node](https://www.typescriptlang.org/docs/handbook/module-resolution.html#node). 
 2. If that didn’t work and if the module name is non-relative (and in the case of *moduleA*, it is), then the compiler
 will attempt to locate an ambient module declaration.
 3. Finally, if the compiler could not resolve the module, it will log an error.
 
 ## Module Output Options
 
-* [Documentation](https://www.typescriptlang.org/docs/handbook/2/modules.html#typescripts-module-output-options)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/2/modules.html#typescripts-module-output-options)
 
 There are two options which affect the emitted JavaScript output:
 
-* `target` which determines which JS features are downleveled and which are left intact. Which `target` you use is
+- `target` which determines which JS features are downleveled and which are left intact. Which `target` you use is
   determined by the features available in the JavaScript runtime you expect to run the TypeScript code in.
-* `module` which determines what code is used for modules to interact with each other.
-
-## Import an export Types
-
-* [TypeScript 3.8](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/#type-only-imports-exports)
-
-Explicitly import type:
-
-```typescript
-import type { APIResponseType } from "./api";
-```
-
-Import type is always guaranteed to be removed from your JavaScript, and tools like Babel can make better assumptions
-about your code via the `isolatedModules` compiler flag.
-
-### Import a module for side-effects only
-
-Though not recommended practice, some modules set up some global state that can be used by other modules. These modules
-may not have any exports, or the consumer is not interested in any of their exports. To import these modules, use:
-
-`import "./my-module.js";`
-
-## Namespaces
-
-* [Namespaces](https://www.typescriptlang.org/docs/handbook/namespaces.html)
-* [Namespaces and Modules](https://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html)
-
-TypeScript has its own module format called namespaces which pre-dates the ES Modules standard.
-
-This syntax has a lot of useful features for creating complex definition files, and still sees active use in
-[DefinitelyTyped](https://www.typescriptlang.org/dt).
-
-It is also worth noting that, for Node.js applications, modules are the default and we *recommended modules over
-namespaces* in modern code.
-
-Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine
-implementations.
-
-Thus, for new projects modules would be the recommended code organization mechanism.
+- `module` which determines what code is used for modules to interact with each other.
 
 ## Wildcard module declarations
 
@@ -196,13 +145,20 @@ declare module "*!text"
 declare module "json!*"
 ```
 
-## Non-modules
+## Namespaces
 
-If you have a file that doesn’t currently have any imports or exports, but you want to be treated as a module, add the
-line:
+- [Namespaces](https://www.typescriptlang.org/docs/handbook/namespaces.html)
+- [Namespaces and Modules](https://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html)
 
-```typescript
-export {};
-```
+TypeScript has its own module format called namespaces which pre-dates the ES Modules standard.
 
-which will change the file to be a module exporting nothing. This syntax works regardless of your module target.
+This syntax has a lot of useful features for creating complex definition files, and still sees active use in
+[DefinitelyTyped](https://www.typescriptlang.org/dt).
+
+It is also worth noting that, for Node.js applications, modules are the default and we *recommended modules over
+namespaces* in modern code.
+
+Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine
+implementations.
+
+Thus, for new projects modules would be the recommended code organization mechanism.
