@@ -85,7 +85,7 @@ $ git remote set-url origin <origin_url>
 ## Delete local references to non-existing remote branches
 
 ```console
-$ git remote prune <origin_url>
+$ git remote prune origin [--dry-run]
 ```
 
 ## .gitignore exclude folder but include specific subdirectory
@@ -106,8 +106,8 @@ $ git tag -l
 
 Create a lightweight tag:
 ```console
-$ git tag <tag_name>                 # current commit
-$ git tag -a <tag_name> <commit_hash>    # previous commit
+$ git tag <tag_name>                      # current commit
+$ git tag -a <tag_name> <commit_hash>     # previous commit
 ```
 
 Get tag information
@@ -128,10 +128,20 @@ $ git push origin <tag_name>
 ```
 
 Delete tag:
+
 ```console
-$ git tag -d <tag_name>                 # local tag
-$ git push origin --delete <tag_name>        # remote tag
+$ git tag -d <tag_name>                   # local tag
+$ git push origin --delete <tag_name>     # remote tag
 ```
+
+## Different user email per repository
+
+```console
+git config --local user.email name@mail.com
+```
+
+This command only affects the current repository. Any other repositories will still use the default email specified in
+`~/.gitconfig`.
 
 ## Linear history with rebase
 
