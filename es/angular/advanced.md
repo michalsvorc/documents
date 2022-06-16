@@ -1,21 +1,34 @@
+# Advanced
 
-# Tree-shaking and @[Injectable](https://angular.io/api/core/Injectable)()
+## Tree-shaking and @Injectable()
 
-Using the @[Injectable](https://angular.io/api/core/Injectable)() providedIn property is preferable to the @[NgModule](https://angular.io/api/core/NgModule)() providers array because with @[Injectable](https://angular.io/api/core/Injectable)() providedIn, optimization tools can perform tree-shaking, which removes services that your app isn't using and results in smaller bundle sizes.
+- [@Injectable](https://angular.io/api/core/Injectable)
+- [Tree-shakable providers](https://angular.io/guide/dependency-injection-providers#tree-shakable-providers)
+- [DI Providers](https://angular.io/guide/dependency-injection-providers)
 
-Tree-shaking is especially useful for a library because the application which uses the library may not have a need to inject it. Read more about [tree-shakable providers](https://angular.io/guide/dependency-injection-providers#tree-shakable-providers) in [DI Providers](https://angular.io/guide/dependency-injection-providers).
+Using the `@Injectable()` providedIn property is preferable to the `@NgModule()` providers array because with
+`@Injectable()` providedIn, optimization tools can perform tree-shaking, which removes services that your app isn't
+using and results in smaller bundle sizes.
 
-# [Dynamic component loader with ViewContainerRef](https://angular.io/guide/dynamic-component-loader#dynamic-component-loader) DSMT
+Tree-shaking is especially useful for a library because the application which uses the library may not have a need to
+inject it.
 
-Can contain host views (created by instantiating a component with the createComponent() method), and embedded views (created by instantiating a [TemplateRef](https://angular.io/api/core/TemplateRef) with the createEmbeddedView() method).
+## Dynamic component loader with ViewContainerRef
 
-# [Angular Elements](https://angular.io/guide/elements#angular-elements-overview) DSMT
+- [Documentation](https://angular.io/guide/dynamic-component-loader#dynamic-component-loader)
+- [TemplateRef](https://angular.io/api/core/TemplateRef)
 
-Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way.
+Can contain host views (created by instantiating a component with the `createComponent()` method), and embedded views
+(created by instantiating a `TemplateRef` with the `createEmbeddedView()` method).
 
-[Angular Elements Quick Start](https://www.youtube.com/watch?v=4u9_kdkvTsc)
+## Angular Elements
 
-# Lifecycle
+- [Documentation](https://angular.io/guide/elements#angular-elements-overview)
+- [(Video) Angular Elements Quick Start](https://www.youtube.com/watch?v=4u9_kdkvTsc)
 
-[AfterContent and AfterView](https://stackoverflow.com/questions/51410660/angular-afterviewinit-vs-aftercontentinit)
+Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for
+defining new HTML elements in a framework-agnostic way.
 
+## Lifecycle
+
+- [AfterContent and AfterView](https://stackoverflow.com/questions/51410660/angular-afterviewinit-vs-aftercontentinit)
