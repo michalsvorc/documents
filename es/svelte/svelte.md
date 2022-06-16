@@ -1,18 +1,22 @@
 # Svelte
 
 Svelte converts your app into ideal JavaScript at build time, rather than interpreting your application code at run
-time. 
+time.
+
+Libraries:
+
+- [SvelteKit](https://kit.svelte.dev/)
 
 ## Reactive declarations
 
 Some parts of a component's state need to be computed from other parts, and recomputed whenever they change. For these,
 we have reactive declarations. They look like this:
 
-let count = 0; \ $: doubled = count * 2;
+let count = 0; \ $: doubled = count \* 2;
 
-We're not limited to declaring reactive values — we can also run arbitrary statements. 
+We're not limited to declaring reactive values — we can also run arbitrary statements.
 
-```js
+```javascript
 $: {...}
 $: if (...) {}
 ```
@@ -21,13 +25,14 @@ $: if (...) {}
 
 Pass props to child component:
 
-```js
+```javascript
 // App.svelte
-<Nested answer={42}/>
+<Nested answer={42} />
 ```
 
 Mark props with `export let <prop>;` statement in child component. \
-```js
+
+```javascript
 // Nested.svelte
 
 <script>
@@ -39,15 +44,13 @@ export let answer;
 <p>The answer is {answer}</p>
 ```
 
-We can specify [default values](https://svelte.dev/tutorial/default-values) and use [spread operator](https://svelte.dev/tutorial/spread-props) for props \
+We can specify [default values](https://svelte.dev/tutorial/default-values) and use [spread operator](https://svelte.dev/tutorial/spread-props) for props.
 
-`$$props`:  reference all the props that were passed into a component, not recommended \
+`$$props`: reference all the props that were passed into a component, not recommended.
 
+Keep in mind:
 
-Keep in mind: 
-
-```js
-
+```javascript
 // `current` is updated whenever the prop value changes...
 
 export let current;
@@ -55,22 +58,16 @@ export let current;
 // ...but `initial` is fixed upon initialisation
 
 const initial = current;
-
 ```
 
 ## Conditional logic
 
 - `#` character always indicates a block opening tag.
 - `/` character always indicates a block closing tag.
-- `:` character, as in `{:else}`, indicates a block continuation tag. 
-
+- `:` character, as in `{:else}`, indicates a block continuation tag.
 
 ```html
-{#if statement}
-
-{:else}
-
-{/if}
+{#if statement} {:else} {/if}
 ```
 
 ## Loops
@@ -88,7 +85,7 @@ specify a unique identifier for the each block. The (thing.id) tells Svelte how 
 ```html
 {#each things as thing (thing.id)}
 
-<Thing current={thing.color}/>
+<Thing current="{thing.color}" />
 
 {/each}
 ```
@@ -118,15 +115,13 @@ Promise based
 You can listen to any event on an element with the on: directive.
 
 ```html
-<div on:HTMLevent={handleEvent}>
+<div on:HTMLevent="{handleEvent}"></div>
 ```
 
 ### [Events / Event modifiers • Svelte Tutorial](https://svelte.dev/tutorial/event-modifiers)
 
 ```html
-
-<button on:click|once={handleClick}>Click me</button>
-
+<button on:click|once="{handleClick}">Click me</button>
 ```
 
 ### [Events / Component events • Svelte Tutorial](https://svelte.dev/tutorial/component-events)
@@ -136,9 +131,9 @@ intermediate components must [forward the event](https://svelte.dev/tutorial/eve
 
 ## @html
 
-render HTML directly into a component. 
+render HTML directly into a component.
 
-```js
+```javascript
 <script>
 
 	let string = `this string contains some <strong>HTML!!!</strong>`;
@@ -151,4 +146,3 @@ render HTML directly into a component.
 Svelte doesn't perform any sanitization of the expression inside {@html ...} before it gets inserted into the DOM. In
 other words, if you use this feature it's critical that you manually escape HTML that comes from sources you don't
 trust, otherwise you risk exposing your users to XSS attacks.
-
