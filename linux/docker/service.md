@@ -39,15 +39,14 @@ $ usermod -aG docker <user_name>
 Starting with docker 20.10.2, docker has been split into
 two packages upstream, so Gentoo has followed suit.
 
-* app-emulation/docker contains the daemon and
-* app-emulation/docker-cli contains the docker command.
+- app-emulation/docker contains the daemon and
+- app-emulation/docker-cli contains the docker command.
 
 Docker currently installs docker-cli using the cli use flag.
 
 This use flag is temporary, so you need to take the following actions:
 
 1. First, disable the cli use flag for app-emulation/docker
-
 2. Then, if you need docker-cli and docker on the same machine, run the following command:
 
 ```console
@@ -75,16 +74,16 @@ $ docker run --rm -p 8080:8080 --name nginx-test bitnami/nginx:latest
 WORKDIR command with non-existent directory argument creates directory as a root. Switch to non-system USER and use:
 
 ```docker
-RUN mkdir "${HOME}/${work_dir}" 
+RUN mkdir "${HOME}/${work_dir}"
 ```
 
 You can then use WORKDIR to switch to a newly created directory with non-system permissions.
 
 ### Mount volumes
 
-* [Add ability to mount volume as user other than root · Issue #2259 · moby/moby](https://github.com/moby/moby/issues/2259)
+- [Add ability to mount volume as user other than root · Issue #2259 · moby/moby](https://github.com/moby/moby/issues/2259)
 
 Solutions:
 
-* [User namespace isolation](https://wiki.archlinux.org/title/docker#User_namespace_isolation)
-* Recursive chown
+- [User namespace isolation](https://wiki.archlinux.org/title/docker#User_namespace_isolation)
+- Recursive chown

@@ -1,8 +1,8 @@
 # Gentoo installation
 
-* [Handbook - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:Main_Page)
-* [Security Handbook - Gentoo Wiki](https://wiki.gentoo.org/wiki/Security_Handbook/Full)
-* [AppArmor - Gentoo Wiki](https://wiki.gentoo.org/wiki/AppArmor)
+- [Handbook - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:Main_Page)
+- [Security Handbook - Gentoo Wiki](https://wiki.gentoo.org/wiki/Security_Handbook/Full)
+- [AppArmor - Gentoo Wiki](https://wiki.gentoo.org/wiki/AppArmor)
 
 ## Verify downloaded stage3 tarball
 
@@ -39,30 +39,30 @@ Read: [MAKEOPTS - Gentoo Wiki](https://wiki.gentoo.org/wiki/MAKEOPTS)
 
 ## fstab
 
-* [Fstab - Gentoo Wiki](https://wiki.gentoo.org/wiki/Fstab)
+- [Fstab - Gentoo Wiki](https://wiki.gentoo.org/wiki/Fstab)
 
 Set noauto on /boot: [Why is /boot 'noauto' in fstab? - Gentoo forums](https://forums.gentoo.org/viewtopic-t-157822-start-0.html)
 
 ## EFI stub boot
 
-* [EFI Stub - Gentoo Wiki](https://wiki.gentoo.org/wiki/EFI_Stub)
-* [EFI System Partition - Gentoo Wiki](https://wiki.gentoo.org/wiki/EFI_System_Partition)
-* [Efibootmgr - Gentoo Wiki](https://wiki.gentoo.org/wiki/Efibootmgr)
+- [EFI Stub - Gentoo Wiki](https://wiki.gentoo.org/wiki/EFI_Stub)
+- [EFI System Partition - Gentoo Wiki](https://wiki.gentoo.org/wiki/EFI_System_Partition)
+- [Efibootmgr - Gentoo Wiki](https://wiki.gentoo.org/wiki/Efibootmgr)
 
 ## Microcode
 
-* [Microcode - Gentoo Wiki](https://wiki.gentoo.org/wiki/Microcode)
+- [Microcode - Gentoo Wiki](https://wiki.gentoo.org/wiki/Microcode)
 
 ### Intel
 
-* [Intel microcode - Gentoo Wiki](https://wiki.gentoo.org/wiki/Intel_microcode)
+- [Intel microcode - Gentoo Wiki](https://wiki.gentoo.org/wiki/Intel_microcode)
 
 Use the new method without initram-fs/disk (efistub compatible) section.
 
 ## OpenRC
 
-* [OpenRC - Gentoo Wiki](https://wiki.gentoo.org/wiki/OpenRC)
-* [Initscripts - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/Initscripts)
+- [OpenRC - Gentoo Wiki](https://wiki.gentoo.org/wiki/OpenRC)
+- [Initscripts - Gentoo Wiki](https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/Initscripts)
 
 Verify the service runlevel:
 

@@ -1,50 +1,37 @@
 # Kernel
 
-## Update kernel
+## Update
 
 1. cd to source code location.
-
-```console
-$ cd /usr/src/linux
-```
-
+   ```console
+   $ cd /usr/src/linux
+   ```
 2. Configure the kernel.
-
-```console
-# make menuconfig
-```
-
+   ```console
+   # make menuconfig
+   ```
 3. Compile the kernel.
-
-```
-# make -j12
-```
-
+   ```
+   # make -j12
+   ```
 4. Install kernel modules.
+   ```
+   # make modules_install
+   ```
+5. Export to `/boot`. Verify that partition containing the boot records is mounted as `\boot`.
+   ```console
+   # make install
+   ```
 
-```
-# make modules_install
-```
+## Upgrade
 
-5. Export to `/boot`.
+- [Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Upgrade)
 
-Verify that partition containing the boot records is mounted as `\boot`.
-
-```console
-# make install
-```
-
-## [Kernel upgrade](https://wiki.gentoo.org/wiki/Kernel/Upgrade)
-
-Select new kernel sources with `eselect`.
-
-1. Copy `.config` from the old kernel sources.
-
-2. cd to new kernel sources and use `make oldconfig` to update the `.config` file.
-
-3. Compile the kernel.
-
-4. Install kernel modules.
+1. Select new kernel sources with `eselect`.
+2. Copy `.config` from the old kernel sources.
+3. cd to new kernel sources and use `make oldconfig` to update the `.config` file.
+4. Compile the kernel.
+5. Install kernel modules.
 
 ### Reinstalling external kernel modules
 
@@ -59,7 +46,9 @@ Any external kernel modules, such as binary kernel modules, need to be rebuilt f
 # make modules_install
 ```
 
-## [Manage EFI boot entries](https://wiki.gentoo.org/wiki/Efibootmgr#Usage)
+## Manage EFI boot entries
+
+- [Gentoo Wiki](https://wiki.gentoo.org/wiki/Efibootmgr#Usage)
 
 List the current boot entries and `BootCurrent` value:
 

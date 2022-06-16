@@ -2,12 +2,12 @@
 
 ## Alpine Linux
 
-* [Package management](https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management)
-* [--no-cache Vs. rm /var/cache/apk](https://stackoverflow.com/questions/49118579/alpine-dockerfile-advantages-of-no-cache-vs-rm-var-cache-apk)
+- [Package management](https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management)
+- [--no-cache Vs. rm /var/cache/apk](https://stackoverflow.com/questions/49118579/alpine-dockerfile-advantages-of-no-cache-vs-rm-var-cache-apk)
 
 ## Ubuntu
 
-### .deb packages 
+### .deb packages
 
 Use `gdebi` to install .deb package with correct dependencies:
 
@@ -18,6 +18,5 @@ Use `gdebi` to install .deb package with correct dependencies:
 
 ### Install recommends
 
-`--install-recommends`: default in Ubuntu
-`--no-install-recommends`: when image size  matters
-
+- `--install-recommends`: default in Ubuntu
+- `--no-install-recommends`: when image size matters

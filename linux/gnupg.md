@@ -1,16 +1,18 @@
 # GnuPG
 
-* [User guides](https://www.gnupg.org/documentation/guides.html)
-* [GnuPG - ArchWiki](https://wiki.archlinux.org/title/GnuPG)
-* [GnuPG Frequently Asked Questions](https://www.gnupg.org/faq/gnupg-faq.html#glossary)
+- [gnupg.org](https://www.gnupg.org/documentation/guides.html)
+- [Arch Wiki](https://wiki.archlinux.org/title/GnuPG)
+- [FAQ - gnupg.org](https://www.gnupg.org/faq/gnupg-faq.html#glossary)
+- [Public keys - gnupg.org](https://www.gnupg.org/gph/en/manual/x56.html)
 
-Primary key must be capable of making signatures.
+## Revoking key components
+
+- [gnupg.org](https://www.gnupg.org/gph/en/manual.html#AEN305)
 
 Deleting user IDs and subkeys on your own key, however, is not always wise since it complicates key distribution. By
 default, when a user imports your updated public key it will be merged with the old copy of your public key on his ring
 if it exists. The components from both keys are combined in the merge, and this effectively restores any components you
-deleted. Consequently, for updating your own key it is better to revoke key components instead of deleting them. See
-https://www.gnupg.org/gph/en/manual.html#AEN305
+deleted. Consequently, for updating your own key it is better to revoke key components instead of deleting them.
 
 ## Concepts
 
@@ -44,7 +46,7 @@ A user ID should be created carefully since it cannot be edited after it is crea
 ### Revocation certificate
 
 After your keypair is created you should immediately generate a revocation certificate for the primary public key using
-the option --gen-revoke. 
+the option --gen-revoke.
 
 A revoked public key can still be used to verify signatures made by you in the past, but it cannot be used to encrypt
 future messages to you. It also does not affect your ability to decrypt messages sent to you in the past if you still do
@@ -54,27 +56,23 @@ Since the certificate is short, you may wish to print a hardcopy of the certific
 safe deposit box. The certificate should not be stored where others can access it since anybody can publish the
 revocation certificate and render the corresponding public key useless.
 
-## Public keys
-
-* [Manual](https://www.gnupg.org/gph/en/manual/x56.html)
-
 ## Validation
 
 Once a public key is imported to your public keyring it should be validated. GnuPG uses a powerful and flexible trust
-model that does not require you to personally validate each key you import. 
+model that does not require you to personally validate each key you import.
 
 A key is validated by verifying the key's fingerprint and then signing the key to certify it as a valid key. A key's
-fingerprint is verified with the key's owner. After checking the fingerprint, you may sign the key to validate it. 
+fingerprint is verified with the key's owner. After checking the fingerprint, you may sign the key to validate it.
 
 Once signed you can check the key to list the signatures on it and see the signature that you have added. Every user ID
 on the key will have one or more self-signatures as well as a signature for each user that has validated the key.
 
 ## Encrypting and decrypting documents
 
-* [Manual](https://www.gnupg.org/gph/en/manual/x110.html)
+- [gnupg.org](https://www.gnupg.org/gph/en/manual/x110.html)
 
 A public key may be thought of as an open safe. When a correspondent encrypts a document using a public key, that
-document is put in the safe, the safe shut, and the combination lock spun several times. 
+document is put in the safe, the safe shut, and the combination lock spun several times.
 
 The corresponding private key is the combination that can reopen the safe and retrieve the document. In other words,
 only the person who holds the private key can recover a document encrypted using the associated public key.
@@ -91,15 +89,19 @@ Documents may also be encrypted without using public-key cryptography. Instead, 
 encrypt the document. The key used to drive the symmetric cipher is derived from a passphrase supplied when the document
 is encrypted, and for good security, it should not be the same passphrase that you use to protect your private key.
 
-## [Digital signature](https://www.gnupg.org/gph/en/manual/x135.html)
+## Digital signature
+
+- [gnupg.org](https://www.gnupg.org/gph/en/manual/x135.html)
 
 A digital signature certifies and timestamps a document. A signature is created using the private key of the signer. The
 signature is verified using the corresponding public key.
 
 ### Signed document
 
-The command-line option [--sign](https://www.gnupg.org/gph/en/manual/r606.html) is used to make a digital signature. The
-document to sign is input, and the signed document is output.
+- [gnupg.org](https://www.gnupg.org/gph/en/manual/r606.html)
+
+The command-line option `--sign` is used to make a digital signature. The document to sign is input, and the signed
+document is output.
 
 The document is compressed before signed, and the output is in binary format. Given a signed document, you can either
 check the signature or check the signature and recover the original document.
@@ -114,9 +116,12 @@ ASCII-armored signature but otherwise does not modify the document.
 A signed document has limited usefulness. Other users must recover the original document from the signed version, and
 even with clearsigned documents, the signed document must be edited to recover the original.
 
- Therefore, there is a third method for signing a document that creates a detached signature. A detached signature is
- created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) option.
+Therefore, there is a third method for signing a document that creates a detached signature. A detached signature is
+created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) option.
 
 Both the document and detached signature are needed to verify the signature. The --verify option can be to check the
 signature.
 
+## Change Passphrase Secret Key Password
+
+- [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)

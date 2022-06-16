@@ -2,7 +2,7 @@
 
 ## Screen tearing issues
 
-* [Screen tearing](https://www.maketecheasier.com/get-rid-screen-tearing-linux/)
+- [Screen tearing](https://www.maketecheasier.com/get-rid-screen-tearing-linux/)
 
 ### Intel
 

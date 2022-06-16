@@ -44,7 +44,7 @@ check available package updates on your system:
 $ pacman -Syu
 ```
 
-View detailed  package information before proceeding with the installation:
+View detailed package information before proceeding with the installation:
 
 ```console
 $ pacman -Si <package>
@@ -55,4 +55,3 @@ List locally installed AUR packages:
 ```console
 $ pacman -Qm
 ```
-

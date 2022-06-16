@@ -23,4 +23,3 @@ Recursive:
 ```console
 $ find ./ -type f -name "*.png" -exec optipng -o7 -fix {} \;
 ```
-
