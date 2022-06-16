@@ -1,11 +1,13 @@
-# Nest.js module decorators
+# Module decorators
 
-## [@Module()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/modules/module.decorator.ts)
+## @Module()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/modules/module.decorator.ts)
 
 Decorator that marks a class as a [module](https://docs.nestjs.com/modules).
 
 Modules are used by Nest to organize the application structure into scopes. Controllers and Providers are scoped by the
-module they are declared in.  Modules and their classes (Controllers and Providers) form a graph that determines how
+module they are declared in. Modules and their classes (Controllers and Providers) form a graph that determines how
 Nest performs [Dependency Injection (DI)](https://docs.nestjs.com/providers#dependency-injection).
 
 @param metadata module configuration metadata
@@ -13,10 +15,12 @@ Nest performs [Dependency Injection (DI)](https://docs.nestjs.com/providers#depe
 @see [Modules](https://docs.nestjs.com/modules)
 
 ```typescript
-export function Module(metadata: ModuleMetadata): ClassDecorator
+export function Module(metadata: ModuleMetadata): ClassDecorator;
 ```
 
-## [@Global](https://github.com/nestjs/nest/blob/master/packages/common/decorators/modules/global.decorator.ts)
+## @Global
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/modules/global.decorator.ts)
 
 Decorator that makes a module global-scoped.
 
@@ -26,6 +30,5 @@ inject a service exported from a global module do not need to import the provide
 @see [Global modules](https://docs.nestjs.com/modules#global-modules)
 
 ```typescript
-export function Global(): ClassDecorator
+export function Global(): ClassDecorator;
 ```
-

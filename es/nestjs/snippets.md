@@ -1,4 +1,4 @@
-# Nest code snippets
+# Code snippets
 
 ## Interceptors:
 

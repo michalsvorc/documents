@@ -1,8 +1,10 @@
-# Nest.js HTTP decorators
+# HTTP decorators
 
-## [@Header()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/header.decorator.ts)
+## @Header()
 
-Request method Decorator.  Sets a response header.
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/header.decorator.ts)
+
+Request method Decorator. Sets a response header.
 
 For example:
 `@Header('Cache-Control', 'none')`
@@ -13,12 +15,14 @@ For example:
 @see [Headers](https://docs.nestjs.com/controllers#headers)
 
 ```typescript
-export function Header(name: string, value: string): MethodDecorator
+export function Header(name: string, value: string): MethodDecorator;
 ```
 
-## [@HttpCode()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/http-code.decorator.ts)
+## @HttpCode()
 
-Request method Decorator.  Defines the HTTP response status code.  Overrides default status code for the decorated
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/http-code.decorator.ts)
+
+Request method Decorator. Defines the HTTP response status code. Overrides default status code for the decorated
 request method.
 
 @param statusCode HTTP response code to be returned by route handler.
@@ -26,20 +30,24 @@ request method.
 @see [Http Status Codes](https://docs.nestjs.com/controllers#status-code)
 
 ```typescript
-export function HttpCode(statusCode: number): MethodDecorator
+export function HttpCode(statusCode: number): MethodDecorator;
 ```
 
-## [@Redirect()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/redirect.decorator.ts)
+## @Redirect()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/redirect.decorator.ts)
 
 Redirects request to the specified URL.
 
 ```typescript
-export function Redirect(url = '', statusCode?: number): MethodDecorator 
+export function Redirect(url = "", statusCode?: number): MethodDecorator;
 ```
 
-## [@Render()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/render.decorator.ts)
+## @Render()
 
-Route handler method Decorator.  Defines a template to be rendered by the controller.
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/render.decorator.ts)
+
+Route handler method Decorator. Defines a template to be rendered by the controller.
 
 For example: `@Render('index')`
 
@@ -48,10 +56,12 @@ For example: `@Render('index')`
 @see [Model-View-Controller](https://docs.nestjs.com/techniques.mvc)
 
 ```typescript
-export function Render(template: string): MethodDecorator
+export function Render(template: string): MethodDecorator;
 ```
 
-## [Request methods](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/request-mapping.decorator.ts)
+## Request methods
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/request-mapping.decorator.ts)
 
 - @Get()
 - @Post()
@@ -62,7 +72,9 @@ export function Render(template: string): MethodDecorator
 - @Head()
 - @All()
 
-## [Route parameters](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/route-params.decorator.ts)
+## Route parameters
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/http/route-params.decorator.ts)
 
 #### @Request()
 
@@ -74,7 +86,7 @@ Example: `logout(@Request() req)`
 @see [Request object](https://docs.nestjs.com/controllers#request-object)
 
 ```typescript
-export const Request: () => ParameterDecorator
+export const Request: () => ParameterDecorator;
 ```
 
 #### @Response()
@@ -85,9 +97,7 @@ decorated parameter with the value of `Response`.
 Example: `logout(@Response() res)`
 
 ```typescript
-export const Response: (
-options?: ResponseDecoratorOptions,
-) => ParameterDecorator
+export const Response: (options?: ResponseDecoratorOptions) => ParameterDecorator;
 ```
 
 #### @Next()
@@ -96,7 +106,7 @@ Route handler parameter decorator. Extracts reference to the `Next` function fro
 the decorated parameter with the value of `Next`.
 
 ```typescript
-export const Next: () => ParameterDecorator
+export const Next: () => ParameterDecorator;
 ```
 
 #### @Ip()
@@ -107,7 +117,7 @@ parameter with the value of `ip`.
 @see [Request object](https://docs.nestjs.com/controllers#request-object)
 
 ```typescript
-export const Ip: () => ParameterDecorator
+export const Ip: () => ParameterDecorator;
 ```
 
 #### @Session()
@@ -118,7 +128,7 @@ decorated parameter with the value of `Session`.
 @see [Request object](https://docs.nestjs.com/controllers#request-object)
 
 ```typescript
-export const Session: () => ParameterDecorator
+export const Session: () => ParameterDecorator;
 ```
 
 #### @UploadedFile()
@@ -128,11 +138,13 @@ Route handler parameter decorator. Extracts the `file` object and populates the 
 applications.
 
 For example:
+
 ```typescript
 uploadFile(@UploadedFile() file) {
   console.log(file);
 }
 ```
+
 @see [Request object](https://docs.nestjs.com/techniques/file-upload)
 
 ```typescript
@@ -151,7 +163,7 @@ For example: `async update(@Headers('Cache-Control') cacheControl: string)`
 @see [Request object](https://docs.nestjs.com/controllers#request-object)
 
 ```typescript
-export const Headers: (property?: string) => ParameterDecorator
+export const Headers: (property?: string) => ParameterDecorator;
 ```
 
 #### @Query()
@@ -160,6 +172,7 @@ Route handler parameter decorator. Extracts the `query` property from the `req` 
 parameter with the value of `query`. May also apply pipes to the bound query parameter.
 
 For example:
+
 ```typescript
 async find(@Query('user') user: string)
 ```
@@ -180,6 +193,7 @@ Route handler parameter decorator. Extracts the entire `body` object property, o
 bound body parameter.
 
 For example:
+
 ```typescript
 async create(@Body('role', new ValidationPipe()) role: string)
 ```
@@ -200,14 +214,17 @@ Route handler parameter decorator. Extracts the `params` property from the `req`
 parameter with the value of `params`. May also apply pipes to the bound parameter.
 
 For example, extracting all params:
+
 ```typescript
 findOne(@Param() params: string[])
 ```
 
 For example, extracting a single param:
+
 ```typescript
 findOne(@Param('id') id: string)
 ```
+
 @param property name of single property to extract from the `req` object
 @param pipes one or more pipes - either instances or classes - to apply to the bound parameter.
 
@@ -224,14 +241,17 @@ Route handler parameter decorator. Extracts the `hosts` property from the `req` 
 parameter with the value of `params`. May also apply pipes to the bound parameter.
 
 For example, extracting all params:
+
 ```typescript
 findOne(@HostParam() params: string[])
 ```
 
 For example, extracting a single param:
+
 ```typescript
 findOne(@HostParam('id') id: string)
 ```
+
 @param property name of single property to extract from the `req` object
 
 @see [Request object](https://docs.nestjs.com/controllers#request-object)
@@ -245,6 +265,5 @@ function HostParam(): ParameterDecorator (+1 overload)
 Declares this route as a Server-Sent-Events endpoint.
 
 ```typescript
-export function Sse(path?: string): MethodDecorator
+export function Sse(path?: string): MethodDecorator;
 ```
-

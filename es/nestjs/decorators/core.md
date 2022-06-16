@@ -1,21 +1,25 @@
-# Nest.js core decorators
+# Core decorators
 
-## [@Catch()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/catch.decorator.ts)
+## @Catch()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/catch.decorator.ts)
 
 Decorator that marks a class as a Nest exception filter. An exception filter handles exceptions thrown by or not handled
 by your application code.
 
 The decorated class must implement the `ExceptionFilter` interface.
 
-@param exceptions one or more exception *types* specifying the exceptions to be caught and handled by this filter.
+@param exceptions one or more exception _types_ specifying the exceptions to be caught and handled by this filter.
 
 @see [Exception Filters](https://docs.nestjs.com/exception-filters)
 
 ```typescript
-export function Catch(...exceptions: Type<any>[]): ClassDecorator
+export function Catch(...exceptions: Type<any>[]): ClassDecorator;
 ```
 
-## [@Controller()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/controller.decorator.ts)
+## @Controller()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/controller.decorator.ts)
 
 Decorator that marks a class as a Nest controller that can receive inbound requests and produce responses.
 
@@ -30,14 +34,15 @@ or event handlers.
 @param prefixOrOptions a `route path prefix` or a `ControllerOptions` object.
 A `route path prefix` is pre-pended to the path specified in any request decorator
 in the class. `ControllerOptions` is an options configuration object specifying:
+
 - `scope` - symbol that determines the lifetime of a Controller instance.
-[See Scope](https://docs.nestjs.com/fundamentals/injection-scopes#usage) for
-more details.
-- `prefix` - string that defines a `route path prefix`.  The prefix
-is pre-pended to the path specified in any request decorator in the class.
+  [See Scope](https://docs.nestjs.com/fundamentals/injection-scopes#usage) for
+  more details.
+- `prefix` - string that defines a `route path prefix`. The prefix
+  is pre-pended to the path specified in any request decorator in the class.
 - `version` - string, array of strings, or Symbol that defines the version
-of all routes in the class. [See Versioning](https://docs.nestjs.com/techniques/versioning)
-for more details.
+  of all routes in the class. [See Versioning](https://docs.nestjs.com/techniques/versioning)
+  for more details.
 
 @see [Routing](https://docs.nestjs.com/controllers#routing)
 @see [Controllers](https://docs.nestjs.com/controllers)
@@ -46,12 +51,12 @@ for more details.
 @see [Versioning](https://docs.nestjs.com/techniques/versioning)
 
 ```typescript
-export function Controller(
-prefixOrOptions?: string | string[] | ControllerOptions,
-): ClassDecorator
+export function Controller(prefixOrOptions?: string | string[] | ControllerOptions): ClassDecorator;
 ```
 
-## [@Inject()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/inject.decorator.ts)
+## @Inject()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/inject.decorator.ts)
 
 Decorator that marks a constructor parameter as a target for [Dependency Injection
 (DI)](https://docs.nestjs.com/providers#dependency-injection).
@@ -67,7 +72,7 @@ is being injected into. This can be done by:
 
 ### Injection tokens
 
-Can be *types* (class names), *strings* or *symbols*. This depends on how the provider with which it is associated was
+Can be _types_ (class names), _strings_ or _symbols_. This depends on how the provider with which it is associated was
 defined. Providers defined with the `@Injectable()` decorator use the class name. Custom Providers may use strings or
 symbols as the injection token.
 
@@ -79,11 +84,14 @@ parameter).
 @see [Injection Scopes](https://docs.nestjs.com/fundamentals/injection-scopes)
 
 ```typescript
-export function Inject<T = any>(token?: T | undefined)
-: (target: object, key: string | symbol, index?: number | undefined) => void
+export function Inject<T = any>(
+  token?: T | undefined
+): (target: object, key: string | symbol, index?: number | undefined) => void;
 ```
 
-## [@Injectable()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/injectable.decorator.ts)
+## @Injectable()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/injectable.decorator.ts)
 
 Decorator that marks a class as a [provider](https://docs.nestjs.com/providers). Providers can be injected into other
 classes via constructor parameter injection using Nest's built-in [Dependency Injection
@@ -108,14 +116,17 @@ system.
 @see [Injection Scopes](https://docs.nestjs.com/fundamentals/injection-scopes)
 
 ```typescript
-export function Injectable(options?: InjectableOptions): ClassDecorator
+export function Injectable(options?: InjectableOptions): ClassDecorator;
 ```
 
-## [@Optional()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/optional.decorator.ts)
+## @Optional()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/optional.decorator.ts)
 
 Parameter decorator for an injected dependency marking the dependency as optional.
 
 For example:
+
 ```typescript
 constructor(@Optional() @Inject('HTTP_OPTIONS')private readonly httpClient: T) {}
 ```
@@ -123,14 +134,17 @@ constructor(@Optional() @Inject('HTTP_OPTIONS')private readonly httpClient: T) {
 @see [Optional providers](https://docs.nestjs.com/providers#optional-providers)
 
 ```typescript
-function Optional(): (target: object, key: string | symbol, index?: number | undefined) => void
+function Optional(): (target: object, key: string | symbol, index?: number | undefined) => void;
 ```
 
-## [@SetMetadata()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/set-metadata.decorator.ts)
+## @SetMetadata()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/set-metadata.decorator.ts)
 
 Decorator that assigns metadata to the class/function using the specified `key`.
 
 Requires two parameters:
+
 - `key` - a value defining the key under which the metadata is stored
 - `value` - metadata to be associated with `key`
 
@@ -147,7 +161,9 @@ metadataValue: V,
 ): CustomDecorator<K>
 ```
 
-## [@UseFilters()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/exception-filters.decorator.ts)
+## @UseFilters()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/exception-filters.decorator.ts)
 
 Decorator that binds exception filters to the scope of the controller or method, depending on its context.
 
@@ -165,10 +181,12 @@ Exception filters can also be set up globally for all controllers and routes usi
 [See here for details](https://docs.nestjs.com/exception-filters#binding-filters)
 
 ```typescript
-export const UseFilters = (...filters: (ExceptionFilter | Function)[]) => MethodDecorator & ClassDecorator
+export const UseFilters = (...filters: (ExceptionFilter | Function)[]) => MethodDecorator & ClassDecorator;
 ```
 
-## [@UseGuards()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-guards.decorator.ts)
+## @UseGuards()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-guards.decorator.ts)
 
 Decorator that binds guards to the scope of the controller or method, depending on its context.
 
@@ -182,12 +200,12 @@ When `@UseGuards` is used at the individual handler level, the guard will apply 
 @see [Guards](https://docs.nestjs.com/guards)
 
 ```typescript
-function UseGuards(
-...guards: (CanActivate | Function)[]
-): MethodDecorator & ClassDecorator
+function UseGuards(...guards: (CanActivate | Function)[]): MethodDecorator & ClassDecorator;
 ```
 
-## [@UseInterceptors()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-interceptors.decorator.ts)
+## @UseInterceptors()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-interceptors.decorator.ts)
 
 Decorator that binds interceptors to the scope of the controller or method, depending on its context.
 
@@ -202,12 +220,12 @@ method.
 @see [Interceptors](https://docs.nestjs.com/interceptors)
 
 ```typescript
-function UseInterceptors(
-...interceptors: (NestInterceptor | Function)[]
-): MethodDecorator & ClassDecorator
+function UseInterceptors(...interceptors: (NestInterceptor | Function)[]): MethodDecorator & ClassDecorator;
 ```
 
-## [@UsePipes()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-pipes.decorator.ts)
+## @UsePipes()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-pipes.decorator.ts)
 
 Decorator that binds pipes to the scope of the controller or method, depending on its context.
 
@@ -220,16 +238,15 @@ When `@UsePipes` is used at the individual handler level, the pipe will apply on
 @see [Pipes](https://docs.nestjs.com/pipes)
 
 ```typescript
-function UsePipes(
-...pipes: (PipeTransform | Function)[]
-): ClassDecorator & MethodDecorator
+function UsePipes(...pipes: (PipeTransform | Function)[]): ClassDecorator & MethodDecorator;
 ```
 
-## [@Version()](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/version.decorator.ts)
+## @Version()
+
+- [Documentation](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/version.decorator.ts)
 
 Sets the version of the endpoint to the passed version.
 
 ```typescript
-function Version(version: VersionValue): MethodDecorator
+function Version(version: VersionValue): MethodDecorator;
 ```
-

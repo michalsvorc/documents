@@ -1,6 +1,4 @@
-# NestJS
-
-Overview:
+# Nest.js
 
 - [Documentation](https://docs.nestjs.com/first-steps)
 - [Examples](https://github.com/nestjs/nest/tree/master/sample/)
@@ -31,7 +29,7 @@ Resources:
 - lmost everything is shared across incoming requests.
 - Application graph is the internal data structure Nest uses to resolve module and provider relationships and
   dependencies.
-- Nest has a built-in inversion of control ("IoC") container that resolves relationships between providers. 
+- Nest has a built-in inversion of control ("IoC") container that resolves relationships between providers.
 
 ## Controllers
 
@@ -56,7 +54,7 @@ Controllers always belong to a module:
 
 Nest employs two different options for manipulating responses:
 
-- Standard (recommended): The response's status code is always 200 by default, except for POST requests which use *201*. 
+- Standard (recommended): The response's status code is always 200 by default, except for POST requests which use _201_.
 - Library-specific: We can use the library-specific (e.g., Express) response object, which can be injected using the
   `@Res()` decorator.
 
@@ -65,7 +63,7 @@ Topics:
 - [Request object](https://docs.nestjs.com/controllers#request-object)
 - [Status code](https://docs.nestjs.com/controllers#status-code)
 - [Headers](https://docs.nestjs.com/controllers#headers)
-- [Redirection](https://docs.nestjs.com/controllers#redirection): The default value of statusCode is *302*.
+- [Redirection](https://docs.nestjs.com/controllers#redirection): The default value of statusCode is _302_.
 - [Route parameters](https://docs.nestjs.com/controllers#route-parameters)
 - [Custom route decorators](https://docs.nestjs.com/custom-decorators)
 
@@ -112,8 +110,8 @@ request has completed processing.)
 
 Providers are plain JavaScript classes that are declared as `providers` in a module.
 
-The main idea of a provider is that it can be injected as *dependency*. Many of the basic Nest classes may be treated as
-a provider – services, repositories, factories, helpers, and so on. 
+The main idea of a provider is that it can be injected as _dependency_. Many of the basic Nest classes may be treated as
+a provider – services, repositories, factories, helpers, and so on.
 
 In Nest, thanks to TypeScript capabilities, it's extremely easy to manage dependencies because they are resolved just by
 type. Nest will resolve the provider by creating and returning an instance of that provider (or, in the normal case of a
@@ -174,7 +172,7 @@ Nest provides several ways to define custom providers:
 - Factory providers: `useFactory`, allows for creating providers dynamically
 - Alias providers: `useExisting`
 
-While providers often supply services, they are not limited to that usage. A provider can supply *any value*. For example,
+While providers often supply services, they are not limited to that usage. A provider can supply _any value_. For example,
 a provider may supply an array of configuration objects based on the current environment.
 
 ### Asynchronous providers
@@ -199,11 +197,11 @@ modules effortlessly.
 
 The @Module() decorator takes a single object whose properties describe the module:
 
-- *providers*: The providers that will be instantiated by the Nest injector and that may be shared at least across this
+- _providers_: The providers that will be instantiated by the Nest injector and that may be shared at least across this
   module.
-- *controllers*: The set of controllers defined in this module which have to be instantiated.
-- *imports*: The list of imported modules that export the providers which are required in this module.
-- *exports*: The subset of providers that are provided by this module and should be available in other modules which
+- _controllers_: The set of controllers defined in this module which have to be instantiated.
+- _imports_: The list of imported modules that export the providers which are required in this module.
+- _exports_: The subset of providers that are provided by this module and should be available in other modules which
   import this module.
 
 Providers defined in a module are visible to other members of the module without the need to export them. When a
@@ -218,10 +216,10 @@ providers from a module as the module's public interface, or API.
 
 - [Overview](https://docs.nestjs.com/modules#shared-modules)
 
-Every module is automatically a shared module. Once created it can be reused by any module. 
+Every module is automatically a shared module. Once created it can be reused by any module.
 
 Let's imagine that we want to share an instance of the CatsService between several other modules. In order to do that,
-we first need to *export* the CatsService provider:
+we first need to _export_ the CatsService provider:
 
 ```typescript
 @Module({
@@ -231,7 +229,7 @@ we first need to *export* the CatsService provider:
 })
 ```
 
-Now any module that imports this module has access to the CatsService and will share the same *instance* with all other
+Now any module that imports this module has access to the CatsService and will share the same _instance_ with all other
 modules that import it as well.
 
 In addition, modules can [re-export modules](https://docs.nestjs.com/modules#module-re-exporting) that they import.
@@ -251,7 +249,7 @@ boilerplate. The imports array is generally the preferred way to make the module
 
 ### Dynamic modules
 
-- [Overview](https://docs.nestjs.com/modules#dynamic-modules) 
+- [Overview](https://docs.nestjs.com/modules#dynamic-modules)
 - [Fundamentals](https://docs.nestjs.com/fundamentals/dynamic-modules)
 - [Example](https://github.com/nestjs/nest/tree/master/sample/25-dynamic-modules)
 
@@ -267,7 +265,7 @@ Dynamic modules must return an object with the exact same interface, plus one ad
 
 - [Fundamentals](https://docs.nestjs.com/fundamentals/module-ref)
 
-Nest provides the ModuleRef class to navigate the internal list of providers and obtain a reference to any provider using its injection token as a lookup key. 
+Nest provides the ModuleRef class to navigate the internal list of providers and obtain a reference to any provider using its injection token as a lookup key.
 
 The ModuleRef class also provides a way to dynamically instantiate both static and scoped providers.
 
@@ -293,7 +291,7 @@ Pipes run inside the exceptions zone. This means that when a Pipe throws an exce
 layer (global exceptions filter and any exceptions filters that are applied to the current context). Given the above, it
 should be clear that when an exception is thrown in a Pipe, no controller method is subsequently executed. This gives
 you a best-practice technique for validating data coming into the application from external sources at the system
-boundary. 
+boundary.
 
 ## Exception filters
 
@@ -339,7 +337,7 @@ the other hand, Guards have access to the ExecutionContext instance, and thus kn
 next.
 
 They're designed, much like exception filters, pipes, and interceptors, to let you interpose processing logic at exactly
-the right point in the request/response cycle, and to do so declaratively. 
+the right point in the request/response cycle, and to do so declaratively.
 
 ## Interceptors
 
@@ -364,7 +362,7 @@ Usage:
 - [Overview](https://docs.nestjs.com/interceptors#call-handler)
 
 The `intercept()` method effectively wraps the request/response stream. As a result, you may implement custom logic both
-*before* and *after* the execution of the final route handler.
+_before_ and _after_ the execution of the final route handler.
 
 ## Dependency injection
 
@@ -372,9 +370,9 @@ The `intercept()` method effectively wraps the request/response stream. As a res
 - [Circular dependency](https://docs.nestjs.com/fundamentals/circular-dependency)
 
 Dependency injection is an inversion of control (IoC) technique wherein you delegate instantiation of dependencies to
-the IoC container (in our case, the NestJS runtime system), instead of doing it in your own code imperatively. 
+the IoC container (in our case, the NestJS runtime system), instead of doing it in your own code imperatively.
 
-Constructor based dependency injection is used to inject instances (often service providers) into classes. 
+Constructor based dependency injection is used to inject instances (often service providers) into classes.
 
 Passing a token (instead of an instance) into a constructor means leaving responsibility for instantiation to the
 framework and enabling dependency injection.
@@ -388,6 +386,7 @@ framework and enabling dependency injection.
 ### Constructor injection
 
 CatsController declares a dependency on the CatsService token with constructor injection:
+
 ```typescript
 constructor(private catsService: CatsService)
 ```
@@ -428,7 +427,7 @@ application contexts (e.g., Nest HTTP server-based, microservices and WebSockets
 - [Overview](https://docs.nestjs.com/exception-filters#arguments-host)
 - [Fundamentals](https://docs.nestjs.com/fundamentals/execution-context#argumentshost-class)
 
-The `ArgumentsHost` class provides methods for retrieving the arguments being passed to a handler. 
+The `ArgumentsHost` class provides methods for retrieving the arguments being passed to a handler.
 
 The framework provides an instance of `ArgumentsHost`, typically referenced as a `host` parameter, in places where you
 may want to access it.
@@ -455,7 +454,7 @@ guards or interceptors.
 
 - [Fundamentals](https://docs.nestjs.com/fundamentals/execution-context#reflection-and-metadata)
 
-Nest provides the ability to attach *custom metadata* to route handlers through the `@SetMetadata()` decorator.
+Nest provides the ability to attach _custom metadata_ to route handlers through the `@SetMetadata()` decorator.
 
 To access the route's custom metadata set with the `@SetMetadata()` decorator, we'll use the `Reflector#get` method.
 
@@ -466,7 +465,7 @@ It's not good practice to use `@SetMetadata()` directly in your routes. Instead,
 - [Fundamentals](https://docs.nestjs.com/techniques/serialization)
 - [Example](https://github.com/nestjs/nest/tree/master/sample/21-serializer)
 
-Serialization is a process that happens before objects are returned in a network response. 
+Serialization is a process that happens before objects are returned in a network response.
 
 The built-in `ClassSerializerInterceptor` interceptor uses the powerful class-transformer package to provide a declarative
 and extensible way of transforming objects. It can apply rules expressed by class-transformer decorators.
@@ -477,4 +476,3 @@ and extensible way of transforming objects. It can apply rules expressed by clas
 
 The HttpModule exports the HttpService class, which exposes [Axios](https://github.com/axios/axios)-based methods to
 perform HTTP requests. The library also transforms the resulting HTTP responses into Observables.
-
