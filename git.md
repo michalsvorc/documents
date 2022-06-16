@@ -10,11 +10,13 @@ $ git push -u origin <branch_name>
 ## Undo last commit
 
 Soft, keep changes:
+
 ```console
 $ git reset --soft HEAD~1
 ```
 
 Hard, discard changes:
+
 ```console
 $ git reset --hard HEAD~1
 ```
@@ -29,16 +31,19 @@ $ git clean -f  # Forced mode
 ## Rename a local and remote branch
 
 Rename local branch
+
 ```console
 $ git branch -m old-name new-name
 ```
 
 Delete the old-name remote branch and push the new-name local branch
+
 ```console
 $ git push origin :old-name new-name
 ```
 
 Reset the upstream branch for the new-name local branch.
+
 ```console
 # Switch to the branch
 $ git push origin -u new-name
@@ -60,11 +65,13 @@ $ git reset --hard origin/<branch-name>
 ## Delete local branch
 
 Merged:
+
 ```console
 $ git branch -d <branch_name>
 ```
 
 Unmerged:
+
 ```console
 $ git branch -D <branch_name>
 ```
@@ -100,28 +107,32 @@ $ git remote prune origin [--dry-run]
 ## Tags
 
 List all tags:
+
 ```console
 $ git tag -l
 ```
 
 Create a lightweight tag:
+
 ```console
 $ git tag <tag_name>                      # current commit
 $ git tag -a <tag_name> <commit_hash>     # previous commit
 ```
 
 Get tag information
+
 ```console
 $ git show <tag_name>
 ```
 
 Print the latest tag:
+
 ```console
 $ git describe --tags --abbrev=0
 ```
 
 By default, the git push command doesn't transfer tags to remote servers.
-You will have to explicitly push tags to a shared server after you have created them. 
+You will have to explicitly push tags to a shared server after you have created them.
 
 ```console
 $ git push origin <tag_name>
@@ -146,4 +157,3 @@ This command only affects the current repository. Any other repositories will st
 ## Linear history with rebase
 
 Too much hassle.
-
