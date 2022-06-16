@@ -1,23 +1,22 @@
 # MobX
 
-Overview:
-
-* [Mobx.js.org](https://mobx.js.org/)
-* [Videos](https://mobx.js.org/README.html#videos)
+- [Mobx.js.org](https://mobx.js.org/)
+- [Videos](https://mobx.js.org/README.html#videos)
 
 API:
-* [API reference](https://mobx.js.org/api.html)
+
+- [API reference](https://mobx.js.org/api.html)
 
 Topics:
 
-* [Defining data stores](https://mobx.js.org/defining-data-stores.html)
-* [Understanding reactivity](https://mobx.js.org/understanding-reactivity.html)
+- [Defining data stores](https://mobx.js.org/defining-data-stores.html)
+- [Understanding reactivity](https://mobx.js.org/understanding-reactivity.html)
 
 Libraries:
 
-* [Linting](https://mobx.js.org/configuration.html#linting-options)
-* [mobx-state-tree](https://github.com/mobxjs/mobx-state-tree)
-* [mobx-keystone](https://mobx-keystone.js.org/) 
+- [Linting](https://mobx.js.org/configuration.html#linting-options)
+- [mobx-state-tree](https://github.com/mobxjs/mobx-state-tree)
+- [mobx-keystone](https://mobx-keystone.js.org/)
 
 ## Overview
 
@@ -34,36 +33,33 @@ property access, not values. Reading is dereferencing an object's property, whic
 
 ## Concepts
 
-* [Documentation](https://mobx.js.org/the-gist-of-mobx.html)
+- [Documentation](https://mobx.js.org/the-gist-of-mobx.html)
 
 MobX makes state management simple again by addressing the root issue: it makes it impossible to produce an inconsistent
 state. The strategy to achieve that is simple:
 
-*Anything that can be derived from the application state, should be. Automatically.*
+_Anything that can be derived from the application state, should be. Automatically._
 
 This includes the UI, data serialization, server communication, etc.
 
 1. [State](https://mobx.js.org/observable-state.html)
-  Graphs of objects, arrays, primitives, references that forms the model of your application. These values are the “data
-  cells” of your application.
-
+   Graphs of objects, arrays, primitives, references that forms the model of your application. These values are the “data
+   cells” of your application.
 2. [Actions](https://mobx.js.org/actions.html)
-  Actions are all the things that alter the state. MobX will make sure that all changes to the application state caused
-  by your actions are automatically processed by all derivations and reactions.
-
-3. *Derivations*
-  Any value that can be computed automatically from the state of your application. These derivations, or computed
-  values, can range from simple values, like the number of unfinished todos, to complex stuff like a visual HTML
-  representation of your todos. In spreadsheet terms: these are the formulas and charts of your application.
-
-4. *Reactions*
-  Reactions are very similar to derivations. The main difference is these functions don't produce a value. Instead, they
-  run automatically to perform some task. Usually this is I/O related. They make sure that the DOM is updated or that
-  network requests are made automatically at the right time. 
+   Actions are all the things that alter the state. MobX will make sure that all changes to the application state caused
+   by your actions are automatically processed by all derivations and reactions.
+3. _Derivations_
+   Any value that can be computed automatically from the state of your application. These derivations, or computed
+   values, can range from simple values, like the number of unfinished todos, to complex stuff like a visual HTML
+   representation of your todos. In spreadsheet terms: these are the formulas and charts of your application.
+4. _Reactions_
+   Reactions are very similar to derivations. The main difference is these functions don't produce a value. Instead, they
+   run automatically to perform some task. Usually this is I/O related. They make sure that the DOM is updated or that
+   network requests are made automatically at the right time.
 
 MobX is inspired by reactive programming principles as found in the spreadsheets.
 
-Using observable is like turning a property of an object into a spreadsheet cell. 
+Using observable is like turning a property of an object into a spreadsheet cell.
 
 An action is any piece of code that changes the state. An action is like a user that enters a new value into a
 spreadsheet cell.
@@ -73,21 +69,21 @@ MobX uses a uni-directional data flow where actions change the state, which in t
 `Actions` -> `Observable state` -> `Derived values` -> `Reactions`
 
 1. All derivations are updated automatically and atomically when the state changes. As a result, it is never possible to
-observe intermediate values.
+   observe intermediate values.
 2. All derivations are updated synchronously by default. This means that, for example, actions can safely inspect a
-computed value directly after altering the state.
+   computed value directly after altering the state.
 3. Computed values are updated lazily. Any computed value that is not actively in use will not be updated until it is
-needed for a side effect (I/O). If a view is no longer in use it will be garbage collected automatically.
+   needed for a side effect (I/O). If a view is no longer in use it will be garbage collected automatically.
 4. All computed values should be pure. They are not supposed to change state.
 
 ## State
 
-* [Documentation](https://mobx.js.org/observable-state.html)
-* [Limitations](https://mobx.js.org/observable-state.html#limitations)
-* [Annotations](https://mobx.js.org/observable-state.html#available-annotations)
-* [Options](https://mobx.js.org/observable-state.html#options-)
-* [Observable array](https://mobx.js.org/observable-state.html#observable-array)
-* [Classes](https://mobx.js.org/observable-state.html#a-short-note-on-classes)
+- [Documentation](https://mobx.js.org/observable-state.html)
+- [Limitations](https://mobx.js.org/observable-state.html#limitations)
+- [Annotations](https://mobx.js.org/observable-state.html#available-annotations)
+- [Options](https://mobx.js.org/observable-state.html#options-)
+- [Observable array](https://mobx.js.org/observable-state.html#observable-array)
+- [Classes](https://mobx.js.org/observable-state.html#a-short-note-on-classes)
 
 State is like spreadsheet cells that hold a value.
 
@@ -95,23 +91,23 @@ All properties you want to change over time should be marked as observable so Mo
 
 The most important annotations are:
 
-* `observable` defines a trackable field that stores the state.
-* `action` marks a method as action that will modify the state.
-* `computed` marks a getter that will derive new facts from the state and cache its output.
+- `observable` defines a trackable field that stores the state.
+- `action` marks a method as action that will modify the state.
+- `computed` marks a getter that will derive new facts from the state and cache its output.
 
 Collections such as arrays, Maps and Sets are made observable automatically.
 
 ### makeObservable
 
-* [Documentation](https://mobx.js.org/observable-state.html#makeobservable)
+- [Documentation](https://mobx.js.org/observable-state.html#makeobservable)
 
 `makeObservable(target, annotations?, options?)`
 
-It can be used to trap *existing* object properties and make them observable.
+It can be used to trap _existing_ object properties and make them observable.
 
 ### makeAutoObservable
 
-* [Documentation](https://mobx.js.org/observable-state.html#makeautoobservable)
+- [Documentation](https://mobx.js.org/observable-state.html#makeautoobservable)
 
 `makeAutoObservable(target, overrides?, options?)`
 
@@ -123,7 +119,7 @@ don't have to be mentioned explicitly.
 
 ### observable
 
-* [Documentation](https://mobx.js.org/observable-state.html#observable)
+- [Documentation](https://mobx.js.org/observable-state.html#observable)
 
 `observable(source, overrides?, options?)`
 
@@ -132,56 +128,55 @@ The observable annotation can also be called as a function to make an entire obj
 The source object will be cloned and all members will be made observable, similar to how it would be done by
 makeAutoObservable.
 
-## Actions 
+## Actions
 
-* [Documentation](https://mobx.js.org/actions.html)
-* [Asynchronous actions](https://mobx.js.org/actions.html#asynchronous-actions)
-* [Mobx - runInAction() usage](https://stackoverflow.com/questions/57271153/mobx-runinaction-usage-why-do-we-need-it)
+- [Documentation](https://mobx.js.org/actions.html)
+- [Asynchronous actions](https://mobx.js.org/actions.html#asynchronous-actions)
+- [Mobx - runInAction() usage](https://stackoverflow.com/questions/57271153/mobx-runinaction-usage-why-do-we-need-it)
 
 An action is any piece of code that modifies the state.
 
 Actions help you structure your code better and offer the following performance benefits:
 
-* They are run inside transactions. No reactions will be run until the outer-most action has finished, guaranteeing that
+- They are run inside transactions. No reactions will be run until the outer-most action has finished, guaranteeing that
   intermediate or incomplete values produced during an action are not visible to the rest of the application until the
   action has completed.
-* By default, it is not allowed to change the state outside of actions. This helps to clearly identify in your code base
+- By default, it is not allowed to change the state outside of actions. This helps to clearly identify in your code base
   where the state updates happen.
 
 Usage:
 
-* `action` (*annotation*)
-* `action(fn)`
-* `action(name, fn)`
+- `action` (_annotation_)
+- `action(fn)`
+- `action(name, fn)`
 
 ### Using flow instead of async / await
 
-* [Documentation](https://mobx.js.org/actions.html#using-flow-instead-of-async--await-)
+- [Documentation](https://mobx.js.org/actions.html#using-flow-instead-of-async--await-)
 
 Usage:
 
-* `flow (annotation)`
-* `flow(function* (args) { })`
-
+- `flow (annotation)`
+- `flow(function* (args) { })`
 
 Flow is an alternative to async / await that doesn't need any further action wrapping. Flow takes a [generator
 function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) as its only input.
-Another neat benefit of flows is that they are cancellable. 
+Another neat benefit of flows is that they are cancellable.
 
 ## Computeds
 
-* [Documentation](https://mobx.js.org/computeds.html)
-* [Tips](https://mobx.js.org/computeds.html#tips)
-* [Options](https://mobx.js.org/computeds.html#options-).
-* [Built-in comparer methods](https://mobx.js.org/computeds.html#built-in-comparers)
+- [Documentation](https://mobx.js.org/computeds.html)
+- [Tips](https://mobx.js.org/computeds.html#tips)
+- [Options](https://mobx.js.org/computeds.html#options-).
+- [Built-in comparer methods](https://mobx.js.org/computeds.html#built-in-comparers)
 
 Usage:
 
-* `computed` (*annotation*)
-* `computed(options)` (*annotation*)
-* `computed(fn, options?)`
+- `computed` (_annotation_)
+- `computed(options)` (_annotation_)
+- `computed(fn, options?)`
 
-Computed values can be created by annotating JavaScript *getters* with computed.
+Computed values can be created by annotating JavaScript _getters_ with computed.
 
 Computed values can be used to derive information from other observables. They evaluate lazily, caching their output and
 only recomputing if one of the underlying observables has changed. If they are not observed by anything, they suspend
@@ -192,7 +187,7 @@ amount of state you have to store and are highly optimized. Use them wherever po
 
 ## Reactions
 
-* [Documentation](https://mobx.js.org/reactions.html)
+- [Documentation](https://mobx.js.org/reactions.html)
 
 Reactions APIs should rarely be used directly, They are often abstracted away in other libraries or abstractions
 specific to your application.
@@ -202,16 +197,16 @@ to the console, making network requests, incrementally updating React component 
 
 ### autorun
 
-* [Documentation](https://mobx.js.org/reactions.html#autorun)
+- [Documentation](https://mobx.js.org/reactions.html#autorun)
 
 `autorun(effect: (reaction) => void)`
 
 Accepts one function that should run every time anything it observes changes. It also runs once when you create the
 autorun itself.
 
-### reaction 
+### reaction
 
-* [Documentation](https://mobx.js.org/reactions.html#reaction)
+- [Documentation](https://mobx.js.org/reactions.html#reaction)
 
 `reaction(() => value, (value, previousValue, reaction) => { sideEffect }, options?)`
 
@@ -221,11 +216,10 @@ function.
 
 ### when
 
-* [Documentation](https://mobx.js.org/reactions.html#when)
+- [Documentation](https://mobx.js.org/reactions.html#when)
 
 `when(predicate: () => boolean, effect?: () => void, options?)`
 `when(predicate: () => boolean, options?): Promise`
 
 When observes and runs the given predicate function until it returns true. Once that happens, the given effect function
 is executed and the autorunner is disposed of.
-
