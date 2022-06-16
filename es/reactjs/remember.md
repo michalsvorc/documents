@@ -29,11 +29,11 @@ use the update function argument instead.
 
 Rendering:
 
-* Calling `setState()` triggers re-render even when you pass the same state object. 
-* When you update `useState` and `useReducer` hooks to the same value as the current state, React will bail out without
-  rendering the children or firing effects. 
+- Calling `setState()` triggers re-render even when you pass the same state object.
+- When you update `useState` and `useReducer` hooks to the same value as the current state, React will bail out without
+  rendering the children or firing effects.
 
 Merging update objects:
 
-* `setState` automatically merges update object.
-* `useState` and `useReducer` does not automatically merge update object.
+- `setState` automatically merges update object.
+- `useState` and `useReducer` does not automatically merge update object.

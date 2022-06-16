@@ -1,32 +1,32 @@
 # Context
 
-* [Documentation](https://reactjs.org/docs/context.html)
-* [Caveats](https://reactjs.org/docs/context.html#caveats)
-* [Examples](https://reactjs.org/docs/context.html#examples)
-* [Context and Rendering Behavior - React
+- [Documentation](https://reactjs.org/docs/context.html)
+- [Caveats](https://reactjs.org/docs/context.html#caveats)
+- [Examples](https://reactjs.org/docs/context.html#examples)
+- [Context and Rendering Behavior - React
   Blog](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/#context-and-rendering-behavior)
 
-React's Context API is a mechanism for making a single user-provided value available to a subtree of components. 
+React's Context API is a mechanism for making a single user-provided value available to a subtree of components.
 
 Context is not a "state management" tool. You have to manage the values that are passed into context yourself. This is
 typically done by keeping data in React component state, and constructing context values based on that data.
 
 Use context when:
 
-* You just need to pass some simple values that don't change often.
-* You have some state or functions that need to be accessed through part of the app, and you don't want to pass them as
+- You just need to pass some simple values that don't change often.
+- You have some state or functions that need to be accessed through part of the app, and you don't want to pass them as
   props all the way down.
-* You want to stick with what's built in to React and not add additional libraries.
+- You want to stick with what's built in to React and not add additional libraries.
 
 ## React.createContext
 
-* [Documentation](https://reactjs.org/docs/context.html#reactcreatecontext)
-* [displayName](https://reactjs.org/docs/context.html#contextdisplayname)
+- [Documentation](https://reactjs.org/docs/context.html#reactcreatecontext)
+- [displayName](https://reactjs.org/docs/context.html#contextdisplayname)
 
 ```jsx
 const MyContext = React.createContext(defaultValue);
 
-MyContext.displayName = 'MyDisplayName';
+MyContext.displayName = "MyDisplayName";
 ```
 
 Creates a Context object. When React renders a component that subscribes to this Context object it will read the current
@@ -40,14 +40,14 @@ the context.
 
 ## Context.Provider
 
-* [Documentation](https://reactjs.org/docs/context.html#contextprovider)
+- [Documentation](https://reactjs.org/docs/context.html#contextprovider)
 
 ```jsx
 const MyContext = React.createContext(defaultValue);
 
 <MyContext.Provider value={value}>
-   <App/>
-</MyContext.Provider>
+  <App />
+</MyContext.Provider>;
 ```
 
 The Provider component accepts a value prop to be passed to consuming components that are descendants of this Provider.
@@ -59,13 +59,13 @@ Consumers accept a context object.
 
 Consumers can be created as:
 
-* Class component: [Class.contextType](https://reactjs.org/docs/context.html#classcontexttype)
-* React component: [Context.Consumer](https://reactjs.org/docs/context.html#contextconsumer)
-* Function component (hook): [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- Class component: [Class.contextType](https://reactjs.org/docs/context.html#classcontexttype)
+- React component: [Context.Consumer](https://reactjs.org/docs/context.html#contextconsumer)
+- Function component (hook): [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
 
-###  Class.contextType (Class component)
+### Class.contextType (Class component)
 
-* [Documentation](https://reactjs.org/docs/context.html#classcontexttype)
+- [Documentation](https://reactjs.org/docs/context.html#classcontexttype)
 
 ```jsx
 class MyClass extends React.Component {
@@ -84,12 +84,12 @@ Contexts](https://reactjs.org/docs/context.html#consuming-multiple-contexts).
 
 ### Context.Consumer (React component)
 
-* [Documentation](https://reactjs.org/docs/context.html#contextconsumer)
+- [Documentation](https://reactjs.org/docs/context.html#contextconsumer)
 
 A React component that subscribes to context changes. Using this component lets you subscribe to a context within a
 function component.
 
-Requires a [function as a child](https://reactjs.org/docs/render-props.html#using-props-other-than-render). 
+Requires a [function as a child](https://reactjs.org/docs/render-props.html#using-props-other-than-render).
 
 ```jsx
 <MyContext.Consumer>
@@ -99,10 +99,10 @@ Requires a [function as a child](https://reactjs.org/docs/render-props.html#usin
 
 ### useContext hook (Function component)
 
-* [Documentation](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- [Documentation](https://reactjs.org/docs/hooks-reference.html#usecontext)
 
 ```jsx
-const {value} = useContext(MyContext);
+const { value } = useContext(MyContext);
 ```
 
 ## Rendering
@@ -119,23 +119,23 @@ object.
 
 Remember:
 
-* Calling `setState()` in the class component queues a render of that component.
-* React recursively renders nested components by default.
-* Context providers are given a value by the component that renders them.
-* That value normally comes from that parent *component's state*.
+- Calling `setState()` in the class component queues a render of that component.
+- React recursively renders nested components by default.
+- Context providers are given a value by the component that renders them.
+- That value normally comes from that parent _component's state_.
 
 This means that by default, any state update to a parent component that renders a context provider will cause all of
 its descendants to re-render anyway, regardless of whether they read the context value or not!.
 
 React component right under your context provider should probably use `React.memo`. That way, state updates in the
-parent component will not force every component to re-render, just the sections where the context is read. 
+parent component will not force every component to re-render, just the sections where the context is read.
 
 The propagation from `Context.Provider` to its descendant consumers is not subject to the `shouldComponentUpdate()`
-method, so the consumer is updated even when an ancestor component skips an update. 
+method, so the consumer is updated even when an ancestor component skips an update.
 
 ### Using objects
 
-* [Caveats](https://reactjs.org/docs/context.html#caveats)
+- [Caveats](https://reactjs.org/docs/context.html#caveats)
 
 Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger
 unintentional renders in consumers when a provider's parent re-renders.
@@ -155,7 +155,7 @@ To get around this, lift the value into the parent's state:
 
 ## Updating Context from a Nested Component
 
-* [Documentation](https://reactjs.org/docs/context.html#updating-context-from-a-nested-component)
+- [Documentation](https://reactjs.org/docs/context.html#updating-context-from-a-nested-component)
 
 Pass a function down through the context object to allow consumers to update the context:
 
@@ -167,4 +167,3 @@ export const ThemeContext = React.createContext({
 ```
 
 Make sure the shape of the default value passed to `createContext` matches the shape that the consumers expect.
-

@@ -2,33 +2,33 @@
 
 Overview:
 
-* [Introducing Hooks - React](https://reactjs.org/docs/hooks-intro.html)
-* [Hooks FAQ - React](https://reactjs.org/docs/hooks-faq.html)
-* [(Video) 10 React Hooks Explained - youtube.com](https://www.youtube.com/watch?v=TNhaISOUy6Q)
-* [(Video) React Today and Tomorrow - youtube.com](https://youtu.be/dpw9EHDh2bM)
+- [Introducing Hooks - React](https://reactjs.org/docs/hooks-intro.html)
+- [Hooks FAQ - React](https://reactjs.org/docs/hooks-faq.html)
+- [(Video) 10 React Hooks Explained - youtube.com](https://www.youtube.com/watch?v=TNhaISOUy6Q)
+- [(Video) React Today and Tomorrow - youtube.com](https://youtu.be/dpw9EHDh2bM)
 
 APIs:
 
-* [Hooks API Reference - React](https://reactjs.org/docs/hooks-reference.html)
+- [Hooks API Reference - React](https://reactjs.org/docs/hooks-reference.html)
 
 Topics:
 
-* [How do lifecycle methods correspond to Hooks?
+- [How do lifecycle methods correspond to Hooks?
   ](https://reactjs.org/docs/hooks-faq.html#how-do-lifecycle-methods-correspond-to-hooks)
 
 Libraries:
 
-* [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
-* [useHooks](https://usehooks.com/)
-* [useHooks TypeScript](https://usehooks-typescript.com/)
+- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+- [useHooks](https://usehooks.com/)
+- [useHooks TypeScript](https://usehooks-typescript.com/)
 
 Examples:
 
-* [Data fetching with Hooks](https://codesandbox.io/s/jvvkoo8pq3)
+- [Data fetching with Hooks](https://codesandbox.io/s/jvvkoo8pq3)
 
 ## Overview
 
-* [Introducing Hooks - React](https://reactjs.org/docs/hooks-intro.html#motivation)
+- [Introducing Hooks - React](https://reactjs.org/docs/hooks-intro.html#motivation)
 
 Introduced in React 16.8.0.
 
@@ -36,10 +36,10 @@ Hooks let you use state and other React features from function components withou
 
 Disadvantages of classes:
 
-* constructor (not really true with public fields)
-* complicated this bindings
-* duplicate side-effect logic in life cycles
-* forced OOP patern
+- constructor (not really true with public fields)
+- complicated this bindings
+- duplicate side-effect logic in life cycles
+- forced OOP patern
 
 Hooks avoid a lot of the overhead that classes require, like the cost of creating class instances and binding event
 handlers in the constructor.
@@ -55,51 +55,51 @@ subscription), rather than forcing a split based on lifecycle methods.
 
 ### Rules
 
-* [Hooks at a Glance - React](https://reactjs.org/docs/hooks-overview.html#rules-of-hooks)
-* [Rules of Hooks - React](https://reactjs.org/docs/hooks-rules.html)
+- [Hooks at a Glance - React](https://reactjs.org/docs/hooks-overview.html#rules-of-hooks)
+- [Rules of Hooks - React](https://reactjs.org/docs/hooks-rules.html)
 
-* Hook names are always prefixed with `use`.
-* Only call Hooks at the top level of your component. Don't call Hooks inside loops, conditions, or nested functions.
-* Only call Hooks from React function components. Don't call Hooks from regular JavaScript functions.
+- Hook names are always prefixed with `use`.
+- Only call Hooks at the top level of your component. Don't call Hooks inside loops, conditions, or nested functions.
+- Only call Hooks from React function components. Don't call Hooks from regular JavaScript functions.
 
 ### Built-in hooks
 
 Basic Hooks:
 
-* [useState](https://reactjs.org/docs/hooks-reference.html#usestate)
-* [useEffect](https://reactjs.org/docs/hooks-reference.html#useeffect)
-* [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- [useState](https://reactjs.org/docs/hooks-reference.html#usestate)
+- [useEffect](https://reactjs.org/docs/hooks-reference.html#useeffect)
+- [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
 
 Additional Hooks:
 
-* [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
-* [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
-* [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
-* [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
-* [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
-* [useLayoutEffect](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
-* [useDebugValue](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
+- [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+- [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
+- [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
+- [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
+- [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+- [useLayoutEffect](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
+- [useDebugValue](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
 
 ### Do Hooks cover all use cases for classes?
 
-* [React FAQ](https://reactjs.org/docs/hooks-faq.html#do-hooks-cover-all-use-cases-for-classes)
+- [React FAQ](https://reactjs.org/docs/hooks-faq.html#do-hooks-cover-all-use-cases-for-classes)
 
 There are no Hook equivalents to:
 
-* `getSnapshotBeforeUpdate`
-* `getDerivedStateFromError`
-* `componentDidCatch`
+- `getSnapshotBeforeUpdate`
+- `getDerivedStateFromError`
+- `componentDidCatch`
 
 To implement `shouldComponentUpdate`, you can wrap a function component with `React.memo` to shallowly compare its props.
 
 ## useState
 
-* [API](https://reactjs.org/docs/hooks-reference.html#usestate)
-* [Documentation](https://reactjs.org/docs/hooks-state.html)
+- [API](https://reactjs.org/docs/hooks-reference.html#usestate)
+- [Documentation](https://reactjs.org/docs/hooks-state.html)
 
 `useState` is a hook that lets you add state to function components.
 
-```js
+```javascript
 const [state, setState] = useState(initialState);
 ```
 
@@ -112,7 +112,7 @@ Note: If you're doing expensive calculations while rendering, you can optimize t
 
 ### setState update function
 
-```js
+```javascript
 setState(newState);
 setState(prevState => {...});
 ```
@@ -137,7 +137,7 @@ when the next state depends on the previous one.
 
 ### Initial state
 
-* [API](https://reactjs.org/docs/hooks-reference.html#lazy-initial-state)
+- [API](https://reactjs.org/docs/hooks-reference.html#lazy-initial-state)
 
 The `initialState` argument is the state used during the initial render. In subsequent renders, it is disregarded.
 
@@ -146,7 +146,7 @@ If you don't provide initial state the value is `undefined`.
 If the initial state is the result of an expensive computation, you may provide a function instead, which will be
 executed only on the initial render.
 
-```js
+```javascript
 // ! expensiveCalculation() is called on every render
 const [rows, setRows] = useState(expensiveCalculation());
 
@@ -156,12 +156,12 @@ const [rows, setRows] = useState(() => expensiveCalculation());
 
 ## useEffect
 
-* [API](https://reactjs.org/docs/hooks-reference.html#useeffect)
-* [Documentation](https://reactjs.org/docs/hooks-effect.html)
+- [API](https://reactjs.org/docs/hooks-reference.html#useeffect)
+- [Documentation](https://reactjs.org/docs/hooks-effect.html)
 
 Adds the ability to perform side effects from a function component after every completed render.
 
-```js
+```javascript
 useEffect(() => {
   // perform side effects
 
@@ -211,13 +211,13 @@ dependencies array as an optional second argument.
 
 ### Dependencies array
 
-* [Conditionally firing an effect - React](https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect)
-* [Optimizing Performance by Skipping Effects - React](https://reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)
+- [Conditionally firing an effect - React](https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect)
+- [Optimizing Performance by Skipping Effects - React](https://reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)
 
 The default behavior for effects is to fire the effect after the first render and after every completed render. That way
 an effect is always recreated if one of its dependencies changes.
 
-Pass a second argument to `useEffect` that is the array of values that the effect depends on. 
+Pass a second argument to `useEffect` that is the array of values that the effect depends on.
 
 If you use this optimization, make sure the array includes all values from the component scope (such as `props` and
 `state`) that change over time and that are used by the effect. Otherwise, your code will reference stale values from
@@ -229,12 +229,12 @@ to re-run.
 
 ### FAQ
 
-* Is it safe to omit functions from the list of dependencies? [React
+- Is it safe to omit functions from the list of dependencies? [React
   FAQ](https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
 
   Generally speaking, no. Usually you'll want to declare functions needed by an effect inside of it.
 
-* What can I do if my effect dependencies change too often? [React FAQ](https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)
+- What can I do if my effect dependencies change too often? [React FAQ](https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)
 
 Sometimes, your effect may be using state that changes too often. To fix this, we can use the functional update form of
 setState. It lets us specify how the state needs to change without referencing the current state.
@@ -242,17 +242,17 @@ setState. It lets us specify how the state needs to change without referencing t
 In more complex cases (such as if one state depends on another state), try moving the state update logic outside the
 effect with the useReducer Hook.
 
-* Can I run an effect only on updates? [React FAQ](https://reactjs.org/docs/hooks-faq.html#can-i-run-an-effect-only-on-updates)
+- Can I run an effect only on updates? [React FAQ](https://reactjs.org/docs/hooks-faq.html#can-i-run-an-effect-only-on-updates)
 
 This is a rare use case. If you need it, you can use a mutable ref to manually store a boolean value corresponding to
 whether you are on the first or a subsequent render, then check that flag in your effect. (If you find yourself doing
 this often, you could create a custom Hook for it.)
 
-* How to get the previous props or state? [React FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state)
+- How to get the previous props or state? [React FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state)
 
 Currently, you can do it manually with a ref. This might be a bit convoluted but you can extract it into a custom Hook.
 
-```js
+```javascript
 function usePrevious(value) {
   const ref = useRef();
 
@@ -263,19 +263,20 @@ function usePrevious(value) {
   return ref.current;
 }
 ```
+
 Note how this would work for props, state, or any other calculated value.
 
 ## useReducer
 
-* [API](https://reactjs.org/docs/hooks-reference.html#usereducer)
+- [API](https://reactjs.org/docs/hooks-reference.html#usereducer)
 
 An alternative to `useState`, similar to Redux dispatch actions.
 
-```js
+```javascript
 const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
-Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a dispatch method. 
+Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a dispatch method.
 
 `useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or
 when the next state depends on the previous one.
@@ -291,11 +292,8 @@ There are two different ways to initialize useReducer state: through `initialArg
 
 The simplest way is to pass the initial state as a second argument:
 
-```js
-const [state, dispatch] = useReducer(
-    reducer,
-    {count: initialCount}
-);
+```javascript
+const [state, dispatch] = useReducer(reducer, { count: initialCount });
 ```
 
 You can also create the initial state [lazily](https://reactjs.org/docs/hooks-reference.html#lazy-initialization). To do
@@ -304,11 +302,13 @@ this, you can pass an `init` function as the third argument. The initial state w
 It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting
 the state later in response to an action.
 
-```js
-const initialCount = 0
+```javascript
+const initialCount = 0;
 
 // outside the reducer
-function init(initialCount) { return {count: initialCount} }
+function init(initialCount) {
+  return { count: initialCount };
+}
 
 // inside of a function component
 const [state, dispatch] = useReducer(reducer, initialCount, init);
@@ -316,7 +316,7 @@ const [state, dispatch] = useReducer(reducer, initialCount, init);
 
 ### Pass dispatch down instead of callbacks
 
-* [React FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)
+- [React FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)
 
 `useReducer` lets you optimize performance for components that trigger deep updates because you can pass `dispatch` down
 instead of callbacks.
@@ -332,18 +332,15 @@ This is why it's also safe to omit from the `useEffect` or `useCallback` depende
 
 ## useCallback
 
-* [Hooks API Reference – React](https://reactjs.org/docs/hooks-reference.html#usecallback)
-* [(Video) useCallback Hook - youtube.com ](https://www.youtube.com/watch?v=IL82CzlaCys)
+- [Hooks API Reference – React](https://reactjs.org/docs/hooks-reference.html#usecallback)
+- [(Video) useCallback Hook - youtube.com ](https://www.youtube.com/watch?v=IL82CzlaCys)
 
-Returns a memoized version of the passed callback that only changes if one of the dependencies has changed. 
+Returns a memoized version of the passed callback that only changes if one of the dependencies has changed.
 
-```js
-const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
-  },
-  [a, b],
-);
+```javascript
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
 ```
 
 It is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary
@@ -359,15 +356,15 @@ Note: `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
 ## useMemo
 
-* [API](https://reactjs.org/docs/hooks-reference.html#usememo)
-* [React FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations)
-* [(Video) useMemo Hook - youtube.com](https://www.youtube.com/watch?v=qySZIzZvZOY)
+- [API](https://reactjs.org/docs/hooks-reference.html#usememo)
+- [React FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations)
+- [(Video) useMemo Hook - youtube.com](https://www.youtube.com/watch?v=qySZIzZvZOY)
 
 The `useMemo` Hook lets you cache calculations between multiple renders by remembering the previous computation.
 
 This optimization helps to avoid expensive calculations on every render if the dependencies are the same.
 
-```js
+```javascript
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
@@ -386,9 +383,9 @@ Note: `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
 ## useContext
 
-* [API](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- [API](https://reactjs.org/docs/hooks-reference.html#usecontext)
 
-```js
+```javascript
 const value = useContext(MyContext);
 ```
 
@@ -401,14 +398,14 @@ A component calling `useContext` will always re-render when the context value ch
 
 ## useRef
 
-* [API](https://reactjs.org/docs/hooks-reference.html#useref)
-* [(Video) useRef Hook Part 1 (DOM) - youtube.com](https://www.youtube.com/watch?v=yCS2m01bQ6w)
-* [(Video) useRef Hook Part 2 (Values) - youtube.com](https://www.youtube.com/watch?v=LWg0OyZQffc)
+- [API](https://reactjs.org/docs/hooks-reference.html#useref)
+- [(Video) useRef Hook Part 1 (DOM) - youtube.com](https://www.youtube.com/watch?v=yCS2m01bQ6w)
+- [(Video) useRef Hook Part 2 (Values) - youtube.com](https://www.youtube.com/watch?v=LWg0OyZQffc)
 
 The `ref` object is a generic container whose current property is mutable and can hold any value, similar to an instance
 property on a class.
 
-```js
+```javascript
 const refContainer = useRef(initialValue);
 ```
 
@@ -430,7 +427,7 @@ in event handlers and effects.
 
 For example, maybe you want to ensure some imperative class instance only gets created once:
 
-```js
+```javascript
 // ! imperativeClass is created on every render
 const ref = useRef(new imperativeClass());
 
@@ -449,11 +446,11 @@ function getImperativeInstance() {
 
 ## useImperativeHandle
 
-* [API](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
-* [(Video) useImperativeHandle Hook - youtube.com](https://youtu.be/N8PwptJ6Qlk)
+- [API](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+- [(Video) useImperativeHandle Hook - youtube.com](https://youtu.be/N8PwptJ6Qlk)
 
-```js
-useImperativeHandle(ref, createHandle, [deps])
+```javascript
+useImperativeHandle(ref, createHandle, [deps]);
 ```
 
 `useImperativeHandle` customizes the instance value that is exposed to parent components when using ref. This way, it
@@ -466,35 +463,35 @@ As always, imperative code using refs should be avoided in most cases. `useImper
 
 ## useLayoutEffect
 
-* [API](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
+- [API](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
 
 The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout
-from the DOM and synchronously re-render. 
+from the DOM and synchronously re-render.
 
 Your callback will run after rendering the component, but before the actual updates have been painted to the screen.
-This means it will *block visual updates* until your callback has finished running.
+This means it will _block visual updates_ until your callback has finished running.
 
-Prefer the standard `useEffect` when possible to *avoid* blocking visual updates.
+Prefer the standard `useEffect` when possible to _avoid_ blocking visual updates.
 
 ## useDebugValue
 
-* [API](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
+- [API](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
 
-```js
-useDebugValue(value)
+```javascript
+useDebugValue(value);
 ```
 
 `useDebugValue` can be used to display a label for custom hooks in React DevTools.
 
 ## Custom Hooks
 
-* [Building Your Own Hooks - React](https://reactjs.org/docs/hooks-custom.html)
+- [Building Your Own Hooks - React](https://reactjs.org/docs/hooks-custom.html)
 
 Examples:
 
-* [(Video) useDocumentTitle Custom Hook - youtube.com](https://www.youtube.com/watch?v=4yp6T-hF5ZY)
-* [(Video) useCounter Custom Hook - youtube.com](https://www.youtube.com/watch?v=W3_GIiN-nuc)
-* [(Video) useInput Custom Hook - youtube.com](https://www.youtube.com/watch?v=6am-yn3ZLEw)
+- [(Video) useDocumentTitle Custom Hook - youtube.com](https://www.youtube.com/watch?v=4yp6T-hF5ZY)
+- [(Video) useCounter Custom Hook - youtube.com](https://www.youtube.com/watch?v=W3_GIiN-nuc)
+- [(Video) useInput Custom Hook - youtube.com](https://www.youtube.com/watch?v=6am-yn3ZLEw)
 
 Unlike a React component, a custom Hook doesn't need to have a specific signature. Custom Hooks are a convention that
 naturally follows from the design and rules of Hooks, rather than a React feature.
@@ -505,4 +502,3 @@ We can decide what it takes as arguments, and what, if anything, it should retur
 
 Custom Hooks are a mechanism to reuse stateful logic (such as setting up a subscription and remembering the current
 value), but every time you use a custom Hook, all state and effects inside of it are fully isolated.
-
