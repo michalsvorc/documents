@@ -2,14 +2,14 @@
 
 Cheat sheets:
 
-* [Vim Cheat Sheet](https://vim.rtorr.com/)
-* [vim / vimdiff cheatsheet - essential commands · GitHub](https://gist.github.com/azadkuh/5d223d46a8c269dadfe4)
-* [tabs and window splits](https://gist.github.com/Starefossen/5957088)
+- [Vim Cheat Sheet](https://vim.rtorr.com/)
+- [vim / vimdiff cheatsheet - essential commands · GitHub](https://gist.github.com/azadkuh/5d223d46a8c269dadfe4)
+- [tabs and window splits](https://gist.github.com/Starefossen/5957088)
 
 Graphical cheat sheets:
 
-* [Vim Cheat Sheet](https://i.imgur.com/YLInLlY.png)
-* [Keyboard cheat sheet](https://helloacm.com/wp-content/uploads/2015/09/vi-vim-cheat-sheet.jpg)
+- [Vim Cheat Sheet](https://i.imgur.com/YLInLlY.png)
+- [Keyboard cheat sheet](https://helloacm.com/wp-content/uploads/2015/09/vi-vim-cheat-sheet.jpg)
 
 ## Navigation
 
@@ -39,4 +39,3 @@ occurrences in the buffer at once.
 ## Spelling
 
 `z=` on a hovered word shows spell suggestions.
-
