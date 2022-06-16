@@ -1,4 +1,4 @@
-# ECMAScript
+# JavaScript
 
 Overview:
 
