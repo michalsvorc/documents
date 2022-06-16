@@ -4,19 +4,19 @@
 
 PEMDAS and coercion to string happens only on addition
 
-```js
-console.log(1 + 4 * 2 + 7 - '6' + '4' * 5 + '3' - '12') // 291
+```javascript
+console.log(1 + 4 * 2 + 7 - "6" + "4" * 5 + "3" - "12"); // 291
 
-console.log(1 + 8 + 7 - '6' + 20 + '3' - '12')
-console.log(30 + '3' - '12')
-console.log('303' - '12')
+console.log(1 + 8 + 7 - "6" + 20 + "3" - "12");
+console.log(30 + "3" - "12");
+console.log("303" - "12");
 ```
 
 ---
 
 Shortcircuiting
 
-```js
+```javascript
 console.log(false && true);
 console.log(false && 1 && []);
 console.log(" " && true && 5);
@@ -26,11 +26,13 @@ console.log(null || 1 || undefined);
 
 ---
 
-```js
-for(var i = 0; i < 3; i++){
-  setTimeout(function() {console.log(i)}, 0);
+```javascript
+for (var i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
 
-  console.log(i)
+  console.log(i);
 }
 ```
 
@@ -39,13 +41,13 @@ the `for` loop, the variable `i` is incremented first, and then checked.
 
 ---
 
-```js
-(function(){
-  setTimeout(()=> console.log(1),2000);
+```javascript
+(function () {
+  setTimeout(() => console.log(1), 2000);
 
   console.log(2);
 
-  setTimeout(()=> console.log(3),0);
+  setTimeout(() => console.log(3), 0);
 
   console.log(4);
 })();
@@ -59,13 +61,13 @@ execute. See event loop and asynchronicity.
 
 ---
 
-```js
+```javascript
 const x = {};
-const y = {name: "Alice"}
-const z = {name: "Bob"};
+const y = { name: "Alice" };
+const z = { name: "Bob" };
 
-x[y] = {name:"Yan"};
-x[z] = {name:"Zachary"};
+x[y] = { name: "Yan" };
+x[z] = { name: "Zachary" };
 
 console.log(x[y]);
 ```
@@ -77,54 +79,54 @@ object, it will be converted to "object Object". `x[x]`, `x[y]` and `x[z]` will 
 
 ---
 
-```js
+```javascript
 let hero = {
   powerLevel: 99,
   getPower() {
     return this.powerLevel;
-  }
-}
-  
+  },
+};
+
 let getPower = hero.getPower;
 
 var powerLevel = 97;
 
-console.log(getPower()); 
+console.log(getPower());
 ```
 
 Output: 97
 
-When the function is *called*, it is invoked referencing the global object. `var` declaration in global scope is added
+When the function is _called_, it is invoked referencing the global object. `var` declaration in global scope is added
 to window object.
 
 ---
 
-```js
-var name = 'Window object'
+```javascript
+var name = "Window object";
 
 const a = function fnA() {
-  console.log('a', this.name);
+  console.log("a", this.name);
 
   const b = {
-    fnB: function() {
-      console.log('b', this.name);
-    }  
-  }
+    fnB: function () {
+      console.log("b", this.name);
+    },
+  };
 
   const c = {
     fnC: () => {
-      console.log('c', this.name);
-    }
-  }
-  
-  const d = function() {
-    console.log('d', this.name);
-  }
+      console.log("c", this.name);
+    },
+  };
 
-  b.fnB(); 
-  c.fnC(); 
-  d(); 
-}
+  const d = function () {
+    console.log("d", this.name);
+  };
+
+  b.fnB();
+  c.fnC();
+  d();
+};
 
 a();
 ```
@@ -144,22 +146,22 @@ property.
 
 ---
 
-```js
-var name = 'Window object'
+```javascript
+var name = "Window object";
 
 const b = {
-  name:"Alice",
-  func: function() {
+  name: "Alice",
+  func: function () {
     var person = this;
 
-    console.log('a', this.name);
+    console.log("a", this.name);
 
-    (function(){
-      console.log('b', this.name);
-      console.log('c', person.name);
+    (function () {
+      console.log("b", this.name);
+      console.log("c", person.name);
     })();
-  }
-}
+  },
+};
 
 b.func();
 ```
@@ -174,15 +176,15 @@ Output:
 
 ---
 
-```js
+```javascript
 var a = 1;
 
-(function outer(a){
-  return (function inner(){
+(function outer(a) {
+  return (function inner() {
     console.log(a);
 
     a = 3;
-  })()
+  })();
 })(2);
 ```
 
@@ -195,29 +197,31 @@ functions has access to it.
 
 Implement even number test function with binary operator:
 
-```js
+```javascript
 function isEven(n) {
-  return !(n & 1)
+  return !(n & 1);
 }
 ```
 
-* [Bitwise AND](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND)
+- [Bitwise AND](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND)
 
 ## Hoisting
 
-```js
+```javascript
 let a = f();
 const b = 2;
-function f() { return b; }
+function f() {
+  return b;
+}
 
-console.log(a)
+console.log(a);
 ```
 
 Output: "ReferenceError: can't access lexical declaration 'b' before initialization"
 
 ---
 
-```js
+```javascript
 console.log(y);
 
 y = 1;
@@ -229,7 +233,7 @@ Missing var, let or const.
 
 ---
 
-```js
+```javascript
 console.log(y);
 
 var y = 2;
@@ -239,7 +243,7 @@ Output: undefined
 
 ---
 
-```js
+```javascript
 y = 3;
 
 console.log(y);
@@ -251,7 +255,7 @@ Output: 3
 
 ---
 
-```js
+```javascript
 var z = 1;
 let z;
 
@@ -262,7 +266,7 @@ Output: "SyntaxError: Identifier 'z' has already been declared
 
 ---
 
-```js
+```javascript
 console.log(z);
 
 let z = 1;
@@ -272,10 +276,10 @@ Output: "ReferenceError: Cannot access 'z' before initialization
 
 ---
 
-```js
-function hoistingExample() {  
-  console.log(a); 
-} 
+```javascript
+function hoistingExample() {
+  console.log(a);
+}
 
 console.log(a);
 
@@ -284,21 +288,21 @@ var a = 1;
 hoistingExample();
 ```
 
-Output: 
+Output:
 
 undefined
 1
 
 ---
 
-```js
-let text = 'a';
+```javascript
+let text = "a";
 
-function logIt(){
+function logIt() {
   console.log(text);
 
-  var text = 'b';
-};
+  var text = "b";
+}
 
 logIt();
 ```
@@ -307,14 +311,14 @@ Output: undefined
 
 ---
 
-```js
-let text = 'a';
+```javascript
+let text = "a";
 
-function logIt(){
+function logIt() {
   console.log(text);
 
-  let text = 'b';
-};
+  let text = "b";
+}
 
 logIt();
 ```
@@ -323,17 +327,16 @@ Output: "ReferenceError: can't access lexical declaration 'text' before initiali
 
 ---
 
-```js
+```javascript
 function logFunction() {
   console.log(this === window);
 }
 
-logFunction(); 
+logFunction();
 new logFunction();
 ```
 
-
-Output: 
+Output:
 
 true, because logFunction() is executed as property of window
 false, refers to an object created with new keyword
@@ -342,20 +345,19 @@ false, refers to an object created with new keyword
 
 ## Arrays
 
-* [Array intersection, difference, and union in ES6 - medium.com](https://medium.com/@alvaro.saburido/set-theory-for-arrays-in-es6-eb2f20a61848)
+- [Array intersection, difference, and union in ES6 - medium.com](https://medium.com/@alvaro.saburido/set-theory-for-arrays-in-es6-eb2f20a61848)
 
-
-```js
-const arrA=[1,2,3];
-const arrB=[1,2,4];
+```javascript
+const arrA = [1, 2, 3];
+const arrB = [1, 2, 4];
 ```
 
 ---
 
 Intersection: Elements present in both arrays.
 
-```js
-arrA.filter(x => arrB.includes(x));
+```javascript
+arrA.filter((x) => arrB.includes(x));
 ```
 
 Output: [1,2]
@@ -364,18 +366,18 @@ Output: [1,2]
 
 Difference: Will output the elements from array A that are not in the array B.
 
-```js
-arrA.filter(x => !arrB.includes(x));
+```javascript
+arrA.filter((x) => !arrB.includes(x));
 ```
 
-Output: [3] 
+Output: [3]
 
 ---
 
 Union: Distinct elements from both arrays.
 
-```js
-[...(new Set([...arrA, ...arrB]))];
+```javascript
+[...new Set([...arrA, ...arrB])];
 ```
 
 Output: [ 1, 2, 3, 4 ]
@@ -384,10 +386,8 @@ Output: [ 1, 2, 3, 4 ]
 
 Symmetrical difference: An array containing all the elements of array A that are not in array B and vice-versa.
 
-```js
-arrA
-  .filter(x => !arrB.includes(x))
-  .concat(arrB.filter(x => !arrA.includes(x)));
+```javascript
+arrA.filter((x) => !arrB.includes(x)).concat(arrB.filter((x) => !arrA.includes(x)));
 ```
 
 Output: [3, 4]
