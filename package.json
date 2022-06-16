@@ -1,0 +1,10 @@
+{
+  "name": "documentation",
+  "packageManager": "yarn@3.2.1",
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^2.7.0"
+  }
+}
