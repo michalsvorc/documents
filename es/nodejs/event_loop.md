@@ -2,15 +2,15 @@
 
 Overview:
 
-* [The Node.js Event Loop - nodejs.dev](https://nodejs.dev/learn/the-nodejs-event-loop)
-* [Timers API](https://nodejs.org/api/timers.html)
-* [(Video) Morning Keynote - Bert Belder, IBM](https://www.youtube.com/watch?v=PNa9OMajw9w)
-* [The Node.js Event Loop - nodejs.org](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/)
+- [The Node.js Event Loop - nodejs.dev](https://nodejs.dev/learn/the-nodejs-event-loop)
+- [Timers API](https://nodejs.org/api/timers.html)
+- [(Video) Morning Keynote - Bert Belder, IBM](https://www.youtube.com/watch?v=PNa9OMajw9w)
+- [The Node.js Event Loop - nodejs.org](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/)
 
 Topics:
 
-* [What exactly is a Node.js event loop tick? - stackoverflow.com](https://stackoverflow.com/questions/19822668/what-exactly-is-a-node-js-event-loop-tick)
-* [Don't Block the Event Loop (or the Worker Pool) - nodejs.org](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/)
+- [What exactly is a Node.js event loop tick? - stackoverflow.com](https://stackoverflow.com/questions/19822668/what-exactly-is-a-node-js-event-loop-tick)
+- [Don't Block the Event Loop (or the Worker Pool) - nodejs.org](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/)
 
 ## Overview
 
@@ -29,24 +29,24 @@ Web Workers run in their own loop.
 
 ## Phases
 
-* [Documentation](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/#phases-overview)
+- [Documentation](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/#phases-overview)
 
 Each phase has a FIFO queue of callbacks to execute. When the event loop enters a given phase, it will perform any
 operations specific to that phase, then execute callbacks in that phase's queue until the queue has been exhausted or
-the maximum number of callbacks has been executed. 
+the maximum number of callbacks has been executed.
 
-* timers: This phase executes callbacks scheduled by `setTimeout()` and `setInterval()`. A timer specifies the threshold
-  after which a provided callback may be executed rather than the exact time a person wants it to be executed. 
-* pending callbacks: Executes I/O callbacks deferred to the next loop iteration.
-* (idle, prepare): Only used internally.
-* poll: Retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the
+- timers: This phase executes callbacks scheduled by `setTimeout()` and `setInterval()`. A timer specifies the threshold
+  after which a provided callback may be executed rather than the exact time a person wants it to be executed.
+- pending callbacks: Executes I/O callbacks deferred to the next loop iteration.
+- (idle, prepare): Only used internally.
+- poll: Retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the
   ones scheduled by timers, and `setImmediate()`); Node will block here when appropriate.
-* check: `setImmediate()` callbacks are invoked here.
-* close callbacks: some close callbacks, e.g. `socket.on('close', ...)`.
+- check: `setImmediate()` callbacks are invoked here.
+- close callbacks: some close callbacks, e.g. `socket.on('close', ...)`.
 
 ### The poll phase
 
-* [Documentation](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/#poll)
+- [Documentation](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/#poll)
 
 The poll phase has two main functions:
 
@@ -55,11 +55,11 @@ The poll phase has two main functions:
 
 When the event loop enters the poll phase and there are no timers scheduled, one of two things will happen:
 
-* If the poll queue is not empty, the event loop will iterate through its queue of callbacks executing them
+- If the poll queue is not empty, the event loop will iterate through its queue of callbacks executing them
   synchronously until either the queue has been exhausted, or the system-dependent hard limit is reached.
-* If the poll queue is empty, one of two more things will happen:
+- If the poll queue is empty, one of two more things will happen:
   - If scripts have been scheduled by `setImmediate()`, the event loop will end the poll phase and continue to the
-    *check phase* to execute those scheduled scripts.
+    _check phase_ to execute those scheduled scripts.
   - If scripts have not been scheduled by `setImmediate()`, the event loop will wait for callbacks to be added to the
     queue, then execute them immediately.
 
@@ -68,7 +68,7 @@ more timers are ready, the event loop will wrap back to the timers phase to exec
 
 ## setTimeout
 
-* [API](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
+- [API](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
 
 `setTimeout(callback[, delay[, ...args]])`
 
@@ -76,9 +76,9 @@ Schedules execution of a one-time callback after delay milliseconds.
 
 ## setImmediate
 
-* [API](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args)
-* [Documentation](https://nodejs.dev/learn/understanding-setimmediate)
-* [setImmediate() vs setTimeout()](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout)
+- [API](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args)
+- [Documentation](https://nodejs.dev/learn/understanding-setimmediate)
+- [setImmediate() vs setTimeout()](https://nodejs.org/uk/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout)
 
 `setImmediate(callback[, ...args])`
 
@@ -97,8 +97,8 @@ before any timers if scheduled within an I/O cycle, independently of how many ti
 
 ## process.nextTick
 
-* [API](https://nodejs.org/api/process.html#process_process_nexttick_callback_args)
-* [Documentation](https://nodejs.dev/learn/understanding-process-nexttick)
+- [API](https://nodejs.org/api/process.html#process_process_nexttick_callback_args)
+- [Documentation](https://nodejs.dev/learn/understanding-process-nexttick)
 
 `process.nextTick(callback[, ...args])`
 
@@ -110,7 +110,7 @@ operation, before the next event loop tick starts.
 Use `nextTick()` when you want to make sure that in the next event loop iteration that code is already executed.
 
 `process.nextTick()` is not technically part of the event loop. Instead, the nextTickQueue will be processed after the
-current operation is completed, *regardless* of the current phase of the event loop.
+current operation is completed, _regardless_ of the current phase of the event loop.
 
 A function passed to `process.nextTick()` is going to be executed on the current iteration of the event loop, after the
 current operation ends. This means it will always execute before `setTimeout` and `setImmediate`.
@@ -121,4 +121,3 @@ There are two main reasons to use `nextTick()`:
    loop continues.
 2. At times it's necessary to allow a callback to run after the call stack has unwound but before the event loop
    continues.
-
