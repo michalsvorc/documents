@@ -29,7 +29,7 @@ characters.
 Vue provides special shorthands for two of the most often used directives:
 
 `v-bind:href` => `:href`, `:[key]`
-`v-on:click`  => `@click`, `@[event]`
+`v-on:click` => `@click`, `@[event]`
 
 Interpolation on `<textarea>` won't work. Use `v-model` instead.
 
@@ -201,7 +201,7 @@ be consistent across JavaScript engine implementations. It is recommended to pro
 whenever possible:
 
 ```html
-<div v-for="item in items" :key="item.id">
+<div v-for="item in items" :key="item.id"></div>
 ```
 
 `v-for` can also take an integer as a range. In this case it will repeat the template that many times.
@@ -233,7 +233,7 @@ We recommend you always use kebab-case for event names.
 
 - [Guide](https://v3.vuejs.org/guide/forms.html)
 
-You can use the v-model directive to create two-way data bindings on form input, textarea, and select elements. 
+You can use the v-model directive to create two-way data bindings on form input, textarea, and select elements.
 
 v-model will ignore the initial value, checked or selected attributes found on any form elements. It will always treat
 the current active instance data as the source of truth. You should declare the initial value on the JavaScript side,

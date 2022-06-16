@@ -72,6 +72,7 @@ If required, a deep clone of the original object can be obtained by passing `vm.
 
 - [API](https://vuejs.org/v2/api/#props)
 - [Guide](https://vuejs.org/v2/guide/components-props.html)
+
   - [Type checks](https://vuejs.org/v2/guide/components-props.html#Type-Checks)
 
 - Type: `Array<string> | Object`
@@ -79,6 +80,7 @@ If required, a deep clone of the original object can be obtained by passing `vm.
 A list/hash of attributes that are exposed to accept data from the parent component.
 
 With Object-based syntax, you can use following options:
+
 - type: String, Number, Boolean, Array, Object, Date, Function, Symbol
 - default: any
 - required: Boolean
@@ -235,7 +237,7 @@ You can use ES2015 Symbols as keys in this object.
 
 If you are familiar with React, this is very similar to React’s context feature.
 
-The provide and inject bindings are *NOT reactive*. This is intentional. However, if you pass down an observed object,
+The provide and inject bindings are _NOT reactive_. This is intentional. However, if you pass down an observed object,
 properties on that object do remain reactive.
 
 ## Options: Misc
@@ -413,11 +415,10 @@ Alternatively, you can also specify an alias for the index (or the key if used o
 To reorder elements, you need to provide an ordering hint with the `key` special attribute:
 
 ```html
-<div v-for="item in items" :key="item.id">
-  {{ item.text }}
-</div>
+<div v-for="item in items" :key="item.id">{{ item.text }}</div>
 ```
-When iterating over an *object*, the order is based on the enumeration order of `Object.keys()`, which is not guaranteed
+
+When iterating over an _object_, the order is based on the enumeration order of `Object.keys()`, which is not guaranteed
 to be consistent across JavaScript engine implementations. Don’t use non-primitive values like objects and arrays as
 `v-for` keys. Use string or numeric values instead.
 
@@ -486,6 +487,7 @@ Dynamically bind one or more attributes, or a component prop to an expression.
 - [Components - Form Input Components using Custom Events](https://vuejs.org/v2/guide/components.html#Form-Input-Components-using-Custom-Events)
 
 - Limited to:
+
   - `<input>`
   - `<select>`
   - `<textarea>`
@@ -507,14 +509,11 @@ always treat the Vue instance data as the source of truth. You should declare th
 inside the `data` option of your component.
 
 ```html
-<input v-model="searchText">
+<input v-model="searchText" />
 
 <!-- does the same thing as -->
 
-<input
-  v-bind:value="searchText"
-  v-on:input="searchText = $event.target.value"
->
+<input v-bind:value="searchText" v-on:input="searchText = $event.target.value" />
 ```
 
 ### v-slot
@@ -596,14 +595,14 @@ Props:
 - `is` - string | ComponentDefinition | ComponentConstructor
 - `inline-template` - boolean
 
-A *meta component* for rendering dynamic components. The actual component to render is determined by the `is` prop.
+A _meta component_ for rendering dynamic components. The actual component to render is determined by the `is` prop.
 
 ### transition
 
 - [API](https://vuejs.org/v2/api/#transition)
 - [Guide](https://vuejs.org/v2/guide/transitions.html)
 
-`<transition>` serve as transition effects for *single* element/component. The `<transition>` only applies the
+`<transition>` serve as transition effects for _single_ element/component. The `<transition>` only applies the
 transition behavior to the wrapped content inside; it doesn’t render an extra DOM element, or show up in the inspected
 component hierarchy.
 
@@ -612,7 +611,7 @@ component hierarchy.
 - [API](https://vuejs.org/v2/api/#transition-group)
 - [Guide](https://vuejs.org/v2/guide/transitions.html)
 
-`<transition-group>` serve as transition effects for *multiple* elements/components. The `<transition-group>` renders a
+`<transition-group>` serve as transition effects for _multiple_ elements/components. The `<transition-group>` renders a
 real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the tag
 attribute.
 

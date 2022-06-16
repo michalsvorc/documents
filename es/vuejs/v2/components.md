@@ -10,16 +10,16 @@ Components are reusable Vue instances with a name. Each time you use a component
 
 - [Guide](https://vuejs.org/v2/guide/components-registration.html)
 
-There are two types of component registration: global and local. 
+There are two types of component registration: global and local.
 
 ### Global registration
 
 - [Guide](https://vuejs.org/v2/guide/components-registration.html#Global-Registration)
 
 ```js
-Vue.component('my-component-name', {
+Vue.component("my-component-name", {
   // ... options ...
-})
+});
 ```
 
 These components are globally registered. That means they can be used in the template of any root Vue instance (new Vue)
@@ -40,19 +40,19 @@ You can define your components as plain JavaScript objects, then define the comp
 
 ```js
 new Vue({
-  el: '#app',
+  el: "#app",
   components: {
-    'component-a': ComponentA,
-    'component-b': ComponentB
-  }
-})
+    "component-a": ComponentA,
+    "component-b": ComponentB,
+  },
+});
 ```
 
 ### Module Systems
 
 - [Guide](https://vuejs.org/v2/guide/components-registration.html#Module-Systems)
 
-For local registration, you’ll need to import each component you’d like to use, before you locally register it. 
+For local registration, you’ll need to import each component you’d like to use, before you locally register it.
 
 ## Child to Parent communication
 

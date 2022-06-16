@@ -27,7 +27,7 @@ implemented in browsers.
 - [Guide](https://v3.vuejs.org/guide/component-registration.html)
 
 To use these components in templates, they must be registered so that Vue knows about them. There are two types of
-component registration: global and local. 
+component registration: global and local.
 
 ### Global registration
 
@@ -48,12 +48,8 @@ You can define your components as plain JavaScript objects, then define the comp
 `components` option:
 
 ```vue
-const app = Vue.createApp({
-  components: {
-    'component-a': ComponentA, // plain object
-    'component-b': ComponentB // plain object
-  }
-})
+const app = Vue.createApp({ components: { 'component-a': ComponentA, // plain object 'component-b': ComponentB // plain
+object } })
 ```
 
 ## Props
@@ -67,15 +63,19 @@ property and the parent one.
 Static props:
 
 ```html
-<blog-post title="My journey with Vue"></blog-post> <!-- evaluates to string -->
+<blog-post title="My journey with Vue"></blog-post>
+<!-- evaluates to string -->
 ```
 
 Props are assigned dynamically with `v-bind` or its shortcut, the `:` character:
 
 ```html
-<blog-post :title="post.title"></blog-post> <!-- evaluates to title property of post object -->
-<blog-post :likes="42"></blog-post> <!-- evaluates to number -->
-<blog-post :is-published="false"></blog-post> <!-- evaluates to boolean -->
+<blog-post :title="post.title"></blog-post>
+<!-- evaluates to title property of post object -->
+<blog-post :likes="42"></blog-post>
+<!-- evaluates to number -->
+<blog-post :is-published="false"></blog-post>
+<!-- evaluates to boolean -->
 ```
 
 If you want to pass all the properties of an object as props, you can use `v-bind` without an argument:
@@ -111,7 +111,6 @@ affect parent state.
 ### Casing
 
 - [Guide](https://v3.vuejs.org/guide/component-props.html#prop-casing-camelcase-vs-kebab-case)
-
 
 HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means
 when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents.
@@ -188,5 +187,3 @@ Dynamically switch between components:
 ```
 
 You can also use the is attribute to create regular HTML elements.
-
-
