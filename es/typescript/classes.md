@@ -84,10 +84,10 @@ class Box<Type> {
     this.contents = value;
   }
 }
- 
+
 const b = new Box("hello!");
 
-const b: Box<string>
+const b: Box<string>;
 ```
 
 Classes can use generic constraints and defaults the same way as interfaces.
@@ -160,4 +160,3 @@ an abstract class, which cannot be directly instantiated. The role of abstract c
 subclasses which implement all the abstract members.
 
 Use `abstract` keyword to mark class, field or property as abstract.
-

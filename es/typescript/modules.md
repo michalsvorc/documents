@@ -69,9 +69,9 @@ Example `node.d.ts` file:
 
 ```typescript
 declare module "path" {
- export function normalize(p: string): string;
- export function join(...paths: any[]): string;
- export var sep: string;
+  export function normalize(p: string): string;
+  export function join(...paths: any[]): string;
+  export var sep: string;
 }
 ```
 
@@ -88,7 +88,7 @@ declaration to get started quickly.
 `declarations.d.ts`:
 
 ```typescript
-`declare module "hot-new-module";`
+`declare module "hot-new-module";`;
 ```
 
 All imports from a shorthand module will have the `any` type.
@@ -116,11 +116,11 @@ This allows you to use the process variable without TypeScript complaining.
 - [Handbook](https://www.typescriptlang.org/docs/handbook/module-resolution.html)
 
 1. First, the compiler will try to locate a file that represents the imported module. To do so the compiler follows one
-   of two different strategies. These strategies tell the compiler where to look for *moduleA*:
+   of two different strategies. These strategies tell the compiler where to look for _moduleA_:
    - [Classic](https://www.typescriptlang.org/docs/handbook/module-resolution.html#classic)
-   - [Node](https://www.typescriptlang.org/docs/handbook/module-resolution.html#node). 
-2. If that didn’t work and if the module name is non-relative (and in the case of *moduleA*, it is), then the compiler
-will attempt to locate an ambient module declaration.
+   - [Node](https://www.typescriptlang.org/docs/handbook/module-resolution.html#node).
+2. If that didn’t work and if the module name is non-relative (and in the case of _moduleA_, it is), then the compiler
+   will attempt to locate an ambient module declaration.
 3. Finally, if the compiler could not resolve the module, it will log an error.
 
 ## Module Output Options
@@ -135,14 +135,14 @@ There are two options which affect the emitted JavaScript output:
 
 ## Wildcard module declarations
 
-Some module loaders such as *SystemJS* and *AMD* allow non-JavaScript content to be imported. These typically use a
+Some module loaders such as _SystemJS_ and _AMD_ allow non-JavaScript content to be imported. These typically use a
 prefix or suffix to indicate the special loading semantics.
 
 Wildcard module declarations can be used to cover these cases.
 
 ```typescript
-declare module "*!text"
-declare module "json!*"
+declare module "*!text";
+declare module "json!*";
 ```
 
 ## Namespaces
@@ -155,8 +155,8 @@ TypeScript has its own module format called namespaces which pre-dates the ES Mo
 This syntax has a lot of useful features for creating complex definition files, and still sees active use in
 [DefinitelyTyped](https://www.typescriptlang.org/dt).
 
-It is also worth noting that, for Node.js applications, modules are the default and we *recommended modules over
-namespaces* in modern code.
+It is also worth noting that, for Node.js applications, modules are the default and we _recommended modules over
+namespaces_ in modern code.
 
 Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine
 implementations.

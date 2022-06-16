@@ -49,7 +49,7 @@ as an error.
 - [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/never)
 
 When narrowing, you can reduce the options of a union to a point where you have removed all possibilities and have
-nothing left. In those cases, TypeScript will use a `never` type to represent a state which *shouldn't exist*.
+nothing left. In those cases, TypeScript will use a `never` type to represent a state which _shouldn't exist_.
 
 When used in a function return type, `never` means that the function throws an exception or terminates execution of the
 program.
@@ -106,10 +106,10 @@ internal contents can't be changed (in case of objects). It just means the prope
 
 ## object
 
-* [Handbook](https://www.typescriptlang.org/docs/handbook/2/functions.html#object)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/2/functions.html#object)
 
 The special type `object` refers to any value that isn't a primitive value. This is different from the empty object type
-`{}`, and also different from the global type `Object`. 
+`{}`, and also different from the global type `Object`.
 
 `typeof null === "object"`
 
@@ -147,11 +147,11 @@ Usage:
 
 ## infer
 
-* [Release notes - TypeScript
+- [Release notes - TypeScript
   2.8](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#type-inference-in-conditional-types)
-* [Handbook](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)
-* [TypeScript Tutorial - dev.to](https://dev.to/aexol/typescript-tutorial-infer-keyword-2cn)
-* [Why is the infer keyword needed in Typescript? - stackoverflow.com](https://stackoverflow.com/questions/60067100/why-is-the-infer-keyword-needed-in-typescript)
+- [Handbook](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)
+- [TypeScript Tutorial - dev.to](https://dev.to/aexol/typescript-tutorial-infer-keyword-2cn)
+- [Why is the infer keyword needed in Typescript? - stackoverflow.com](https://stackoverflow.com/questions/60067100/why-is-the-infer-keyword-needed-in-typescript)
 
 Within the `extends` clause of a conditional type, it is now possible to have `infer` declarations that introduce a type
 variable to be inferred.

@@ -15,7 +15,7 @@ function combine<Type>(arr1: Type[], arr2: Type[]): Type[] {
   return arr1.concat(arr2);
 }
 
-const arr = combine<number | string>([1, 2, 3], ['a']);
+const arr = combine<number | string>([1, 2, 3], ["a"]);
 ```
 
 ## Function Overloading
@@ -68,7 +68,7 @@ type DescribableFunction = {
 };
 ```
 
-JavaScript functions can also be invoked with the new operator. TypeScript refers to these as *constructors* because
+JavaScript functions can also be invoked with the new operator. TypeScript refers to these as _constructors_ because
 they usually create a new object. You can write a construct signature by adding the new keyword in front of a call
 signature:
 
@@ -77,4 +77,3 @@ type SomeConstructor = {
   new (s: string): any;
 };
 ```
-

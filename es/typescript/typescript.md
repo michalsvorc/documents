@@ -36,14 +36,14 @@ Exercises:
 - [Variance - basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/type-compatibility#variance)
 - [Nominal typing in TypeScript - basarat.gitbook.io](https://basarat.gitbook.io/typescript/main-1/nominaltyping)
 
-Type compatibility in TypeScript is based on *structural subtyping*. Structural typing is a way of relating types based
+Type compatibility in TypeScript is based on _structural subtyping_. Structural typing is a way of relating types based
 solely on their members.
 
 The basic rule for TypeScript's structural type system is that `x` is compatible with `y` if `y` has at least the same
 members as `x`.
 
 TypeScript's type system allows certain operations that can't be known at compile-time to be safe. When a type system
-has this property, it is said to not be *sound*.
+has this property, it is said to not be _sound_.
 
 ### Interfaces and Types
 
@@ -72,7 +72,6 @@ A union type is a type formed from two or more other types, representing values 
 - [Handbook](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types)
 - [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system#intersection-type)
 
-
 Interfaces allowed us to build up new types from other types by extending them with the `extends` keyword.
 
 TypeScript provides another construct called intersection types that is mainly used to combine existing object types.
@@ -95,7 +94,8 @@ JavaScript supports a `typeof` operator which can give very basic information ab
 Example:
 
 ```typescript
-if (typeof x === 'string') {}
+if (typeof x === "string") {
+}
 ```
 
 TypeScript expects this to return a certain set of strings:
@@ -119,7 +119,8 @@ of an object. The return value is a boolean value.
 Example:
 
 ```typescript
-if (foo instanceof Foo) {}
+if (foo instanceof Foo) {
+}
 ```
 
 ### in
@@ -130,7 +131,8 @@ if (foo instanceof Foo) {}
 The `in` operator does a safe check for the existence of a property on an object and can be used as a type guard.
 
 ```typescript
-if ("swim" in animal) {}
+if ("swim" in animal) {
+}
 ```
 
 ### Literal Type Guard
@@ -138,18 +140,19 @@ if ("swim" in animal) {}
 You can use `===` / `==` / `!==` / `!=` to distinguish between literal values.
 
 ```typescript
-type TriState = 'yes' | 'no' | 'unknown';
+type TriState = "yes" | "no" | "unknown";
 
 function logOutState(state: TriState) {
-  if (state === 'yes') {}
+  if (state === "yes") {
+  }
 }
 ```
 
-### is (Type Predicates) 
+### is (Type Predicates)
 
 - [Handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)
 
-To define a *user-defined type guard*, we simply need to define a function whose return type is a *type predicate*.
+To define a _user-defined type guard_, we simply need to define a function whose return type is a _type predicate_.
 
 ```typescript
 function isFoo(arg: any): arg is Foo {
@@ -162,7 +165,7 @@ function isFoo(arg: any): arg is Foo {
 - [Handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions)
 
 When every type in a union contains a common property with literal types, TypeScript considers that to be a
-*discriminated union*, and can narrow out the members of the union.
+_discriminated union_, and can narrow out the members of the union.
 
 ## Literal types
 
@@ -172,14 +175,14 @@ When every type in a union contains a common property with literal types, TypeSc
 Literal types (literals) are exact values that are JavaScript primitives.
 
 ```typescript
-let foo = "hello";            // string
-let bar: "hello" = "hello";   // "hello"
+let foo = "hello"; // string
+let bar: "hello" = "hello"; // "hello"
 ```
 
 By combining literals into unions, you can express a certain set of known values.
 
 ```typescript
-type Position = "left" | "right" | "center"
+type Position = "left" | "right" | "center";
 ```
 
 The type `boolean` itself is actually just an alias for the union `true | false`.
@@ -201,6 +204,7 @@ const req = { url: "https://example.com", method: "GET" as "GET" };
 // Change 2
 handleRequest(req.url, req.method as "GET");
 ```
+
 2. You can use `as const` to convert the entire object to be type literals:
 
 ```typescript
@@ -213,8 +217,8 @@ const req = { url: "https://example.com", method: "GET" } as const;
 ```typescript
 // Add:
 interface Req {
-    url: string,
-    method: "GET" | "POST"
+  url: string;
+  method: "GET" | "POST";
 }
 
 // Change:
@@ -229,23 +233,23 @@ The `as const` suffix acts like `const` but for the type system, ensuring that a
 type instead of a more general version like `string` or `number`.
 
 ```typescript
-const x = 'hello';          // type "hello" 
-let y = 'hello';            // type string
-let z = 'hello' as const;   // type "hello"
+const x = "hello"; // type "hello"
+let y = "hello"; // type string
+let z = "hello" as const; // type "hello"
 ```
 
 Marking an object `as const` marks all properties as `readonly`, but does not make the object fully immutable.
 
 ```typescript
-const action = { type: 'INCREMENT', };            // type { type: string }
-const action = { type: 'INCREMENT', } as const;   // type { readonly type: "INCREMENT" }
+const action = { type: "INCREMENT" }; // type { type: string }
+const action = { type: "INCREMENT" } as const; // type { readonly type: "INCREMENT" }
 ```
 
 Array literals become `readonly` tuples.
 
 ```typescript
-const myArray = ['hello', 'world', 10];             // type `const myArray: (string | number)[]`
-const myArray = ['hello', 'world', 10] as const;    // type `const myArray: readonly ["hello", "world", 10]`
+const myArray = ["hello", "world", 10]; // type `const myArray: (string | number)[]`
+const myArray = ["hello", "world", 10] as const; // type `const myArray: readonly ["hello", "world", 10]`
 ```
 
 ### Template Literal Types
@@ -260,7 +264,7 @@ concrete literal types, a template literal produces a new string literal type by
 ```typescript
 type World = "world";
 type Person = "person";
- 
+
 type Greeting = `hello ${World | Person}`; //  "hello world" | "hello person"
 ```
 
@@ -288,7 +292,7 @@ interface StringArray {
 
 When you don't want to repeat yourself, sometimes a type needs to be based on another type.
 
-Mapped types build on the syntax for index signatures. A mapped type is a *generic type* which uses a union of
+Mapped types build on the syntax for index signatures. A mapped type is a _generic type_ which uses a union of
 PropertyKeys (frequently created via a `keyof`) to iterate through keys to create a type.
 
 Example:
@@ -311,8 +315,7 @@ You can remove or add these modifiers by prefixing with `-` or `+`. If you don't
 
 - [Handbook](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)
 
-Conditional types take a form that looks a little like conditional expressions `(condition ? trueExpression :
-falseExpression)` in JavaScript:
+Conditional types take a form that looks a little like conditional expressions `(condition ? trueExpression : falseExpression)` in JavaScript:
 
 ```typescript
 SomeType extends OtherType ? TrueType : FalseType;
@@ -324,9 +327,7 @@ branch (the "true" branch); otherwise you'll get the type in the latter branch (
 The power of conditional types comes from using them with generics.
 
 ```typescript
-type NameOrId<T extends number | string> = T extends number
-  ? IdLabel
-  : NameLabel;
+type NameOrId<T extends number | string> = T extends number ? IdLabel : NameLabel;
 ```
 
 ## Tuple types
@@ -370,7 +371,7 @@ Overview:
 - Enums are one of the few features TypeScript has which is not a type-level extension of JavaScript.
 - Enums allow a developer to define a set of named constants.
 - Enums are real objects that exist at runtime.
-- Each enum member has a value associated with it which can be either *constant* or *computed*.
+- Each enum member has a value associated with it which can be either _constant_ or _computed_.
 - Use `keyof typeof` to get a Type that represents all Enum keys as strings.
 
 NOTE: Prefer union types over enums.
@@ -393,8 +394,8 @@ Example:
 
 ```typescript
 const enum Tristate {
-   False,
-   True,
+  False,
+  True,
 }
 
 var x = Tristate.False; // JS generates: var x = 0; there is no `Tristate` variable at runtime
@@ -402,9 +403,8 @@ var x = Tristate.False; // JS generates: var x = 0; there is no `Tristate` varia
 
 ## Declaration merging
 
-* [basarat.gitbook.io](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+- [basarat.gitbook.io](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
 
 Declaration merging means that the compiler merges two separate declarations declared with the same name into a single
 definition. This merged definition has the features of both of the original declarations. Any number of declarations can
 be merged; it's not limited to just two declarations.
-

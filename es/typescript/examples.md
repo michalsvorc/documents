@@ -10,7 +10,7 @@ type ValueOf<T> = T[keyof T];
 
 ```typescript
 function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
- return obj[key];
+  return obj[key];
 }
 ```
 
@@ -23,10 +23,10 @@ const users = [
 ];
 
 type User = typeof users[number]; // {name: string; id: number;}
-type UserName = User["name"];     // string
-type UserId = User["id"];         // number
+type UserName = User["name"]; // string
+type UserId = User["id"]; // number
 
-const Charlie: User = { name: "Charlie", id: 3 }
+const Charlie: User = { name: "Charlie", id: 3 };
 ```
 
 ## Object key/value literal types
@@ -35,30 +35,30 @@ const Charlie: User = { name: "Charlie", id: 3 }
 type ValueOf<T> = T[keyof T];
 
 const currencies = {
-  GBP: '£',
-  USD: '$',
-  EUR: '€',
-} as const 
+  GBP: "£",
+  USD: "$",
+  EUR: "€",
+} as const;
 
-type CurrencyId = keyof typeof currencies;                          // type "GBP" | "USD" | "EUR"
-type CurrencySymbolV1 = ValueOf<typeof  currencies>                 // type "£" | "$" | "€"
-type CurrencySymbolV2 = typeof currencies[keyof typeof currencies]  // type "£" | "$" | "€"
+type CurrencyId = keyof typeof currencies; // type "GBP" | "USD" | "EUR"
+type CurrencySymbolV1 = ValueOf<typeof currencies>; // type "£" | "$" | "€"
+type CurrencySymbolV2 = typeof currencies[keyof typeof currencies]; // type "£" | "$" | "€"
 ```
 
 ## Object structure with literal keys
 
 ```typescript
-type Index = 'a' | 'b' | 'c'
-type FromIndex<K extends string> = { [key in K]: number }
+type Index = "a" | "b" | "c";
+type FromIndex<K extends string> = { [key in K]: number };
 
-const obj: FromIndex<Index> = {a: 1, b: 2, c: 3}
+const obj: FromIndex<Index> = { a: 1, b: 2, c: 3 };
 ```
 
 ## Freshness
 
-* [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/freshness)
+- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/freshness)
 
-TypeScript provides a concept of *Freshness* (also called strict object literal checking) to make it easier to type check
+TypeScript provides a concept of _Freshness_ (also called strict object literal checking) to make it easier to type check
 object literals that would otherwise be structurally type compatible.
 
 Structural typing has a weakness in that it allows you to misleadingly think that something accepts more data than it
@@ -69,10 +69,10 @@ function logName(something: { name: string }) {
   console.log(something.name);
 }
 
-logName({ name: 'matt' }); // okay
-logName({ name: 'matt', job: 'being awesome' });  // Error
-                                                  // object literals must only specify known properties.
-                                                  // `job` is excessive here.
+logName({ name: "matt" }); // okay
+logName({ name: "matt", job: "being awesome" }); // Error
+// object literals must only specify known properties.
+// `job` is excessive here.
 ```
 
 Note that this error only happens on object literals.
@@ -81,9 +81,8 @@ Solution: Allowing extra properties
 
 A type can include an index signature to explicitly indicate that excess properties are permitted:
 
-
 ```typescript
-function logName(something: { name: string, [key: string]: string }) {
+function logName(something: { name: string; [key: string]: string }) {
   console.log(something.name);
 }
 ```
@@ -97,19 +96,19 @@ function logName(something: { name: string, [key: string]: string }) {
 An index signature can require that index strings be members of a union of literal strings by using Mapped Types:
 
 ```typescript
-type Index = 'a' | 'b' | 'c'
-type FromIndex = { [k in Index]: number }
-type FromSomeIndex<K extends string> = { [key in K]: number }
+type Index = "a" | "b" | "c";
+type FromIndex = { [k in Index]: number };
+type FromSomeIndex<K extends string> = { [key in K]: number };
 
-const obj1: FromIndex = {a: 1, b:2, c:3}
-const obj2: FromSomeIndex<Index> = {a: 1, b:2, c:3}
+const obj1: FromIndex = { a: 1, b: 2, c: 3 };
+const obj2: FromSomeIndex<Index> = { a: 1, b: 2, c: 3 };
 ```
 
 ### Nested index signature
 
 - [basarat.gitbook.io](https://basarat.gitbook.io/typescript/type-system/index-signatures#design-pattern-nested-index-signature)
 
-Try not to mix string indexers with *valid* values this way, it might introduce typos in NestedCSS type:
+Try not to mix string indexers with _valid_ values this way, it might introduce typos in NestedCSS type:
 
 ```typescript
 interface NestedCSS {
@@ -118,8 +117,8 @@ interface NestedCSS {
 }
 
 const failsSilently: NestedCSS = {
-  colour: 'red', // No error as `colour` is a valid string selector
-}
+  colour: "red", // No error as `colour` is a valid string selector
+};
 ```
 
 Instead separate out the nesting into its own property e.g. in a name like nest (or children or subnodes etc.):
@@ -128,8 +127,8 @@ Instead separate out the nesting into its own property e.g. in a name like nest 
 interface NestedCSS {
   color?: string;
   nest?: {
-   [selector: string]: NestedCSS;
-  }
+    [selector: string]: NestedCSS;
+  };
 }
 ```
 
@@ -155,7 +154,7 @@ You can leverage features like template literal types to create new property nam
 
 ```typescript
 type Getters<Type> = {
-  [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property]
+  [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property];
 };
 ```
 
@@ -163,7 +162,7 @@ You can filter out keys by producing never via a conditional type:
 
 ```typescript
 type RemoveKindField<Type> = {
-  [Property in keyof Type as Exclude<Property, "kind">]: Type[Property]
+  [Property in keyof Type as Exclude<Property, "kind">]: Type[Property];
 };
 ```
 
@@ -172,11 +171,11 @@ You can map over arbitrary unions, not just unions of `string | number | symbol`
 ```typescript
 type EventConfig<Events extends { kind: string }> = {
   [E in Events as E["kind"]]: (event: E) => void;
-}
+};
 ```
 
- A mapped type using a conditional type which returns either a `true` or `false` depending on whether an object has the
- property `pii` set to the literal `true`:
+A mapped type using a conditional type which returns either a `true` or `false` depending on whether an object has the
+property `pii` set to the literal `true`:
 
 ```typescript
 type ExtractPII<Type> = {
@@ -186,7 +185,7 @@ type ExtractPII<Type> = {
 
 ## Variadic tuple types
 
-* [Release notes - TypeScript 4.0](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#variadic-tuple-types)
+- [Release notes - TypeScript 4.0](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#variadic-tuple-types)
 
 Example of concatenate function in JavaScript:
 
@@ -202,7 +201,7 @@ We can write a single well-typed signature for concat:
 type Arr = readonly any[];
 
 function concat<T extends Arr, U extends Arr>(arr1: T, arr2: U): [...T, ...U] {
- return [...arr1, ...arr2];
+  return [...arr1, ...arr2];
 }
 ```
 
