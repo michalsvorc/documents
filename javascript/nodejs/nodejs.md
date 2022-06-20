@@ -385,3 +385,9 @@ Guides:
 - [API](https://nodejs.org/api/zlib.html#zlib_zlib)
 
 The zlib module provides compression functionality implemented using Gzip, Deflate/Inflate, and Brotli.
+
+## Issues
+
+### Node.js requires file extension in esm import path 
+
+- [github.com](https://github.com/airbnb/javascript/issues/2030)
