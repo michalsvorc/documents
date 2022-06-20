@@ -8,4 +8,3 @@
 - [svgr](https://github.com/gregberge/svgr): SVGR transforms SVG into ready to use components. It is part of
   create-react-app and makes SVG integration into your React projects easy.
 - [undux](https://github.com/bcherny/undux): Dead simple state management for React
-

@@ -1,11 +1,11 @@
 # JavaScript libraries
 
 - [normalizr](https://github.com/paularmstrong/normalizr): Normalizr is a small, but powerful utility for taking JSON
-  with a schema definition and returning nested entities with their IDs, gathered in dictionaries. 
+  with a schema definition and returning nested entities with their IDs, gathered in dictionaries.
 - [big.js](https://github.com/MikeMcl/big.js): A small, fast JavaScript library for arbitrary-precision decimal
   arithmetic.
 - [class-transformer](https://github.com/typestack/class-transformer): Class-transformer allows you to transform plain
-  object to some instance of class and versa. 
+  object to some instance of class and versa.
 - [date-fns](https://github.com/date-fns/date-fns): date-fns provides the most comprehensive, yet simple and consistent
   toolset for manipulating JavaScript dates in a browser & Node.js.
 

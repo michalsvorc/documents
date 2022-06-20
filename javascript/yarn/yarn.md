@@ -1,4 +1,4 @@
-# Yarn 
+# Yarn
 
 This documentation is related to Yarn v2.
 

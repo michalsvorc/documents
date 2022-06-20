@@ -388,6 +388,6 @@ The zlib module provides compression functionality implemented using Gzip, Defla
 
 ## Issues
 
-### Node.js requires file extension in esm import path 
+### Node.js requires file extension in esm import path
 
 - [github.com](https://github.com/airbnb/javascript/issues/2030)
