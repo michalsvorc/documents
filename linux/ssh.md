@@ -12,7 +12,7 @@
 Generate default 3072-bit RSA (and SHA256) key.
 
 ```console
-$ ssh-keygen -C "$(whoami)@$(uname -n)-$(date -I)"
+$ ssh-keygen -C "$(whoami)@$(uname -n)-$(date -I date)"
 ```
 
 Upon issuing the ssh-keygen command, you will be prompted for the desired name and location of your private key.
