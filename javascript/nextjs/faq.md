@@ -5,4 +5,3 @@
 It looks like next.js typings are incorrect.
 
 - [Answer](https://github.com/vercel/next.js/discussions/16522)
-
