@@ -6,7 +6,7 @@
 - [Linux Guest - Gentoo Wiki](https://wiki.gentoo.org/wiki/QEMU/Linux_guest)
 - [9psetup - QUEMU Wiki](https://wiki.qemu.org/Documentation/9psetup#Example)
 
-## Create new initial image
+## Create new image
 
 ```console
 $ qemu-img create -f qcow2 <name>.img <size>G
