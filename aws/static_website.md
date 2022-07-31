@@ -1,14 +1,17 @@
-# Statiuc website
+# Static website
 
 - [Use CloudFront to serve a static website hosted on Amazon S3](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/)
 
-## www or non-www
+## www
 
 Just use non-www: [https://moz.com/community/q/topic/65405/should-you-use-www/4](https://moz.com/community/q/topic/65405/should-you-use-www/4)
 
+Select the `CreateApex=yes` option when deploying the template for non-www apex version.
+
 ## HTTPS
 
-When you use the Amazon S3 static website endpoint, connections between CloudFront and Amazon S3 are available only over HTTP. To use HTTPS for connections between CloudFront and Amazon S3, configure an S3 REST API endpoint for your origin.
+When you use the Amazon S3 static website endpoint, connections between CloudFront and Amazon S3 are available only over
+HTTP. To use HTTPS for connections between CloudFront and Amazon S3, configure an S3 REST API endpoint for your origin.
 
 ## Invalidate CloudFront cache and Lambda@Edge functions
 
@@ -26,11 +29,7 @@ aws s3 sync <local_dir> <s3://bucket_id> --delete
 
 ## Amazon CloudFront Secure Static Website
 
-- [Documentation](https://github.com/aws-samples/amazon-cloudfront-secure-static-site) template
-
-### non-www apex version
-
-Select the `CreateApex=yes` option when deploying the template.
+- [Template](https://github.com/aws-samples/amazon-cloudfront-secure-static-site)
 
 ### Update Lambda@Edge function
 

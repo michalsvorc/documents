@@ -1,32 +1,39 @@
 # DynamoDB
 
-## Documentation
-
-- [Low-Level API Reference - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CurrentAPI.html)
-- [Reserved Words in DynamoDB - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html)
+- [Low-Level API Reference](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CurrentAPI.html)
+- [Reserved Words in DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html)
 - [Limits and Quotas](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
-- [Best Practices for Designing and Architecting with DynamoDB - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
+- [Best Practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html)
 
 ## Resources
 
-- [AWS re:Invent 2019: Data modeling with Amazon DynamoDB (CMY304)](https://www.youtube.com/watch?v=DIQVJqiSUkE)
-- [AWS re:Invent 2019: [REPEAT 1] Amazon DynamoDB deep dive: Advanced design patterns (DAT403-R1)](https://www.youtube.com/watch?v=6yqfmXiZTlM)
+- [Docker image - dynamodb-local](https://hub.docker.com/r/amazon/dynamodb-local)
+
+## SDK for JavaScript v3
+
+- [client-dynamodb](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/index.html)
+- [client-dynamodb-streams](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb-streams/index.html)
+- [lib-dynamodb](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html)
+- [util-dynamodb](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_util_dynamodb.html)
+
+## Articles
+
+- [(Video) Data modeling with Amazon DynamoDB (CMY304)](https://www.youtube.com/watch?v=DIQVJqiSUkE)
+- [(Video) Advanced design patterns (DAT403-R1)](https://www.youtube.com/watch?v=6yqfmXiZTlM)
 
 ## Conditions
 
-- [Condition - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Condition.html)
-- [Condition Expressions - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html)
-- [Comparison Operator and Function Reference - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html)
+- [Condition API](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Condition.html)
+- [Condition Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html)
+- [Comparison Operator and Function Reference](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html)
 
 ## Remember
 
-- ADD - Update expression for Updating Numbers and Sets. In general, we recommend using SET rather than ADD.
+- `ADD` - Update expression for Updating Numbers and Sets. In general, we recommend using SET rather than ADD.
 - Data shape: Instead of reshaping data when a query is processed (as an RDBMS system does), a NoSQL database organizes
   data so that its shape in the database corresponds with what will be queried.
 
 ## Local instance
-
-Run docker instance on localhost:4000
 
 ```console
 $ docker run --rm -p 4000:8000 --name dynamodb-local amazon/dynamodb-local
@@ -105,14 +112,6 @@ A global secondary index only tracks data items where its key attributes actuall
 A projection is the set of attributes that is copied from a table into a secondary index. The partition key and sort key
 of the table are always projected into the index.
 
-## Inverted index
-
-TBD
-
-## Index overloading
-
-TBD
-
 ## Access keys
 
 Create new users in the IAM management dashboard with Programmatic access.
@@ -123,14 +122,6 @@ Create new users in the IAM management dashboard with Programmatic access.
 4. Resources > table > add table ARN
 
 After user creation, you will see `Access key ID` and `Secret access key`
-
-## Composite sort key
-
-TBD
-
-## Sparse index pattern
-
-TBD
 
 ## Queries
 
@@ -159,13 +150,15 @@ To determine whether there are more results: if the result contains a **LastEval
 
 - [Documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html)
 
-DAX is a DynamoDB-compatible caching service that enables you to benefit from fast in-memory performance for demanding applications.
+DAX is a DynamoDB-compatible caching service that enables you to benefit from fast in-memory performance for demanding
+applications.
 
 ## Projection Expressions - Amazon DynamoDB
 
 - [Documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html)
 
-Amazon DynamoDB returns all the item attributes by default. To get only some, rather than all of the attributes, use a projection expression.
+Amazon DynamoDB returns all the item attributes by default. To get only some, rather than all of the attributes, use a
+projection expression.
 
 ### Expression Attribute Names in DynamoDB - Amazon DynamoDB
 
@@ -197,7 +190,8 @@ values.json:
 ## Monitoring and Troubleshooting Best Practices
 
 - Check the AWS error code returned from your operations and include in your application logs.
-- Enable CloudTrail so that DynamoDB control operations (create table, update table, etc.) are available for later analysis.
+- Enable CloudTrail so that DynamoDB control operations (create table, update table, etc.) are available for later
+  analysis.
 - Use the CloudWatch metrics provided by DynamoDB to monitor table performance.
 - Set alarms for pertinent metrics out of acceptable range.
 
@@ -211,9 +205,12 @@ consuming any write throughput.
 
 ## Items
 
-- [Item Sizes and Formats](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CapacityUnitCalculations.html)
-- [Working with Items and Attributes - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
-- [Conditional Writes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.ConditionalUpdate)
+- [Item Sizes and
+  Formats](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CapacityUnitCalculations.html)
+- [Working with Items and Attributes - Amazon
+  DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
+- [Conditional
+  Writes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.ConditionalUpdate)
 
 The maximum item size in DynamoDB is 400 KB, which includes both attribute name binary length (UTF-8 length) and
 attribute value lengths (again binary length). The attribute name counts towards the size limit.
@@ -229,7 +226,9 @@ time you read it. This approach is also known as the read-modify-write design pa
 Maintain a version number to check that the item has not been updated between the last read and update.
 
 1. Read the item and remember the version number (versionNum = 0).
-2. Make the state transition in memory after validating information (accountLocked = N if currentLoginTime > lastFailedLoginTime + 24 hours).
+2. Make the state transition in memory after validating information (accountLocked = N if currentLoginTime >
+lastFailedLoginTime + 24 hours).
 3. Increment the version number (versionNum = 1).
-4. Write the item with updated attributes (accountLocked = N and versionNum = 1). Use a conditional expression to perform a write only if the item has not changed since it was last read.
+4. Write the item with updated attributes (accountLocked = N and versionNum = 1). Use a conditional expression to
+perform a write only if the item has not changed since it was last read.
 5. If the condition fails, start over from step 1.

@@ -52,7 +52,7 @@ bootstrapped, its bootstrap stack will be upgraded if necessary; otherwise, noth
 
 ## Identifiers
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/identifiers.html)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/identifiers.html)
 
 Identifiers must be unique within the scope in which they are created; they do not need to be globally unique in your
 AWS CDK application.
@@ -61,14 +61,14 @@ See also [Physical names](https://docs.aws.amazon.com/cdk/latest/guide/resources
 
 ## Importing existing external resources
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/resources.html#resources_importing)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/resources.html#resources_importing)
 
 You can turn the resource's ARN (or another identifying attribute, or group of attributes) into an AWS CDK object in the
 current stack.
 
 ## Assets
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/assets.html)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/assets.html)
 
 Assets are local files, directories, or Docker images that can be bundled into AWS CDK libraries and apps. Assets can
 represent any artifact that the app needs to operate.
@@ -79,7 +79,7 @@ cdk.out, under the source hash.
 
 ## Environments
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/environments.html)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/environments.html)
 
 An environment is the target AWS account and region into which the stack is intended to be deployed.
 
@@ -99,11 +99,11 @@ Pass as `env` property to Stack initialization options.
 
 ## Permissions
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/permissions.html)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/permissions.html)
 
 ## Runtime context
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/context.html)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/context.html)
 
 Context values are key-value pairs that can be associated with a stack or construct. [Feature
 flags](https://docs.aws.amazon.com/cdk/latest/guide/featureflags.html) are also context values.
@@ -119,7 +119,7 @@ Context values are made available to your AWS CDK app in six different ways:
 
 ## Testing constructs
 
-- [AWS Cloud Development Kit (AWS CDK)](https://docs.aws.amazon.com/cdk/latest/guide/testing.html)
+- [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/testing.html)
 
 There are three categories of tests you can write for AWS CDK apps:
 
