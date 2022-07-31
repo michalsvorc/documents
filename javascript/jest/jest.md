@@ -2,6 +2,9 @@
 
 - [Guides](https://jestjs.io/docs/snapshot-testing)
 - [API](https://jestjs.io/docs/api)
+- [Expect](https://jestjs.io/docs/expect)
+- [Mock Functions](https://jestjs.io/docs/mock-function-api)
+- [Configuring Jest](https://jestjs.io/docs/configuration)
 
 toBe uses Object.is to test exact equality. If you want to check the value of an object, use toEqual instead, toEqual
 recursively check every field of an object or array.
