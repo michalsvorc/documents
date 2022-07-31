@@ -27,6 +27,11 @@ Exercises:
 - [TypeScript Playground](https://www.typescriptlang.org/play/)
 - [TypeScript Exercises](https://typescript-exercises.github.io)
 
+Configuration:
+
+- [TSConfig Reference](https://www.staging-typescript.org/tsconfig)
+- [Node.js 14 TypeScript configuration](https://stackoverflow.com/questions/61305578/what-typescript-configuration-produces-output-closest-to-node-js-14-capabilities/61305579#61305579)
+
 ## Types
 
 ### Type compatibility
