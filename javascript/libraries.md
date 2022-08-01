@@ -18,3 +18,7 @@
 - [jest-extended](https://github.com/jest-community/jest-extended): Additional Jest matchers
 - [puppeteer](https://github.com/puppeteer/puppeteer): Puppeteer is a Node library which provides a high-level API to
   control Chrome or Chromium over the DevTools Protocol.
+
+## Repository tools
+
+- [Nx](https://nx.dev/): Nx is a next generation build system with first class monorepo support and powerful integrations.
