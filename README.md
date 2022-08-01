@@ -2,10 +2,9 @@
 
 ## Read
 
-- https://github.com/moltar/typescript-runtime-type-benchmarks
-- https://docs.gitlab.com/ee/ci/
+## Web
 
-## Bookmarks
+- [LogRocket](https://blog.logrocket.com/)
 
 ### AWS
 
