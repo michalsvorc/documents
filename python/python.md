@@ -8,6 +8,7 @@ Overview:
 Resources:
 
 - [Python SpeedSheet](https://speedsheet.io/s/python)
+- [Real Python](https://realpython.com/)
 - [The Python Tutorial — Python 3 documentation](https://docs.python.org/3/tutorial/index.html)
 - [An Informal Introduction to Python](https://docs.python.org/3.8/tutorial/introduction.html)
 
