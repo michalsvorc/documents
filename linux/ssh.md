@@ -17,6 +17,8 @@ ssh-keygen -C "$(whoami)@$(uname -n)-$(date --iso-8601=date)"
 
 Upon issuing the ssh-keygen command, you will be prompted for the desired name and location of your private key.
 
+Use `date -I date` on macOS.
+
 ### Managing multiple keys
 
 - [Arch Wiki](https://wiki.archlinux.org/title/SSH_keys#Managing_multiple_keys)
