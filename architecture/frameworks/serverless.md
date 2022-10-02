@@ -32,3 +32,23 @@ inside the VPC, a VPC end point needs to be created.
 
 By default, the framework creates function versions for every deploy. This behavior is optional, and can be turned off
 in cases where you don't invoke past versions by their qualifier.
+
+## Events
+
+- [Ref](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
+- [GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
+
+Infrastructure which is created to support events in the events list may be referenced using CloudFormation intrinsic
+functions like `Fn::GetAtt` or `Fn::Ref` (or their shorthand counterparts).
+
+### API Gateway
+
+API Gateway comes in two versions:
+
+- v1, also called `REST API`
+- v2, also called `HTTP API`, which is faster and cheaper than v1
+
+Read the full comparison in the [AWS
+documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html).
+
+The default and maximal API Gateway timeout is used: 30s.
