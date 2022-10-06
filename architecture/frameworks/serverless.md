@@ -78,3 +78,85 @@ Parameters can then be used via the `${param:XXX}` variables.
 
 Parameters can be defined for each stage in serverless.yml under the `params` key. Use the `default` key to define
 parameters that apply to all stages by default.
+
+## Variables
+
+- [Documentation](https://www.serverless.com/framework/docs/providers/aws/guide/variables)
+
+To use variables, you will need to reference values enclosed in `${}` brackets.
+
+```yaml
+# serverless.yml file
+yamlKeyXYZ: ${variableSource}
+
+# this is an example of providing a default value as the second parameter
+otherYamlKey: ${variableSource, defaultValue}
+```
+
+### CLI options ${opt:}
+
+To reference CLI options that you passed, use the `${opt:<option>}` syntax in your serverless.yml configuration file.
+
+### Properties in serverless.yml ${self:}
+
+To self-reference properties in serverless.yml, use the ${self:someProperty} syntax in your serverless.yml. someProperty
+can contain the empty string for a top-level self-reference or a dotted attribute reference to any depth of attribute.
+
+### Serverless core variables ${sls:}
+
+Serverless initializes core variables which are used internally by the Framework itself. Those values are exposed via
+the Serverless Variables system and can be re-used with the {sls:} variable prefix.
+
+The `${sls:stage}` variable is a shortcut for `${opt:stage, self:provider.stage, "dev"}`.
+
+### Environment variables ${env:}
+
+To reference environment variables, use the ${env:SOME_VAR} syntax in your serverless.yml configuration file.
+
+Keep in mind that sensitive information which is provided through environment variables can be written into less
+protected or publicly accessible build logs, CloudFormation templates, et cetera.
+
+### CloudFormation outputs ${cf:}
+
+You can reference CloudFormation stack output values as the source of your variables to use in your service with the
+`cf:stackName.outputKey` syntax.
+
+### S3 objects ${s3:}
+
+You can reference S3 values as the source of your variables to use in your service with the `s3:bucketName/key` syntax.
+
+### SSM Parameter Store ${ssm:}
+
+You can reference SSM Parameters as the source of your variables with the `ssm:/path/to/param` syntax.
+
+### AWS-specific variables ${aws:}
+
+You can reference AWS-specific values as the source of your variables. Those values are exposed via the Serverless
+Variables system through the {aws:} variable prefix.
+
+
+The region used by the Serverless CLI. The `${aws:region}` variable is a shortcut for `${opt:region,
+self:provider.region, "us-east-1"}`.
+
+### AWS Secrets Manager ${ssm:}
+
+Variables in AWS Secrets Manager can be referenced using SSM, just use the
+`ssm:/aws/reference/secretsmanager/secret_ID_in_Secrets_Manager syntax`.
+
+### Reference properties in other files ${file():}
+
+You can reference properties in other YAML or JSON files.
+
+To reference properties in other JSON files use the ${file(./myFile.json):someProperty} syntax. It is important that the
+file you are referencing has the correct suffix, or file extension, for its file type (.yml for YAML or .json for JSON)
+in order for it to be interpreted correctly.
+
+You can reference JavaScript modules to add dynamic data into your variables. 
+
+To rely on exported someModule property in myFile.js you'd use the following code `${file(./myFile.js):someModule}`.
+
+### Read string variable values as boolean values
+
+To ensure a boolean value is returned, read the string variable value as a boolean value.
+
+Example: `${strToBool(${ssm:API_GW_DEBUG_ENABLED})}`
