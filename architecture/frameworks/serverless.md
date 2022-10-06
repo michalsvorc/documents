@@ -52,3 +52,16 @@ Read the full comparison in the [AWS
 documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html).
 
 The default and maximal API Gateway timeout is used: 30s.
+
+### IAM function permissions
+
+- [Documentation](https://www.serverless.com/framework/docs/providers/aws/guide/iam)
+
+AWS Lambda functions need permissions to interact with other AWS services and resources in your account. These
+permissions are set via an AWS IAM Role, which the Serverless Framework automatically creates for each service, and is
+shared by all functions in the service.
+
+By default, one IAM Role is shared by all the Lambda functions in your service. Also by default, your Lambda functions
+have permission to create and write to CloudWatch logs. 
+
+You can also create function-specific roles to customize permissions per function.
