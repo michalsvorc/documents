@@ -53,7 +53,7 @@ documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/http
 
 The default and maximal API Gateway timeout is used: 30s.
 
-### IAM function permissions
+## IAM function permissions
 
 - [Documentation](https://www.serverless.com/framework/docs/providers/aws/guide/iam)
 
@@ -65,3 +65,16 @@ By default, one IAM Role is shared by all the Lambda functions in your service. 
 have permission to create and write to CloudWatch logs. 
 
 You can also create function-specific roles to customize permissions per function.
+
+## Parameters
+
+- [Documentation](https://www.serverless.com/framework/docs/guides/parameters)
+
+Parameters can be defined in serverless.yml, Serverless Dashboard or passed via CLI with `--param="<key>=<value>"` flag. 
+
+Parameters can then be used via the `${param:XXX}` variables.
+
+### Stage parameters
+
+Parameters can be defined for each stage in serverless.yml under the `params` key. Use the `default` key to define
+parameters that apply to all stages by default.
