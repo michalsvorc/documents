@@ -3,6 +3,11 @@
 - [Guide](https://www.serverless.com/framework/docs/providers/aws/guide/deploying)
 - [Serverless.yml](https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml)
 - [Serverless CLI](https://www.serverless.com/framework/docs/providers/aws/cli-reference)
+- [Workflow tips](https://www.serverless.com/framework/docs/providers/aws/guide/workflow)
+
+## Resources
+
+- [Plugins](https://www.serverless.com/plugins)
 
 ## Functions
 
@@ -82,6 +87,7 @@ parameters that apply to all stages by default.
 ## Variables
 
 - [Documentation](https://www.serverless.com/framework/docs/providers/aws/guide/variables)
+- [dotenv support](https://www.serverless.com/framework/docs/environment-variables)
 
 To use variables, you will need to reference values enclosed in `${}` brackets.
 
