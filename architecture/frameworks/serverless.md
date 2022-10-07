@@ -160,3 +160,18 @@ To rely on exported someModule property in myFile.js you'd use the following cod
 To ensure a boolean value is returned, read the string variable value as a boolean value.
 
 Example: `${strToBool(${ssm:API_GW_DEBUG_ENABLED})}`
+
+## Resources
+
+- [Documentation](https://www.serverless.com/framework/docs/providers/aws/guide/resources)
+
+All Resources are other AWS infrastructure resources which the AWS Lambda functions in your Service depend on, like AWS
+DynamoDB or AWS S3.
+
+What goes into `resources` property is raw CloudFormation template syntax in YAML.
+
+Every stage you deploy to with serverless.yml using the aws provider is a single AWS CloudFormation stack.
+
+You can override the specific CloudFormation resource to apply your own options (place all such extensions at
+resources.extensions section). Extending using resources.extensions only works on the Resources part of the
+CloudFormation template.
