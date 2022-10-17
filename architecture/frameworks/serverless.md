@@ -5,9 +5,10 @@
 - [Serverless CLI](https://www.serverless.com/framework/docs/providers/aws/cli-reference)
 - [Workflow tips](https://www.serverless.com/framework/docs/providers/aws/guide/workflow)
 
-## Resources
+## Plugins
 
 - [Plugins](https://www.serverless.com/plugins)
+- [Lift](https://github.com/getlift/lift): Expanding Serverless Framework beyond functions using the AWS CDK.
 
 ## Functions
 
