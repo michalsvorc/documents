@@ -1,26 +1,22 @@
 # Kernel
 
-## Update
+## Compile
 
-1. cd to source code location.
+1. Compile the kernel.
    ```console
-   $ cd /usr/src/linux
+   make -j12
    ```
-2. Configure the kernel.
+2. Any external kernel modules, such as binary kernel modules, need to be rebuilt for each new kernel.
    ```console
-   # make menuconfig
+   emerge --ask @module-rebuild
    ```
-3. Compile the kernel.
-   ```
-   # make -j12
-   ```
-4. Install kernel modules.
-   ```
-   # make modules_install
-   ```
-5. Export to `/boot`. Verify that partition containing the boot records is mounted as `\boot`.
+3. Install kernel modules.
    ```console
-   # make install
+   make modules_install
+   ```
+4. Export kernel image to `/boot`. Verify that partition containing the boot records is mounted as `\boot`.
+   ```console
+   make install
    ```
 
 ## Upgrade
@@ -28,32 +24,28 @@
 - [Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Upgrade)
 
 1. Select new kernel sources with `eselect`.
-2. Copy `.config` from the old kernel sources.
-3. cd to new kernel sources and use `make oldconfig` to update the `.config` file.
-4. Compile the kernel.
-5. Install kernel modules.
-
-### Reinstalling external kernel modules
-
-Examples of external modules: NVIDIA
-
-The `modules_prepare` step is not required if building an entire kernel as this function is done as part of the standard process.
-
-Any external kernel modules, such as binary kernel modules, need to be rebuilt for each new kernel.
-
-```console
-# emerge --ask @module-rebuild
-# make modules_install
-```
+   ```console
+   eselect kernel list
+   eselect kernel set <target>
+   ```
+2. Copy `.config` file from the old kernel sources.
+3. `cd` to the new kernel sources and run `make oldconfig`.
+4. Compile the kernel and install kernel modules (see the Update section).
 
 ## Manage EFI boot entries
 
 - [Gentoo Wiki](https://wiki.gentoo.org/wiki/Efibootmgr#Usage)
 
-List the current boot entries and `BootCurrent` value:
+List the current boot entries:
 
 ```console
-# efibootmgr -v
+efibootmgr -v
+```
+
+## Update configuration
+
+```console
+make menuconfig
 ```
 
 ## Troubleshooting
@@ -65,6 +57,6 @@ Always back up `.config`.
 Pointing to old dependencies, e.g. previous version of GCC:
 
 ```console
-# make clean
-# make prepare
+make clean
+make prepare
 ```
