@@ -4,6 +4,7 @@
 - [Serverless.yml](https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml)
 - [Serverless CLI](https://www.serverless.com/framework/docs/providers/aws/cli-reference)
 - [Workflow tips](https://www.serverless.com/framework/docs/providers/aws/guide/workflow)
+- [Intrinsic function reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html)
 
 ## Plugins
 
