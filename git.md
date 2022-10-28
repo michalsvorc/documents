@@ -62,7 +62,9 @@ $ git fetch origin
 $ git reset --hard origin/<branch-name>
 ```
 
-## Delete local branch
+## Delete branch
+
+### Delete local branch
 
 Merged:
 
@@ -74,6 +76,12 @@ Unmerged:
 
 ```console
 $ git branch -D <branch_name>
+```
+
+### Delete remote branch
+
+```console
+$ git push origin --delete <branch_name>
 ```
 
 ## Provide a git identity for one-shot command
