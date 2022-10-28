@@ -227,8 +227,8 @@ Maintain a version number to check that the item has not been updated between th
 
 1. Read the item and remember the version number (versionNum = 0).
 2. Make the state transition in memory after validating information (accountLocked = N if currentLoginTime >
-lastFailedLoginTime + 24 hours).
+   lastFailedLoginTime + 24 hours).
 3. Increment the version number (versionNum = 1).
 4. Write the item with updated attributes (accountLocked = N and versionNum = 1). Use a conditional expression to
-perform a write only if the item has not changed since it was last read.
+   perform a write only if the item has not changed since it was last read.
 5. If the condition fails, start over from step 1.

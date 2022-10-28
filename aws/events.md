@@ -15,4 +15,3 @@ Lambda asynchronous invocations can put an event or message on Amazon Simple Not
 Queue Service (SQS), or Amazon EventBridge for further processing.
 
 `--invocation-type Event`
-

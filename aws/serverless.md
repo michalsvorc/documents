@@ -8,4 +8,3 @@
 
 - [Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications)
 - [Serverless Snippets Collection](https://serverlessland.com/snippets)
-

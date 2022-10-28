@@ -32,4 +32,3 @@
 - [Resources](https://material.io/resources)
 - [Theme editor - in-your-saas.github.io](https://in-your-saas.github.io/material-ui-theme-editor/)
 - [Themes - glitch.com](https://glitch.com/@material)
-

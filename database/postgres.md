@@ -28,12 +28,12 @@ PostgreSQL treats NaN values as equal, and greater than all non-NaN values.
 
 The types decimal and numeric are equivalent.
 
-It is especially recommended for storing monetary amounts and other quantities where exactness is required. 
+It is especially recommended for storing monetary amounts and other quantities where exactness is required.
 
-The *precision* of a numeric is the total count of significant digits in the whole number, that is, the number of digits
-to both sides of the decimal point. The *scale* of a numeric is the count of decimal digits in the fractional part.
+The _precision_ of a numeric is the total count of significant digits in the whole number, that is, the number of digits
+to both sides of the decimal point. The _scale_ of a numeric is the count of decimal digits in the fractional part.
 
-The maximum precision that can be explicitly specified in a `NUMERIC` type declaration is 1000. 
+The maximum precision that can be explicitly specified in a `NUMERIC` type declaration is 1000.
 
 #### Floating-Point types
 
@@ -49,4 +49,3 @@ unique identifier columns (similar to the `AUTO_INCREMENT` property supported by
 
 Because smallserial, serial and bigserial are implemented using sequences, there may be "holes" or gaps in the sequence
 of values which appears in the column.
-

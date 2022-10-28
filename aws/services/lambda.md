@@ -38,4 +38,3 @@ To use your Lambda function with AWS resources in an Amazon VPC, configure it wi
 a VPC connection. Connecting your function to a VPC lets you access resources in a private subnet such as relational
 databases and caches. You can also create a database proxy for MySQL and Aurora DB instances. A database proxy enables a
 function to reach high concurrency levels without exhausting database connections.
-

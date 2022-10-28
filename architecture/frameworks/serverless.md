@@ -30,7 +30,7 @@ configuration.
 
 By default, when a Lambda function is executed inside a VPC, it loses internet access and some resources inside AWS may
 become unavailable. In order for S3 resources and DynamoDB resources to be available for your Lambda function running
-inside the VPC, a VPC end point needs to be created. 
+inside the VPC, a VPC end point needs to be created.
 
 ### Versioning
 
@@ -69,7 +69,7 @@ permissions are set via an AWS IAM Role, which the Serverless Framework automati
 shared by all functions in the service.
 
 By default, one IAM Role is shared by all the Lambda functions in your service. Also by default, your Lambda functions
-have permission to create and write to CloudWatch logs. 
+have permission to create and write to CloudWatch logs.
 
 You can also create function-specific roles to customize permissions per function.
 
@@ -77,7 +77,7 @@ You can also create function-specific roles to customize permissions per functio
 
 - [Documentation](https://www.serverless.com/framework/docs/guides/parameters)
 
-Parameters can be defined in serverless.yml, Serverless Dashboard or passed via CLI with `--param="<key>=<value>"` flag. 
+Parameters can be defined in serverless.yml, Serverless Dashboard or passed via CLI with `--param="<key>=<value>"` flag.
 
 Parameters can then be used via the `${param:XXX}` variables.
 
@@ -142,9 +142,7 @@ You can reference SSM Parameters as the source of your variables with the `ssm:/
 You can reference AWS-specific values as the source of your variables. Those values are exposed via the Serverless
 Variables system through the {aws:} variable prefix.
 
-
-The region used by the Serverless CLI. The `${aws:region}` variable is a shortcut for `${opt:region,
-self:provider.region, "us-east-1"}`.
+The region used by the Serverless CLI. The `${aws:region}` variable is a shortcut for `${opt:region, self:provider.region, "us-east-1"}`.
 
 ### AWS Secrets Manager ${ssm:}
 
@@ -159,7 +157,7 @@ To reference properties in other JSON files use the ${file(./myFile.json):somePr
 file you are referencing has the correct suffix, or file extension, for its file type (.yml for YAML or .json for JSON)
 in order for it to be interpreted correctly.
 
-You can reference JavaScript modules to add dynamic data into your variables. 
+You can reference JavaScript modules to add dynamic data into your variables.
 
 To rely on exported someModule property in myFile.js you'd use the following code `${file(./myFile.js):someModule}`.
 
