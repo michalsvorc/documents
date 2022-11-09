@@ -9,6 +9,7 @@ Documentation:
 Guides:
 
 - [basarat.gitbook.io](https://basarat.gitbook.io/typescript/)
+- [Type-level TypeScript](https://type-level-typescript.com/)
 
 Style guides:
 
