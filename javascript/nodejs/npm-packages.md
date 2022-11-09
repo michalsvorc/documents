@@ -13,7 +13,7 @@ CLI:
 
 Blogs:
 
-- [How to Create and Publish an npm Package](https://medium.com/swlh/how-to-create-and-publish-an-npm-package-17b5e1744f26)
+- [How to build, test, and publish a TypeScript npm package in 2022](https://www.strictmode.io/articles/build-test-and-publish-npm-package-2022)
 
 ## Publishing
 
@@ -29,7 +29,7 @@ Preview what will be published with `npm publish --dry-run`.
 
 Changelog is documented in repository releases.
 
-## Including files
+### Including files
 
 - [files](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#files)
 
@@ -40,3 +40,4 @@ installed as a dependency.
 
 You can indicate the structure of your package using a directories object. If you specify a `bin` directory, all the
 files in that folder will be added as executable from CLI.
+
