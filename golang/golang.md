@@ -1,14 +1,33 @@
 # Go language
 
+- [Documentation](https://go.dev/doc/)
+- [Standard library](https://pkg.go.dev/std)
+- [Packages](https://pkg.go.dev/)
+- [Release notes](https://go.dev/doc/devel/release)
+
 Tutorials:
 
+- [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
 - [Go by Example](https://gobyexample.com/)
 - [Go Tutorial](https://www.tutorialspoint.com/go/index.htm)
+- [Matt KODVB Go class (Video)](https://www.youtube.com/playlist?list=PLoILbKo9rG3skRCj37Kn5Zj803hhiuRK6)
 
 Resources:
 
-- [Packages](https://golang.org/pkg/)
+- [The Go Playground](https://play.golang.com/)
 - [Books](https://github.com/dariubs/GoBooks)
+
+Guides:
+
+- [Effective Go](https://go.dev/doc/effective_go)
+- [Project layout](https://github.com/golang-standards/project-layout)
+- [Package names](https://go.dev/blog/package-names)
+- [100 Go Mistakes and How to Avoid Them](https://github.com/teivah/100-go-mistakes)
+
+Blogs:
+
+- [The Go Blog](https://go.dev/blog/)
+- [r/golang](https://www.reddit.com/r/golang/)
 
 ## Keywords and Identifiers
 
@@ -169,4 +188,3 @@ Iota provides an automated way to create a enum,
 
 ### Variables
 
-TBD
