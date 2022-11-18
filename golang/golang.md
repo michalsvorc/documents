@@ -55,38 +55,41 @@ Numbers, strings and booleans are completely separate, there is no truthy/falsy 
 
 Strings are passed by reference, they are not copied.
 
-When you need an integer value you should use int unless you have a specific reason to use a sized or unsigned integer
+When you need an integer value you should use `int` unless you have a specific reason to use a sized or unsigned integer
 type.
 
-## Arrays and slices
+## Arrays
+
+- [Go by Example](https://gobyexample.com/arrays)
 
 Arrays are typed by size fixed at compile time. They are passed by value, meaning elements are copied.
+
+## Slices
+
+- [Go by Example](https://gobyexample.com/slices)
 
 Slices have variable length and are passed by reference, no copying, updating is ok.
 
 ## Maps
+
+- [Go by Example](https://gobyexample.com/maps)
 
 Maps have special 2 result lookup function. The second result, conventionally assigned to variable name "ok" tells if
 the key was there.
 
 ## Functions
 
+- [Go by Example](https://gobyexample.com/functions)
 - [Named return values](https://go.dev/tour/basics/7)
+- [Multiple Return Values](https://gobyexample.com/multiple-return-values)
+- [Variadic Functions](https://gobyexample.com/variadic-functions)
 
-Function are first class objects, you can:
-- define them, even inside another function
-- create anonymous function literals
-- pass them as function parameters or return values
-- store them in variables, slices and maps (but not as keys)
-- store them as fields of a structure type
-- send and receive them in channels
-- write methods against a function type
-- compare a function var against `nil`
+Function are first class objects.
 
 The `signature` of a function is the order & type of its parameters and return values. It does not depend on the names
 of those parameters or returns.
 
-A function can return any number of results. `a, b := swap("A", "B")`
+A function can return any number of results.
 
 ### Parameter passing
 
@@ -103,6 +106,18 @@ By reference:
 - maps
 - channels
 
+### Defer
+
+- [Go by Example](https://gobyexample.com/defer)
+- [Defer, Panic, and Recover](https://go.dev/blog/defer-panic-and-recover)
+
+Defer is used to ensure that a function call is performed later in a program’s execution, usually for purposes of
+cleanup. `defer` is often used where e.g. ensure and finally would be used in other languages.
+
+The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns.
+
+Deferred function calls are pushed onto a stack. When a function returns, its deferred calls are executed in last-in-first-out order.
+
 ## Typing system
 
 - [go101.org](https://go101.org/article/constants-and-variables.html)
@@ -117,7 +132,7 @@ default type.
 ## Variables
 
 - [Declaration syntax](https://go.dev/blog/declaration-syntax)
-- [Example](https://gobyexample.com/variables)
+- [Go by Example](https://gobyexample.com/variables)
 
 `=` is the assignment operator. `:=` is for declaration and assignment, called short variable declaration clause.
 
@@ -187,6 +202,29 @@ const (
 	C, _ = "Go", "language"
 )
 ```
+
+## Loops
+
+- [Go by Example](https://gobyexample.com/for)
+
+Go has only one looping construct, the `for` loop.
+
+The basic `for` loop has three components separated by semicolons:
+- the init statement: executed before the first iteration
+- the condition expression: evaluated before every iteration
+- the post statement: executed at the end of every iteration
+
+`for` without a condition will loop repeatedly until you `break` out of the loop or return from the enclosing function.
+You can also `continue` to the next iteration of the loop.
+
+## If else
+
+- [Go by Example](https://gobyexample.com/if-else)
+
+The `if` statement can start with a short statement to execute before the condition.
+
+Variables declared by the statement are only in scope until the end of the `if`. Variables declared inside an if short
+statement are also available inside any of the `else` blocks.
 
 ## iota
 
