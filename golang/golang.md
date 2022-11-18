@@ -4,6 +4,7 @@
 - [Standard library](https://pkg.go.dev/std)
 - [Packages](https://pkg.go.dev/)
 - [Release notes](https://go.dev/doc/devel/release)
+- [The Go Playground](https://play.golang.com/)
 
 Tutorials:
 
@@ -14,8 +15,9 @@ Tutorials:
 
 Resources:
 
-- [The Go Playground](https://play.golang.com/)
-- [Books](https://github.com/dariubs/GoBooks)
+- [dariubs/GoBooks](https://github.com/dariubs/GoBooks)
+- [The Go Blog](https://go.dev/blog/)
+- [r/golang](https://www.reddit.com/r/golang/)
 
 Guides:
 
@@ -23,11 +25,6 @@ Guides:
 - [Project layout](https://github.com/golang-standards/project-layout)
 - [Package names](https://go.dev/blog/package-names)
 - [100 Go Mistakes and How to Avoid Them](https://github.com/teivah/100-go-mistakes)
-
-Blogs:
-
-- [The Go Blog](https://go.dev/blog/)
-- [r/golang](https://www.reddit.com/r/golang/)
 
 ## Keywords and Identifiers
 
@@ -41,7 +38,11 @@ Blogs:
 
 - [bool](https://www.golang-book.com/books/intro/3#section3)
 - [string](https://go101.org/article/string.html)
-- [numbers](https://go101.org/article/basic-types-and-value-literals.html)
+- [numbers](https://go101.org/article/basic-types-and-value-literals.html):
+  int  int8  int16  int32  int64
+  uint uint8 uint16 uint32 uint64 uintptr
+  float32 float64
+  complex64 complex128
 
 Aliases:
 
@@ -54,6 +55,8 @@ Numbers, strings and booleans are completely separate, there is no truthy/falsy 
 
 Strings are passed by reference, they are not copied.
 
+When you need an integer value you should use int unless you have a specific reason to use a sized or unsigned integer
+type.
 
 ## Arrays and slices
 
@@ -68,6 +71,8 @@ the key was there.
 
 ## Functions
 
+- [Named return values](https://go.dev/tour/basics/7)
+
 Function are first class objects, you can:
 - define them, even inside another function
 - create anonymous function literals
@@ -80,6 +85,8 @@ Function are first class objects, you can:
 
 The `signature` of a function is the order & type of its parameters and return values. It does not depend on the names
 of those parameters or returns.
+
+A function can return any number of results. `a, b := swap("A", "B")`
 
 ### Parameter passing
 
@@ -99,6 +106,7 @@ By reference:
 ## Typing system
 
 - [go101.org](https://go101.org/article/constants-and-variables.html)
+- [Type conversions](https://go.dev/tour/basics/13)
 
 Go supports type deduction (inference). Go compilers will deduce the types for these values by context. Go uses
 structural typing in most cases.
@@ -108,21 +116,33 @@ default type.
 
 ## Variables
 
+- [Declaration syntax](https://go.dev/blog/declaration-syntax)
+- [Example](https://gobyexample.com/variables)
+
 `=` is the assignment operator. `:=` is for declaration and assignment, called short variable declaration clause.
 
- Inside a function, the `:=` short assignment statement can be used in place of a var declaration with implicit type.
+Inside a function, the `:=` short assignment statement can be used in place of a var declaration with implicit type.
 
 Outside a function, every statement begins with a keyword (var, func, and so on) and so the `:=` construct is not
-available. 
+available.
 
-Go initializes all variables to "zero" value of their type, there are no "unitialized" variables.
-
-Only basic types like strings, numbers and booleans can be immutable constants.
+If an initializer is present, the type can be omitted; the variable will take the type of the initializer.
 
 The variables declared out of any function body are called package-level constants. We also often call package-level
 constants as global constants.
 
 The declaration orders of two package-level constants are not important.
+
+Go initializes all variables to "zero" value of their type, there are no "unitialized" variables. The zero value is:
+- 0 for numeric types,
+- false for the boolean type, and
+- "" (the empty string) for strings.
+
+## Constants
+
+Go supports constants of character, string, boolean, and numeric values. Constants must be initialized with a value.
+
+Constants cannot be declared using the `:=` syntax.
 
 Declaration:
 
@@ -138,13 +158,6 @@ const (
 
 The `=` symbol means "bind" instead of "assign". We should interpret each constant specification as a declared identifier
 is bound to a corresponding basic value literal.
-
-Value conversions: We can use the form `T(v)` to convert a value `v` to the type denoted by `T`.
-
-```golang
-string(65)          // "A"
-string('A')         // "A"
-```
 
 ### Autocomplete in constant declarations
 
@@ -192,3 +205,7 @@ effective constant in Go .
 
 Iota provides an automated way to create a enum,
 
+## Packages
+
+By convention, the package name is the same as the last element of the import path. For instance, the "math/rand"
+package: `rand.Intn(10)`
