@@ -1,6 +1,18 @@
 # Yarn
 
-This documentation is related to Yarn v2.
+## Setup
+
+- [Installation](https://yarnpkg.com/getting-started/install)
+- [Updating to the latest versions](https://yarnpkg.com/getting-started/install#updating-to-the-latest-versions)
+
+## Plugins
+
+- [Official plugins](https://yarnpkg.com/features/plugins#official-plugins)
+- [Contrib plugins](https://yarnpkg.com/features/plugins#contrib-plugins)
+
+Recommended plugins:
+- interactive-tools: interactive upgrade
+- typescript: improves the TypeScript experience
 
 ## PnP
 
