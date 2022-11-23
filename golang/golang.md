@@ -26,6 +26,10 @@ Guides:
 - [Package names](https://go.dev/blog/package-names)
 - [100 Go Mistakes and How to Avoid Them](https://github.com/teivah/100-go-mistakes)
 
+Libraries:
+
+- [golangci-lint](https://golangci-lint.run/): An improvement over the default linter.
+
 ## Keywords and Identifiers
 
 - [go101.org](https://go101.org/article/keywords-and-identifiers.html)
@@ -247,3 +251,12 @@ Iota provides an automated way to create a enum,
 
 By convention, the package name is the same as the last element of the import path. For instance, the "math/rand"
 package: `rand.Intn(10)`
+
+## Testing
+
+Writing a test is just like writing a function, with a few rules:
+
+- It needs to be in a file with a name like `xxx_test.go`
+- The test function must start with the word `Test`
+- The test function takes one argument only `t *testing.T`
+- In order to use the `*testing.T` type, you need to `import "testing"`
