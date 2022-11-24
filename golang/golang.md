@@ -260,6 +260,8 @@ package: `rand.Intn(10)`
 
 ## Testing
 
+- [Examples](https://go.dev/blog/examples)
+
 Writing a test is just like writing a function, with a few rules:
 
 - It needs to be in a file with a name like `xxx_test.go`
