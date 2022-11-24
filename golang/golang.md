@@ -21,10 +21,13 @@ Resources:
 
 Guides:
 
+- [Google style guide](https://google.github.io/styleguide/go/)
+- [Code review commets](https://github.com/golang/go/wiki/CodeReviewComments)
 - [Effective Go](https://go.dev/doc/effective_go)
 - [Project layout](https://github.com/golang-standards/project-layout)
 - [Package names](https://go.dev/blog/package-names)
 - [100 Go Mistakes and How to Avoid Them](https://github.com/teivah/100-go-mistakes)
+- [Five suggestions for setting up a Go project](https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project)
 
 Libraries:
 
@@ -94,6 +97,9 @@ The `signature` of a function is the order & type of its parameters and return v
 of those parameters or returns.
 
 A function can return any number of results.
+
+You can add documentation to functions with comments, and these will appear in Go Doc just like when you look at the
+standard library's documentation.
 
 ### Parameter passing
 
