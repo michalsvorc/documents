@@ -261,6 +261,7 @@ package: `rand.Intn(10)`
 ## Testing
 
 - [Examples](https://go.dev/blog/examples)
+- [Benchmarks](https://pkg.go.dev/testing#hdr-Benchmarks)
 
 Writing a test is just like writing a function, with a few rules:
 
