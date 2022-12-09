@@ -6,14 +6,11 @@
 
 - [LogRocket](https://blog.logrocket.com/)
 
-### AWS
+## AWS
 
 - [AWS Compute Blog](https://aws.amazon.com/blogs/compute/)
 - [AWS Developer Tools Blog](https://aws.amazon.com/blogs/developer/)
 - [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/)
-
-### AWS Serverless
-
 - [AWS Serverless Land News](https://serverlessland.com/whats-new)
 - [AWS Serverless Land Blogs](https://serverlessland.com/blog)
 
