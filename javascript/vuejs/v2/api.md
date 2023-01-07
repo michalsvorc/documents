@@ -1,175 +1,87 @@
-# API v2.6
+# Vue.js v2 API
 
-- [API](https://vuejs.org/v2/api/)
+- [API](https://v2.vuejs.org/v2/api/)
 
 ## Global config
 
-- [API](https://vuejs.org/v2/api/#Global-Config)
+- [API](https://v2.vuejs.org/v2/api/#Global-Config)
 
 Every Vue application exposes a config object that contains the configuration settings for that application.
 
 ## Global API
 
-- [API](https://vuejs.org/v2/api/#Global-API)
+- [API](https://v2.vuejs.org/v2/api/#Global-API)
 
 ### Vue.set( target, propertyName/index, value )
 
-- [API](https://vuejs.org/v2/api/#Vue-set)
+- [API](https://v2.vuejs.org/v2/api/#Vue-set)
 
 Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be
 used to add new properties to reactive objects, as Vue cannot detect normal property additions
 
 ### Vue.directive( id, [definition] )
 
-- [API](https://vuejs.org/v2/api/#Vue-directive)
-- [Custom directives](https://vuejs.org/v2/guide/custom-directive.html)
+- [API](https://v2.vuejs.org/v2/api/#Vue-directive)
+- [Custom directives](https://v2.vuejs.org/v2/guide/custom-directive.html)
 
 Register or retrieve a global directive.
 
 ### Vue.filter( id, [definition] )
 
-- [API](https://vuejs.org/v2/api/#Vue-filter)
-- [Filters](https://vuejs.org/v2/guide/filters.html)
+- [API](https://v2.vuejs.org/v2/api/#Vue-filter)
+- [Filters](https://v2.vuejs.org/v2/guide/filters.html)
 
 Register or retrieve a global filter.
 
 ### Vue.component( id, [definition] )
 
-- [API](https://vuejs.org/v2/api/#Vue-component)
-- [Components](https://vuejs.org/v2/guide/components.html)
+- [API](https://v2.vuejs.org/v2/api/#Vue-component)
+- [Components](https://v2.vuejs.org/v2/guide/components.html)
 
 Register or retrieve a global component. Registration also automatically sets the component’s name with the given id.
 
 ### Vue.observable( object )
 
-- [API](https://vuejs.org/v2/api/#Vue-observable)
+- [API](https://v2.vuejs.org/v2/api/#Vue-observable)
 
 Make an object reactive. Internally, Vue uses this on the object returned by the data function.
 
 The returned object can be used directly inside render functions and computed properties, and will trigger appropriate
 updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios.
 
-## Options: data
 
-### data
 
-- [API](https://vuejs.org/v2/api/#data)
-- [Guide](https://vuejs.org/v2/guide/reactivity.html)
-
-- Type: `Object | Function`
-- Restriction: Only accepts `Function` when used in a component definition.
-
-Vue will recursively convert its properties into getter/setters to make it reactive. The object must be plain.
-
-Once observed, you can no longer add reactive properties to the root data object.
-
-After the instance is created, the original data object can be accessed as `vm.$data`.
-
-If required, a deep clone of the original object can be obtained by passing `vm.$data` through
-`JSON.parse(JSON.stringify(...))`.
-
-### props
-
-- [API](https://vuejs.org/v2/api/#props)
-- [Guide](https://vuejs.org/v2/guide/components-props.html)
-
-  - [Type checks](https://vuejs.org/v2/guide/components-props.html#Type-Checks)
-
-- Type: `Array<string> | Object`
-
-A list/hash of attributes that are exposed to accept data from the parent component.
-
-With Object-based syntax, you can use following options:
-
-- type: String, Number, Boolean, Array, Object, Date, Function, Symbol
-- default: any
-- required: Boolean
-- validator: Function
-
-All props form a one-way-down binding between the child property and the parent one. In addition, every time the parent
-component is updated, all props in the child component will be refreshed with the latest value. This means you should
-not attempt to mutate a prop inside a child component.
-
-The type for type checks can be one of the following native constructors:
-
-- String
-- Number
-- Boolean
-- Array
-- Object
-- Date
-- Function
-- Symbol
-
-In addition, type can also be a custom constructor function and the assertion will be made with an `instanceof` check.
-
-### computed
-
-- [API](https://vuejs.org/v2/api/#computed)
-- [Guide](https://vuejs.org/v2/guide/computed.html)
-- [Computed vs Watched Property](https://vuejs.org/v2/guide/computed.html#Computed-vs-Watched-Property)
-- [Computed setter](https://vuejs.org/v2/guide/computed.html#Computed-Setter)
-
-- Type: `{ [key: string]: Function | { get: Function, set: Function } }`
-
-Computed properties are cached based on their reactive dependencies, and only re-computed on reactive dependency
-changes. Computed properties are by default getter-only, but you can also provide a setter when you need it.
-
-### methods
-
-- [API](https://vuejs.org/v2/api/#methods)
-- [Guide](https://vuejs.org/v2/guide/events.html)
-
-- Type: `{ [key: string]: Function }`
-
-You can access methods directly on the VM instance, or use them in directive expressions.
-
-?? Method invocation will always run the function whenever a re-render happens.
-
-### watch
-
-- [API](https://vuejs.org/v2/api/#watch)
-- [Guide](https://vuejs.org/v2/api/#vm-watch)
-
-- Type: `{ [key: string]: string | Function | Object | Array }`
-
-An object where keys are expressions to watch and values are the corresponding callbacks.
-
-The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will
-call `$watch()` for each entry in the object at instantiation.
 
 ## Options: DOM
 
-- [el](https://vuejs.org/v2/api/#el)
-- [template](https://vuejs.org/v2/api/#template)
-- [render](https://vuejs.org/v2/api/#render)
-- [renderError](https://vuejs.org/v2/api/#renderError)
+- [el](https://v2.vuejs.org/v2/api/#el)
+- [template](https://v2.vuejs.org/v2/api/#template)
+- [render](https://v2.vuejs.org/v2/api/#render)
+- [renderError](https://v2.vuejs.org/v2/api/#renderError)
 
 ## Options: Lifecycle hooks
 
-- [Lifecycle Diagram](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram)
+- [Lifecycle Diagram](https://v2.vuejs.org/v2/guide/instance.html#Lifecycle-Diagram)
 
-- [beforeCreate](https://vuejs.org/v2/api/#beforeCreate)
-- [created](https://vuejs.org/v2/api/#created)
-- [beforeMount](https://vuejs.org/v2/api/#beforeMount)
-- [mounted](https://vuejs.org/v2/api/#mounted)
-- [beforeUpdate](https://vuejs.org/v2/api/#beforeUpdate)
-- [updated](https://vuejs.org/v2/api/#updated)
-- [activated](https://vuejs.org/v2/api/#activated)
-- [deactivated](https://vuejs.org/v2/api/#deactivated)
-- [beforeDestroy](https://vuejs.org/v2/api/#beforeDestroy)
-- [destroyed](https://vuejs.org/v2/api/#destroyed)
-- [errorCaptured](https://vuejs.org/v2/api/#errorCaptured)
+- [beforeCreate](https://v2.vuejs.org/v2/api/#beforeCreate)
+- [created](https://v2.vuejs.org/v2/api/#created)
+- [beforeMount](https://v2.vuejs.org/v2/api/#beforeMount)
+- [mounted](https://v2.vuejs.org/v2/api/#mounted)
+- [beforeUpdate](https://v2.vuejs.org/v2/api/#beforeUpdate)
+- [updated](https://v2.vuejs.org/v2/api/#updated)
+- [activated](https://v2.vuejs.org/v2/api/#activated)
+- [deactivated](https://v2.vuejs.org/v2/api/#deactivated)
+- [beforeDestroy](https://v2.vuejs.org/v2/api/#beforeDestroy)
+- [destroyed](https://v2.vuejs.org/v2/api/#destroyed)
+- [errorCaptured](https://v2.vuejs.org/v2/api/#errorCaptured)
 
-Note that `updated` does not guarantee that all child components have also been re-rendered. If you want to wait until
-the entire view has been re-rendered, you can use `vm.$nextTick` inside of updated.
 
 ## Options: Assets
 
 ### directives
 
-- [API](https://vuejs.org/v2/api/#directives)
-- [Guide](https://vuejs.org/v2/guide/custom-directive.html)
+- [API](https://v2.vuejs.org/v2/api/#directives)
+- [Guide](https://v2.vuejs.org/v2/guide/custom-directive.html)
 
 A hash of directives to be made available to the Vue instance.
 
@@ -178,8 +90,8 @@ own custom directives.
 
 ### filters
 
-- [API](https://vuejs.org/v2/guide/filters.html)
-- [Guide](https://vuejs.org/v2/guide/filters.html)
+- [API](https://v2.vuejs.org/v2/guide/filters.html)
+- [Guide](https://v2.vuejs.org/v2/guide/filters.html)
 
 A hash of filters to be made available to the Vue instance.
 
@@ -187,8 +99,8 @@ Vue.js allows you to define filters that can be used to apply common text format
 
 ### components
 
-- [API](https://vuejs.org/v2/api/#components)
-- [Local registration](https://vuejs.org/v2/guide/components-registration.html#Local-Registration)
+- [API](https://v2.vuejs.org/v2/api/#components)
+- [Local registration](https://v2.vuejs.org/v2/guide/components-registration.html#Local-Registration)
 
 A hash of components to be made available to the Vue instance.
 
@@ -199,7 +111,7 @@ You can define your components as plain JavaScript objects, then define the comp
 
 ### parent
 
-- [API](https://vuejs.org/v2/api/#parent)
+- [API](https://v2.vuejs.org/v2/api/#parent)
 
 Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch.
 
@@ -207,15 +119,15 @@ Prefer using props and events for parent-child communication.
 
 ### mixins
 
-- [API](https://vuejs.org/v2/api/#mixins)
-- [Guide](https://vuejs.org/v2/guide/mixins.html)
+- [API](https://v2.vuejs.org/v2/api/#mixins)
+- [Guide](https://v2.vuejs.org/v2/guide/mixins.html)
 
 Mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual
 options using the same option merging logic in `Vue.extend()`.
 
 ### extends
 
-- [API](https://vuejs.org/v2/api/#extends)
+- [API](https://v2.vuejs.org/v2/api/#extends)
 
 Allows declaratively extending another component (could be either a plain options object or a constructor) without
 having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
@@ -224,7 +136,7 @@ This is similar to `mixins`.
 
 ### provide / inject
 
-- [API](https://vuejs.org/v2/api/#provide-inject)
+- [API](https://v2.vuejs.org/v2/api/#provide-inject)
 
 - Type:
   - provide: `Object | () => Object`
@@ -244,7 +156,7 @@ properties on that object do remain reactive.
 
 ### name
 
-- [API](https://vuejs.org/v2/api/#name)
+- [API](https://v2.vuejs.org/v2/api/#name)
 
 - Type: `string`
 
@@ -253,8 +165,8 @@ Allow the component to recursively invoke itself in its template. Note that when
 
 ### functional
 
-- [API](https://vuejs.org/v2/api/#functional)
-- [Guide](https://vuejs.org/v2/guide/render-function.html#Functional-Components)
+- [API](https://v2.vuejs.org/v2/api/#functional)
+- [Guide](https://v2.vuejs.org/v2/guide/render-function.html#Functional-Components)
 
 - Type: `boolean`
 
@@ -264,8 +176,8 @@ They are only a `render` function that returns virtual nodes making them much ch
 
 ### model
 
-- [API](https://vuejs.org/v2/api/#model)
-- [Customizing Component v-model](https://vuejs.org/v2/guide/components-custom-events.html#Customizing-Component-v-model)
+- [API](https://v2.vuejs.org/v2/api/#model)
+- [Customizing Component v-model](https://v2.vuejs.org/v2/guide/components-custom-events.html#Customizing-Component-v-model)
 
 - Type: `{ prop?: string, event?: string }`
 
@@ -278,8 +190,8 @@ Using the `model` option can avoid the conflict in such cases.
 
 ### inheritAttrs
 
-- [API](https://vuejs.org/v2/api/#inheritAttrs)
-- [Disabling Attribute Inheritance](https://vuejs.org/v2/guide/components-props.html#Disabling-Attribute-Inheritance)
+- [API](https://v2.vuejs.org/v2/api/#inheritAttrs)
+- [Disabling Attribute Inheritance](https://v2.vuejs.org/v2/guide/components-props.html#Disabling-Attribute-Inheritance)
 
 - Type: boolean
 - Default: true
@@ -297,7 +209,7 @@ is often desirable for base components
 
 ### Instance Properties
 
-- [API](https://vuejs.org/v2/api/#Instance-Properties)
+- [API](https://v2.vuejs.org/v2/api/#Instance-Properties)
 
 - `vm.$data`: The data object that the Vue instance is observing.
 - `vm.$props`: An object representing the current props a component has received.
@@ -317,7 +229,7 @@ Note there’s no order guarantee for `$children`, and it is not reactive.
 
 ### Instance Methods: Data
 
-- [API](https://vuejs.org/v2/api/#Instance-Methods-Data)
+- [API](https://v2.vuejs.org/v2/api/#Instance-Methods-Data)
 
 - `vm.$watch`: Watch an expression or a computed function on the Vue instance for changes.
 - `vm.$set`: This is the alias of the global Vue.set.
@@ -343,7 +255,7 @@ Note there’s no order guarantee for `$children`, and it is not reactive.
 
 ### v-text
 
-- [API](https://vuejs.org/v2/api/#v-text)
+- [API](https://v2.vuejs.org/v2/api/#v-text)
 
 Updates the element’s textContent. If you need to update the part of textContent, you should use `{{ }}` interpolations.
 
@@ -355,7 +267,7 @@ Updates the element’s textContent. If you need to update the part of textConte
 
 ### v-html
 
-- [API](https://vuejs.org/v2/api/#v-html)
+- [API](https://v2.vuejs.org/v2/api/#v-html)
 
 Updates the element's innerHTML. Note that the contents are inserted as plain HTML - they will not be compiled as Vue
 templates.
@@ -364,40 +276,40 @@ Dynamically rendering arbitrary HTML on your website can be very dangerous becau
 
 ### v-show
 
-- [API](https://vuejs.org/v2/api/#v-show)
-- [Guide](https://vuejs.org/v2/guide/conditional.html#v-show)
-- [v-if vs v-show](https://vuejs.org/v2/guide/conditional.html#v-if-vs-v-show)
+- [API](https://v2.vuejs.org/v2/api/#v-show)
+- [Guide](https://v2.vuejs.org/v2/guide/conditional.html#v-show)
+- [v-if vs v-show](https://v2.vuejs.org/v2/guide/conditional.html#v-if-vs-v-show)
 
 Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
 
 ### v-if
 
-- [API](https://vuejs.org/v2/api/#v-if)
-- [Guide](https://vuejs.org/v2/guide/conditional.html)
+- [API](https://v2.vuejs.org/v2/api/#v-if)
+- [Guide](https://v2.vuejs.org/v2/guide/conditional.html)
 
 Conditionally render the element based on the truthy-ness of the expression value.
 
-Add a [key attribute](https://vuejs.org/v2/guide/conditional.html#Controlling-Reusable-Elements-with-key) with unique
+Add a [key attribute](https://v2.vuejs.org/v2/guide/conditional.html#Controlling-Reusable-Elements-with-key) with unique
 values to stop reusing elements and rendered from scratch on each conditional switch.
 
 ### v-else
 
-- [API](https://vuejs.org/v2/api/#v-else)
+- [API](https://v2.vuejs.org/v2/api/#v-else)
 
 Denote the else block for `v-if` or a `v-if/v-else-if` chain.
 
 ### v-else-if
 
-- [API](https://vuejs.org/v2/api/#v-else-if)
+- [API](https://v2.vuejs.org/v2/api/#v-else-if)
 
 Denote the else if block for `v-if`. Can be chained.
 
 ### v-for
 
-- [API](https://vuejs.org/v2/api/#v-for)
-- [List rendering](https://vuejs.org/v2/guide/list.html)
-- [key](https://vuejs.org/v2/guide/list.html#key)
-- [v-for with a Component](https://vuejs.org/v2/guide/list.html#v-for-with-a-Component)
+- [API](https://v2.vuejs.org/v2/api/#v-for)
+- [List rendering](https://v2.vuejs.org/v2/guide/list.html)
+- [key](https://v2.vuejs.org/v2/guide/list.html#key)
+- [v-for with a Component](https://v2.vuejs.org/v2/guide/list.html#v-for-with-a-Component)
 
 - Expects: `Array | Object | number | string | Iterable`
 
@@ -433,10 +345,10 @@ You can also use `of` as the delimiter instead of `in`, so that it is closer to 
 
 ### v-on
 
-- [API](https://vuejs.org/v2/api/#v-on)
-- [Event Handling](https://vuejs.org/v2/guide/events.html)
-- [Event modifiers](https://vuejs.org/v2/guide/events.html#Event-Modifiers)
-- [Components - Custom Events](https://vuejs.org/v2/guide/components.html#Custom-Events)
+- [API](https://v2.vuejs.org/v2/api/#v-on)
+- [Event Handling](https://v2.vuejs.org/v2/guide/events.html)
+- [Event modifiers](https://v2.vuejs.org/v2/guide/events.html#Event-Modifiers)
+- [Components - Custom Events](https://v2.vuejs.org/v2/guide/components.html#Custom-Events)
 
 - Shorthand: `@`
 - Expects: `Function | Inline Statement | Object`
@@ -462,10 +374,10 @@ using the special `$event` variable.
 
 ### v-bind
 
-- [API](https://vuejs.org/v2/api/#v-bind)
-- [Class and Style Bindings](https://vuejs.org/v2/guide/class-and-style.html)
-- [Components - Props](https://vuejs.org/v2/guide/components.html#Props)
-- [Components - .sync Modifier](https://vuejs.org/v2/guide/components.html#sync-Modifier)
+- [API](https://v2.vuejs.org/v2/api/#v-bind)
+- [Class and Style Bindings](https://v2.vuejs.org/v2/guide/class-and-style.html)
+- [Components - Props](https://v2.vuejs.org/v2/guide/components.html#Props)
+- [Components - .sync Modifier](https://v2.vuejs.org/v2/guide/components.html#sync-Modifier)
 
 - Shorthand: `:`
 - Expects: `any (with argument) | Object (without argument)`
@@ -481,10 +393,10 @@ Dynamically bind one or more attributes, or a component prop to an expression.
 
 ### v-model
 
-- [API](https://vuejs.org/v2/api/#v-model)
-- [Form Input Bindings](https://vuejs.org/v2/guide/forms.html)
-- [Modifier](https://vuejs.org/v2/guide/forms.html#Modifiers)
-- [Components - Form Input Components using Custom Events](https://vuejs.org/v2/guide/components.html#Form-Input-Components-using-Custom-Events)
+- [API](https://v2.vuejs.org/v2/api/#v-model)
+- [Form Input Bindings](https://v2.vuejs.org/v2/guide/forms.html)
+- [Modifier](https://v2.vuejs.org/v2/guide/forms.html#Modifiers)
+- [Components - Form Input Components using Custom Events](https://v2.vuejs.org/v2/guide/components.html#Form-Input-Components-using-Custom-Events)
 
 - Limited to:
 
@@ -518,8 +430,8 @@ inside the `data` option of your component.
 
 ### v-slot
 
-- [API](https://vuejs.org/v2/api/#v-slot)
-- [Guide](https://vuejs.org/v2/guide/components-slots.html)
+- [API](https://v2.vuejs.org/v2/api/#v-slot)
+- [Guide](https://v2.vuejs.org/v2/guide/components-slots.html)
 
 - Shorthand: `#`
 - Limited to:
@@ -530,13 +442,13 @@ Denote named slots or slots that expect to receive props.
 
 ### v-pre
 
-- [API](https://vuejs.org/v2/api/#v-pre)
+- [API](https://v2.vuejs.org/v2/api/#v-pre)
 
 Skip compilation for this element and all its children. You can use this for displaying raw mustache tags.
 
 ### v-cloak
 
-- [API](https://vuejs.org/v2/api/#v-cloak)
+- [API](https://v2.vuejs.org/v2/api/#v-cloak)
 
 This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS
 rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the
@@ -544,8 +456,8 @@ Vue instance is ready.
 
 ### v-once
 
-- [API](https://vuejs.org/v2/api/#v-once)
-- [Guide](https://vuejs.org/v2/guide/components.html#Cheap-Static-Components-with-v-once)
+- [API](https://v2.vuejs.org/v2/api/#v-once)
+- [Guide](https://v2.vuejs.org/v2/guide/components.html#Cheap-Static-Components-with-v-once)
 
 Render the element and component once only. On subsequent re-renders, the element/component and all its children will be
 treated as static content and skipped. This can be used to optimize update performance.
@@ -554,8 +466,8 @@ treated as static content and skipped. This can be used to optimize update perfo
 
 ### key
 
-- [API](https://vuejs.org/v2/api/#key)
-- [key](https://vuejs.org/v2/guide/list.html#key)
+- [API](https://v2.vuejs.org/v2/api/#key)
+- [key](https://v2.vuejs.org/v2/guide/list.html#key)
 
 - Expects: `number | string | boolean (since 2.4.2) | symbol (since 2.5.12)`
 
@@ -566,8 +478,8 @@ Children of the same common parent must have unique keys. Duplicate keys will ca
 
 ### ref
 
-- [API](https://vuejs.org/v2/api/#ref)
-- [Guide](https://vuejs.org/v2/guide/components.html#Child-Component-Refs)
+- [API](https://v2.vuejs.org/v2/api/#ref)
+- [Guide](https://v2.vuejs.org/v2/guide/components.html#Child-Component-Refs)
 
 `ref` is used to register a reference to an element or a child component. The reference will be registered under the
 parent component's `$refs` object.
@@ -577,9 +489,9 @@ component instance.
 
 ### is
 
-- [API](https://vuejs.org/v2/api/#is)
-- [Dynamic Components](https://vuejs.org/v2/guide/components.html#Dynamic-Components)
-- [DOM Template Parsing Caveats](https://vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats)
+- [API](https://v2.vuejs.org/v2/api/#is)
+- [Dynamic Components](https://v2.vuejs.org/v2/guide/components.html#Dynamic-Components)
+- [DOM Template Parsing Caveats](https://v2.vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats)
 
 Used for dynamic components and to work around limitations of in-DOM templates.
 
@@ -587,8 +499,8 @@ Used for dynamic components and to work around limitations of in-DOM templates.
 
 ### component
 
-- [API](https://vuejs.org/v2/api/#component)
-- [Guide](https://vuejs.org/v2/guide/components.html#Dynamic-Components)
+- [API](https://v2.vuejs.org/v2/api/#component)
+- [Guide](https://v2.vuejs.org/v2/guide/components.html#Dynamic-Components)
 
 Props:
 
@@ -599,8 +511,8 @@ A _meta component_ for rendering dynamic components. The actual component to ren
 
 ### transition
 
-- [API](https://vuejs.org/v2/api/#transition)
-- [Guide](https://vuejs.org/v2/guide/transitions.html)
+- [API](https://v2.vuejs.org/v2/api/#transition)
+- [Guide](https://v2.vuejs.org/v2/guide/transitions.html)
 
 `<transition>` serve as transition effects for _single_ element/component. The `<transition>` only applies the
 transition behavior to the wrapped content inside; it doesn’t render an extra DOM element, or show up in the inspected
@@ -608,8 +520,8 @@ component hierarchy.
 
 ### transition-group
 
-- [API](https://vuejs.org/v2/api/#transition-group)
-- [Guide](https://vuejs.org/v2/guide/transitions.html)
+- [API](https://v2.vuejs.org/v2/api/#transition-group)
+- [Guide](https://v2.vuejs.org/v2/guide/transitions.html)
 
 `<transition-group>` serve as transition effects for _multiple_ elements/components. The `<transition-group>` renders a
 real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the tag
@@ -617,9 +529,9 @@ attribute.
 
 ### keep-alive
 
-- [API](https://vuejs.org/v2/api/#keep-alive)
-- [Guide](https://vuejs.org/v2/guide/components.html#keep-alive)
-- [keep-alive with Dynamic Components](https://vuejs.org/v2/guide/components-dynamic-async.html#keep-alive-with-Dynamic-Components)
+- [API](https://v2.vuejs.org/v2/api/#keep-alive)
+- [Guide](https://v2.vuejs.org/v2/guide/components.html#keep-alive)
+- [keep-alive with Dynamic Components](https://v2.vuejs.org/v2/guide/components-dynamic-async.html#keep-alive-with-Dynamic-Components)
 
 Props:
 
@@ -645,7 +557,7 @@ a component, or through local/global registration.
 
 ### slot
 
-- [API](https://vuejs.org/v2/api/#slot)
-- [Guide](https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots)
+- [API](https://v2.vuejs.org/v2/api/#slot)
+- [Guide](https://v2.vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots)
 
 `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
