@@ -44,13 +44,10 @@ A list/hash of attributes that are exposed to accept data from the parent compon
 - [Guide](https://v2.vuejs.org/v2/guide/computed.html)
 - [Computed setter](https://v2.vuejs.org/v2/guide/computed.html#Computed-Setter)
 
-- Type: `{ [key: string]: Function | { get: Function, set: Function } }`
-
 Computed properties are cached based on their reactive dependencies, and only re-computed on reactive dependency
 changes.
 
-- watch: Watchers.
-- methods: Methods.
+Computed properties are by default getter-only, but you can also provide a setter when you need it.
 
 ### methods
 
@@ -67,9 +64,7 @@ Methods to be mixed into the Vue instance. You can access these methods directly
 
 Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value.
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's
-why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you
-want to perform asynchronous or expensive operations in response to changing data.
+This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
 
 ## Lifecycle hook
 
@@ -78,6 +73,40 @@ want to perform asynchronous or expensive operations in response to changing dat
 
 Note that `updated` does not guarantee that all child components have also been re-rendered. If you want to wait until
 the entire view has been re-rendered, you can use `vm.$nextTick` inside of updated.
+
+## Directives
+
+- [Guide](https://v2.vuejs.org/v2/guide/syntax.html#Directives)
+
+Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be a single JavaScript expression.
+A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes.
+
+Template expressions are sandboxed and only have access to a [whitelist](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) of globals 
+
+### Dynamic Arguments
+
+- [Guide](https://v2.vuejs.org/v2/guide/syntax.html#Dynamic-Arguments)
+
+```html
+<a v-bind:[attributeName]="url"> ... </a>
+```
+
+Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. 
+
+Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding.
+
+## Conditional rendering
+
+- [Guide](https://v2.vuejs.org/v2/guide/conditional.html)
+- [Controlling Reusable Elements with key](https://v2.vuejs.org/v2/guide/conditional.html#Controlling-Reusable-Elements-with-key)
+- [v-if vs v-show](https://v2.vuejs.org/v2/guide/conditional.html#v-if-vs-v-show)
+
+- `v-if`
+- `v-else`
+- `v-else-if`
+- `v-show`
+
+Using v-if and v-for together is not recommended.
 
 ## Filters
 
