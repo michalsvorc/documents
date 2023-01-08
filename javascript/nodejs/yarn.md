@@ -11,6 +11,7 @@
 - [Contrib plugins](https://yarnpkg.com/features/plugins#contrib-plugins)
 
 Recommended plugins:
+
 - interactive-tools: interactive upgrade
 - typescript: improves the TypeScript experience
 

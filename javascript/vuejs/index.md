@@ -13,7 +13,7 @@ Resources:
 
 - Declarative Rendering: Vue extends standard HTML with a template syntax that allows us to declaratively describe HTML output based on JavaScript state.
 - Reactivity: Vue automatically tracks JavaScript state changes and efficiently updates the DOM when changes happen.
-- Single-File Component: `*.vue` file, encapsulates the component's logic (JavaScript), template (HTML), and styles (CSS) in a single file. 
+- Single-File Component: `*.vue` file, encapsulates the component's logic (JavaScript), template (HTML), and styles (CSS) in a single file.
 
 ## API Styles
 
@@ -50,7 +50,7 @@ Vue provides special enhancements when `v-bind` is used with `class` and `style`
 
 When you use a CSS property that requires a vendor prefix in `:style`, Vue will automatically add the appropriate prefix.
 
-### Binding HTML Classes 
+### Binding HTML Classes
 
 Object Syntax:
 
@@ -88,7 +88,7 @@ Array Syntax:
 
 Using `v-if` and `v-for` together is [not recommended](https://vuejs.org/style-guide/rules-essential.html#avoid-v-if-with-v-for).
 
-If we want to toggle more than one element, we can use `v-if` on a ```<template>```:
+If we want to toggle more than one element, we can use `v-if` on a `<template>`:
 
 ```html
 <template v-if="ok">
@@ -100,9 +100,9 @@ If we want to toggle more than one element, we can use `v-if` on a ```<template>
 
 `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the display CSS property of the element.
 
-`v-show` doesn't support the ```<template>``` element, nor does it work with `v-else`.
+`v-show` doesn't support the `<template>` element, nor does it work with `v-else`.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. 
+Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs.
 
 ## List Rendering
 
@@ -126,7 +126,7 @@ whenever possible:
 - [Guide](https://vuejs.org/guide/essentials/event-handling.html)
 - [Key aliases](https://vuejs.org/guide/essentials/event-handling.html#key-modifiers)
 
-We can use the `v-on` directive, which we typically shorten to the `@` symbol, to listen to DOM events. 
+We can use the `v-on` directive, which we typically shorten to the `@` symbol, to listen to DOM events.
 You can directly use any valid key names exposed via `KeyboardEvent.key` as modifiers by converting them to kebab-case.
 
 ## Form Input Bindings
@@ -135,5 +135,3 @@ You can directly use any valid key names exposed via `KeyboardEvent.key` as modi
 - [Modifiers](https://vuejs.org/guide/essentials/forms.html#modifiers)
 
 You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements.
-
-

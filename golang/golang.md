@@ -46,7 +46,7 @@ Libraries:
 - [bool](https://www.golang-book.com/books/intro/3#section3)
 - [string](https://go101.org/article/string.html)
 - [numbers](https://go101.org/article/basic-types-and-value-literals.html):
-  int  int8  int16  int32  int64
+  int int8 int16 int32 int64
   uint uint8 uint16 uint32 uint64 uintptr
   float32 float64
   complex64 complex128
@@ -104,12 +104,14 @@ standard library's documentation.
 ### Parameter passing
 
 By value:
+
 - numbers
 - bool
 - arrays
 - structs
 
 By reference:
+
 - anything passed by pointer (`&x`)
 - strings (they are immutable)
 - slices
@@ -159,6 +161,7 @@ constants as global constants.
 The declaration orders of two package-level constants are not important.
 
 Go initializes all variables to "zero" value of their type, there are no "unitialized" variables. The zero value is:
+
 - 0 for numeric types,
 - false for the boolean type, and
 - "" (the empty string) for strings.
@@ -220,6 +223,7 @@ const (
 Go has only one looping construct, the `for` loop.
 
 The basic `for` loop has three components separated by semicolons:
+
 - the init statement: executed before the first iteration
 - the condition expression: evaluated before every iteration
 - the post statement: executed at the end of every iteration

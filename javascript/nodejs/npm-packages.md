@@ -40,4 +40,3 @@ installed as a dependency.
 
 You can indicate the structure of your package using a directories object. If you specify a `bin` directory, all the
 files in that folder will be added as executable from CLI.
-
