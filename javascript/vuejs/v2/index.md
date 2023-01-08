@@ -11,7 +11,7 @@ Resources:
 
 ## Custom elements
 
-Vue’s component syntax is loosely modeled after the Custom Elements, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). 
+Vue’s component syntax is loosely modeled after the Custom Elements, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/).
 Although Vue doesn’t use custom elements internally, it has great interoperability when it comes to consuming or distributing as custom elements.
 
 ## Vue application
@@ -19,7 +19,7 @@ Although Vue doesn’t use custom elements internally, it has great interoperabi
 A Vue application consists of a root Vue instance created with `new Vue`, optionally organized into a tree of nested, reusable components.
 All Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
 
-## Component options 
+## Component options
 
 - [API](https://v2.vuejs.org/v2/api/#Options-Data)
 
@@ -81,7 +81,7 @@ the entire view has been re-rendered, you can use `vm.$nextTick` inside of updat
 Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be a single JavaScript expression.
 A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes.
 
-Template expressions are sandboxed and only have access to a [whitelist](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) of globals 
+Template expressions are sandboxed and only have access to a [whitelist](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) of globals.
 
 ### Dynamic Arguments
 
@@ -91,7 +91,7 @@ Template expressions are sandboxed and only have access to a [whitelist](https:/
 <a v-bind:[attributeName]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. 
+Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument.
 
 Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding.
 
@@ -106,12 +106,40 @@ Dynamic arguments are expected to evaluate to a string, with the exception of `n
 - `v-else-if`
 - `v-show`
 
-Using v-if and v-for together is not recommended.
+## List rendering
+
+- [Guide](https://v2.vuejs.org/v2/guide/list.html)
+- [Mutation methods](https://v2.vuejs.org/v2/guide/list.html#Mutation-Methods)
+- [API: key](https://v2.vuejs.org/v2/api/#key)
+- [v-for with v-if](https://v2.vuejs.org/v2/guide/list.html#v-for-with-v-if)
+- [DOM Template Parsing Caveats](https://v2.vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats)
+
+You can also use `of` as the delimiter instead of in, so that it is closer to JavaScript’s syntax for iterators.
+When iterating over an object, the order is based on the enumeration order of `Object.keys()`, which is not guaranteed to be consistent across JavaScript engine implementations.
+Don’t use non-primitive values like objects and arrays as `v-for` keys.
+
+### Additional arguments
+
+Arrays:
+
+```html
+<li v-for="(item, index) in items">
+```
+
+Object:
+
+```html
+<li v-for="(item, index) in items">
+```
+
+### v-for with a Range
+
+```html
+<span v-for="n in 10">{{ n }}</span>
+```
 
 ## Filters
 
 - [Guide](https://v2.vuejs.org/v2/guide/filters.html)
 
-```js
-{{ message | capitalize }}
-```
+`{{ message | capitalize }}`
