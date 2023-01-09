@@ -112,6 +112,7 @@ Dynamic arguments are expected to evaluate to a string, with the exception of `n
 - [Mutation methods](https://v2.vuejs.org/v2/guide/list.html#Mutation-Methods)
 - [API: key](https://v2.vuejs.org/v2/api/#key)
 - [v-for with v-if](https://v2.vuejs.org/v2/guide/list.html#v-for-with-v-if)
+- [v-for with a Component](https://v2.vuejs.org/v2/guide/list.html#v-for-with-a-Component)
 - [DOM Template Parsing Caveats](https://v2.vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats)
 
 You can also use `of` as the delimiter instead of in, so that it is closer to JavaScript’s syntax for iterators.
@@ -123,13 +124,13 @@ Don’t use non-primitive values like objects and arrays as `v-for` keys.
 Arrays:
 
 ```html
-<li v-for="(item, index) in items">
+<li v-for="(item, index) in items"></li>
 ```
 
 Object:
 
 ```html
-<li v-for="(item, index) in items">
+<li v-for="(item, index) in items"></li>
 ```
 
 ### v-for with a Range
@@ -143,3 +144,28 @@ Object:
 - [Guide](https://v2.vuejs.org/v2/guide/filters.html)
 
 `{{ message | capitalize }}`
+
+## Events
+
+- [Guide](https://v2.vuejs.org/v2/guide/events.html)
+- [Event modifiers](https://v2.vuejs.org/v2/guide/events.html#Event-Modifiers)
+- [Custom events](https://v2.vuejs.org/v2/guide/components-custom-events.html)
+- [Key modifiers](https://v2.vuejs.org/v2/guide/events.html#Key-Modifiers)
+
+You can pass the original DOM event into a method using the special `$event` variable.
+
+## Forms
+
+- [Guide](https://v2.vuejs.org/v2/guide/forms.html)
+- [Modifiers](https://v2.vuejs.org/v2/guide/forms.html#Modifiers)
+- [Using v model on Components](https://v2.vuejs.org/v2/guide/components.html#Using-v-model-on-Components)
+
+You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements.
+
+### Customizing Component v-model
+
+- [Guide](https://v2.vuejs.org/v2/guide/components-custom-events.html#Customizing-Component-v-model)
+
+By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as
+checkboxes and radio buttons may want to use the `value` attribute for a different purpose. Using the `model` option can
+avoid a conflict in such cases.
