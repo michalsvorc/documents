@@ -49,9 +49,6 @@ Make an object reactive. Internally, Vue uses this on the object returned by the
 The returned object can be used directly inside render functions and computed properties, and will trigger appropriate
 updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios.
 
-
-
-
 ## Options: DOM
 
 - [el](https://v2.vuejs.org/v2/api/#el)
@@ -74,7 +71,6 @@ updates when mutated. It can also be used as a minimal, cross-component state st
 - [beforeDestroy](https://v2.vuejs.org/v2/api/#beforeDestroy)
 - [destroyed](https://v2.vuejs.org/v2/api/#destroyed)
 - [errorCaptured](https://v2.vuejs.org/v2/api/#errorCaptured)
-
 
 ## Options: Assets
 
