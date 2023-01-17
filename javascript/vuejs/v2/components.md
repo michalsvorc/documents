@@ -6,6 +6,8 @@
 
 Components are reusable Vue instances with a name. Each time you use a component, a new instance of it is created.
 
+Components have isolated scopes of their own.
+
 ## Component registration
 
 - [Guide](https://v2.vuejs.org/v2/guide/components-registration.html)
@@ -115,3 +117,14 @@ and `slot-scope` attributes, which are now deprecated, but have not been removed
 
 Vue implements a content distribution API inspired by the Web Components spec draft, using the `<slot>` element to serve
 as distribution outlets for content.
+
+## .sync modifier
+
+- [Guide](https://v2.vuejs.org/v2/guide/components-custom-events.html#sync-Modifier)
+- [Codepen](https://codepen.io/mahendranKannan/pen/VxXzJB?editors=1010)
+
+In some cases, we may need “two-way binding” for a prop. We recommend emitting events in the pattern of `update:myPropName`.
+
+For convenience, we offer a shorthand for this pattern with the `.sync` modifier.
+
+The `.sync` modifier can also be used with v-bind when using an object to set multiple props at once.
