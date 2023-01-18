@@ -2,15 +2,29 @@
 
 ## Reddit
 
-- [r/technology](https://www.reddit.com/r/technology/)
-- [r/science](https://www.reddit.com/r/science/)
-- [r/todayilearned](https://www.reddit.com/r/todayilearned/)
-- [r/neovim](https://www.reddit.com/r/neovim/top/?t=month)
-- [r/nestjs_framework](https://www.reddit.com/r/Nestjs_framework/)
-- [r/rust](https://www.reddit.com/r/rust/)
-- [r/golang](https://www.reddit.com/r/golang/hot/)
+### Programming
+
+- [r/programming](https://www.reddit.com/r/programming/hot/)
+- [r/aws](https://www.reddit.com/r/aws/hot/)
+
+### Linux/CLI
+
 - [r/linux](https://www.reddit.com/r/linux/hot/)
+- [r/commandline](https://www.reddit.com/r/commandline/hot/)
+- [r/neovim](https://www.reddit.com/r/neovim/hot/)
+
+### Languges
+
 - [r/javascript](https://www.reddit.com/r/javascript/hot/)
+- [r/typescript](https://www.reddit.com/r/typescript/hot/)
+- [r/Python](https://www.reddit.com/r/Python/hot/)
+- [r/golang](https://www.reddit.com/r/golang/hot/)
+
+### Other
+
+- [r/technology](https://www.reddit.com/r/technology/hot/)
+- [r/science](https://www.reddit.com/r/science/hot/)
+- [r/todayilearned](https://www.reddit.com/r/todayilearned/hot/)
 
 ## Blogs
 
