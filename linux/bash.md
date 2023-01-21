@@ -1,5 +1,6 @@
 # Bash
 
+- [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)
 - [Bash best practices | cheat-sheets](https://bertvv.github.io/cheat-sheets/Bash.html)
 - [How to Compare Strings in Bash](https://linuxize.com/post/how-to-compare-strings-in-bash/)
 - [getopts](http://mywiki.wooledge.org/BashFAQ/035#getopts)
