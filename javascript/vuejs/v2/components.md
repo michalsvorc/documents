@@ -1,6 +1,7 @@
 # Vue.js v2 Components
 
-- [Components basics](https://v2.vuejs.org/v2/guide/components.html)
+- [Components Basics](https://v2.vuejs.org/v2/guide/components.html)
+- [Components Registration](https://v2.vuejs.org/v2/guide/components-registration.html)
 - [v-for with a Component](https://v2.vuejs.org/v2/guide/list.html#v-for-with-a-Component)
 - [Handling Edge Cases](https://v2.vuejs.org/v2/guide/components-edge-cases.html)
 
@@ -11,50 +12,10 @@ Components have isolated scopes of their own.
 ## Component registration
 
 - [Guide](https://v2.vuejs.org/v2/guide/components-registration.html)
+- [Global registration](https://v2.vuejs.org/v2/guide/components-registration.html#Global-Registration)
+- [Local registration](https://v2.vuejs.org/v2/guide/components-registration.html#Local-Registration)
+- [Module systems](https://v2.vuejs.org/v2/guide/components-registration.html#Module-Systems)
 
-There are two types of component registration: global and local.
-
-### Global registration
-
-- [Guide](https://v2.vuejs.org/v2/guide/components-registration.html#Global-Registration)
-
-```js
-Vue.component("my-component-name", {
-  // ... options ...
-});
-```
-
-These components are globally registered. That means they can be used in the template of any root Vue instance (new Vue)
-created after registration. This even applies to all subcomponents, meaning all three of these components will also be
-available inside each other.
-
-### Local registration
-
-- [Guide](https://v2.vuejs.org/v2/guide/components-registration.html#Local-Registration)
-
-Global registration often isn’t ideal. For example, if you’re using a build system like Webpack, globally registering
-all components means that even if you stop using a component, it could still be included in your final build.
-
-Note that locally registered components are not also available in subcomponents.
-
-You can define your components as plain JavaScript objects, then define the components you’d like to use in a
-`components` option.
-
-```js
-new Vue({
-  el: "#app",
-  components: {
-    "component-a": ComponentA,
-    "component-b": ComponentB,
-  },
-});
-```
-
-### Module Systems
-
-- [Guide](https://v2.vuejs.org/v2/guide/components-registration.html#Module-Systems)
-
-For local registration, you’ll need to import each component you’d like to use, before you locally register it.
 
 ## Child to Parent communication
 
