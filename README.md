@@ -76,3 +76,7 @@
 
 - [Through The Web](https://www.youtube.com/@ThroughTheWeb/videos)
 - [Sean Carroll](https://www.youtube.com/@seancarroll/videos)
+
+## Read
+
+- [refactoring.guru](https://refactoring.guru/)
