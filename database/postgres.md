@@ -16,6 +16,9 @@ rows within the table in any way (although they can be explicitly sorted for dis
 Tables are grouped into databases, and a collection of databases managed by a single PostgreSQL server instance
 constitutes a database cluster.
 
+The result of a value expression is sometimes called a scalar, to distinguish it from the result of a table expression (which is a table).
+Value expressions are therefore also called scalar expressions (or even simply expressions).
+
 ## Data types
 
 - [Documentation](https://www.postgresql.org/docs/current/datatype.html)
