@@ -5,6 +5,8 @@
 - [Packages](https://pkg.go.dev/)
 - [Release notes](https://go.dev/doc/devel/release)
 - [The Go Playground](https://play.golang.com/)
+- [CheatSheet](https://quickref.me/golang)
+- [Google Style Guide](https://google.github.io/styleguide/go/index.html)
 
 Tutorials:
 
@@ -12,6 +14,7 @@ Tutorials:
 - [Go by Example](https://gobyexample.com/)
 - [Go Tutorial](https://www.tutorialspoint.com/go/index.htm)
 - [Matt KODVB Go class (Video)](https://www.youtube.com/playlist?list=PLoILbKo9rG3skRCj37Kn5Zj803hhiuRK6)
+- [Building 11 Projects (Video)](https://www.youtube.com/watch?v=jFfo23yIWac)
 
 Resources:
 
