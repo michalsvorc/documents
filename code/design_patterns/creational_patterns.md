@@ -2,6 +2,8 @@
 
 ## Factory method
 
+---
+
 - [Wikipedia](https://en.wikipedia.org/wiki/Factory_method_pattern)
 - [Refactoring Guru](https://refactoring.guru/design-patterns/factory-method)
 
@@ -27,8 +29,10 @@ In class-based programming, the factory method pattern is a creational pattern t
 
 ## Builder
 
+---
+
 - [Wikipedia](https://en.wikipedia.org/wiki/Builder_pattern)
-- [Refactoring Guru](https://refactoring.guru/design-patterns/builderhttps://refactoring.guru/design-patterns/builder)
+- [Refactoring Guru](https://refactoring.guru/design-patterns/builder)
 
 The intent of the Builder design pattern is to separate the construction of a complex object from its representation. The pattern allows you to produce different types and representations of an object using the same construction code. The Builder pattern lets you build objects step by step, using only those steps that you really need.
 
@@ -47,3 +51,5 @@ The director class defines the order in which to execute the building steps, whi
 ### Applicability
 
 The Builder pattern can be applied when construction of various representations of the product involves similar steps that differ only in the details.
+
+
