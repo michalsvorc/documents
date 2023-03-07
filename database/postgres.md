@@ -121,6 +121,26 @@ The following SQL-compatible functions can also be used to obtain the current ti
 
 We mainly use `interval` values for date and time arithmetic: `'2020-01-01' + INTERVAL 1 DAY`
 
+### Boolean
+
+- [Documentation](https://www.postgresql.org/docs/current/datatype-boolean.html)
+
+The boolean type can have several states: "true", "false", and a third state, "unknown", which is represented by the SQL `null` value.
+
+True state:
+- true
+- yes
+- on
+- 1
+
+False state: 
+- false
+- no
+- off
+- 0
+
+The key words `TRUE` and `FALSE` are the preferred (SQL-compliant) method for writing Boolean constants in SQL queries.
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
