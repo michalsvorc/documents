@@ -48,7 +48,7 @@ It is especially recommended for storing monetary amounts and other quantities w
 The data types real and double precision are inexact, variable-precision numeric types.
 
 When rounding values, the numeric type rounds ties away from zero, while (on most machines) the real and double
-precision types round ties to the nearest even number.
+precision types round ties to the nearest even number. Floating point numbers should not be used to handle money due to the potential for rounding errors.
 
 **Serial types**:
 
@@ -56,6 +56,15 @@ The data types smallserial, serial and bigserial are not true types, but merely 
 unique identifier columns (similar to the `AUTO_INCREMENT` property supported by some other databases).
 
 Because smallserial, serial and bigserial are implemented using sequences, there may be "holes" or gaps in the sequence of values which appears in the column, even if no rows are ever deleted. A value allocated from the sequence is still "used up" even if a row containing that value is never successfully inserted into the table column. This may happen, for example, if the inserting transaction rolls back.
+
+### Monetary types
+
+- [Documentation](https://www.postgresql.org/docs/15/datatype-money.html)
+
+The money type stores a currency amount with a fixed fractional precision. The fractional precision is determined by the database's `lc_monetary` setting. 
+Since the output of this data type is locale-sensitive, it might not work to load money data into a database that has a different setting of `lc_monetary`.
+
+A `money` value can be cast to `numeric` without loss of precision. 
 
 ## Views
 
