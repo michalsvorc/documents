@@ -66,6 +66,36 @@ Since the output of this data type is locale-sensitive, it might not work to loa
 
 A `money` value can be cast to `numeric` without loss of precision. 
 
+### Character types
+
+- [Documentation](https://www.postgresql.org/docs/15/datatype-character.html)
+
+SQL defines two primary character types: `character varying(n)` and `character(n)`, where `n` is a positive integer. Both of these types can store strings up to `n` *characters* (not bytes) in length.
+
+The characters that can be stored in any of these data types are determined by the database *character set*, which is selected when the database is created. 
+
+When the excess characters are all spaces, the string will be truncated to the maximum length. (This somewhat bizarre exception is required by the SQL standard.)
+
+If one explicitly casts a value to `character varying(n)` or `character(n)`, then an over-length value will be truncated to n characters without raising an error. (This too is required by the SQL standard.)
+
+Character without length specifier is equivalent to `character(1)`. If character varying is used without length specifier, the type accepts strings of *any size*. 
+
+In addition, PostgreSQL provides the `text` type, which stores strings of any length. (Not in the SQL standard.)
+
+**Performance**:
+
+There is no performance difference among these three types, apart from increased storage space when using the blank-padded type, and a few extra CPU cycles to check the length when storing into a length-constrained column. 
+
+While `character(n)` has performance advantages in some other database systems, there is no such advantage in PostgreSQL; in fact `character(n)` is usually *the slowest of the three* because of its additional storage costs. In most situations `text` or `character varying` should be used instead.
+
+**Trailing spaces**:
+
+Values of type `character` are physically padded with spaces to the specified width `n`, and are stored and displayed that way. However, trailing spaces are treated as semantically insignificant and disregarded when comparing two values of type `character`. 
+
+Note that trailing spaces are semantically significant in character varying and text values, and when using pattern matching, that is `LIKE` and regular expressions.
+
+Trailing spaces are removed when converting a `character` value to one of the other string types.
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
