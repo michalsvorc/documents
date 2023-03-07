@@ -96,6 +96,31 @@ Note that trailing spaces are semantically significant in character varying and 
 
 Trailing spaces are removed when converting a `character` value to one of the other string types.
 
+### Date/Time
+
+- [Documentation](https://www.postgresql.org/docs/current/datatype-datetime.html)
+
+- timestamp (with and without timezone)
+- time (with and without timezone)
+- date
+- interval
+
+The SQL standard requires that writing just `timestamp` be equivalent to `timestamp` *without time zone*, and PostgreSQL honors that behavior. `timestamptz` is accepted as an abbreviation for `timestamp` *with time zone*; this is a PostgreSQL extension.
+
+`time`, `timestamp`, and `interval` accept an optional precision value `p` which specifies the number of fractional digits retained in the seconds field. By default, there is no explicit bound on precision.
+
+The allowed range of `p` is *from 0 to 6*. If no precision is specified in a constant specification, it defaults to the precision of the literal value (but not more than 6 digits).
+
+Valid ISO 8601 examples:
+
+- `date`: '1999-01-08' (recommended format)
+- `time`: '04:05:06'
+- `timestamp`: '1999-01-08 04:05:06'
+
+The following SQL-compatible functions can also be used to obtain the current time value for the corresponding data type: `CURRENT_DATE`, `CURRENT_TIME`, `CURRENT_TIMESTAMP`, `LOCALTIME`, `LOCALTIMESTAMP`.
+
+We mainly use `interval` values for date and time arithmetic: `'2020-01-01' + INTERVAL 1 DAY`
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
