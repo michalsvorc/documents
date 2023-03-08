@@ -25,8 +25,6 @@ Additional package.json fields:
 - [repository](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#repository)
 - [keywords](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#keywords)
 
-Preview what will be published with `npm publish --dry-run`.
-
 Changelog is documented in repository releases.
 
 ### Including files
@@ -40,3 +38,19 @@ installed as a dependency.
 
 You can indicate the structure of your package using a directories object. If you specify a `bin` directory, all the
 files in that folder will be added as executable from CLI.
+
+### Test locally
+
+Preview what will be published: 
+
+```shell
+npm publish --dry-run
+```
+
+Link local package directory as package in npm_modules:
+
+- [Avoid npm link](https://hirok.io/posts/avoid-npm-link)
+
+```shell
+npx link <path to package>
+```
