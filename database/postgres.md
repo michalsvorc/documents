@@ -203,6 +203,29 @@ if the same windowing behavior is wanted for several functions. Instead, each wi
 
 Inheritance is a concept from object-oriented databases. In PostgreSQL, a table can inherit from zero or more other tables.
 
+Although inheritance is frequently useful, it has not been integrated with unique constraints or foreign keys, which limits its usefulness.
+
+```sql
+CREATE TABLE cities(
+  name       text,
+  population real,
+  elevation  int
+)
+
+
+CREATE TABLE capitals (
+  state      char(2) UNIQUE NOT NULL
+) INHERITS (cities);
+```
+
+In this case, a row of `capitals` *inherits* all columns (name, population, and elevation) from its *parent*, `cities`.
+
+### ONLY notation
+
+The `ONLY` indicates that the query should be run over only the parent table, and not tables below parent in the inheritance hierarchy.
+
+Many of the commands like `SELECT`, `UPDATE`, and `DELETE` support this `ONLY` notation.
+
 ## WHERE and HAVING clauses
 
 The fundamental difference between `WHERE` and `HAVING` is this: `WHERE` selects input rows before groups and aggregates are
