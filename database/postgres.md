@@ -183,6 +183,20 @@ would. Instead, the rows retain their separate identities.
 
 Behind the scenes, the window function is able to access more than just the current row of the query result.
 
+```sql
+SELECT depname, empno, salary, avg(salary) OVER (PARTITION BY depname) FROM empsalary;
+```
+
+A window function call always contains an `OVER` clause directly following the window function's name and argument(s).
+This is what syntactically distinguishes it from a normal function or non-window aggregate.
+
+The `OVER` clause determines exactly how the rows of the query are split up for processing by the window function.
+The `PARTITION BY` clause within `OVER` divides the rows into groups, or partitions, that share the same values of the `PARTITION BY` expression(s).
+For each row, the window function is computed across the rows that fall into the same partition as the current row.
+
+When a query involves multiple window functions, it is possible to write out each one with a separate `OVER` clause, but this is duplicative and error-prone
+if the same windowing behavior is wanted for several functions. Instead, each windowing behavior can be named in a `WINDOW` clause and then referenced in `OVER`. 
+
 ## Inheritance
 
 - [Tutorial](https://www.postgresql.org/docs/current/tutorial-inheritance.html)
