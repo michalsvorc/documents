@@ -226,8 +226,34 @@ The `ONLY` indicates that the query should be run over only the parent table, an
 
 Many of the commands like `SELECT`, `UPDATE`, and `DELETE` support this `ONLY` notation.
 
-## WHERE and HAVING clauses
+## Aggregations
+
+- [Tutorial](https://www.postgresql.org/docs/current/tutorial-agg.html)
+
+### HAVING
 
 The fundamental difference between `WHERE` and `HAVING` is this: `WHERE` selects input rows before groups and aggregates are
 computed (thus, it controls which rows go into the aggregate computation), whereas `HAVING` selects group rows after
 groups and aggregates are computed. Thus, the `WHERE` clause must not contain aggregate functions.
+
+```sql
+SELECT city, count(*), max(temp_lo)
+    FROM weather
+    GROUP BY city
+    HAVING max(temp_lo) < 40;
+```
+
+### FILTER
+
+Another way to select the rows that go into an aggregate computation is to use `FILTER`, which is a per-aggregate option.
+
+`FILTER` is much like `WHERE`, except that it removes rows only from the input of the particular aggregate function that it is attached to. 
+
+Here, the count aggregate counts only rows with `temp_lo` below *45*; but the `max` aggregate is still applied to all rows, so it still finds the reading higher than *45*.
+
+```sql
+SELECT city, count(*) FILTER (WHERE temp_lo < 45), max(temp_lo)
+    FROM weather
+    GROUP BY city;
+```
+
