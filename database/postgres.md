@@ -149,6 +149,20 @@ The ordering of the values in an enum type is the order in which the values were
 Each enumerated data type is separate and cannot be compared with other enumerated types.
 Enum labels are case sensitive, white space in the labels is significant too.
 
+### Geometric types
+
+- [Documentation](https://www.postgresql.org/docs/current/datatype-geometric.html)
+
+Geometric data types represent two-dimensional spatial objects.
+
+- Points
+- Lines
+- Line Segments
+- Boxes
+- Paths
+- Polygons
+- Circles
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
