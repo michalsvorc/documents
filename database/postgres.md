@@ -163,6 +163,20 @@ Geometric data types represent two-dimensional spatial objects.
 - Polygons
 - Circles
 
+### Network address types
+
+- [Documentation](https://www.postgresql.org/docs/current/datatype-net-types.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-net.html)
+
+It is better to use these types instead of plain text types to store network addresses, because these types offer
+input error checking and specialized operators and functions.
+
+- inet
+- cidr
+- inet vs. cidr
+- macaddr
+- macaddr8
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
