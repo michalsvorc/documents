@@ -177,6 +177,41 @@ input error checking and specialized operators and functions.
 - macaddr
 - macaddr8
 
+### JSON types
+
+- [Documentation](https://www.postgresql.org/docs/current/datatype-json.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-json.html)
+- [Type mapping table](https://www.postgresql.org/docs/current/datatype-json.html#JSON-TYPE-MAPPING-TABLE)
+
+The JSON data types have the advantage of enforcing that each stored value is valid according to the JSON rules.
+
+- json
+- jsonb
+- jsonpath
+
+The `json` and `jsonb` data types accept almost identical sets of values as input. The major practical difference is one of efficiency.
+In general, most applications should prefer to store JSON data as `jsonb`, unless there are quite specialized needs, such as legacy assumptions about ordering of object keys.
+`jsonb` will reject numbers that are outside the range of the PostgreSQL `numeric` data type, while `json` will not.
+In `jsonb`, numbers will be printed according to the behavior of the underlying `numeric` type.
+
+#### json
+
+The `json` data type stores an exact copy of the input text, which processing functions must reparse on each execution.
+It will preserve semantically-insignificant white space between tokens, as well as the order of keys within JSON objects. 
+If a JSON object within the value contains the same key more than once, all the key/value pairs are kept.
+
+#### jsonb
+
+- [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html#JSON-CONTAINMENT)
+
+`jsonb` data is stored in a decomposed binary format that makes it slightly slower to input due to added conversion overhead, but significantly faster to process.
+`jsonb` also supports indexing.
+`jsonb` does not preserve white space, does not preserve the order of object keys, and does not keep duplicate object keys. If duplicate keys are specified in the input, only the last value is kept.
+
+Testing *containment* is an important capability of `jsonb`. There is no parallel set of facilities for the `json` type.
+`jsonb` also has an *existence* operator, which is a variation on the theme of containment. JSON objects are better suited 
+than arrays for testing containment or existence when there are many keys or elements involved, because unlike arrays they are internally optimized for searching, and do not need to be searched linearly.
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
