@@ -212,6 +212,13 @@ Testing *containment* is an important capability of `jsonb`. There is no paralle
 `jsonb` also has an *existence* operator, which is a variation on the theme of containment. JSON objects are better suited 
 than arrays for testing containment or existence when there are many keys or elements involved, because unlike arrays they are internally optimized for searching, and do not need to be searched linearly.
 
+### Other data types
+
+- [Bit String](https://www.postgresql.org/docs/current/datatype-bit.html): Bit strings are strings of 1's and 0's. They can be used to store or visualize bit masks.
+- [Text Search](https://www.postgresql.org/docs/current/datatype-textsearch.html): PostgreSQL provides two data types that are designed to support full text search.
+- [UUID](https://www.postgresql.org/docs/current/datatype-uuid.html): 128-bit Universally Unique Identifiers. 
+- [XML](https://www.postgresql.org/docs/current/datatype-xml.html): Checks the input values for well-formedness, supports functions to perform type-safe operations.
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
