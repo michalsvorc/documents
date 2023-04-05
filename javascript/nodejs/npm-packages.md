@@ -51,6 +51,8 @@ Link local package directory as package in npm_modules:
 
 - [Avoid npm link](https://hirok.io/posts/avoid-npm-link)
 
+Instead of using `npm link`, use `npm install` or `npx link` to symlink a local package as a dependency:
+
 ```shell
 npx link <path to package>
 ```
