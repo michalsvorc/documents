@@ -208,9 +208,38 @@ If a JSON object within the value contains the same key more than once, all the 
 `jsonb` also supports indexing.
 `jsonb` does not preserve white space, does not preserve the order of object keys, and does not keep duplicate object keys. If duplicate keys are specified in the input, only the last value is kept.
 
-Testing *containment* is an important capability of `jsonb`. There is no parallel set of facilities for the `json` type.
-`jsonb` also has an *existence* operator, which is a variation on the theme of containment. JSON objects are better suited 
-than arrays for testing containment or existence when there are many keys or elements involved, because unlike arrays they are internally optimized for searching, and do not need to be searched linearly.
+Testing *containment* is an important capability of `jsonb`. Containment tests whether one `jsonb` document has contained within it another one. JSON *containment* is nested.
+
+`jsonb` also has an *existence* operator, which is a variation on the theme of containment: it tests whether a string (given as a text value) 
+appears as an *object key* or *array element* at the top level of the `jsonb` value.
+The JSON *existence* operator is not nested: it will only look for the specified key or array element at top level of the JSON value.
+
+JSON objects are better suited than arrays for testing containment or existence when there are many keys or elements involved,
+because unlike arrays they are internally optimized for searching, and do not need to be searched linearly.
+
+##### jsonb Indexing
+
+- [jsonb Indexing](https://www.postgresql.org/docs/current/datatype-json.html#JSON-INDEXING)
+- [jsonb Operators](https://www.postgresql.org/docs/current/functions-json.html#FUNCTIONS-JSONB-OP-TABLE)
+- [GIN Indexes](https://www.postgresql.org/docs/current/gin-intro.html)
+
+GIN indexes can be used to efficiently search for keys or key/value pairs occurring within a large number of `jsonb` documents.
+
+##### jsonb Subscripting
+
+- [jsonb Subscripting](https://www.postgresql.org/docs/current/datatype-json.html#JSONB-SUBSCRIPTING)
+
+The `jsonb` data type supports array-style subscripting expressions to extract and modify elements.
+`UPDATE` statements may use subscripting in the `SET` clause to modify `jsonb` values.
+
+#### jsonpath Type
+
+- [jsonpath Type](https://www.postgresql.org/docs/current/datatype-json.html#DATATYPE-JSONPATH)
+
+The `jsonpath` type implements support for the SQL/JSON path language in PostgreSQL to efficiently query JSON data.
+To provide a natural way of working with JSON data, SQL/JSON path syntax uses some JavaScript conventions:
+  - Dot `.` is used for member access.
+  - Square brackets `[]` are used for array access.
 
 ### Other data types
 
