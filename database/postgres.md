@@ -227,19 +227,28 @@ GIN indexes can be used to efficiently search for keys or key/value pairs occurr
 
 ##### jsonb Subscripting
 
-- [jsonb Subscripting](https://www.postgresql.org/docs/current/datatype-json.html#JSONB-SUBSCRIPTING)
+- [Documentation](https://www.postgresql.org/docs/current/datatype-json.html#JSONB-SUBSCRIPTING)
 
 The `jsonb` data type supports array-style subscripting expressions to extract and modify elements.
 `UPDATE` statements may use subscripting in the `SET` clause to modify `jsonb` values.
 
 #### jsonpath Type
 
-- [jsonpath Type](https://www.postgresql.org/docs/current/datatype-json.html#DATATYPE-JSONPATH)
+- [Documentation](https://www.postgresql.org/docs/current/datatype-json.html#DATATYPE-JSONPATH)
 
 The `jsonpath` type implements support for the SQL/JSON path language in PostgreSQL to efficiently query JSON data.
 To provide a natural way of working with JSON data, SQL/JSON path syntax uses some JavaScript conventions:
   - Dot `.` is used for member access.
   - Square brackets `[]` are used for array access.
+
+### Arrays
+
+- [Documentation](https://www.postgresql.org/docs/current/arrays.html)
+
+The syntax for `CREATE TABLE` allows the exact size of arrays to be specified, however, the current implementation 
+ignores any supplied array size limits, i.e., the behavior is the same as for arrays of unspecified length.
+
+Declaring the array size or number of dimensions in `CREATE TABLE` is simply documentation; it does not affect run-time behavior.
 
 ### Other data types
 
