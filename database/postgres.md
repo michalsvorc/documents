@@ -244,11 +244,19 @@ To provide a natural way of working with JSON data, SQL/JSON path syntax uses so
 ### Arrays
 
 - [Documentation](https://www.postgresql.org/docs/current/arrays.html)
+- [Functions and Operators](https://www.postgresql.org/docs/current/functions-array.html)
 
 The syntax for `CREATE TABLE` allows the exact size of arrays to be specified, however, the current implementation 
 ignores any supplied array size limits, i.e., the behavior is the same as for arrays of unspecified length.
 
 Declaring the array size or number of dimensions in `CREATE TABLE` is simply documentation; it does not affect run-time behavior.
+
+By default PostgreSQL uses a one-based numbering convention for arrays, that is, an array of n elements starts with `array[1]` and ends with `array[n]`.
+
+An array slice is denoted by writing `lower-bound:upper-bound` for one or more array dimensions: `schedule[1:2]`.
+
+Arrays are not sets; searching for specific array elements can be a sign of database misdesign. Consider using a separate table with a row for each item 
+that would be an array element. This will be easier to search, and is likely to scale better for a large number of elements.
 
 ### Other data types
 
