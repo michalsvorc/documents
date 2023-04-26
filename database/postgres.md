@@ -258,12 +258,30 @@ An array slice is denoted by writing `lower-bound:upper-bound` for one or more a
 Arrays are not sets; searching for specific array elements can be a sign of database misdesign. Consider using a separate table with a row for each item 
 that would be an array element. This will be easier to search, and is likely to scale better for a large number of elements.
 
+### Range
+
+- [Documentation](https://www.postgresql.org/docs/current/rangetypes.html#RANGETYPES-IO)
+- [Functions and Operators](https://www.postgresql.org/docs/current/functions-range.html)
+
+PostgreSQL comes with the following built-in range types:
+- int4range: integer
+- int8range: bigint
+- numrange: numeric
+- tsrange: timestamp without time zone
+- tstzrange: timestamp with time zone
+- daterange: date
+
+In addition, you can define your own range types.
+
+While `UNIQUE` is a natural constraint for scalar values, it is usually unsuitable for range types. Instead, an [exclusion](https://www.postgresql.org/docs/current/sql-createtable.html#SQL-CREATETABLE-EXCLUDE) constraint is often more appropriate. Exclusion constraints allow the specification of constraints such as “non-overlapping” on a range type.
+
 ### Other data types
 
 - [Bit String](https://www.postgresql.org/docs/current/datatype-bit.html): Bit strings are strings of 1's and 0's. They can be used to store or visualize bit masks.
 - [Text Search](https://www.postgresql.org/docs/current/datatype-textsearch.html): PostgreSQL provides two data types that are designed to support full text search.
 - [UUID](https://www.postgresql.org/docs/current/datatype-uuid.html): 128-bit Universally Unique Identifiers. 
 - [XML](https://www.postgresql.org/docs/current/datatype-xml.html): Checks the input values for well-formedness, supports functions to perform type-safe operations.
+- [Composite](https://www.postgresql.org/docs/current/rowtypes.html)
 
 ## Views
 
