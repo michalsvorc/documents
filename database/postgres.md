@@ -294,6 +294,14 @@ For example, we could create a domain over integers that accepts only positive i
 - [Object Identifier Types](https://www.postgresql.org/docs/current/datatype-oid.html)
 - [Log Sequence Number](https://www.postgresql.org/docs/current/datatype-pg-lsn.html)
 
+## Functions and operators
+
+- [Documentation](https://www.postgresql.org/docs/current/functions.html)
+- [Logical Operators](https://www.postgresql.org/docs/current/functions-logical.html)
+- [Comparison Functions and Operators](https://www.postgresql.org/docs/current/functions-comparison.html)
+- [Mathematical Functions and Operators](https://www.postgresql.org/docs/current/functions-math.html)
+- [String Functions and Operators](https://www.postgresql.org/docs/current/functions-string.html)
+
 ## Views
 
 You do not want to type the query each time you need it. You can create a view over the query, which gives a name to the
@@ -409,4 +417,3 @@ SELECT city, count(*) FILTER (WHERE temp_lo < 45), max(temp_lo)
     FROM weather
     GROUP BY city;
 ```
-
