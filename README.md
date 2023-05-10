@@ -51,6 +51,7 @@
 ### Web
 
 - [Fireship](https://www.youtube.com/@Fireship/videos)
+- [Beyond Fireship](https://www.youtube.com/@beyondfireship/videos)
 - [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified/videos)
 - [Steve Griffith - Prof3ssorSt3v3](https://www.youtube.com/@SteveGriffith-Prof3ssorSt3v3/videos)
 
