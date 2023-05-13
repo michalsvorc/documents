@@ -22,6 +22,7 @@ Value expressions are therefore also called scalar expressions (or even simply e
 ## Data types
 
 - [Documentation](https://www.postgresql.org/docs/current/datatype.html)
+- [Pseudo-Types](https://www.postgresql.org/docs/current/datatype-pseudo.html)
 
 PostgreSQL can be customized with an arbitrary number of user-defined data types.
 
@@ -244,11 +245,44 @@ To provide a natural way of working with JSON data, SQL/JSON path syntax uses so
 ### Arrays
 
 - [Documentation](https://www.postgresql.org/docs/current/arrays.html)
+- [Functions and Operators](https://www.postgresql.org/docs/current/functions-array.html)
 
 The syntax for `CREATE TABLE` allows the exact size of arrays to be specified, however, the current implementation 
 ignores any supplied array size limits, i.e., the behavior is the same as for arrays of unspecified length.
 
 Declaring the array size or number of dimensions in `CREATE TABLE` is simply documentation; it does not affect run-time behavior.
+
+By default PostgreSQL uses a one-based numbering convention for arrays, that is, an array of n elements starts with `array[1]` and ends with `array[n]`.
+
+An array slice is denoted by writing `lower-bound:upper-bound` for one or more array dimensions: `schedule[1:2]`.
+
+Arrays are not sets; searching for specific array elements can be a sign of database misdesign. Consider using a separate table with a row for each item 
+that would be an array element. This will be easier to search, and is likely to scale better for a large number of elements.
+
+### Range types
+
+- [Documentation](https://www.postgresql.org/docs/current/rangetypes.html#RANGETYPES-IO)
+- [Functions and Operators](https://www.postgresql.org/docs/current/functions-range.html)
+
+PostgreSQL comes with the following built-in range types:
+- int4range: integer
+- int8range: bigint
+- numrange: numeric
+- tsrange: timestamp without time zone
+- tstzrange: timestamp with time zone
+- daterange: date
+
+In addition, you can define your own range types.
+
+While `UNIQUE` is a natural constraint for scalar values, it is usually unsuitable for range types. Instead, an [exclusion](https://www.postgresql.org/docs/current/sql-createtable.html#SQL-CREATETABLE-EXCLUDE) constraint is often more appropriate. Exclusion constraints allow the specification of constraints such as “non-overlapping” on a range type.
+
+### Domain types
+
+- [Documentation](https://www.postgresql.org/docs/current/domains.html)
+
+A domain is a user-defined data type that is based on another underlying type. Optionally, it can have constraints that restrict its valid values to a subset of what the underlying type would allow.
+
+For example, we could create a domain over integers that accepts only positive integers.
 
 ### Other data types
 
@@ -256,6 +290,17 @@ Declaring the array size or number of dimensions in `CREATE TABLE` is simply doc
 - [Text Search](https://www.postgresql.org/docs/current/datatype-textsearch.html): PostgreSQL provides two data types that are designed to support full text search.
 - [UUID](https://www.postgresql.org/docs/current/datatype-uuid.html): 128-bit Universally Unique Identifiers. 
 - [XML](https://www.postgresql.org/docs/current/datatype-xml.html): Checks the input values for well-formedness, supports functions to perform type-safe operations.
+- [Composite](https://www.postgresql.org/docs/current/rowtypes.html)
+- [Object Identifier Types](https://www.postgresql.org/docs/current/datatype-oid.html)
+- [Log Sequence Number](https://www.postgresql.org/docs/current/datatype-pg-lsn.html)
+
+## Functions and operators
+
+- [Documentation](https://www.postgresql.org/docs/current/functions.html)
+- [Logical Operators](https://www.postgresql.org/docs/current/functions-logical.html)
+- [Comparison Functions and Operators](https://www.postgresql.org/docs/current/functions-comparison.html)
+- [Mathematical Functions and Operators](https://www.postgresql.org/docs/current/functions-math.html)
+- [String Functions and Operators](https://www.postgresql.org/docs/current/functions-string.html)
 
 ## Views
 
@@ -372,4 +417,3 @@ SELECT city, count(*) FILTER (WHERE temp_lo < 45), max(temp_lo)
     FROM weather
     GROUP BY city;
 ```
-
