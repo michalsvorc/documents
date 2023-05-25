@@ -100,6 +100,8 @@ Trailing spaces are removed when converting a `character` value to one of the ot
 ### Date/Time
 
 - [Documentation](https://www.postgresql.org/docs/current/datatype-datetime.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-datetime.html)
+- [Timezone configuration](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-TIMEZONE)
 
 - timestamp (with and without timezone)
 - time (with and without timezone)
@@ -145,6 +147,7 @@ The key words `TRUE` and `FALSE` are the preferred (SQL-compliant) method for wr
 ### Enumerated types
 
 - [Documentation](https://www.postgresql.org/docs/current/datatype-enum.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-enum.html)
 
 The ordering of the values in an enum type is the order in which the values were listed when the type was created.
 Each enumerated data type is separate and cannot be compared with other enumerated types.
@@ -153,6 +156,7 @@ Enum labels are case sensitive, white space in the labels is significant too.
 ### Geometric types
 
 - [Documentation](https://www.postgresql.org/docs/current/datatype-geometric.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-geometry.html)
 
 Geometric data types represent two-dimensional spatial objects.
 
@@ -246,6 +250,7 @@ To provide a natural way of working with JSON data, SQL/JSON path syntax uses so
 
 - [Documentation](https://www.postgresql.org/docs/current/arrays.html)
 - [Functions and Operators](https://www.postgresql.org/docs/current/functions-array.html)
+- [Row and Array Comparisons](https://www.postgresql.org/docs/current/functions-comparisons.html)
 
 The syntax for `CREATE TABLE` allows the exact size of arrays to be specified, however, the current implementation 
 ignores any supplied array size limits, i.e., the behavior is the same as for arrays of unspecified length.
@@ -301,6 +306,47 @@ For example, we could create a domain over integers that accepts only positive i
 - [Comparison Functions and Operators](https://www.postgresql.org/docs/current/functions-comparison.html)
 - [Mathematical Functions and Operators](https://www.postgresql.org/docs/current/functions-math.html)
 - [String Functions and Operators](https://www.postgresql.org/docs/current/functions-string.html)
+- [Data Type Formatting Functions](https://www.postgresql.org/docs/current/functions-formatting.html)
+- [Set Returning Functions (Series, Subscripts)](https://www.postgresql.org/docs/current/functions-srf.html)
+- [System Information Functions and Operators](https://www.postgresql.org/docs/current/functions-info.html)
+- [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html)
+
+### Pattern Matching
+
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-matching.html)
+
+- `LIKE`
+- `SIMILAR TO` Regular Expressions
+- POSIX Regular Expressions
+
+Be wary of accepting regular-expression search patterns from hostile sources. If you must do so, it is advisable to impose a statement timeout.
+
+Searches using `SIMILAR TO` patterns have the same security hazards, since `SIMILAR TO` provides many of the same capabilities as POSIX-style regular expressions.
+
+`LIKE` searches, being much simpler than the other two options, are safer to use with possibly-hostile pattern sources.
+
+### Conditional Expressions
+
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-conditional.html)
+
+- CASE
+- COALESCE
+- NULLIF
+- GREATEST and LEAST
+
+### Subquery Expressions
+
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-subquery.html)
+- [PostgreSQL IN, Not IN with Examples](https://www.guru99.com/postgresql-in-not.html)
+
+- EXISTS
+- IN
+- NOT IN
+- ANY/SOME
+- ALL
+- Single-Row Comparison
+
+`SOME` is a synonym for `ANY`. `IN` is equivalent to `= ANY`.
 
 ## Views
 
@@ -332,9 +378,17 @@ savepoint with `SAVEPOINT`, you can if needed roll back to the savepoint with `R
 All the transaction's database changes between defining the savepoint and rolling back to it are discarded, but changes
 earlier than the savepoint are kept.
 
+## Text Search
+
+- [Documentation](https://www.postgresql.org/docs/current/textsearch.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-textsearch.html)
+- [Full Text Search](https://www.postgresql.org/docs/current/textsearch.html)
+
 ## Window Functions
 
 - [Tutorial](https://www.postgresql.org/docs/current/tutorial-window.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-window.html)
+- [Syntax](https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS)
 
 A window function performs a calculation across a set of table rows that are somehow related to the current row. This is
 comparable to the type of calculation that can be done with an aggregate function.
@@ -390,6 +444,8 @@ Many of the commands like `SELECT`, `UPDATE`, and `DELETE` support this `ONLY` n
 ## Aggregations
 
 - [Tutorial](https://www.postgresql.org/docs/current/tutorial-agg.html)
+- [Functions and operators](https://www.postgresql.org/docs/current/functions-aggregate.html)
+- [Syntax](https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-AGGREGATES)
 
 ### HAVING
 
@@ -417,3 +473,11 @@ SELECT city, count(*) FILTER (WHERE temp_lo < 45), max(temp_lo)
     FROM weather
     GROUP BY city;
 ```
+
+## Triggers
+
+- [Create Trigger](https://www.postgresql.org/docs/current/sql-createtrigger.html)
+- [Event Triggers](https://www.postgresql.org/docs/current/event-triggers.html)
+- [Trigger Functions](https://www.postgresql.org/docs/current/functions-trigger.html)
+- [Event Trigger Functions](https://www.postgresql.org/docs/current/functions-event-triggers.html)
+
