@@ -70,3 +70,10 @@ that a site has in a user's browser.
 
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
 - [Wikipedia](https://en.wikipedia.org/wiki/Content_Security_Policy)
+
+## Insecure Direct Object Reference (IDOR)
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Insecure_direct_object_reference)
+- [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html)
+
+This can occur when a web application or application programming interface uses an identifier for direct access to an object in an internal database but does not check for access control or authentication.
