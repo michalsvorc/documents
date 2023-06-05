@@ -4,6 +4,9 @@
 - [Wiki](https://wiki.postgresql.org/wiki/Main_Page)
 - [FAQ](https://wiki.postgresql.org/wiki/Frequently_Asked_Questions)
 
+Overview:
+- [SQL Commands](https://www.postgresql.org/docs/current/sql-commands.html)
+
 Tools:
 
 - [psql](https://www.postgresql.org/docs/14/app-psql.html)
@@ -481,3 +484,56 @@ SELECT city, count(*) FILTER (WHERE temp_lo < 45), max(temp_lo)
 - [Trigger Functions](https://www.postgresql.org/docs/current/functions-trigger.html)
 - [Event Trigger Functions](https://www.postgresql.org/docs/current/functions-event-triggers.html)
 
+## Indexes
+
+- [Documentation](https://www.postgresql.org/docs/current/indexes.html)
+- [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html)
+
+Indexes are a common way to enhance database performance. An index allows the database server to find and retrieve specific rows much faster than it could do without an index.
+An index defined on a column that is part of a join condition can also significantly speed up queries with joins.
+
+An index can be defined on more than one column of a table. Indexes can have up to 32 columns. Multicolumn indexes should be used sparingly.
+
+In addition to simply finding the rows to be returned by a query, an index may be able to deliver them in a specific sorted order.
+You can adjust the ordering of a B-tree index by including the options `ASC`, `DESC`, `NULLS FIRST`, and/or `NULLS LAST` when creating the index.
+
+Creating an index on a large table can take a long time and writes (`INSERT`, `UPDATE`, `DELETE`) are blocked until the index build is finished.
+After an index is created, the system has to keep it synchronized with the table. This adds overhead to data manipulation operations.
+
+### Index Types
+
+- [Documentation](https://www.postgresql.org/docs/current/indexes-types.html)
+
+- B-Tree: default
+- Hash
+- GiST
+- SP-GiST
+- GIN
+- BRIN
+
+### Unique Indexes
+
+- [Documentation](https://www.postgresql.org/docs/current/indexes-unique.html)
+
+Indexes can also be used to enforce uniqueness of a column's value, or the uniqueness of the combined values of more than one column.
+When an index is declared unique, multiple table rows with equal indexed values are not allowed. 
+
+PostgreSQL automatically creates a unique index when a unique constraint or primary key is defined for a table.
+There's no need to manually create indexes on unique columns; doing so would just duplicate the automatically-created index.
+
+### Foreign Keys and Indexes
+
+- [Documentation](https://www.postgresql.org/docs/14/ddl-constraints.html?ref=backstage.payfit.com#DDL-CONSTRAINTS-FK)
+- [Stack Overflow](https://stackoverflow.com/questions/970562/postgres-and-indexes-on-foreign-keys-and-primary-keys)
+
+PostgreSQL does not automatically index foreign key columns (referencing columns), so `WHERE` clauses on these columns will require a full table scan.
+PostgreSQL automatically creates indexes on primary keys and unique constraints, but not on the referencing side of foreign key relationships.
+
+If the referenced column(s) are changed frequently, it might be wise to add an index to the referencing column(s) so that referential actions associated with the foreign key constraint can be performed more efficiently.
+ [citation](https://www.postgresql.org/docs/current/sql-createtable.html)
+
+We should not indiscriminately create indexes on all FKs because many of them will just not be used or so rarely used that they aren’t worth the cost.
+It’s better to initially design the database with the FKs but not the indexes and add them while the database grows and we understand the workload. 
+
+If the source table is small, you don’t need the index, because then a sequential scan is probably cheaper than an index scan anyway.
+Also, if you know that you never need the index for a join and you will never delete a row or update a key column in the target table, the index is unnecessary.
