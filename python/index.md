@@ -2,23 +2,17 @@
 
 Overview:
 
-- [Python 3 documentation](https://docs.python.org/3/library/index.html)
-- [Packages](https://docs.python.org/3/tutorial/modules.html#packages)
+- [The Python Tutorial](https://docs.python.org/3/tutorial/index.html)
+- [The Python Standard Library](https://docs.python.org/3/library/index.html)
 
 Resources:
 
+- [Awesome Python](https://github.com/vinta/awesome-python)
+- [Legally Free Python Books List](https://www.pythonkitchen.com/legally-free-python-books-list/)
 - [Python SpeedSheet](https://speedsheet.io/s/python)
 - [Real Python](https://realpython.com/)
-- [The Python Tutorial — Python 3 documentation](https://docs.python.org/3/tutorial/index.html)
-- [An Informal Introduction to Python](https://docs.python.org/3.8/tutorial/introduction.html)
 
-Books:
-
-- [Legally Free Python Books List](https://www.pythonkitchen.com/legally-free-python-books-list/)
-- [Python for Everybody](http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
-- [Learn Python Programming: A beginner's guide](https://anveshitse.files.wordpress.com/2019/01/Learn-Python-Programming_-A-beg-Fabrizio-Romano.pdf)
-
-## Development
+Tools:
 
 - [Jupyter Docker Stacks](https://github.com/jupyter/docker-stacks)
 
@@ -47,6 +41,7 @@ You can view objects as JSON string representation with
 
 ## Distribution
 
+- [Modules](https://docs.python.org/3/tutorial/modules.html#packages)
 - [Application distribution](https://speedsheet.io/s/python?select=A9p5)
 - [PIP - Package Manager](https://speedsheet.io/s/python?select=aTYy)
 - [Python wheels](https://realpython.com/python-wheels/)
