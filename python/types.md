@@ -6,9 +6,9 @@
 - [Built-in Constants](https://docs.python.org/3/library/constants.html)
 - [From library](https://speedsheet.io/s/python?select=T5aC)
 
-Standard Types:
+### Standard Types
 
-- `bool`: `True | False` [Boolean](https://speedsheet.io/s/python?select=4qV5)
+- `bool`: [Boolean](https://speedsheet.io/s/python?q=boolean#qA4r) constant objects `False` and `True`, used to represent truth values
 - `int`: [Integer](https://speedsheet.io/s/python?select=CPVx)
 - `complex`: [Complex Number](https://speedsheet.io/s/python?select=0C9U)
 - `float`: [Floating Point](https://speedsheet.io/s/python?select=R2Pv)
@@ -28,32 +28,9 @@ Collections:
 - `set` (Mutable Set)
 - `frozenset` (Immutable Set)
 
-## Type inspection
-
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=E96D)
-
-You can ispect a type with `type()`.
-
-## Type conversion
-
-- int()
-- float()
-
-Integer division produces a floating point:
-
-```python
-print(10 / 2) # 5.0
-```
-
-Concatenate `str` and `int` to `str`:
-
-```python
-print('a' + str(1))
-```
-
 ## Mutability
 
-Mutable Types:
+### Mutable Types
 
 - bytearray
 - classes
@@ -62,7 +39,7 @@ Mutable Types:
 - list
 - set
 
-Immutable Types:
+### Immutable Types
 
 - boolean
 - byte
@@ -72,6 +49,28 @@ Immutable Types:
 - complex
 - str
 - tuple
+
+## Type functions
+
+Type inspection:
+
+- type()
+
+Type conversion:
+
+- int()
+- float()
+- str()
+
+## Boolean 
+
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#boolean-values)
+- [Truth Value Testing](https://docs.python.org/3/library/stdtypes.html#truth)
+- [Boolean Operations](https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not)
+
+Functions:
+
+- [bool()](https://docs.python.org/3/library/functions.html#bool): convert any value to a Boolean
 
 ## List
 
