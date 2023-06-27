@@ -5,6 +5,7 @@
 - [Built-in Types](https://docs.python.org/3/library/stdtypes.html)
 - [Built-in Constants](https://docs.python.org/3/library/constants.html)
 - [From library](https://speedsheet.io/s/python?select=T5aC)
+- [Mutability](https://realpython.com/python-mutable-vs-immutable-types/)
 
 ### Standard Types
 
@@ -16,51 +17,28 @@
 - `bytes`: [Byte](https://speedsheet.io/s/python?select=BF5h), creates a byte array
 - `NoneType`: `None`, object representing the [absence of a value](https://speedsheet.io/s/python?select=UHpm)
 
-Sequence Types:
+### Sequence Types
 
-- `list` (List / Mutable Array)
-- `tuple` (Immutable Array)
-- `range` (Immutable Integers)
+- `list`: [List / Mutable Array](https://speedsheet.io/s/python?q=lis#Cn3A)
+- `tuple`: [Immutable Array](https://speedsheet.io/s/python?q=tuple#fHp3)
+- `range` [Immutable sequence of Integers](https://speedsheet.io/s/python?q=range#S6GN)
 
-Collections:
+### Collections
 
-- `dict` (Dictionary of Key Value Pairs)
-- `set` (Mutable Set)
-- `frozenset` (Immutable Set)
-
-## Mutability
-
-### Mutable Types
-
-- bytearray
-- classes
-- class instances
-- dict
-- list
-- set
-
-### Immutable Types
-
-- boolean
-- byte
-- float
-- frozenset
-- int
-- complex
-- str
-- tuple
+- `dict`: [Dictionary of Key Value Pairs](https://speedsheet.io/s/python?q=diction#BUXG)
+- `set` [Mutable Set](https://speedsheet.io/s/python?q=set#0RXJ)
 
 ## Type functions
 
 Type inspection:
 
-- type()
+- `type()`
 
 Type conversion:
 
-- int()
-- float()
-- str()
+- `int()`
+- `float()`
+- `str()`
 
 ## Boolean 
 
