@@ -10,7 +10,7 @@
 ### Standard Types
 
 - `bool`: [Boolean](https://speedsheet.io/s/python?q=boolean#qA4r) constant objects `False` and `True`, used to represent truth values
-- `int`: [Integer](https://speedsheet.io/s/python?select=CPVx)
+- `int`: [Integer](https://speedsheet.io/s/python#f3Sf)
 - `complex`: [Complex Number](https://speedsheet.io/s/python?select=0C9U)
 - `float`: [Floating Point](https://speedsheet.io/s/python?select=R2Pv)
 - `str`: [String](https://speedsheet.io/s/python?select=GQSJ)
@@ -18,6 +18,8 @@
 - `NoneType`: `None`, object representing the [absence of a value](https://speedsheet.io/s/python?select=UHpm)
 
 ### Sequence Types
+
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range)
 
 - `list`: [List / Mutable Array](https://speedsheet.io/s/python?q=lis#Cn3A)
 - `tuple`: [Immutable Array](https://speedsheet.io/s/python?q=tuple#fHp3)
@@ -40,6 +42,19 @@ Type conversion:
 - `float()`
 - `str()`
 
+## Comparisons
+
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#comparisons)
+- [speedsheet.io](https://speedsheet.io/s/python?q=compar#KYLe)
+
+Objects of different types, except different numeric types, never compare equal.
+
+The `==` operator is for some object types (for example, class objects) equivalent to `is`.
+
+`in` and `not in`, are supported by types that are iterable or implement the `__contains__()` method.
+
+`string_1.casefold()`: Use this when you need to compare two strings but ignore the case (caseless). 
+
 ## Boolean 
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#boolean-values)
@@ -50,6 +65,21 @@ Functions:
 
 - [bool()](https://docs.python.org/3/library/functions.html#bool): convert any value to a Boolean
 
+## Numeric
+
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
+
+- `int`
+- `float` 
+- `complex`
+- `Decimal`
+- `Fraction`
+
+Division always returns a floating point number:
+
+```python
+8 / 4  # 2.0 
+```
 ## List
 
 - [Python SpeedSheet](https://speedsheet.io/s/python?select=Cn3A)
