@@ -80,6 +80,15 @@ Division always returns a floating point number:
 ```python
 8 / 4  # 2.0 
 ```
+
+## Strings
+
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
+- [Library](https://docs.python.org/3/library/string.html)
+- [Formatted string literals](https://docs.python.org/3/reference/lexical_analysis.html#f-strings)
+
+Strings can be enclosed in single quotes or double quotes with the same result.
+
 ## List
 
 - [Python SpeedSheet](https://speedsheet.io/s/python?select=Cn3A)
