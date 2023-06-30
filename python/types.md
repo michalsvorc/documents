@@ -9,11 +9,11 @@
 
 ### Standard Types
 
-- `bool`: [Boolean](https://speedsheet.io/s/python?q=boolean#qA4r) constant objects `False` and `True`, used to represent truth values
-- `int`: [Integer](https://speedsheet.io/s/python#f3Sf)
-- `complex`: [Complex Number](https://speedsheet.io/s/python?select=0C9U)
-- `float`: [Floating Point](https://speedsheet.io/s/python?select=R2Pv)
-- `str`: [String](https://speedsheet.io/s/python?select=GQSJ)
+- `bool`: Boolean
+- `int`: Integer
+- `complex`: Complex Number
+- `float`: Floating Point
+- `str`: String
 - `bytes`: [Byte](https://speedsheet.io/s/python?select=BF5h), creates a byte array
 - `NoneType`: `None`, object representing the [absence of a value](https://speedsheet.io/s/python?select=UHpm)
 
@@ -21,14 +21,14 @@
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range)
 
-- `list`: [List / Mutable Array](https://speedsheet.io/s/python?q=lis#Cn3A)
-- `tuple`: [Immutable Array](https://speedsheet.io/s/python?q=tuple#fHp3)
-- `range` [Immutable sequence of Integers](https://speedsheet.io/s/python?q=range#S6GN)
+- `list`: List / Mutable Array
+- `tuple`: Immutable Array
+- `range` Immutable sequence of Integers
 
 ### Collections
 
-- `dict`: [Dictionary of Key Value Pairs](https://speedsheet.io/s/python?q=diction#BUXG)
-- `set` [Mutable Set](https://speedsheet.io/s/python?q=set#0RXJ)
+- `dict`: Dictionary of Key Value Pairs
+- `set` Mutable Set
 
 ## Type functions
 
@@ -57,6 +57,7 @@ The `==` operator is for some object types (for example, class objects) equivale
 
 ## Boolean 
 
+- [SpeedSheet](https://speedsheet.io/s/python?q=boolean#qA4r)
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#boolean-values)
 - [Truth Value Testing](https://docs.python.org/3/library/stdtypes.html#truth)
 - [Boolean Operations](https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not)
@@ -68,10 +69,12 @@ Functions:
 ## Numeric
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
+- [Integer Operations](https://speedsheet.io/s/python?q=integer#u0H4)
+- [Float Operations](https://speedsheet.io/s/python?q=float#b25U)
 
-- `int`
-- `float` 
-- `complex`
+- `int`: [Integer](https://speedsheet.io/s/python#f3Sf)
+- `float`: [Floating Point](https://speedsheet.io/s/python?select=R2Pv)
+- `complex`: [Complex Number](https://speedsheet.io/s/python?select=0C9U)
 - `Decimal`
 - `Fraction`
 
@@ -83,33 +86,31 @@ Division always returns a floating point number:
 
 ## Strings
 
+- [SpeedSheet](https://speedsheet.io/s/python?select=GQSJ)
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
 - [Library](https://docs.python.org/3/library/string.html)
 - [Formatted string literals](https://docs.python.org/3/reference/lexical_analysis.html#f-strings)
+- [Operations](https://speedsheet.io/s/python?q=strings#T7xJ)
 
 Strings can be enclosed in single quotes or double quotes with the same result.
 
 ## List
 
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=Cn3A)
+- [SpeedSheet](https://speedsheet.io/s/python?q=lis#Cn3A)
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#lists)
+- [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
+- [Operations](https://speedsheet.io/s/python?q=lis#hCt6)
 
-An ordered list implemented as a fixed-length array of pointers.
+An ordered list implemented as a fixed-length array of pointers. 
+Lists are mutable sequences, typically used to store collections of homogeneous items.
 
-```python
-= [value_1, value_2, ...]
-```
-
-Return elements in range, including element at index postion `n`:
-
-```python
-list_1[n:m]
-list_1[n:]
-list_1[:n]
-```
+All slice operations return a new list containing the requested elements. 
 
 ## Tuple
 
+- [SpeedSheet](https://speedsheet.io/s/python?q=tuple#fHp3)
 - [Python SpeedSheet](https://speedsheet.io/s/python?select=fHp3)
+- [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
 
 Type: `tuple`
 
@@ -121,7 +122,8 @@ Tuples are immutable arrays.
 
 ## Range
 
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=S6GN)
+- [SpeedSheet](https://speedsheet.io/s/python?q=range#S6GN)
+- [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
 
 Type: `range`
 
@@ -134,7 +136,7 @@ Type: `range`
 
 ## Dictionary
 
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=BUXG)
+- [SpeedSheet](https://speedsheet.io/s/python?select=BUXG)
 
 Type: dict
 
@@ -148,7 +150,7 @@ Type: dict
 
 ## Set
 
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=0RXJ)
+- [SpeedSheet](https://speedsheet.io/s/python?select=0RXJ)
 
 - Unordered group of unique items.
 - Contains no duplicates.
