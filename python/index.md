@@ -2,23 +2,26 @@
 
 Overview:
 
-- [The Python Tutorial](https://docs.python.org/3/tutorial/index.html)
-- [The Python Standard Library](https://docs.python.org/3/library/index.html)
+- [Tutorial](https://docs.python.org/3/tutorial/index.html)
+- [Standard Library](https://docs.python.org/3/library/index.html)
 
 Resources:
 
 - [Awesome Python](https://github.com/vinta/awesome-python)
 - [Legally Free Python Books List](https://www.pythonkitchen.com/legally-free-python-books-list/)
-- [Python SpeedSheet](https://speedsheet.io/s/python)
+- [speedsheet](https://speedsheet.io/s/python)
 - [Real Python](https://realpython.com/)
 
 Tools:
 
 - [Jupyter Docker Stacks](https://github.com/jupyter/docker-stacks)
 
-## Naming conventions
+## Style conventions
 
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=qhNs)
+- [Coding Style](https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style)
+- [Documentation Strings](https://docs.python.org/3/tutorial/controlflow.html#documentation-strings)
+- [Function Anntotations](https://docs.python.org/3/tutorial/controlflow.html#function-annotations)
+- [speedsheet](https://speedsheet.io/s/python?select=qhNs)
 
 - Class `TitleCase`
 - Function `function_name_1`
@@ -30,7 +33,7 @@ Tools:
 
 ## Input and Output
 
-- [Documentation](https://docs.python.org/3/tutorial/inputoutput.html)
+- [Tutorial](https://docs.python.org/3/tutorial/inputoutput.html)
 
 When you don’t need fancy output but just want a quick display of some variables for debugging purposes, you can convert
 any value to a string with the [repr()](https://docs.python.org/3/library/functions.html#repr) or
@@ -42,8 +45,8 @@ You can view objects as JSON string representation with
 ## Distribution
 
 - [Modules](https://docs.python.org/3/tutorial/modules.html#packages)
-- [Application distribution](https://speedsheet.io/s/python?select=A9p5)
-- [PIP - Package Manager](https://speedsheet.io/s/python?select=aTYy)
+- [Application distribution | speedsheet](https://speedsheet.io/s/python?select=A9p5)
+- [PIP - Package Manager | speedsheet](https://speedsheet.io/s/python?select=aTYy)
 - [Python wheels](https://realpython.com/python-wheels/)
 
 Wheel is currently considered the standard for built and binary packaging for Python.

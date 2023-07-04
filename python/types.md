@@ -4,7 +4,7 @@
 
 - [Built-in Types](https://docs.python.org/3/library/stdtypes.html)
 - [Built-in Constants](https://docs.python.org/3/library/constants.html)
-- [From library](https://speedsheet.io/s/python?select=T5aC)
+- [speedsheet](https://speedsheet.io/s/python?select=T5aC)
 - [Mutability](https://realpython.com/python-mutable-vs-immutable-types/)
 
 ### Standard Types
@@ -45,7 +45,7 @@ Type conversion:
 ## Comparisons
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#comparisons)
-- [speedsheet.io](https://speedsheet.io/s/python?q=compar#KYLe)
+- [speedsheet](https://speedsheet.io/s/python?q=compar#KYLe)
 
 Objects of different types, except different numeric types, never compare equal.
 
@@ -57,7 +57,7 @@ The `==` operator is for some object types (for example, class objects) equivale
 
 ## Boolean 
 
-- [SpeedSheet](https://speedsheet.io/s/python?q=boolean#qA4r)
+- [speedsheet](https://speedsheet.io/s/python?q=boolean#qA4r)
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#boolean-values)
 - [Truth Value Testing](https://docs.python.org/3/library/stdtypes.html#truth)
 - [Boolean Operations](https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not)
@@ -69,8 +69,8 @@ Functions:
 ## Numeric
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
-- [Integer Operations](https://speedsheet.io/s/python?q=integer#u0H4)
-- [Float Operations](https://speedsheet.io/s/python?q=float#b25U)
+- [Integer Operations | speedsheet](https://speedsheet.io/s/python?q=integer#u0H4)
+- [Float Operations | speedsheet](https://speedsheet.io/s/python?q=float#b25U)
 
 - `int`: [Integer](https://speedsheet.io/s/python#f3Sf)
 - `float`: [Floating Point](https://speedsheet.io/s/python?select=R2Pv)
@@ -86,20 +86,20 @@ Division always returns a floating point number:
 
 ## Strings
 
-- [SpeedSheet](https://speedsheet.io/s/python?select=GQSJ)
+- [speedsheet](https://speedsheet.io/s/python?select=GQSJ)
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
 - [Library](https://docs.python.org/3/library/string.html)
 - [Formatted string literals](https://docs.python.org/3/reference/lexical_analysis.html#f-strings)
-- [Operations](https://speedsheet.io/s/python?q=strings#T7xJ)
+- [Operations | speedsheet](https://speedsheet.io/s/python?q=strings#T7xJ)
 
 Strings can be enclosed in single quotes or double quotes with the same result.
 
 ## List
 
-- [SpeedSheet](https://speedsheet.io/s/python?q=lis#Cn3A)
+- [speedsheet](https://speedsheet.io/s/python?q=lis#Cn3A)
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#lists)
 - [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
-- [Operations](https://speedsheet.io/s/python?q=lis#hCt6)
+- [Operations | speedsheet](https://speedsheet.io/s/python?q=lis#hCt6)
 
 An ordered list implemented as a fixed-length array of pointers. 
 Lists are mutable sequences, typically used to store collections of homogeneous items.
@@ -108,8 +108,7 @@ All slice operations return a new list containing the requested elements.
 
 ## Tuple
 
-- [SpeedSheet](https://speedsheet.io/s/python?q=tuple#fHp3)
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=fHp3)
+- [speedsheet](https://speedsheet.io/s/python?q=tuple#fHp3)
 - [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
 
 Type: `tuple`
@@ -122,7 +121,7 @@ Tuples are immutable arrays.
 
 ## Range
 
-- [SpeedSheet](https://speedsheet.io/s/python?q=range#S6GN)
+- [speedsheet](https://speedsheet.io/s/python?q=range#S6GN)
 - [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
 
 Type: `range`
@@ -136,7 +135,7 @@ Type: `range`
 
 ## Dictionary
 
-- [SpeedSheet](https://speedsheet.io/s/python?select=BUXG)
+- [speedsheet](https://speedsheet.io/s/python?select=BUXG)
 
 Type: dict
 
@@ -150,7 +149,7 @@ Type: dict
 
 ## Set
 
-- [SpeedSheet](https://speedsheet.io/s/python?select=0RXJ)
+- [speedsheet](https://speedsheet.io/s/python?select=0RXJ)
 
 - Unordered group of unique items.
 - Contains no duplicates.
