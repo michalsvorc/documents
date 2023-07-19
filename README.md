@@ -54,6 +54,7 @@
 - [Beyond Fireship](https://www.youtube.com/@beyondfireship/videos)
 - [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified/videos)
 - [Steve Griffith - Prof3ssorSt3v3](https://www.youtube.com/@SteveGriffith-Prof3ssorSt3v3/videos)
+- [productioncoder](https://www.youtube.com/@prodcoder/videos)
 
 ### AWS
 
@@ -66,9 +67,10 @@
 
 ### Security
 
-- [The Hated One](https://www.youtube.com/@TheHatedOne/videos)
+- [Chris Greer](https://www.youtube.com/@ChrisGreer/videos)
 - [PwnFunction](https://www.youtube.com/@PwnFunction/videos)
 
 ### Algorithms
 
 - [WilliamFiset](https://www.youtube.com/@WilliamFiset-videos/videos)
+
