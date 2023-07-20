@@ -44,6 +44,20 @@ An AWS environment is a combination of an AWS account and Region. Environments a
 It is not an error to bootstrap an environment more than once. If an environment you bootstrap has already been
 bootstrapped, its bootstrap stack will be upgraded if necessary; otherwise, nothing happens.
 
+### Containerized environment
+
+1. Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#install-linux-instructions)
+
+Use `.local` directories for rootless containers.
+
+```shell
+./aws/install --bin-dir $HOME/.local/bin --install-dir $HOME/.local/aws-cli
+```
+
+Add `--update` flag to previous command to update AWS CLI.
+
+2. [Authenticate with SSO](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_auth)
+
 ## Overview
 
 - Constructs: Constructs are the basic building blocks of AWS CDK apps. A construct represents a "cloud component" with
