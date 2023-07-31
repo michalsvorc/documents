@@ -183,6 +183,13 @@ class tuple([iterable])
 t = (...)
 ```
 
+A special problem is the construction of tuples containing 0 or 1 items: the syntax has some extra quirks to accommodate these:
+
+```python
+empty = ()
+singleton = 'hello',    # <-- note trailing comma
+```
+
 ### Tuple compared to list
 
 - [Python tutorial](https://www.pythontutorial.net/advanced-python/python-tuple-vs-list/)
@@ -205,45 +212,75 @@ class range(start, stop[, step])
 - Range is an immutable sequence of integers.
 - Range can be used anywhere a sequence can be used.
 
-## Dictionary
-
-- [speedsheet](https://speedsheet.io/s/python?select=BUXG)
-
-- A collection of key value pairs.
-- Keys can be any immutable type.
-- Internally stored as a hash table.
-
-```python
-d = {'key_1': 'value_1', 'key_2': 'value_2'...}
-```
-
 ## Set
 
 - [Tutorial](https://docs.python.org/3/tutorial/datastructures.html#sets)
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
 - [speedsheet](https://speedsheet.io/s/python?select=0RXJ)
 
-A set is an unordered collection with no duplicate elements. 
+A set object is an unordered collection of distinct hashable objects. 
 
 ```python
 class set([iterable])
 s = {...}
 ```
 
-Similarly to list comprehensions, set comprehensions are also supported.
+Common uses include membership testing, removing duplicates from a sequence, 
+and computing mathematical operations such as intersection, union, difference, and symmetric difference.
+
+Being an unordered collection, sets do not record element position or order of insertion.
+Accordingly, sets do not support indexing, slicing, or other sequence-like behavior.
+
+Since it is mutable, it has no hash value and cannot be used as either a dictionary key or as an element of another set. 
+
+To represent sets of sets, the inner sets must be `frozenset` objects.
+
+To create an empty set you have to use `set()`, not `{}`;
 
 ### Frozenset
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#frozenset)
 
+The frozenset type is immutable and hashable — its contents cannot be altered after it is created; it can therefore be used as a dictionary key or as an element of another set.
+
 ```python
 class frozenset([iterable])
 ```
 
-The Python `frozenset()` method returns a new frozenset object whose elements are taken from the passed iterable.
+## Dictionary
 
-If iterable is not specified, a new empty set is returned.
+- [Tutorial](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+- [Documentation](https://docs.python.org/3/library/stdtypes.html#typesmapping)
+- [speedsheet](https://speedsheet.io/s/python?select=BUXG)
 
-Note: The elements must be hashable.
+A mapping object maps hashable values to arbitrary objects. Mappings are mutable objects. 
+
+```python
+class dict(**kwargs)
+class dict(mapping, **kwargs)
+class dict(iterable, **kwargs)
+d = {'key_1': 'value_1', 'key_2': 'value_2', ...}
+```
+
+Dictionaries are indexed by keys, which can be any immutable type
+
+Internally stored as a hash table.
+
+Getting a value if key is not in the map raises a `KeyError`. To check whether a single key is in the dictionary, use the `in` keyword.
+
+Dictionaries compare equal if and only if they have the same (key, value) pairs (regardless of ordering).
+
+- Changed in version 3.7: Dictionary order is guaranteed to be insertion order.
+- Changed in version 3.8: Dictionaries are now reversible.
+
+### Dictionary view objects
+
+- [MappingProxyType](https://docs.python.org/3/library/types.html#types.MappingProxyType)
+
+The objects returned by `dict.keys()`, `dict.values()` and `dict.items()` are view objects.
+They provide a dynamic view on the dictionary’s entries, which means that when the dictionary changes, the view reflects these changes.
+
+`types.MappingProxyType` can be used to create a read-only view of a dict.
 
 ## Abstract data types
 
@@ -268,3 +305,15 @@ It is also possible to use a list as a queue, where the first element added is t
 - [Real Python](https://realpython.com/python-del-statement/)
 
 Remove an item from a list given its index instead of its value.
+
+## Sequence packing and unpacking
+
+- [Tutorial](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
+
+Tuple packing:
+
+`t = 12345, 54321, 'hello!'`
+
+Sequence unpacking
+
+`x, y, z = t`
