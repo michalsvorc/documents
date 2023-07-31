@@ -74,6 +74,7 @@ Type conversion:
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#comparisons)
 - [speedsheet](https://speedsheet.io/s/python?q=compar#KYLe)
+- [Comparing Sequences and Other Types](https://docs.python.org/3/tutorial/datastructures.html#comparing-sequences-and-other-types)
 
 Objects of different types, except different numeric types, never compare equal.
 
@@ -82,6 +83,7 @@ The `==` operator is for some object types (for example, class objects) equivale
 `in` and `not in`, are supported by types that are iterable or implement the `__contains__()` method.
 
 `string_1.casefold()`: Use this when you need to compare two strings but ignore the case (caseless). 
+
 
 ## Boolean 
 
@@ -237,6 +239,8 @@ To represent sets of sets, the inner sets must be `frozenset` objects.
 
 To create an empty set you have to use `set()`, not `{}`;
 
+Both set and frozenset support set to set comparisons. Two sets are equal if and only if every element of each set is contained in the other (each is a subset of the other). 
+
 ### Frozenset
 
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#frozenset)
@@ -317,3 +321,4 @@ Tuple packing:
 Sequence unpacking
 
 `x, y, z = t`
+
