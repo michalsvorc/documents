@@ -53,3 +53,7 @@ You can view objects as JSON string representation with
 Wheel is currently considered the standard for built and binary packaging for Python.
 
 PIP can create requirements file from installed packages and install all the packages in the requirements file.
+
+## Terms
+
+- [hashable](https://docs.python.org/3/glossary.html#term-hashable)
