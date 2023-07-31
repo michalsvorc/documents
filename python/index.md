@@ -4,6 +4,7 @@ Overview:
 
 - [Tutorial](https://docs.python.org/3/tutorial/index.html)
 - [Standard Library](https://docs.python.org/3/library/index.html)
+- [Glossary](https://docs.python.org/3/glossary.html)
 
 Resources:
 
