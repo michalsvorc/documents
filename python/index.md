@@ -32,6 +32,10 @@ Tools:
 - Private Name `_name`
 - Variable `snake_case`
 
+## Terms
+
+- [hashable](https://docs.python.org/3/glossary.html#term-hashable)
+
 ## Input and Output
 
 - [Tutorial](https://docs.python.org/3/tutorial/inputoutput.html)
@@ -43,17 +47,16 @@ any value to a string with the [repr()](https://docs.python.org/3/library/functi
 You can view objects as JSON string representation with
 [.dumps()](https://docs.python.org/3/library/json.html#json.dumps).
 
-## Distribution
+## Testing
 
-- [Modules](https://docs.python.org/3/tutorial/modules.html#packages)
-- [Application distribution | speedsheet](https://speedsheet.io/s/python?select=A9p5)
-- [PIP - Package Manager | speedsheet](https://speedsheet.io/s/python?select=aTYy)
-- [Python wheels](https://realpython.com/python-wheels/)
+- [Getting Started With Testing in Python | realpython](https://realpython.com/python-testing/)
+- [Python's doctest: Document and Test Your Code at Once | realpython](https://realpython.com/python-doctest/)
+- [Unit Testing with Pytest and Mocks | realpython](https://realpython.com/python-cli-testing/#unit-testing-with-pytest-and-mocks)
 
-Wheel is currently considered the standard for built and binary packaging for Python.
+It is convention to ensure each file starts with `test_` so all test runners will assume that Python file contains tests to be executed.
 
-PIP can create requirements file from installed packages and install all the packages in the requirements file.
+You can import any attributes of the script, such as classes, functions, and variables by using the built-in `__import__()` function.
 
-## Terms
+## Linting
 
-- [hashable](https://docs.python.org/3/glossary.html#term-hashable)
+- [Python Code Quality: Tools & Best Practices | realpython](https://realpython.com/python-code-quality/)
