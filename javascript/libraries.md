@@ -2,6 +2,7 @@
 
 - [big.js](https://github.com/MikeMcl/big.js): A small, fast JavaScript library for arbitrary-precision decimal
   arithmetic.
+- [set-value](https://www.npmjs.com/package/set-value)
 
 ## Data
 
