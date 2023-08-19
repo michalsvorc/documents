@@ -47,6 +47,7 @@
 - [Computerphile](https://www.youtube.com/@Computerphile/videos)
 - [Hussein Nasser](https://www.youtube.com/@hnasr/videos)
 - [CodeOpinion](https://www.youtube.com/@CodeOpinion/videos)
+- [IBM Technology](https://www.youtube.com/@IBMTechnology/videos)
 
 ### Web
 
