@@ -1,4 +1,7 @@
-# Git snippets
+# Git
+
+- [Pro Git e-book](https://git-scm.com/book/en/v2)
+- [The Git Merge Handbook](https://www.freecodecamp.org/news/the-definitive-guide-to-git-merge/)
 
 ## Create branch locally and push it to origin
 
