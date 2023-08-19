@@ -1,4 +1,10 @@
-# Interview questions
+# Interview
+
+## Resources
+
+- [LeetCode problems](https://leetcode.com/problemset/all/)
+
+## Questions
 
 - Agile methodology
 - Time tracking system
@@ -16,3 +22,4 @@
   - E2E/regression tests
   - code coverage
 - Legacy projects
+- Microservice orchestration
