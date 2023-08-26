@@ -161,6 +161,10 @@ Delete remote tag:
 git push origin --delete <tag_name>
 ```
 
+Rename a lightweight tag:
+
+https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag
+
 ## Different user email per repository
 
 ```shell
