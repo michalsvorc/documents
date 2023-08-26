@@ -170,6 +170,22 @@ git config --local user.email <name@mail.com>
 This command only affects the current repository. Any other repositories will still use the default email specified in
 `~/.gitconfig`.
 
+## Merge remote branch into local branch
+
+Set remote:
+
+```shell
+git remote add <remote> git@github.com:xxx/<repo-name>.git
+git remote set-branches <remote> <branch>
+git remote update
+
+Merge remote branch into local branch
+
+```shell
+git checkout <branch>
+git merge <remote>/<branch>
+```
+
 ## Linear history with rebase
 
 Too much hassle.
