@@ -51,6 +51,18 @@ However, an iterable may not be a sequence type. For example, a `set` is iterabl
 
 Generally speaking, iterables are more general than sequence types.
 
+Iterable data types:
+
+- `list`
+- `tuple`
+- `range`
+- `set`
+- `str`
+- `dict`
+- `Generators`
+
+Lists, tuples, dictionaries, and sets are all iterable objects.
+
 ## Iterators
 
 - [Glossary](https://docs.python.org/3/glossary.html#term-iterator)
@@ -150,10 +162,6 @@ Lists are **mutable** sequences, typically used to store collections of homogene
 - [Operations | speedsheet](https://speedsheet.io/s/python#hCt6)
 
 All slice operations return a new list containing the requested elements. 
-
-Methods like `insert`, `remove` or `sort` that only modify the list have no return value printed – they return the default `None`. This is a design principle for all mutable data structures in Python.
-
-Not all data can be sorted or compared. For instance, `[None, 'hello', 10]` doesn’t sort because integers can’t be compared to strings and `None` can’t be compared to other types.
 
 ### List Comprehension
 
@@ -322,3 +330,12 @@ Sequence unpacking
 
 `x, y, z = t`
 
+## Mutable Operations return type
+
+Methods like `insert`, `remove` or `sort` that only modify the mutable sequence have no return value printed – they return the default `None`. 
+
+This is a design principle for all mutable data structures in Python.
+
+## Sorting
+
+Not all data can be sorted or compared. For instance, `[None, 'hello', 10]` doesn’t sort because integers can’t be compared to strings and `None` can’t be compared to other types.
