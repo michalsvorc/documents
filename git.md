@@ -5,7 +5,7 @@
 
 ## Create branch locally and push it to origin
 
-```console
+```shell
 git checkout -b <branch_name>
 git push -u origin <branch_name>
 ```
@@ -14,19 +14,19 @@ git push -u origin <branch_name>
 
 Soft, keep changes:
 
-```console
+```shell
 git reset --soft HEAD~1
 ```
 
 Hard, discard changes:
 
-```console
+```shell
 git reset --hard HEAD~1
 ```
 
 ## Delete untracked files
 
-```console
+```shell
 git clean -n  # Dry run
 git clean -f  # Forced mode
 ```
@@ -35,32 +35,32 @@ git clean -f  # Forced mode
 
 Rename local branch:
 
-```console
+```shell
 git branch -m <old-name> <new-name>
 ```
 
 Delete the old-name remote branch and push the new-name local branch:
 
-```console
+```shell
 git push origin :<old-name> <new-name>
 ```
 
 Reset the upstream branch for the new-name local branch:
 
-```console
+```shell
 git checkout <new-name>
 git push origin -u <new-name>
 ```
 
 ## Squash last N commits and give them a new message
 
-```console
+```shell
 git reset --soft HEAD~N && git commit
 ```
 
 ## Reset local commits to remote origin state
 
-```console
+```shell
 git fetch origin
 git reset --hard origin/<branch-name>
 ```
@@ -71,38 +71,38 @@ git reset --hard origin/<branch-name>
 
 Merged:
 
-```console
+```shell
 git branch -d <branch_name>
 ```
 
 Unmerged:
 
-```console
+```shell
 git branch -D <branch_name>
 ```
 
 ### Delete remote branch
 
-```console
+```shell
 git push origin --delete <branch_name>
 ```
 
 ## Provide a git identity for one-shot command
 
-```console
+```shell
 git -c user.email=name@domain.com -c user.name='My Name' \
     <git_command>
 ```
 
 ## Change origin URL
 
-```console
+```shell
 git remote set-url origin <origin_url>
 ```
 
 ## Delete local references to non-existing remote branches
 
-```console
+```shell
 git remote prune origin [--dry-run]
 ```
 
@@ -119,56 +119,75 @@ git remote prune origin [--dry-run]
 
 List all tags:
 
-```console
+```shell
 git tag -l
 ```
 
 Create a lightweight tag:
 
-```console
+```shell
 git tag <tag_name>                      # current commit
 git tag -a <tag_name> <commit_hash>     # existing commit
 ```
 
 Get tag information:
 
-```console
+```shell
 git show <tag_name>
 ```
 
 Print the latest tag:
 
-```console
+```shell
 git describe --tags --abbrev=0
 ```
 
 By default, the git push command doesn't transfer tags to remote servers.
 You will have to explicitly push tags to a shared server after you have created them.
 
-```console
+```shell
 git push origin <tag_name>
 ```
 
 Delete local tag:
 
-```console
+```shell
 git tag -d <tag_name>
 ```
 
 Delete remote tag:
 
-```console
+```shell
 git push origin --delete <tag_name>
 ```
 
+Rename a lightweight tag:
+
+https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag
+
 ## Different user email per repository
 
-```console
+```shell
 git config --local user.email <name@mail.com>
 ```
 
 This command only affects the current repository. Any other repositories will still use the default email specified in
 `~/.gitconfig`.
+
+## Merge remote branch into local branch
+
+Set remote:
+
+```shell
+git remote add <remote> git@github.com:xxx/<repo-name>.git
+git remote set-branches <remote> <branch>
+git remote update
+
+Merge remote branch into local branch
+
+```shell
+git merge <remote>/<branch>
+```
 
 ## Linear history with rebase
 

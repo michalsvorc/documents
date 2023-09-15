@@ -3,6 +3,7 @@
 ## Resources
 
 - [LeetCode problems](https://leetcode.com/problemset/all/)
+- [Hackerrank](https://www.hackerrank.com/dashboard)
 
 ## Questions
 
