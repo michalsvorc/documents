@@ -126,6 +126,7 @@ After user creation, you will see `Access key ID` and `Secret access key`
 ## Queries
 
 - [Documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html)
+- [API](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html)
 
 A filter expression cannot contain partition key or sort key attributes. You need to specify those attributes in the key
 condition expression, not the filter expression.
@@ -139,8 +140,15 @@ those items. If LastEvaluatedKey is present in the response and is non-null, you
 ### Paginating Table Query Results
 
 - [Documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.Pagination.html)
+- [Pagination using Async Iterators in JavaScript SDK v3](https://aws.amazon.com/blogs/developer/pagination-using-async-iterators-in-modular-aws-sdk-for-javascript/)
 
-To determine whether there are more results: if the result contains a **LastEvaluatedKey** element and it's non-null.
+
+DynamoDB paginates the results from Query operations.
+
+A single Query operation will read up to the maximum number of items set (if using the `Limit` parameter) OR a maximum of 1 MB of data 
+and then apply any filtering to the results using `FilterExpression`.
+
+If `LastEvaluatedKey` is present in the response, you will need to paginate the result set and use it as the `ExclusiveStartKey` parameter in the new Query request.
 
 ## Transactions
 
