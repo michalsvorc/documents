@@ -72,11 +72,26 @@ python fibo.py <arguments>
 
 The code in the module will be executed, just as if you imported it, but with the `__name__` set to `"__main__"`.
 
-you can make the file usable as a script as well as an importable module, based on the following:
+### Scripts
+
+- [Python Scripts](https://docs.python.org/3/tutorial/modules.html#executing-modules-as-scripts)
+
+You can make the file usable as a script as well as an importable module.
+
+This is often used either to provide a convenient user interface to a module, or for testing purposes (running the module as a script executes a test suite).
+
+When you run a Python module with
+
+```python
+python <filename>.py <arguments>
+```
+
+the `__name__` is set to `"__main__"`:
 
 ```python
 if __name__ == "__main__":
     import sys
-    fib(int(sys.argv[1]))
+    print(sys.argv[1:])
 ```
 
+This part of the code will be executed when the module is run as a script.
