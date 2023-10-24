@@ -2,10 +2,9 @@
 
 ## Reddit
 
-### Programming
+### General
 
 - [r/programming](https://www.reddit.com/r/programming/hot/)
-- [r/aws](https://www.reddit.com/r/aws/hot/)
 
 ### Linux/CLI
 
@@ -20,15 +19,13 @@
 - [r/Python](https://www.reddit.com/r/Python/hot/)
 - [r/golang](https://www.reddit.com/r/golang/hot/)
 
-### Other
+### AWS
 
-- [r/technology](https://www.reddit.com/r/technology/hot/)
-- [r/science](https://www.reddit.com/r/science/hot/)
-- [r/todayilearned](https://www.reddit.com/r/todayilearned/hot/)
+- [r/aws](https://www.reddit.com/r/aws/hot/)
 
 ## Blogs
 
-### Web
+### General
 
 - [LogRocket](https://blog.logrocket.com/)
 
@@ -57,11 +54,6 @@
 - [Steve Griffith - Prof3ssorSt3v3](https://www.youtube.com/@SteveGriffith-Prof3ssorSt3v3/videos)
 - [productioncoder](https://www.youtube.com/@prodcoder/videos)
 
-### AWS
-
-- [AWS Online Tech Talks](https://www.youtube.com/@AWSOnlineTechTalks/videos)
-- [Be A Better Dev](https://www.youtube.com/@BeABetterDev/videos)
-
 ### Linux/CLI
 
 - [Brodie Robertson](https://www.youtube.com/@BrodieRobertson/videos)
@@ -70,6 +62,12 @@
 
 - [Chris Greer](https://www.youtube.com/@ChrisGreer/videos)
 - [PwnFunction](https://www.youtube.com/@PwnFunction/videos)
+
+### AWS
+
+- [AWS Online Tech Talks](https://www.youtube.com/@AWSOnlineTechTalks/videos)
+- [Be A Better Dev](https://www.youtube.com/@BeABetterDev/videos)
+
 
 ### Algorithms
 
