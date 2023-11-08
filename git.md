@@ -45,7 +45,7 @@ Delete the old-name remote branch and push the new-name local branch:
 git push origin :<old-name> <new-name>
 ```
 
-Reset the upstream branch for the new-name local branch:
+Reset the remote branch for the new-name local branch:
 
 ```shell
 git checkout <new-name>
@@ -174,19 +174,22 @@ git config --local user.email <name@mail.com>
 This command only affects the current repository. Any other repositories will still use the default email specified in
 `~/.gitconfig`.
 
-## Merge remote branch into local branch
+## Set up upstream branch to another repository
 
-Set remote:
-
-```shell
-git remote add <remote> git@github.com:xxx/<repo-name>.git
-git remote set-branches <remote> <branch>
-git remote update
-
-Merge remote branch into local branch
+Note! Repositories generated from github templates behave differently than traditional forks.
+Read [more](https://stackoverflow.com/questions/56577184/github-pull-changes-from-a-template-repository).
 
 ```shell
-git merge <remote>/<branch>
+git remote add upstream <upstream-repo-url>
+git fetch upstream [branch]
+```
+
+See both local and remote branches: `git branch -av`
+
+Merge changes from upstream:
+
+```shell
+git merge upstream/<branch>
 ```
 
 ## Linear history with rebase
