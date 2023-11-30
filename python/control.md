@@ -45,4 +45,4 @@ New in version 3.10.
 - [Documentation](https://docs.python.org/3/reference/compound_stmts.html#the-match-statement)
 - [speedsheet](https://speedsheet.io/s/python?q=match#1Bmp)
 
-Similar to a switch statement in C, Java or JavaScript (and many other languages), but it’s more similar to pattern matching in languages like Rust or Haskell. 
+Similar to a switch statement in C, Java or JavaScript (and many other languages), but it’s more similar to pattern matching in languages like Rust or Haskell.

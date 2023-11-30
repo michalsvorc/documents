@@ -28,7 +28,7 @@ In Python, the sequence index starts at 0.
 
 A sequence can be homogeneous or heterogeneous. In general, homogeneous sequence types are more efficient than heterogeneous in terms of storage and operations.
 
-- `list`: Mutable Array 
+- `list`: Mutable Array
 - `tuple`: Immutable Array
 - `range`: Immutable sequence of Integers
 
@@ -94,10 +94,9 @@ The `==` operator is for some object types (for example, class objects) equivale
 
 `in` and `not in`, are supported by types that are iterable or implement the `__contains__()` method.
 
-`string_1.casefold()`: Use this when you need to compare two strings but ignore the case (caseless). 
+`string_1.casefold()`: Use this when you need to compare two strings but ignore the case (caseless).
 
-
-## Boolean 
+## Boolean
 
 - [speedsheet](https://speedsheet.io/s/python?q=boolean#qA4r)
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#boolean-values)
@@ -123,7 +122,7 @@ Functions:
 Division always returns a floating point number:
 
 ```python
-8 / 4  # 2.0 
+8 / 4  # 2.0
 ```
 
 ## Strings
@@ -144,13 +143,12 @@ Strings can be enclosed in single quotes or double quotes with the same result.
 
 Lists are `mutable` arrays.
 
-
 ```python
 class list([iterable])
 l = [...]
 ```
 
-An ordered list implemented as a fixed-length array of pointers. 
+An ordered list implemented as a fixed-length array of pointers.
 
 Lists are **mutable** sequences, typically used to store collections of homogeneous items (where the precise degree of similarity will vary by application).
 
@@ -161,7 +159,7 @@ Lists are **mutable** sequences, typically used to store collections of homogene
 - [Mutable Sequence Operations](https://docs.python.org/3/library/stdtypes.html#typesseq-mutable)
 - [Operations | speedsheet](https://speedsheet.io/s/python#hCt6)
 
-All slice operations return a new list containing the requested elements. 
+All slice operations return a new list containing the requested elements.
 
 ### List Comprehension
 
@@ -175,7 +173,7 @@ The result will be a new list resulting from evaluating the expression in the co
 squares = [x**2 for x in range(10)]
 ```
 
-List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result 
+List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result
 of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.
 
 ## Tuple
@@ -228,26 +226,26 @@ class range(start, stop[, step])
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
 - [speedsheet](https://speedsheet.io/s/python?select=0RXJ)
 
-A set object is an unordered collection of distinct hashable objects. 
+A set object is an unordered collection of distinct hashable objects.
 
 ```python
 class set([iterable])
 s = {...}
 ```
 
-Common uses include membership testing, removing duplicates from a sequence, 
+Common uses include membership testing, removing duplicates from a sequence,
 and computing mathematical operations such as intersection, union, difference, and symmetric difference.
 
 Being an unordered collection, sets do not record element position or order of insertion.
 Accordingly, sets do not support indexing, slicing, or other sequence-like behavior.
 
-Since it is mutable, it has no hash value and cannot be used as either a dictionary key or as an element of another set. 
+Since it is mutable, it has no hash value and cannot be used as either a dictionary key or as an element of another set.
 
 To represent sets of sets, the inner sets must be `frozenset` objects.
 
 To create an empty set you have to use `set()`, not `{}`;
 
-Both set and frozenset support set to set comparisons. Two sets are equal if and only if every element of each set is contained in the other (each is a subset of the other). 
+Both set and frozenset support set to set comparisons. Two sets are equal if and only if every element of each set is contained in the other (each is a subset of the other).
 
 ### Frozenset
 
@@ -265,7 +263,7 @@ class frozenset([iterable])
 - [Documentation](https://docs.python.org/3/library/stdtypes.html#typesmapping)
 - [speedsheet](https://speedsheet.io/s/python?select=BUXG)
 
-A mapping object maps hashable values to arbitrary objects. Mappings are mutable objects. 
+A mapping object maps hashable values to arbitrary objects. Mappings are mutable objects.
 
 ```python
 class dict(**kwargs)
@@ -332,7 +330,7 @@ Sequence unpacking
 
 ## Mutable Operations return type
 
-Methods like `insert`, `remove` or `sort` that only modify the mutable sequence have no return value printed – they return the default `None`. 
+Methods like `insert`, `remove` or `sort` that only modify the mutable sequence have no return value printed – they return the default `None`.
 
 This is a design principle for all mutable data structures in Python.
 

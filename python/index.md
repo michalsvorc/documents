@@ -39,10 +39,11 @@ Tools:
 ## Input and Output
 
 - [Tutorial](https://docs.python.org/3/tutorial/inputoutput.html)
-- [Python print | realpython](https://realpython.com/python-print/)
-- [Python 3's F-Strings | realpython](https://realpython.com/python-f-strings/)
+- [Python print](https://realpython.com/python-print/)
+- [Python 3's F-Strings](https://realpython.com/python-f-strings/)
 
 You can convert any value to a string with the:
+
 - [repr()](https://docs.python.org/3/library/functions.html#repr)
 - [str()](https://docs.python.org/3/library/stdtypes.html#str)
 
@@ -55,16 +56,16 @@ Python comes with a built-in function for accepting input from the user, predict
 
 ## Debugging
 
-- [Python print - debugging | realpython](https://realpython.com/python-print/#debugging)
+- [Python print - debugging](https://realpython.com/python-print/#debugging)
 - [Python Debugging With Pdb](https://realpython.com/python-debugging-pdb/)
 
 A debugger that runs in the terminal, named `pdb` for “The Python Debugger,” is distributed as part of the standard library.
 
 ## Testing
 
-- [Getting Started With Testing in Python | realpython](https://realpython.com/python-testing/)
-- [Unit Testing with Pytest and Mocks | realpython](https://realpython.com/python-cli-testing/#unit-testing-with-pytest-and-mocks)
-- [Python's doctest: Document and Test Your Code at Once | realpython](https://realpython.com/python-doctest/)
+- [Getting Started With Testing in Python](https://realpython.com/python-testing/)
+- [Unit Testing with Pytest and Mocks](https://realpython.com/python-cli-testing/#unit-testing-with-pytest-and-mocks)
+- [Python's doctest: Document and Test Your Code at Once](https://realpython.com/python-doctest/)
 - [Understanding the Python Mock Object Library](https://realpython.com/python-mock-library/)
 
 It is convention to ensure each file starts with `test_` so all test runners will assume that Python file contains tests to be executed.
@@ -73,11 +74,11 @@ You can import any attributes of the script, such as classes, functions, and var
 
 ## Linting
 
-- [Python Code Quality: Tools & Best Practices | realpython](https://realpython.com/python-code-quality/)
+- [Python Code Quality: Tools & Best Practices](https://realpython.com/python-code-quality/)
 
 ## Logging
 
-- [Logging in Python | realpython](https://realpython.com/courses/logging-python/)
+- [Logging in Python](https://realpython.com/courses/logging-python/)
 - [Python print - logging](https://realpython.com/python-print/#logging)
 
 Logging module is bundled with the standard library:

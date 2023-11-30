@@ -2,7 +2,7 @@
 
 ## Error handling
 
-- [Python SpeedSheet](https://speedsheet.io/s/python?select=Gtxq)
+- [speedsheet](https://speedsheet.io/s/python?select=Gtxq)
 
 ```python
 try:

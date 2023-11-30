@@ -2,9 +2,9 @@
 
 - [Tutorial](https://docs.python.org/3/tutorial/controlflow.html#defining-functions)
 - [Built-in Functions](https://docs.python.org/3/library/functions.html)
-- [Functions | speedsheet](https://speedsheet.io/s/python#Vuqm)
-- [Closure | speedsheet](https://speedsheet.io/s/python#vbfK)
-- [Decorators | speedsheet](https://speedsheet.io/s/python?select=YaLr)
+- [Functions speedsheet](https://speedsheet.io/s/python#Vuqm)
+- [Closure speedsheet](https://speedsheet.io/s/python#vbfK)
+- [Decorators speedsheet](https://speedsheet.io/s/python?select=YaLr)
 
 ## Overview
 
@@ -18,7 +18,7 @@
 
 - The arguments with default values are optional.
 - Optional arguments must come after standard non-optional arguments.
-- The default value is evaluated only once. This makes a difference when the default 
+- The default value is evaluated only once. This makes a difference when the default
   is a mutable object such as a list, dictionary, or instances of most classes.
 
 ## Named arguments
@@ -136,7 +136,7 @@ def function_1():
 - [Documentation](https://docs.python.org/3/reference/expressions.html#lambda)
 - [speedsheet](https://speedsheet.io/s/python#x8x6)
 
-- Small anonymous functions can be created with the `lambda` keyword. 
+- Small anonymous functions can be created with the `lambda` keyword.
 - All lambdas return a value. Returns are implied.
 
 Definition:
