@@ -3,6 +3,7 @@
 - [Modules](https://docs.python.org/3/tutorial/modules.html#packages)
 - [Real Python](https://realpython.com/python-modules-packages/)
 - [speedsheet](https://speedsheet.io/s/python?q=modules#w9zp)
+- [site](https://docs.python.org/3/library/site.html#module-site)
 
 ## Wheel: Application distribution
 
@@ -20,15 +21,18 @@ PIP can create requirements file from installed packages and install all the pac
 ## Virtual environments
 
 - [Real Python](https://realpython.com/python-virtual-environments-a-primer)
+- [venv module](https://docs.python.org/3/library/venv.html)
 
-Python virtual environment is a folder structure that gives you everything you need to run a lightweight yet isolated Python environment.
+Any time you’re working on a Python project that uses external dependencies that you’re installing with pip, it’s best to first create a virtual environment.
 
-Use virtual environments for every project to:
+Contained in a directory, conventionally either named venv or .venv in the project directory, or under a container directory
+for lots of virtual environments, such as ~/.virtualenvs.
 
-- Avoid System Pollution
-- Sidestep Dependency Conflicts
-- Minimize Reproducibility Issues
-- Dodge Installation Privilege Lockouts
+To make your virtual environment reproducible, execute while venv is active:
+
+```shell
+python -m pip freeze > requirements.txt
+```
 
 ## Namespaces
 
@@ -36,7 +40,7 @@ Use virtual environments for every project to:
 
 Within a module, the module’s name (as a string) is available as the value of the global variable `__name__`.
 
-Each module has its own private namespace, which is used as the global namespace by all functions defined in the module. 
+Each module has its own private namespace, which is used as the global namespace by all functions defined in the module.
 
 A module can use global variables in the module without worrying about accidental clashes with a user’s global variables.
 
@@ -59,7 +63,7 @@ from fibo import fib as fibonacci
 fibonacci(100)
 ```
 
-`from fibo import *` imports all names except those beginning with an underscore (_).
+`from fibo import *` imports all names except those beginning with an underscore (\_).
 In most cases Python programmers do not use this facility since it introduces an unknown set of names into the interpreter.
 
 You can reload module import in current interpreter with `importlib.reload`, e.g. when testing a modified module.
