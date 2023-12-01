@@ -4,24 +4,24 @@
 
 ### General
 
-- [r/programming](https://www.reddit.com/r/programming/hot/)
+- [r/programming](https://www.reddit.com/r/programming/top/?t=week)
 
 ### Linux/CLI
 
-- [r/linux](https://www.reddit.com/r/linux/hot/)
-- [r/commandline](https://www.reddit.com/r/commandline/hot/)
-- [r/neovim](https://www.reddit.com/r/neovim/hot/)
+- [r/linux](https://www.reddit.com/r/linux/top/?t=week)
+- [r/commandline](https://www.reddit.com/r/commandline/top/?t=week)
+- [r/neovim](https://www.reddit.com/r/neovim/top/?t=week)
 
 ### Languges
 
-- [r/javascript](https://www.reddit.com/r/javascript/hot/)
-- [r/typescript](https://www.reddit.com/r/typescript/hot/)
-- [r/Python](https://www.reddit.com/r/Python/hot/)
-- [r/golang](https://www.reddit.com/r/golang/hot/)
+- [r/typescript](https://www.reddit.com/r/typescript/top/?t=week)
+- [r/python](https://www.reddit.com/r/Python/top/?t=week)
+- [r/golang](https://www.reddit.com/r/golang/top/?t=week)
+- [r/javascript](https://www.reddit.com/r/javascript/top/?t=week)
 
 ### AWS
 
-- [r/aws](https://www.reddit.com/r/aws/hot/)
+- [r/aws](https://www.reddit.com/r/aws/top/?t=week)
 
 ## Blogs
 
@@ -68,8 +68,6 @@
 - [AWS Online Tech Talks](https://www.youtube.com/@AWSOnlineTechTalks/videos)
 - [Be A Better Dev](https://www.youtube.com/@BeABetterDev/videos)
 
-
 ### Algorithms
 
 - [WilliamFiset](https://www.youtube.com/@WilliamFiset-videos/videos)
-
