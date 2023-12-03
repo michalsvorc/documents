@@ -8,6 +8,90 @@ AWS:
 - [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Tutorials](https://developer.hashicorp.com/terraform/tutorials/aws?utm_offer=ARTICLE_PAGE&utm_content=DOCS&utm_source=WEBSITE&utm_medium=WEB_IO)
 
+Tools:
+
+- [Terraform version manager](https://github.com/tfutils/tfenv)
+
+## AWS example
+
+- [Basic tutorial](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-build?variants=cdk-language%3Atypescript)
+
+### Post init
+
+- Add provider dependencies: `cdktf provider add "aws@~>4.0"` || `npm install @cdktf/provider-aws`
+- Setup [eslint](https://typescript-eslint.io/getting-started)
+
+### HCL -> CDKTF
+
+```shell
+cat main.tf | cdktf convert --provider "aws@~>4.0"  > main.ts
+```
+
+Try
+https://developer.hashicorp.com/terraform/cdktf/cli-reference/commands#convert
+https://developer.hashicorp.com/terraform/tutorials/aws/lambda-api-gateway
+
+## Local development
+
+Required:
+
+- The Terraform CLI (1.2+)
+- Node.js v16+, npm
+- CDKTF CLI
+
+Optional:
+
+- [TF env](https://github.com/tfutils/tfenv)
+
+Read more:
+
+- [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- [CDKTF CLI](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install#install-cdktf)
+
+### AWS SAM local invocation
+
+- [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html)
+- [Testing and debugging](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-test-and-debug.html)
+
+Terraform support:
+
+- [AWS SAM support for HashiCorp Terraform now generally available](https://aws.amazon.com/blogs/compute/aws-sam-support-for-hashicorp-terraform-now-generally-available/)
+- [Better together: AWS SAM CLI and HashiCorp Terraform](https://aws.amazon.com/blogs/compute/better-together-aws-sam-cli-and-hashicorp-terraform/)
+
+Resources support:
+
+- API Gateway v1 and v2
+- Lambda functions
+- DynamoDB
+
+CDKTF support:
+
+- Reads HCL: Any Terraform or AWS SAM command must run from the location of the main.tf file.
+
+Notes:
+
+- Hot reloading? []
+
+### LocalStack
+
+- [Overview](https://www.localstack.cloud/)
+
+Resources support:
+
+- [List](https://docs.localstack.cloud/user-guide/aws/feature-coverage/)
+- API Gateway v2 only in PRO version
+
+CDKTF support:
+
+https://docs.localstack.cloud/user-guide/integrations/cdk-for-terraform/
+
+Notes:
+
+- Uses serverless framework behind the scenes.
+- Hot reloading? []
+
+---
+
 ## What is Terraform?
 
 - Terraform is an open-source IaC tool developed by HashiCorp.
