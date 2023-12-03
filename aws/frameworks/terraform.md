@@ -92,12 +92,14 @@ Notes:
 
 ---
 
+# Presentation
+
 ## What is Terraform?
 
 - Terraform is an open-source IaC tool developed by HashiCorp.
-- Quickly describe Hashicorp [ ]TBD
-- It enables the provisioning and management of infrastructure in a declarative and version-controlled manner.
-- Works with multiple cloud providers (AWS, Azure, Google Cloud Platform, etc.) and on-premises environments. (mention Akamai, New Relic)
+- HashiCorp is a software company with a freemium business model based in San Francisco, California.
+- Terraform enables the provisioning and management of infrastructure in a declarative and version-controlled manner.
+- Works with multiple cloud providers (AWS, Azure, Google Cloud Platform, etc.) and on-premises environments. (Note: Akamai, New Relic)
 
 Read more:
 
@@ -180,7 +182,7 @@ Read more:
 ## AWS Cloud Development Kit (CDK)
 
 - Open-source IaC framework using familiar programming languages.
-- Supports multiple languages: TypeScript, Python, Java, C#, and Go (preview? []TBD?).
+- Supports multiple languages: TypeScript, Python, Java, C#, and Go.
 - Infrastructure components are abstracted as constructs, reusable building blocks that encapsulate AWS resources.
 - Translates CDK configurations to AWS CloudFormation templates.
 - Benefits: access to types, unit tests with familiar test frameworks.
@@ -214,7 +216,7 @@ Read more:
 - [AWS CDK Examples](https://github.com/aws-samples/aws-cdk-examples)
 - [S3 bucket construct](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_s3.Bucket.html)
 - [Lambda function construct](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html)
-- [Jest assertions](TBD)
+- [Test assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html)
 
 ## Cloud Development Kit for Terraform (CDKTF)
 
@@ -274,19 +276,3 @@ Read more:
 Read more:
 
 - [AWS Adapter](https://developer.hashicorp.com/terraform/cdktf/create-and-deploy/aws-adapter)
-
-## Local development
-
-Prerequisites:
-
-- The Terraform CLI (1.2+)
-- Node.js v16+, npm
-- CDKTF CLI
-
-Optional:
-TF env [ ] https://github.com/tfutils/tfenv
-
-Read more:
-
-- [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-- [CDKTF CLI](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install#install-cdktf)
