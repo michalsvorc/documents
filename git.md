@@ -182,9 +182,14 @@ Read [more](https://stackoverflow.com/questions/56577184/github-pull-changes-fro
 ```shell
 git remote add upstream <upstream-repo-url>
 git fetch upstream [branch]
+git remote show upstream
 ```
 
-See both local and remote branches: `git branch -av`
+See last commit of local and remote branches:
+
+```shell
+git branch -av
+```
 
 Merge changes from upstream:
 
