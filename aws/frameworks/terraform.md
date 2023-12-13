@@ -64,8 +64,8 @@ Read more:
 
 Images:
 
-- ![Terraform APIs](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-apis.png%26width%3D2048%26height%3D644&w=3840&q=75)
-- ![Terraform workflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-workflow.png%26width%3D2038%26height%3D1773&w=3840&q=75)
+<img title="Terraform APIs" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-apis.png%26width%3D2048%26height%3D644&w=3840&q=75" width="860" style="display: block;" />
+<img title="Terraform workflow" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-workflow.png%26width%3D2038%26height%3D1773&w=3840&q=75" width="860" style="display: block;" />
 
 Read more:
 
@@ -144,7 +144,8 @@ export class MyStack extends cdk.Stack {
 
 Images:
 
-- ![AWS CDK application architecture](https://docs.aws.amazon.com/images/cdk/v2/guide/images/AppStacks.png)
+<img title="AWS CDK application architecture" src="https://docs.aws.amazon.com/images/cdk/v2/guide/images/AppStacks.png"
+width="860" style="display: block;" />
 
 Read more:
 
@@ -191,8 +192,8 @@ class MyStack extends TerraformStack {
 
 Images:
 
-- ![CDKTF application architecture](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-app-architecture.png%26width%3D4096%26height%3D3066&w=3840&q=75)
-- ![CDKTF workflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-terraform-workflow.png%26width%3D4096%26height%3D3070&w=3840&q=75)
+<img title="CDKTF application architecture" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-app-architecture.png%26width%3D4096%26height%3D3066&w=3840&q=75" width="860" style="display: block;" />
+<img title="CDKTF workflow" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-terraform-workflow.png%26width%3D4096%26height%3D3070&w=3840&q=75" width="860" style="display: block;" />
 
 Read more:
 
