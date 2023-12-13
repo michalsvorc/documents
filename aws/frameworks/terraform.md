@@ -3,6 +3,8 @@
 - [Documentation](https://developer.hashicorp.com/terraform)
 - [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
 
+Notes:
+
 AWS:
 
 - [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
@@ -12,87 +14,20 @@ Tools:
 
 - [Terraform version manager](https://github.com/tfutils/tfenv)
 
-## AWS example
+AWS example:
 
 - [Basic tutorial](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-build?variants=cdk-language%3Atypescript)
 
-### Post init
+Post init:
 
 - Add provider dependencies: `cdktf provider add "aws@~>4.0"` || `npm install @cdktf/provider-aws`
 - Setup [eslint](https://typescript-eslint.io/getting-started)
 
-### HCL -> CDKTF
+HCL -> CDKTF
 
 ```shell
 cat main.tf | cdktf convert --provider "aws@~>4.0"  > main.ts
 ```
-
-Try
-https://developer.hashicorp.com/terraform/cdktf/cli-reference/commands#convert
-https://developer.hashicorp.com/terraform/tutorials/aws/lambda-api-gateway
-
-## Local development
-
-Required:
-
-- The Terraform CLI (1.2+)
-- Node.js v16+, npm
-- CDKTF CLI
-
-Optional:
-
-- [TF env](https://github.com/tfutils/tfenv)
-
-Read more:
-
-- [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-- [CDKTF CLI](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install#install-cdktf)
-
-### AWS SAM local invocation
-
-- [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html)
-- [Testing and debugging](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-test-and-debug.html)
-
-Terraform support:
-
-- [AWS SAM support for HashiCorp Terraform now generally available](https://aws.amazon.com/blogs/compute/aws-sam-support-for-hashicorp-terraform-now-generally-available/)
-- [Better together: AWS SAM CLI and HashiCorp Terraform](https://aws.amazon.com/blogs/compute/better-together-aws-sam-cli-and-hashicorp-terraform/)
-
-Resources support:
-
-- API Gateway v1 and v2
-- Lambda functions
-- DynamoDB
-
-CDKTF support:
-
-- Reads HCL: Any Terraform or AWS SAM command must run from the location of the main.tf file.
-
-Notes:
-
-- Hot reloading? []
-
-### LocalStack
-
-- [Overview](https://www.localstack.cloud/)
-
-Resources support:
-
-- [List](https://docs.localstack.cloud/user-guide/aws/feature-coverage/)
-- API Gateway v2 only in PRO version
-
-CDKTF support:
-
-https://docs.localstack.cloud/user-guide/integrations/cdk-for-terraform/
-
-Notes:
-
-- Uses serverless framework behind the scenes.
-- Hot reloading? []
-
----
-
-# Presentation
 
 ## What is Terraform?
 
@@ -129,8 +64,8 @@ Read more:
 
 Images:
 
-- [Terraform APIs](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-apis.png%26width%3D2048%26height%3D644&w=3840&q=75)
-- [Terraform workflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-workflow.png%26width%3D2038%26height%3D1773&w=3840&q=75)
+- ![Terraform APIs](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-apis.png%26width%3D2048%26height%3D644&w=3840&q=75)
+- ![Terraform workflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-workflow.png%26width%3D2038%26height%3D1773&w=3840&q=75)
 
 Read more:
 
@@ -166,12 +101,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "example-id" {
-  bucket = "example-bucket-name"
-
-  versioning {
-    enabled = true
-  }
+resource "aws_lambda_function" "example-lambda" {
+  function_name = "example-lambda-function"
+  filename      = "path/to/lambda_function.zip"
+  handler       = "index.handler"
+  runtime       = "nodejs18.x"
 }
 ```
 
@@ -192,15 +126,17 @@ Example:
 ```typescript
 // main.ts
 import * as cdk from "aws-cdk-lib";
-import * as s3 from "aws-cdk-lib/aws-s3";
+import * as lambda from "aws-cdk-lib/aws-lambda";
 
 export class MyStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const bucket = new s3.Bucket(this, "example-id", {
-      bucketName: "example-bucket-name",
-      versioned: true,
+    const lambdaFn = new lambda.Function(this, "example-lambda", {
+      functionName: "example-lambda-function",
+      runtime: lambda.Runtime.NODEJS_18_X,
+      handler: "index.handler",
+      code: lambda.Code.fromAsset("path/to/lambda_function.zip"),
     });
   }
 }
@@ -208,13 +144,12 @@ export class MyStack extends cdk.Stack {
 
 Images:
 
-- [AWS CDK application architecture](https://docs.aws.amazon.com/images/cdk/v2/guide/images/AppStacks.png)
+- ![AWS CDK application architecture](https://docs.aws.amazon.com/images/cdk/v2/guide/images/AppStacks.png)
 
 Read more:
 
 - [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
 - [AWS CDK Examples](https://github.com/aws-samples/aws-cdk-examples)
-- [S3 bucket construct](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_s3.Bucket.html)
 - [Lambda function construct](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html)
 - [Test assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html)
 
@@ -232,23 +167,23 @@ Example:
 ```typescript
 // main.ts
 import { Construct } from "constructs";
-import { TerraformStack } from "cdktf";
-import { S3Bucket } from "./.gen/providers/aws/s3-bucket";
-import { S3BucketVersioningA } from "./.gen/providers/aws/s3-bucket-versioning";
+import { TerraformStack, TerraformAsset, AssetType } from "cdktf";
+import { lambdaFunction } from "@cdktf/provider-aws";
 
 class MyStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
-    const bucket = new S3Bucket(this, "example-id", {
-      bucket: "example-bucket-name",
+    const asset = new TerraformAsset(this, "lambda-asset", {
+      path: "path/to/lambda_function.zip",
+      type: AssetType.ARCHIVE,
     });
 
-    new S3BucketVersioningA(this, "bucket-versioning-example", {
-      bucket: bucket.id,
-      versioningConfiguration: {
-        status: "Enabled",
-      },
+    const lambdaFn = new lambdaFunction.LambdaFunction(this, "example-lambda-function", {
+      functionName: "example-lambda-function",
+      handler: "index.handler",
+      runtime: "nodejs18.x",
+      filename: "lambda_function_payload.zip",
     });
   }
 }
@@ -256,8 +191,8 @@ class MyStack extends TerraformStack {
 
 Images:
 
-- [CDKTF application architecture](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-app-architecture.png%26width%3D4096%26height%3D3066&w=3840&q=75)
-- [CDKTF workflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-terraform-workflow.png%26width%3D4096%26height%3D3070&w=3840&q=75)
+- ![CDKTF application architecture](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-app-architecture.png%26width%3D4096%26height%3D3066&w=3840&q=75)
+- ![CDKTF workflow](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-terraform-workflow.png%26width%3D4096%26height%3D3070&w=3840&q=75)
 
 Read more:
 
@@ -276,3 +211,108 @@ Read more:
 Read more:
 
 - [AWS Adapter](https://developer.hashicorp.com/terraform/cdktf/create-and-deploy/aws-adapter)
+
+## Local development
+
+Required:
+
+- The Terraform CLI (1.2+)
+- Node.js v16+, npm
+- CDKTF CLI
+
+Optional:
+
+- [TF env](https://github.com/tfutils/tfenv)
+
+Read more:
+
+- [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- [CDKTF CLI](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install#install-cdktf)
+
+### AWS SAM
+
+CDKTF support:
+
+- [AWS SAM support for HashiCorp Terraform now generally available](https://aws.amazon.com/blogs/compute/aws-sam-support-for-hashicorp-terraform-now-generally-available/)
+- [Better together: AWS SAM CLI and HashiCorp Terraform](https://aws.amazon.com/blogs/compute/better-together-aws-sam-cli-and-hashicorp-terraform/)
+- Reads HCL: Any Terraform or AWS SAM command must run from the location of the main.tf file.
+
+#### Local invocation
+
+- [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html)
+- [Testing and debugging](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-test-and-debug.html)
+
+Resources support:
+
+- API Gateway v1 and v2
+- Lambda functions
+- DynamoDB
+
+#### AWS SAM Accelerate
+
+- [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-sync.html)
+- [Blogpost](https://aws.amazon.com/blogs/compute/accelerating-serverless-development-with-aws-sam-accelerate/)
+
+The `--code` flag works only for services:
+
+- AWS::Serverless::Function
+- AWS::Lambda::Function
+- AWS::Serverless::LayerVersion
+- AWS::Lambda::LayerVersion
+- AWS::Serverless::Api
+- AWS::ApiGateway::RestApi
+- AWS::Serverless::HttpApi
+- AWS::ApiGatewayV2::Api
+- AWS::Serverless::StateMachine
+- AWS::StepFunctions::StateMachine
+
+### LocalStack
+
+- [Overview](https://www.localstack.cloud/)
+
+Resources support:
+
+- [List](https://docs.localstack.cloud/user-guide/aws/feature-coverage/)
+- PRO version:
+  - API Gateway v2
+  - Authorizers
+  - AppConfig
+  - AppSync
+  - CloudFront
+  - Cognito Identity & Provider
+  - DocumentDB
+  - Elastic Container Services & Registry
+  - Relational Database Service (RDS) / Aurora Serverless
+
+CDKTF support:
+
+- [Integration guide](https://docs.localstack.cloud/user-guide/integrations/cdk-for-terraform/)
+
+Read more:
+
+- [Hot reloading](https://docs.localstack.cloud/user-guide/tools/lambda-tools/hot-reloading/)
+- [awslocal cli](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+
+Notes:
+
+- [Test project](https://github.com/hashicorp/learn-cdktf-assets-stacks-lambda), refactored to REST API Gateway to use
+  comunity edition.
+
+```shell
+localstack start
+cdktf synth && cdktf deploy [app] [--auto-approve]
+```
+
+Interact with REST API GW:
+
+```shell
+awslocal apigateway get-rest-apis
+curl -X GET http://localhost:4566/restapis/<api_id>/<stage>/_user_request_/<endpoint>/
+```
+
+Lambda logs:
+
+```shell
+awslocal lambda list-functions
+awslocal logs tail /aws/lambda/<lambda_name>
+```
