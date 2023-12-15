@@ -1,33 +1,8 @@
-# Terraform
+# CDKTF
 
-- [Documentation](https://developer.hashicorp.com/terraform)
-- [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
+### Cloud Development Kit for Terraform
 
-Notes:
-
-AWS:
-
-- [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
-- [Tutorials](https://developer.hashicorp.com/terraform/tutorials/aws?utm_offer=ARTICLE_PAGE&utm_content=DOCS&utm_source=WEBSITE&utm_medium=WEB_IO)
-
-Tools:
-
-- [Terraform version manager](https://github.com/tfutils/tfenv)
-
-AWS example:
-
-- [Basic tutorial](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-build?variants=cdk-language%3Atypescript)
-
-Post init:
-
-- Add provider dependencies: `cdktf provider add "aws@~>4.0"` || `npm install @cdktf/provider-aws`
-- Setup [eslint](https://typescript-eslint.io/getting-started)
-
-HCL -> CDKTF
-
-```shell
-cat main.tf | cdktf convert --provider "aws@~>4.0"  > main.ts
-```
+---
 
 ## What is Terraform?
 
@@ -41,6 +16,8 @@ Read more:
 - [Terraform](https://www.terraform.io/)
 - [HashiCorp](https://www.hashicorp.com/)
 - [List of providers](https://registry.terraform.io/browse/providers)
+
+---
 
 ## License change
 
@@ -56,16 +33,13 @@ Read more:
 - [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/)
 - [Business Source License 1.1](https://mariadb.com/bsl11/)
 
+---
+
 ## Key Concepts
 
 - Providers: Plugins that define and enable the interaction between Terraform and specific infrastructure platforms through APIs.
 - Resources: Fundamental building blocks of infrastructure defined in Terraform configurations, representing specific infrastructure components.
 - Modules: Reusable, self-contained collections of infrastructure configurations that enable modularization and abstraction.
-
-Images:
-
-<img title="Terraform APIs" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-apis.png%26width%3D2048%26height%3D644&w=3840&q=75" width="860" style="display: block;" />
-<img title="Terraform workflow" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-workflow.png%26width%3D2038%26height%3D1773&w=3840&q=75" width="860" style="display: block;" />
 
 Read more:
 
@@ -73,6 +47,22 @@ Read more:
 - [Resources](https://developer.hashicorp.com/terraform/language/resources)
 - [Modules](https://developer.hashicorp.com/terraform/language/modules)
 - [Terraform registry](https://registry.terraform.io/)
+
+---
+
+<figure>
+  <figcaption>Terraform APIs</figcaption>
+  <img title="Terraform APIs" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-apis.png%26width%3D2048%26height%3D644&w=3840&q=75" class="image" />
+</figure>
+
+---
+
+<figure>
+  <figcaption>Terraform workflow</figcaption>
+  <img title="Terraform workflow" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform%26version%3Drefs%252Fheads%252Fv1.6%26asset%3Dwebsite%252Fimg%252Fdocs%252Fintro-terraform-workflow.png%26width%3D2038%26height%3D1773&w=3840&q=75" class="image" />
+</figure>
+
+---
 
 ## State file
 
@@ -87,12 +77,20 @@ Read more:
 
 - [State](https://developer.hashicorp.com/terraform/language/state)
 
+---
+
 ## Terraform language
 
 - Terraform configurations are written in HashiCorp Configuration Language (HCL).
 - Configuration files are written with the extension `.tf`.
 
-Example:
+Read more:
+
+- [Terraform Language Documentation](https://developer.hashicorp.com/terraform/language)
+
+---
+
+HCL example
 
 ```hcl
 # main.tf
@@ -109,9 +107,7 @@ resource "aws_lambda_function" "example-lambda" {
 }
 ```
 
-Read more:
-
-- [Terraform Language Documentation](https://developer.hashicorp.com/terraform/language)
+---
 
 ## AWS Cloud Development Kit (CDK)
 
@@ -121,9 +117,18 @@ Read more:
 - Translates CDK configurations to AWS CloudFormation templates.
 - Benefits: access to types, unit tests with familiar test frameworks.
 
-Example:
+Read more:
 
-```typescript
+- [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
+- [AWS CDK Examples](https://github.com/aws-samples/aws-cdk-examples)
+- [Lambda function construct](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html)
+- [Test assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html)
+
+---
+
+AWS CDK example
+
+```javascript
 // main.ts
 import * as cdk from "aws-cdk-lib";
 import * as lambda from "aws-cdk-lib/aws-lambda";
@@ -142,17 +147,15 @@ export class MyStack extends cdk.Stack {
 }
 ```
 
-Images:
+---
 
-<img title="AWS CDK application architecture" src="https://docs.aws.amazon.com/images/cdk/v2/guide/images/AppStacks.png"
-width="860" style="display: block;" />
+<figure>
+  <figcaption>AWS CDK application architecture</figcaption>
+  <img title="AWS CDK application architecture" src="https://docs.aws.amazon.com/images/cdk/v2/guide/images/AppStacks.png"
+class="image" />
+</figure>
 
-Read more:
-
-- [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
-- [AWS CDK Examples](https://github.com/aws-samples/aws-cdk-examples)
-- [Lambda function construct](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html)
-- [Test assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html)
+---
 
 ## Cloud Development Kit for Terraform (CDKTF)
 
@@ -163,9 +166,18 @@ Read more:
 - Translates CDKTF configurations to JSON configuration files for Terraform.
 - CDKTF may still have breaking changes before v1.0 release (currently v0.19.1).
 
-Example:
+Read more:
 
-```typescript
+- [CDK for Terraform](https://developer.hashicorp.com/terraform/cdktf)
+- [S3 bucket resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket?lang=typescript)
+- [Lambda function resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function?lang=typescript)
+- [CDKTF milestones](https://github.com/hashicorp/terraform-cdk/milestones)
+
+---
+
+CDKTF example
+
+```javascript
 // main.ts
 import { Construct } from "constructs";
 import { TerraformStack, TerraformAsset, AssetType } from "cdktf";
@@ -190,17 +202,21 @@ class MyStack extends TerraformStack {
 }
 ```
 
-Images:
+---
 
-<img title="CDKTF application architecture" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-app-architecture.png%26width%3D4096%26height%3D3066&w=3840&q=75" width="860" style="display: block;" />
-<img title="CDKTF workflow" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-terraform-workflow.png%26width%3D4096%26height%3D3070&w=3840&q=75" width="860" style="display: block;" />
+<figure>
+  <figcaption>CDKTF application architecture</figcaption>
+  <img title="CDKTF application architecture" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-app-architecture.png%26width%3D4096%26height%3D3066&w=3840&q=75" class="image" />
+</figure>
 
-Read more:
+---
 
-- [CDK for Terraform](https://developer.hashicorp.com/terraform/cdktf)
-- [S3 bucket resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket?lang=typescript)
-- [Lambda function resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function?lang=typescript)
-- [CDKTF milestones](https://github.com/hashicorp/terraform-cdk/milestones)
+<figure>
+  <figcaption>CDKTF workflow</figcaption>
+  <img title="CDKTF workflow" src="https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-cdk%26version%3Dv0.19.1%26asset%3Dwebsite%252Fdocs%252Fcdktf%252Fconcepts%252Fimages%252Fcdktf-terraform-workflow.png%26width%3D4096%26height%3D3070&w=3840&q=75" class="image" />
+</figure>
+
+---
 
 ## CDKTF relation to AWS CDK
 
@@ -212,6 +228,27 @@ Read more:
 Read more:
 
 - [AWS Adapter](https://developer.hashicorp.com/terraform/cdktf/create-and-deploy/aws-adapter)
+
+---
+
+## Read more
+
+Overview:
+
+- [Documentation](https://developer.hashicorp.com/terraform)
+- [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
+
+AWS Provider:
+
+- [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+- [Tutorials](https://developer.hashicorp.com/terraform/tutorials/aws?utm_offer=ARTICLE_PAGE&utm_content=DOCS&utm_source=WEBSITE&utm_medium=WEB_IO)
+- [Basic tutorial](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-build?variants=cdk-language%3Atypescript)
+
+Tools:
+
+- [Terraform version manager](https://github.com/tfutils/tfenv)
+
+---
 
 ## Local development
 
@@ -229,6 +266,8 @@ Read more:
 
 - [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 - [CDKTF CLI](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install#install-cdktf)
+
+---
 
 ### AWS SAM
 
@@ -317,3 +356,20 @@ Lambda logs:
 awslocal lambda list-functions
 awslocal logs tail /aws/lambda/<lambda_name>
 ```
+
+---
+
+## Notes
+
+Post init:
+
+- Add provider dependencies: `cdktf provider add "aws@~>4.0"` || `npm install @cdktf/provider-aws`
+- Setup [eslint](https://typescript-eslint.io/getting-started)
+
+HCL -> CDKTF
+
+```shell
+cat main.tf | cdktf convert --provider "aws@~>4.0"  > main.ts
+```
+
+---
