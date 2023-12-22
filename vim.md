@@ -11,6 +11,10 @@ Graphical cheat sheets:
 - [Vim Cheat Sheet](https://i.imgur.com/YLInLlY.png)
 - [Keyboard cheat sheet](https://helloacm.com/wp-content/uploads/2015/09/vi-vim-cheat-sheet.jpg)
 
+Blog posts:
+
+- [Advanced Vim topics, tips and tricks](https://www.integralist.co.uk/posts/vim/)
+
 ## Navigation
 
 `g;` jump to last edited position
@@ -23,14 +27,14 @@ Graphical cheat sheets:
 
 Search in current file:
 
-- Forward: `/` 
+- Forward: `/`
 - Backward: `?`
 - Case-sensitive: `/<pattern>\C`
 - Case-insensitive: `/<pattern>\c`
 
 Search the word under the cursor:
 
-- Forward: `*` or `g*` 
+- Forward: `*` or `g*`
 - Backward: `#` or `g#`
 
 ### Grep search
@@ -74,6 +78,7 @@ Prefer LSP refactoring.
 Populate the quickfix list with search results.
 
 Using Telescope plugin:
+
 1. Search with `:Telescope live_grep`.
 2. Optionally filter Telescope results with `<Tab>`.
 3. Send results to quickfix list: `<M>q` selected, `<C>q` all results.
