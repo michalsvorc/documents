@@ -18,21 +18,7 @@ Wheel is currently considered the standard for built and binary packaging for Py
 
 PIP can create requirements file from installed packages and install all the packages in the requirements file.
 
-## Virtual environments
-
-- [Real Python](https://realpython.com/python-virtual-environments-a-primer)
-- [venv module](https://docs.python.org/3/library/venv.html)
-
 Any time you’re working on a Python project that uses external dependencies that you’re installing with pip, it’s best to first create a virtual environment.
-
-Contained in a directory, conventionally either named venv or .venv in the project directory, or under a container directory
-for lots of virtual environments, such as ~/.virtualenvs.
-
-To make your virtual environment reproducible, execute while venv is active:
-
-```shell
-python -m pip freeze > requirements.txt
-```
 
 ## Namespaces
 
