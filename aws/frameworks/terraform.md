@@ -288,6 +288,10 @@ Resources support:
 - Lambda functions
 - DynamoDB
 
+Notes:
+
+Needs connection to an account to initialize resources even for local commands.
+
 #### AWS SAM Accelerate
 
 - [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-sync.html)
@@ -336,7 +340,7 @@ Read more:
 Notes:
 
 - [Test project](https://github.com/hashicorp/learn-cdktf-assets-stacks-lambda), refactored to REST API Gateway to use
-  comunity edition.
+  community edition.
 
 ```shell
 localstack start
