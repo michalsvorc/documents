@@ -5,6 +5,23 @@
 - [FAQ - gnupg.org](https://www.gnupg.org/faq/gnupg-faq.html#glossary)
 - [Public keys - gnupg.org](https://www.gnupg.org/gph/en/manual/x56.html)
 
+## Usage
+
+### Change Passphrase Secret Key Password
+
+- [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)
+
+### Renew Expired GPG key
+
+- [github.com](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
+
+```console
+$ gpg --edit-key KEYID
+gpg> key <N>
+gpg> expire
+gpg> save
+```
+
 ## Revoking key components
 
 - [gnupg.org](https://www.gnupg.org/gph/en/manual.html#AEN305)
@@ -121,20 +138,3 @@ created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) 
 
 Both the document and detached signature are needed to verify the signature. The --verify option can be to check the
 signature.
-
-## Usage
-
-### Change Passphrase Secret Key Password
-
-- [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)
-
-### Renew Expired GPG key
-
-- [github.com](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
-
-```console
-$ gpg --edit-key KEYID
-gpg> key <N>
-gpg> expire
-gpg> save
-```
