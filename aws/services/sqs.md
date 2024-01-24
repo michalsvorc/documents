@@ -1,10 +1,14 @@
 # Amazon Simple Queue Service (SQS)
 
 - [Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)
-- [API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/index.html)
 - [How Amazon SQS works](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-how-it-works.html)
 - [Queue parameters](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-queue-parameters.html)
-- [Best parameters](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html)
+- [Best practices](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html)
+
+## API
+
+- [API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/index.html)
+- [Quotas related to messages](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
 
 ## Queue types
 
