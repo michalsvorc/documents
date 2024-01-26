@@ -19,6 +19,7 @@ Tools:
 
 ## Style conventions
 
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 - [Coding Style](https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style)
 - [Documentation Strings](https://docs.python.org/3/tutorial/controlflow.html#documentation-strings)
 - [Function Anntotations](https://docs.python.org/3/tutorial/controlflow.html#function-annotations)
