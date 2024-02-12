@@ -37,12 +37,18 @@ Search the word under the cursor:
 - Forward: `*` or `g*`
 - Backward: `#` or `g#`
 
+## Search and replace
+
+- [sed regular expressions](https://www.gnu.org/software/sed/manual/sed.html#sed-regular-expressions).
+- [Vim Search and Replace With Examples](https://thevaluable.dev/vim-search-find-replace/)
+
 ### Grep search
 
 Grep search populates the quickfix list.
 
 ```vim
 :grep <pattern> <path>
+:copen
 ```
 
 Where path can be:
@@ -52,10 +58,22 @@ Where path can be:
 - `*` working directory
 - `%` current file
 
-## Search and replace
+### Search in current file with list
 
-- [sed regular expressions](https://www.gnu.org/software/sed/manual/sed.html#sed-regular-expressions).
-- [Vim Search and Replace With Examples](https://thevaluable.dev/vim-search-find-replace/)
+Quickfix list:
+
+```vim
+:grep <pattern> %
+:copen
+```
+
+Telescope plugin:
+
+- [Github issue](https://github.com/nvim-telescope/telescope.nvim/issues/762)
+
+```vim
+Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case
+```
 
 ### Quick name refactor in single buffer
 
@@ -95,4 +113,29 @@ Save all modified buffers:
 
 ```vim
 :cfdo | up
+```
+
+## Quickfix list
+
+- [Quickfix](https://neovim.io/doc/user/quickfix.html)
+
+### Filter results
+
+- [Cfilter plugin](https://neovim.io/doc/user/quickfix.html#cfilter-plugin)
+
+```vim
+:packadd cfilter
+:Cfilter /pattern/
+```
+
+Telescope plugin:
+
+```vim
+:Telescope quickfix
+```
+
+Extract a quickfix sub-list:
+
+```vim
+:call setqflist(getqflist()[1:2])
 ```
