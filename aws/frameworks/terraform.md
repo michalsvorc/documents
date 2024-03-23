@@ -15,7 +15,7 @@ Read more:
 
 - [Terraform](https://www.terraform.io/)
 - [HashiCorp](https://www.hashicorp.com/)
-- [List of providers](https://registry.terraform.io/browse/providers)
+- [Providers registry](https://registry.terraform.io/browse/providers)
 
 ---
 
@@ -28,8 +28,8 @@ Read more:
 Read more:
 
 - [HashiCorp announcement](https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license)
+- [HashiCorp License FAQ](https://www.hashicorp.com/license-faq)
 - [The OpenTofu Manifesto](https://opentofu.org/manifesto/)
-- [Implications and Reactions](https://www.hekto.co/skorfmann/hashicorp-license-change)
 - [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/)
 - [Business Source License 1.1](https://mariadb.com/bsl11/)
 
@@ -237,6 +237,7 @@ Overview:
 
 - [Documentation](https://developer.hashicorp.com/terraform)
 - [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
+- [Unit tests](https://developer.hashicorp.com/terraform/cdktf/test/unit-tests)
 
 AWS Provider:
 
@@ -254,9 +255,9 @@ Tools:
 
 Required:
 
-- The Terraform CLI (1.2+)
 - Node.js v16+, npm
-- CDKTF CLI
+- The Terraform CLI (1.2+): `terraform`
+- CDKTF CLI: `cdktf`
 
 Optional:
 
@@ -275,11 +276,13 @@ CDKTF support:
 
 - [AWS SAM support for HashiCorp Terraform now generally available](https://aws.amazon.com/blogs/compute/aws-sam-support-for-hashicorp-terraform-now-generally-available/)
 - [Better together: AWS SAM CLI and HashiCorp Terraform](https://aws.amazon.com/blogs/compute/better-together-aws-sam-cli-and-hashicorp-terraform/)
-- Reads HCL: Any Terraform or AWS SAM command must run from the location of the main.tf file.
+- Reads HCL: Any Terraform or AWS SAM command must run from the location of the `main.tf` file.
+- No direct CDKTF support yet.
 
 #### Local invocation
 
 - [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html)
+- [Using the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli.html)
 - [Testing and debugging](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-test-and-debug.html)
 
 Resources support:
@@ -290,13 +293,15 @@ Resources support:
 
 Notes:
 
-Needs connection to an account to initialize resources even for local commands.
+Needs connection to an account to initialize resources. Applies to local commands as well.
 
 #### AWS SAM Accelerate
 
 - [Overview](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-sync.html)
 - [Blogpost](https://aws.amazon.com/blogs/compute/accelerating-serverless-development-with-aws-sam-accelerate/)
 
+`sam sync` deploys or updates all infrastructure and code, but bypasses the AWS CloudFormation changeset process.
+`sam sync --code` command can also synchronize code changes to the cloud without updating the infrastructure.
 The `--code` flag works only for services:
 
 - AWS::Serverless::Function
@@ -336,15 +341,16 @@ Read more:
 
 - [Hot reloading](https://docs.localstack.cloud/user-guide/tools/lambda-tools/hot-reloading/)
 - [awslocal cli](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [Debug Lambda](https://hashnode.localstack.cloud/debugging-nodejs-lambda-functions-locally-using-localstack)
 
 Notes:
 
 - [Test project](https://github.com/hashicorp/learn-cdktf-assets-stacks-lambda), refactored to REST API Gateway to use
-  community edition.
+  localstack community edition.
 
 ```shell
 localstack start
-cdktf synth && cdktf deploy [app] [--auto-approve]
+cdktf deploy [app] [--auto-approve]
 ```
 
 Interact with REST API GW:
@@ -355,6 +361,10 @@ curl -X GET http://localhost:4566/restapis/<api_id>/<stage>/_user_request_/<endp
 ```
 
 Lambda logs:
+
+- Add `console.log` to Lambda function
+- Call the function through the API GW
+- Inspect the logs
 
 ```shell
 awslocal lambda list-functions
