@@ -16,11 +16,29 @@
 - [github.com](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
 
 ```console
-$ gpg --edit-key KEYID
+gpg --list-secret-keys
+gpg --edit-key <KEY_ID>
+```
+
+Use the expire command to set a new expire date. With no selection, the key expiration of the primary key is changed. 
+Select a subkey (keys are 0 indexed) and set a new expire date:
+
+```console
 gpg> key <N>
 gpg> expire
+...
 gpg> save
 ```
+
+## Expiration date
+
+- [Selecting expiration dates and using subkeys](https://www.gnupg.org/gph/en/manual.html#AEN526)
+
+It is almost always the case that you will not want the master key to expire.
+
+Once a GPG **secret key** has expired, you cannot directly renew or extend the expiration date. 
+The expiration date is set at the time of key creation, and once the key has passed its expiration date, 
+it is considered invalid for cryptographic operations.
 
 ## Revoking key components
 
@@ -49,12 +67,6 @@ The longer the key the more secure it is against brute-force attacks, but for al
 adequate since it would be cheaper to circumvent the encryption than try to break it. Also, encryption and decryption
 will be slower as the key size is increased, and a larger key size may affect signature length. Once selected, the key
 size can never be changed.
-
-### Expiration date
-
-For most users a key that does not expire is adequate. The expiration time should be chosen with care, however, since
-although it is possible to change the expiration date after the key is created, it may be difficult to communicate a
-change to users who have your public key.
 
 ### User ID
 
