@@ -106,8 +106,11 @@ Additionally filter quickfix list with [:Cfilter](https://neovim.io/doc/user/qui
 Execute search and replace command with `:cdo` in each valid entry in the quickfix list:
 
 ```vim
-:cdo s/foo/bar/
+:cdo s/foo/bar/gc
 ```
+
+- g: This flag means to replace all occurrences on each line.
+- c: This flag means to confirm each substitution.
 
 Save all modified buffers:
 
