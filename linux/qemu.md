@@ -20,7 +20,7 @@ qemu-img create -f qcow2 -o backing_fmt=qcow2 -b <initial>.img <overlay>.img
 
 ## Pass USB device to guest
 
-Lista available device:
+List available device:
 
 ```shell
 lsusb
