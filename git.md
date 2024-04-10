@@ -200,3 +200,20 @@ git merge upstream/<branch>
 ## Linear history with rebase
 
 Too much hassle.
+
+## Merge conflicts
+
+`git mergetool`
+
+### Accept all changes
+
+- https://stackoverflow.com/questions/10697463/resolve-git-merge-conflicts-in-favor-of-their-changes-during-a-pull#answer-33569970
+
+If you're already in conflicted state:
+
+```shell
+git checkout --theirs|--ours <file>
+git add <file>
+```
+
+Use `.` when you want to accept everything.
