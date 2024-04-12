@@ -143,6 +143,12 @@ Extract a quickfix sub-list:
 :call setqflist(getqflist()[1:2])
 ```
 
+### Open all items
+
+```
+:silent tabedit %
+```
+
 ## Plugins
 
 ### Telescope
