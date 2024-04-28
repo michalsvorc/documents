@@ -156,3 +156,7 @@ Extract a quickfix sub-list:
 - [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
 `:Telescope resume` will open back your last telescope to its previous state (before closing it or selecting an entry)
+
+## Remember
+
+- `gh`: open file path
