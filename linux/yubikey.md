@@ -26,6 +26,14 @@ ykman info
 
 Read using the [YubiKey Manager CLI](https://docs.yubico.com/software/yubikey/tools/ykman/Using_the_ykman_CLI.html).
 
+## New account
+
+- [URI string format](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html)
+
+```shell
+ykman oath accounts uri 'otpauth://totp/<user>?secret=<secret>&issuer=<issuer>'
+```
+
 ## OTP
 
 Get the Base32 secret key from QR code.
