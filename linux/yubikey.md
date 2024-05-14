@@ -31,7 +31,7 @@ Read using the [YubiKey Manager CLI](https://docs.yubico.com/software/yubikey/to
 - [URI string format](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html)
 
 ```shell
-ykman oath accounts uri 'otpauth://totp/<user>?secret=<secret>&issuer=<issuer>'
+ykman oath accounts uri -t 'otpauth://totp/<user>?secret=<secret>&issuer=<issuer>'
 ```
 
 ## OTP
