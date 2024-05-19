@@ -217,3 +217,14 @@ git add <file>
 ```
 
 Use `.` when you want to accept everything.
+
+## Submodules
+
+### Download submodules added in upstream
+
+```shell
+git submodule init
+git submodule update
+```
+
+
