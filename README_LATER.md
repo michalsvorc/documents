@@ -7,6 +7,7 @@
 - https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118
 - https://www.corecursive.com/json-vs-xml-douglas-crockford/
 - Git For Ages 4 And Up: https://www.youtube.com/watch?v=2ffBJ4sVUb4
+- So You Think You Know Git - FOSDEM 2024 https://www.youtube.com/watch?v=aolI_Rz0ZqY
 
 ## Resources
 
