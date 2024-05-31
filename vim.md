@@ -157,6 +157,11 @@ Extract a quickfix sub-list:
 
 `:Telescope resume` will open back your last telescope to its previous state (before closing it or selecting an entry)
 
+### Fugitive
+
+`:Gedit !` view the last commit of the current file
+
 ## Remember
 
 - `gh`: open file path
+
