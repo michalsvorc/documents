@@ -12,11 +12,6 @@
 - MFA is required only when signing in (web interface?)
 - SSH key is used only for for AWS CodeCommit
 
-## AWS SAM CLI
-
-- [Install the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html#serverless-sam-cli-install-linux-sam-cli)
-- [Upgrading](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html#serverless-sam-cli-install-linux-upgrading)
-
 ## s3fs
 
 ```console

@@ -11,6 +11,10 @@
 - [CDK - Node.js](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs-readme.html)
 - [Docker image - Node.js](https://hub.docker.com/r/amazon/aws-lambda-nodejs/tags)
 
+## Tools
+
+- [Powertools for AWS Lambda (TypeScript)](https://docs.powertools.aws.dev/lambda/typescript/latest/)
+
 ## SDK for JavaScript v3
 
 - [client-lambda](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-lambda/index.html)
