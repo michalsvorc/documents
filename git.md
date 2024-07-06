@@ -10,7 +10,9 @@ git checkout -b <branch_name>
 git push -u origin <branch_name>
 ```
 
-## Undo last commit
+## Revert changes
+
+### Undo last commit
 
 Soft, keep changes:
 
@@ -24,11 +26,17 @@ Hard, discard changes:
 git reset --hard HEAD~1
 ```
 
-## Delete untracked files
+### Delete untracked files
 
 ```shell
 git clean -n  # Dry run
 git clean -f  # Forced mode
+```
+
+### Revert unstaged changes to a specific file
+
+```shell
+git restore <file>
 ```
 
 ## Rename a local and remote branch
@@ -227,4 +235,15 @@ git submodule init
 git submodule update
 ```
 
+### Add a submodule to existing repository
+
+```shell
+git submodule add <repository-url> [submodule/path]
+```
+
+### Fetch the latest changes from the submodule’s upstream repository
+
+```shell
+git submodule update --remote --merge
+```
 
