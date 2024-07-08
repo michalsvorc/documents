@@ -247,3 +247,19 @@ git submodule add <repository-url> [submodule/path]
 git submodule update --remote --merge
 ```
 
+## Single branch
+
+### Clone single branch
+
+```shell
+git clone <URL> --branch=<branch_name> --single-branch
+```
+
+### Clone additional branch in single branch repository
+
+```shell
+git fetch origin <another_branch>
+git checkout FETCH_HEAD -b <another_branch>
+```
+
+- [source](https://stackoverflow.com/questions/70392689/clone-another-branch-after-cloning-single-branch)
