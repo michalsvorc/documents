@@ -247,6 +247,15 @@ git submodule add <repository-url> [submodule/path]
 git submodule update --remote --merge
 ```
 
+### Remove submodule
+
+1. Remove the submodule entry from `.gitmodules`
+2. `git submodule deinit -f path/to/submodule`
+3. `git rm -f path/to/submodule`
+4. `rm -rf path/to/submodule`
+5. `git commit -m "Remove submodule path/to/submodule"`
+6. `git clean -fd`
+
 ## Single branch
 
 ### Clone single branch
