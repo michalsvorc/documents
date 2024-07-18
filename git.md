@@ -3,11 +3,33 @@
 - [Pro Git e-book](https://git-scm.com/book/en/v2)
 - [The Git Merge Handbook](https://www.freecodecamp.org/news/the-definitive-guide-to-git-merge/)
 
-## Create branch locally and push it to origin
+## Remote
+
+Convention for remote name is `origin`.
+
+### Show remote
+
+```shell
+git remote show [remote]
+```
+
+### Add new remote
+
+```shell
+git remote add <remote> <repository_url>
+```
+
+### Change remote repository URL
+
+```shell
+git remote set-url <remote> <repository_url>
+```
+
+### Push new branch to remote
 
 ```shell
 git checkout -b <branch_name>
-git push -u origin <branch_name>
+git push -u <remote> <branch_name>
 ```
 
 ## Revert changes
@@ -66,7 +88,7 @@ git push origin -u <new-name>
 git reset --soft HEAD~N && git commit
 ```
 
-## Reset local commits to remote origin state
+## Reset local commits to remote state
 
 ```shell
 git fetch origin
@@ -100,12 +122,6 @@ git push origin --delete <branch_name>
 ```shell
 git -c user.email=name@domain.com -c user.name='My Name' \
     <git_command>
-```
-
-## Change origin URL
-
-```shell
-git remote set-url origin <origin_url>
 ```
 
 ## Delete local references to non-existing remote branches
