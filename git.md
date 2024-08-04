@@ -141,17 +141,12 @@ git remote prune origin [--dry-run]
 
 ## Tags
 
+- [Documentation](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
 List all tags:
 
 ```shell
 git tag -l
-```
-
-Create a lightweight tag:
-
-```shell
-git tag <tag_name>                      # current commit
-git tag -a <tag_name> <commit_hash>     # existing commit
 ```
 
 Get tag information:
@@ -185,9 +180,19 @@ Delete remote tag:
 git push origin --delete <tag_name>
 ```
 
-Rename a lightweight tag:
+### Lightweight tag
 
-https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag
+```shell
+git tag <tag_name> [commit_hash]
+```
+
+- [Rename a lightweight tag](https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag)
+
+### Annotated tag
+
+```shell
+git tag -a <tag_name> [-m message] [commit_hash]
+```
 
 ## Different user email per repository
 
