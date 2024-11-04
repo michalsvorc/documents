@@ -67,14 +67,6 @@ Quickfix list:
 :copen
 ```
 
-Telescope plugin:
-
-- [Github issue](https://github.com/nvim-telescope/telescope.nvim/issues/762)
-
-```vim
-Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case
-```
-
 ### Quick name refactor in single buffer
 
 Prefer LSP refactoring.
@@ -94,12 +86,6 @@ Prefer LSP refactoring.
 ### Substitute in multiple files
 
 Populate the quickfix list with search results.
-
-Using Telescope plugin:
-
-1. Search with `:Telescope live_grep`.
-2. Optionally filter Telescope results with `<Tab>`.
-3. Send results to quickfix list: `<M>q` selected, `<C>q` all results.
 
 Additionally filter quickfix list with [:Cfilter](https://neovim.io/doc/user/quickfix.html#%3ACfilter)
 
@@ -131,12 +117,6 @@ Save all modified buffers:
 :Cfilter /pattern/
 ```
 
-Telescope plugin:
-
-```vim
-:Telescope quickfix
-```
-
 Extract a quickfix sub-list:
 
 ```vim
@@ -148,14 +128,6 @@ Extract a quickfix sub-list:
 ```
 :silent tabedit %
 ```
-
-## Plugins
-
-### Telescope
-
-- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-
-`:Telescope resume` will open back your last telescope to its previous state (before closing it or selecting an entry)
 
 ## Remember
 
