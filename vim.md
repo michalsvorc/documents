@@ -15,6 +15,14 @@ Blog posts:
 
 - [Advanced Vim topics, tips and tricks](https://www.integralist.co.uk/posts/vim/)
 
+## Working directory
+
+Maintains different types of working directories:
+
+- global
+- local: `:lcd` sets the current directory for the current window.
+- window: `:tcd` sets the directory for the current tab. The current window will also use this directory.
+
 ## Navigation
 
 `g;` jump to last edited position
