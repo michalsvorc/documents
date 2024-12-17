@@ -25,11 +25,18 @@ Maintains different types of working directories:
 
 ## Navigation
 
-`g;` jump to last edited position
+- `g;` jump to last edited position
+- `gh` open file path
+- `gx` open link in default browser
 
 ## Misc
 
-`z=` spelling suggestions
+- `z=` spelling suggestions
+
+## History
+
+- `q/` history of searches
+- `q:` history of commands
 
 ## Search
 
@@ -137,13 +144,13 @@ Extract a quickfix sub-list:
 :silent tabedit %
 ```
 
+## Output
+
+`:put = execute('<command>')` execute command and put the output in the current buffer.
+
 ## Plugins
 
 ### Fugitive
 
 `:Gedit !` view the last commit of the current file
-
-## Remember
-
-- `gh`: open file path
 
