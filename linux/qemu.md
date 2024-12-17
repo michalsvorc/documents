@@ -29,11 +29,11 @@ lsusb
 Use the new hostdevice property of usb-host which is available since QEMU 5.1.0:
 
 ```shell
-exec ... -device qemu-xhci,id=xhci -device usb-host,hostdevice=/dev/bus/usb/00X/00Y
+-device qemu-xhci,id=xhci -device usb-host,hostdevice=/dev/bus/usb/00X/00Y
 ```
 
 ## Boot an ISO image
 
 ```shell
-exec ... -boot d -cdrom <file>.iso
+-boot d -cdrom <file>.iso
 ```

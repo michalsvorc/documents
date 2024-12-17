@@ -137,6 +137,13 @@ Extract a quickfix sub-list:
 :silent tabedit %
 ```
 
+## Plugins
+
+### Fugitive
+
+`:Gedit !` view the last commit of the current file
+
 ## Remember
 
 - `gh`: open file path
+

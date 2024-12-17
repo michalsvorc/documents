@@ -3,11 +3,33 @@
 - [Pro Git e-book](https://git-scm.com/book/en/v2)
 - [The Git Merge Handbook](https://www.freecodecamp.org/news/the-definitive-guide-to-git-merge/)
 
-## Create branch locally and push it to origin
+## Remote
+
+Convention for remote name is `origin`.
+
+### Show remote
+
+```shell
+git remote show [remote]
+```
+
+### Add new remote
+
+```shell
+git remote add <remote> <repository_url>
+```
+
+### Change remote repository URL
+
+```shell
+git remote set-url <remote> <repository_url>
+```
+
+### Push new branch to remote
 
 ```shell
 git checkout -b <branch_name>
-git push -u origin <branch_name>
+git push -u <remote> <branch_name>
 ```
 
 ## Revert changes
@@ -66,7 +88,7 @@ git push origin -u <new-name>
 git reset --soft HEAD~N && git commit
 ```
 
-## Reset local commits to remote origin state
+## Reset local commits to remote state
 
 ```shell
 git fetch origin
@@ -102,12 +124,6 @@ git -c user.email=name@domain.com -c user.name='My Name' \
     <git_command>
 ```
 
-## Change origin URL
-
-```shell
-git remote set-url origin <origin_url>
-```
-
 ## Delete local references to non-existing remote branches
 
 ```shell
@@ -125,17 +141,12 @@ git remote prune origin [--dry-run]
 
 ## Tags
 
+- [Documentation](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
 List all tags:
 
 ```shell
 git tag -l
-```
-
-Create a lightweight tag:
-
-```shell
-git tag <tag_name>                      # current commit
-git tag -a <tag_name> <commit_hash>     # existing commit
 ```
 
 Get tag information:
@@ -169,9 +180,19 @@ Delete remote tag:
 git push origin --delete <tag_name>
 ```
 
-Rename a lightweight tag:
+### Lightweight tag
 
-https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag
+```shell
+git tag <tag_name> [commit_hash]
+```
+
+- [Rename a lightweight tag](https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag)
+
+### Annotated tag
+
+```shell
+git tag -a <tag_name> [-m message] [commit_hash]
+```
 
 ## Different user email per repository
 
@@ -245,6 +266,12 @@ git submodule add <repository-url> [submodule/path]
 
 ```shell
 git submodule update --remote --merge
+```
+
+### Remove submodule
+
+```shell
+git rm path/to/submodule
 ```
 
 ## Single branch
