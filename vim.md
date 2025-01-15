@@ -148,6 +148,15 @@ Extract a quickfix sub-list:
 
 `:put = execute('<command>')` execute command and put the output in the current buffer.
 
+## Execute commands
+
+### normal
+
+`normal!` or `norm!` executes the following command(s) as if they were typed in normal mode. The `!` ensures that the command is executed without any mappings.
+
+- `:1,10normal! I#` would insert a `# ` at the beginning of lines 1 to 10.!
+- `'<,'>normal! @q` execute macro recorded for mark q over visual selection
+
 ## Plugins
 
 ### Fugitive
