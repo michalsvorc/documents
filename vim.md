@@ -155,11 +155,3 @@ Extract a quickfix sub-list:
 
 - `:1,10normal! I#` would insert a `# ` at the beginning of lines 1 to 10.!
 - `'<,'>normal! @q` execute macro recorded for mark q over visual selection
-
-## Plugins
-
-### Fugitive
-
-`:Gedit` with no arguments will jump from the historical Fugitive buffer to the real file
-`:Gedit !` view the last commit of the current file
-
