@@ -144,15 +144,14 @@ Extract a quickfix sub-list:
 :silent tabedit %
 ```
 
-## Output
+## Diff
 
-`:put = execute('<command>')` execute command and put the output in the current buffer.
+`:diffthis` execute in every buffer you want to compare
 
-## Execute commands
+## Help
 
-### normal
-
-`normal!` or `norm!` executes the following command(s) as if they were typed in normal mode. The `!` ensures that the command is executed without any mappings.
+`<C-]>` jump to tag under the cursor
+`<C-o>` jump back
 
 - `:1,10normal! I#` would insert a `# ` at the beginning of lines 1 to 10.!
 - `'<,'>normal! @q` execute macro recorded for mark q over visual selection
@@ -161,5 +160,6 @@ Extract a quickfix sub-list:
 
 ### Fugitive
 
+`:Gedit` with no arguments will jump from the historical Fugitive buffer to the real file
 `:Gedit !` view the last commit of the current file
 
