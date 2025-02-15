@@ -7,6 +7,27 @@
 
 ## Usage
 
+The master key is primarily used for certifying and should be kept to a minimum in terms of usage. By limiting its use, you enhance security, as it is less frequently accessed and can be stored offline or in a highly secure environment.
+
+It's a good practice to use separate subkeys for signing and encryption. When a subkey expires, avoid deleting it, as it may still be needed to decrypt old documents. Instead, generate a new encryption subkey for the upcoming period to maintain continued security while keeping access to past data intact.
+
+### Generate new primary key
+
+- [Gentoo Wiki](https://wiki.gentoo.org/wiki/GnuPG#Primary_key)
+
+- create for certification only
+- store offline (only primary key)
+- backup revocation
+- no expiration
+
+### Generate sub keys
+
+- [Gentoo Wiki](https://wiki.gentoo.org/wiki/GnuPG)
+
+- generate separate subkeys for encryption and signing
+- add expiration
+- keep on machine
+
 ### Change passphrase secret key password
 
 - [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)
@@ -15,9 +36,9 @@
 
 When listing GPG keys, the `usage` field indicates the capabilities of the key:
 
-- **S**: Sign data
-- **C**: Certify (create and sign other keys)
-- **E**: Encrypt data
+- [C]ertify (create and sign other keys)
+- [S]ign data
+- [E]ncrypt data
 
 ## Subkeys
 
@@ -88,7 +109,7 @@ A user ID should be created carefully since it cannot be edited after it is crea
 ### Revocation certificate
 
 After your keypair is created you should immediately generate a revocation certificate for the primary public key using
-the option --gen-revoke.
+the option `--gen-revoke`.
 
 A revoked public key can still be used to verify signatures made by you in the past, but it cannot be used to encrypt
 future messages to you. It also does not affect your ability to decrypt messages sent to you in the past if you still do
@@ -119,7 +140,7 @@ document is put in the safe, the safe shut, and the combination lock spun severa
 The corresponding private key is the combination that can reopen the safe and retrieve the document. In other words,
 only the person who holds the private key can recover a document encrypted using the associated public key.
 
-To encrypt a document the option --encrypt is used. You must have the public keys of the intended recipients.
+To encrypt a document the option `--encrypt` is used. You must have the public keys of the intended recipients.
 
 If you want to encrypt a message to Alice, you encrypt it using Alice's public key, and she decrypts it with her private
 key. In particular, you cannot decrypt a document encrypted by you unless you included your own public key in the
@@ -161,28 +182,5 @@ even with clearsigned documents, the signed document must be edited to recover t
 Therefore, there is a third method for signing a document that creates a detached signature. A detached signature is
 created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) option.
 
-Both the document and detached signature are needed to verify the signature. The --verify option can be to check the
+Both the document and detached signature are needed to verify the signature. The `--verify` option can be to check the
 signature.
-
-## Advised approach
-
-- **Master Key (`SC`)**:
-  - **S**: Sign data
-  - **C**: Certify (create and sign other keys)
-  
-  The master key is primarily used for signing and certifying. Keeping its usage limited enhances security, as it's less frequently used and can be kept offline or in a highly secure environment.
-
-- **Subkey (`E`)**:
-  - **E**: Encrypt data
-  
-  Delegating encryption to a subkey allows you to use it for daily encryption tasks without exposing your master key. If the subkey is ever compromised, you can revoke it without affecting the master key.
-
-
-Use subkeys for encryption with expiration dates. Once they expire, keep them expired in your master key. They will be
-used for decrypting documents encrypted with those expired subkeys.
-Create new encryption subkey for the next period.
-
-## Backup
-
-Just copy `.gnupg` to an encrypted drive.
-
