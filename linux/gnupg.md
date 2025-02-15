@@ -5,6 +5,32 @@
 - [FAQ - gnupg.org](https://www.gnupg.org/faq/gnupg-faq.html#glossary)
 - [Public keys - gnupg.org](https://www.gnupg.org/gph/en/manual/x56.html)
 
+## Subkeys
+
+A subkey is a cryptographic key attached to a primary (master) key in GPG. The primary key (also called the master key)
+is used to certify and manage subkeys, while subkeys can be used for encryption, signing, or authentication.
+
+Subkeys allow you to separate responsibilities and reduce risk. Instead of using your primary key for everything, you generate subkeys for specific tasks.
+
+### List subkeys
+
+If your encryption subkey is expired, GPG might not show it unless you explicitly request it.
+
+```shell
+gpg --list-keys --with-colons | grep -E "^sub|^ssb"
+```
+
+or
+
+```shell
+gpg --edit-key YOUR_MASTER_KEY_ID
+gpg> list
+```
+
+### Expired subkeys
+
+As long as the expired subkey is associated with the master key, it can still be used for decrypting files that were encrypted with it, even though it’s expired for encryption purposes.
+
 ## Usage
 
 ### Change Passphrase Secret Key Password
@@ -20,7 +46,7 @@ gpg --list-secret-keys
 gpg --edit-key <KEY_ID>
 ```
 
-Use the expire command to set a new expire date. With no selection, the key expiration of the primary key is changed. 
+Use the expire command to set a new expire date. With no selection, the key expiration of the primary key is changed.
 Select a subkey (keys are 0 indexed) and set a new expire date:
 
 ```console
@@ -29,6 +55,14 @@ gpg> expire
 ...
 gpg> save
 ```
+
+### Usage fields
+
+When listing GPG keys, the `usage` field indicates the capabilities of the key:
+
+- **S**: Sign data
+- **C**: Certify (create and sign other keys)
+- **E**: Encrypt data
 
 ## Expiration date
 
@@ -150,3 +184,26 @@ created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) 
 
 Both the document and detached signature are needed to verify the signature. The --verify option can be to check the
 signature.
+
+## Advised approach
+
+- **Master Key (`SC`)**:
+  - **S**: Sign data
+  - **C**: Certify (create and sign other keys)
+  
+  The master key is primarily used for signing and certifying. Keeping its usage limited enhances security, as it's less frequently used and can be kept offline or in a highly secure environment.
+
+- **Subkey (`E`)**:
+  - **E**: Encrypt data
+  
+  Delegating encryption to a subkey allows you to use it for daily encryption tasks without exposing your master key. If the subkey is ever compromised, you can revoke it without affecting the master key.
+
+
+Use subkeys for encryption with expiration dates. Once they expire, keep them expired in your master key. They will be
+used for decrypting documents encrypted with those expired subkeys.
+Create new encryption subkey for the next period.
+
+## Backup
+
+Just copy `.gnupg` to an encrypted drive.
+
