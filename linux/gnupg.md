@@ -5,6 +5,20 @@
 - [FAQ - gnupg.org](https://www.gnupg.org/faq/gnupg-faq.html#glossary)
 - [Public keys - gnupg.org](https://www.gnupg.org/gph/en/manual/x56.html)
 
+## Usage
+
+### Change passphrase secret key password
+
+- [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)
+
+## Usage fields
+
+When listing GPG keys, the `usage` field indicates the capabilities of the key:
+
+- **S**: Sign data
+- **C**: Certify (create and sign other keys)
+- **E**: Encrypt data
+
 ## Subkeys
 
 A subkey is a cryptographic key attached to a primary (master) key in GPG. The primary key (also called the master key)
@@ -27,48 +41,13 @@ gpg --edit-key YOUR_MASTER_KEY_ID
 gpg> list
 ```
 
-### Expired subkeys
-
-As long as the expired subkey is associated with the master key, it can still be used for decrypting files that were encrypted with it, even though it’s expired for encryption purposes.
-
-## Usage
-
-### Change Passphrase Secret Key Password
-
-- [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)
-
-### Renew Expired GPG key
-
-- [github.com](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
-
-```console
-gpg --list-secret-keys
-gpg --edit-key <KEY_ID>
-```
-
-Use the expire command to set a new expire date. With no selection, the key expiration of the primary key is changed.
-Select a subkey (keys are 0 indexed) and set a new expire date:
-
-```console
-gpg> key <N>
-gpg> expire
-...
-gpg> save
-```
-
-### Usage fields
-
-When listing GPG keys, the `usage` field indicates the capabilities of the key:
-
-- **S**: Sign data
-- **C**: Certify (create and sign other keys)
-- **E**: Encrypt data
-
 ## Expiration date
 
 - [Selecting expiration dates and using subkeys](https://www.gnupg.org/gph/en/manual.html#AEN526)
 
 It is almost always the case that you will not want the master key to expire.
+
+As long as the expired subkey is associated with the master key, it can still be used for decrypting files that were encrypted with it, even though it’s expired for encryption purposes.
 
 Once a GPG **secret key** has expired, you cannot directly renew or extend the expiration date. 
 The expiration date is set at the time of key creation, and once the key has passed its expiration date, 
