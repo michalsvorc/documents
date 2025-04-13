@@ -368,9 +368,9 @@ Skipped bc. it does not allow splitting to multiple SSH keys.
 
 - [Configuration | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Configuration)
 
-```conf
-# $HOME/.gnupg/gpg.conf
+### gpg.conf
 
+```bash
 # Assume that command line arguments are given as UTF8 strings.
 utf8-strings
 
@@ -394,4 +394,12 @@ s2k-cipher-algo AES256
 
 # The digest algorithm which will be used to mangle passphrases used for symmetric encryption.
 s2k-digest-algo SHA512
+```
+
+### gpg-agent.conf
+
+```bash
+pinentry-program /usr/bin/pinentry
+no-grab
+default-cache-ttl 1800
 ```
