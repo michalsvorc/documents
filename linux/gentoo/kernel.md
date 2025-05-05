@@ -22,7 +22,7 @@
    ```
 2. Any external kernel modules, such as binary kernel modules, need to be rebuilt for each new kernel.
    ```shell
-   emerge --ask @module-rebuild
+   emerge @module-rebuild
    ```
 3. Install kernel modules.
    ```shell
