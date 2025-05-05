@@ -6,15 +6,55 @@
 - [GnuPG | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG)
 - [GnuPG | archlinux.org](https://wiki.archlinux.org/title/GnuPG)
 
+## Configuration
+
+- [Configuration | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Configuration)
+
+### gpg.conf
+
+```bash
+# Assume that command line arguments are given as UTF8 strings.
+utf8-strings
+
+# Use a GPG agent to cache passphrases and manage unlocked key access.
+use-agent
+
+# Adjusts digest algorithm selection order, can be utilized to prefer stronger hash types when signing messages.
+personal-digest-preferences SHA512 SHA384 SHA256
+
+# Sets the preference list, used by setpref in the edit menu, can be utilized to prefer stronger methods.
+default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5
+
+# Specifies the preferred cipher algorithms for encrypting messages and generating keys, in order of preference.
+personal-cipher-preferences AES256 TWOFISH CAMELLIA256
+
+# The digest algorithm that will be used when signing a key.
+cert-digest-algo SHA512
+
+# The cipher algorithm which will be used by default for symmetric encryption.
+s2k-cipher-algo AES256
+
+# The digest algorithm which will be used to mangle passphrases used for symmetric encryption.
+s2k-digest-algo SHA512
+```
+
+### gpg-agent.conf
+
+```bash
+pinentry-program /usr/bin/pinentry
+no-grab
+default-cache-ttl 1800
+```
+
 ## Create new primary key and subkeys
 
-In this guide, the primary key is assumed to be used *exclusively for certification* while all other operations—such as signing and authentication—are handled by subkeys. This separation of responsibilities justifies storing the *secret part of the primary key* on a separate, offline device (e.g., a flash drive) for safekeeping. The primary key is only needed for tasks like generating or renewing subkeys, or signing other people's keys.
+In this guide, the primary key is assumed to be used *exclusively for certification* while all other operations—such as signing and authentication are handled by subkeys. This separation of responsibilities justifies storing the *secret part of the primary key* on a separate, offline device (e.g., a flash drive) for safekeeping. The primary key is only needed for tasks like generating or renewing subkeys, or signing other people's keys.
 
 **Notes:**
 - The *public part* of your primary key remains on your system, while its *secret part* is securely stored on a flash drive.
-- The *current encryption subkey* remains active and available on your system, allowing you to decrypt new messages. Optionally, it can be moved to a secure hardware device like a YubiKey for added protection.
+- The *current encryption subkey* remains active and available on your system, allowing you to decrypt new messages. Optionally, it can be moved to a secure hardware device like a YubiKey for added protection, under assumption it is backed up as well.
 - *Older encryption subkeys* have had their secret parts removed from your system and archived on the flash drive. To decrypt files encrypted with these older subkeys, you’ll need to temporarily import the relevant secrets.
-- As older encryption subkeys expire, *new subkeys are generated and added incrementally*, ensuring continued functionality while maintaining good security practices.
+- As encryption subkeys expire, new encryption subkeys are generated and added incrementally.
 
 ### 1. Generate new primary key
 
@@ -29,9 +69,9 @@ gpg --expert --full-generate-key
 **Steps:**
 - Select `ECC (set your own capabilities)`.
 - Toggle capabilities so the primary key will only have the *certify* capability.
-- Gentoo Wiki suggests `Curve 25519`.
-- No expiration (see *Primary key* section in Gentoo Wiki).
-- No optional comment. Since the semantics of the comment field are not well-defined, it has limited value for identification.
+- Selects elliptic curve, Gentoo Wiki suggests `Curve 25519`.
+- Select no expiration (see *Primary key* section in Gentoo Wiki).
+- No comment needed. Since the semantics of the comment field are not well-defined, it has limited value for identification.
 - Add a passphrase. Before hitting final `<OK>`, be prepared to provide random user interaction inputs (keyboard, mouse) for increased entropy.
 
 After generating the primary key, be sure to backup the revocation certificate.
@@ -63,14 +103,38 @@ Subkeys allow you to separate responsibilities and reduce risk. Instead of using
 
 - [Removing the secret primary key for safety | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Removing_the_secret_primary_key_for_safety)
 
-Verify that only subkeys are present:
+Extract the secret primary key (should be stored on another device):
+
+```bash
+gpg --output secret.gpg --armor --export-secret-key $KEY_ID
+```
+
+Extract the secret subkeys:
+
+```bash
+gpg --output subkeys.gpg --armor --export-secret-subkeys $KEY_ID
+```
+
+Remove all secret keys (primary and subkeys):
+
+```bash
+gpg --delete-secret-keys $KEY_ID
+```
+
+Import the extracted secret subkeys (without the primary secret):
+
+```bash
+gpg --import subkeys.gpg
+```
+
+Verify that the primary secret key is not present:
 
 ```bash
 gpg --list-secret-keys
 ```
 
-- `sec`: primary secret key is present
 - `sec#`: primary secret key is not present (only public part of the primary key is present)
+- `sec`: primary secret key is present
 
 ## Create new subkey
 
@@ -169,7 +233,6 @@ In scenario with multiple encryption subkeys:
 GPG will only use active (non-expired) encryption subkeys.
 It will pick the most recent valid encryption subkey.
 
-
 ### Decrypting old messages
 
 GPG can still use expired subkeys for decryption, as long as their secret parts are present.
@@ -197,6 +260,70 @@ The passphrase protects the entire private keyring entry (which includes the pri
 When you unlock one (e.g. for decryption or signing), GnuPG unlocks access to the required subkey in memory, assuming you authenticated correctly.
 
 GnuPG does not support setting different passphrases per subkey in its normal keyring-based setup. The whole key block is encrypted with one passphrase.
+
+## YubiKey
+
+- [GnuPG Smart Card | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Smart_Card)
+- [YubiKey | gentoo.org](https://wiki.gentoo.org/wiki/YubiKey/GPG)
+- [Setting PINs | gentoo.org](https://wiki.gentoo.org/wiki/YubiKey/GPG#Setting_PINs)
+
+YubiKey implements the OpenPGP smart card specification, which has three slots:
+
+- Signature (sig)
+- Encryption (enc)
+- Authentication (auth)
+
+Each slot holds **only one private key**.
+
+List card status:
+
+```bash
+gpg --card-status
+```
+
+Edit card interface:
+
+```bash
+gpg --card-edit
+```
+
+### Move secret key to card
+
+- [Loading keys | gentoo.org](https://wiki.gentoo.org/wiki/YubiKey/GPG#Loading_Keys)
+
+To move the key to the card, GPG key passphrase and card admin PIN are required.
+
+```bash
+gpg --expert --edit-key $KEY_ID
+gpg> key <N\>
+gpg> keytocard
+gpg> save
+```
+
+You will need to provide GPG key passphrase and YubiKey admin PIN.
+
+**Note:**
+`keytocard` command deletes the associated secret key from the system, and overwrites what is in that slot on the YubiKey. Ensure keys have been backed up before using this.
+
+### Force the YubiKey to be touched to use any of the loaded keys
+
+- [Forcing presence detection for key usage](https://wiki.gentoo.org/wiki/YubiKey/GPG#Forcing_presence_detection_for_key_usage)
+
+```bash
+ykman openpgp keys set-touch <KEY> ON
+```
+
+Key values:
+- SIG
+- DEC
+- AUT
+- ATT
+
+## SSH
+
+Wiki suggests possibility to manage SSH keys with GPG agent to have unified key management.
+
+Skipped bc. it does not allow splitting to multiple SSH keys.
 
 ---
 
@@ -301,105 +428,3 @@ created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) 
 
 Both the document and detached signature are needed to verify the signature. The `--verify` option can be to check the
 signature.
-
-## Yubikey
-
-- [GnuPG Smart Card | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Smart_Card)
-- [YubiKey | gentoo.org](https://wiki.gentoo.org/wiki/YubiKey/GPG)
-- [Setting PINs | gentoo.org](https://wiki.gentoo.org/wiki/YubiKey/GPG#Setting_PINs)
-
-YubiKey implements the OpenPGP smart card specification, which has three slots:
-
-- Signature (sig)
-- Encryption (enc)
-- Authentication (auth)
-
-Each slot holds **only one private key**. 
-
-List card status:
-
-```bash
-gpg --card-status
-```
-
-Edit card interface:
-
-```bash
-gpg --card-edit
-```
-
-### Move secret key to card
-
-- [Loading keys | gentoo.org](https://wiki.gentoo.org/wiki/YubiKey/GPG#Loading_Keys)
-
-To move the key to the card, GPG key passphrase and card admin PIN are required.
-
-```bash
-gpg --expert --edit-key $KEY_ID
-gpg> key <N\>
-gpg> keytocard
-gpg> save
-```
-
-**Note:**
-`keytocard` command deletes the associated secret key from the system, and overwrites what is in that slot on the YubiKey. Ensure keys have been backed up before using this.
-
-### Force the YubiKey to be touched to use any of the loaded keys
-
-- [Forcing presence detection for key usage](https://wiki.gentoo.org/wiki/YubiKey/GPG#Forcing_presence_detection_for_key_usage)
-
-```bash
-ykman openpgp keys set-touch <KEY> ON
-```
-
-Key values:
-- SIG
-- DEC
-- AUT
-- ATT
-
-## SSH
-
-Wiki suggests possibility to manage SSH keys with GPG agent to have unified key management.
-
-Skipped bc. it does not allow splitting to multiple SSH keys.
-
-## Configuration
-
-- [Configuration | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Configuration)
-
-### gpg.conf
-
-```bash
-# Assume that command line arguments are given as UTF8 strings.
-utf8-strings
-
-# Use a GPG agent to cache passphrases and manage unlocked key access.
-use-agent
-
-# Adjusts digest algorithm selection order, can be utilized to prefer stronger hash types when signing messages.
-personal-digest-preferences SHA512 SHA384 SHA256
-
-# Sets the preference list, used by setpref in the edit menu, can be utilized to prefer stronger methods.
-default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5
-
-# Specifies the preferred cipher algorithms for encrypting messages and generating keys, in order of preference.
-personal-cipher-preferences AES256 TWOFISH CAMELLIA256
-
-# The digest algorithm that will be used when signing a key.
-cert-digest-algo SHA512
-
-# The cipher algorithm which will be used by default for symmetric encryption.
-s2k-cipher-algo AES256
-
-# The digest algorithm which will be used to mangle passphrases used for symmetric encryption.
-s2k-digest-algo SHA512
-```
-
-### gpg-agent.conf
-
-```bash
-pinentry-program /usr/bin/pinentry
-no-grab
-default-cache-ttl 1800
-```
