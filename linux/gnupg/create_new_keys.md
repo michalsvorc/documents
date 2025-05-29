@@ -1,4 +1,4 @@
-# GnuPG: Create new primary and subkeys
+# GnuPG: Create new keys (primary and subkeys)
 
 In this ning and authentication are handled by subkeys. This separation of responsibilities justifies storing the *secret part of the primary key* on a separate, offline device (e.g., a flash drive) for safekeeping. The primary key is only needed for tasks like generating or renewing subkeys, or signing other people's keys.
 
@@ -7,6 +7,11 @@ In this ning and authentication are handled by subkeys. This separation of respo
 - The *current encryption subkey* remains active and available on your system, allowing you to decrypt new messages. Optionally, it can be moved to a secure hardware device like a YubiKey for added protection, under assumption it is backed up as well.
 - *Older encryption subkeys* have had their secret parts removed from your system and archived on the flash drive. To decrypt files encrypted with these older subkeys, you’ll need to temporarily import the relevant secrets.
 - As encryption subkeys expire, new encryption subkeys are generated and added incrementally.
+
+In scenario with multiple encryption subkeys:
+- GPG will only use active (non-expired) encryption subkeys.
+- It will pick the most recent valid encryption subkey.
+- GPG can still use expired subkeys for decryption, as long as their secret parts are present. You can decrypt messages encrypted with expired subkey.
 
 ## 1. Generate new primary key
 
@@ -51,14 +56,14 @@ is used to certify and manage subkeys, while subkeys can be used for encryption,
 
 Subkeys allow you to separate responsibilities and reduce risk. Instead of using your primary key for everything, you generate subkeys for specific tasks.
 
-## 3. Export and remove secret keys
+## 3. Export and remove primary key
 
 - [Removing the secret primary key for safety | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Removing_the_secret_primary_key_for_safety)
 
 1. Extract the secret primary key (should be stored on another device):
 
 ```bash
-gpg --output secret.gpg --armor --export-secret-key $KEY_ID
+gpg --armor --output primary.gpg --export-secret-key $KEY_ID
 ```
 
 2. Validate that the subkeys do not contain stubs (e.g. moved to smartcard)
@@ -73,7 +78,7 @@ Look for stub symbol: `ssb>`. The regular subkeys should be: `ssb`.
 3. Extract the secret subkeys:
 
 ```bash
-gpg --output subkeys.gpg --armor --export-secret-subkeys $KEY_ID
+gpg --armor --output subkeys.gpg --export-secret-subkeys $KEY_ID
 ```
 
 4. Remove all secret keys (primary and subkeys):
