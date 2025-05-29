@@ -10,6 +10,19 @@ simply as one keypair.
 A primary key must be capable of making signatures.it is possible to later add additional subkeys for encryption and
 signing.
 
+## Expiration date
+
+- [Selecting expiration dates and using subkeys](https://www.gnupg.org/gph/en/manual.html#AEN526)
+
+It is almost always the case that you will not want the master key to expire.
+
+As long as the expired subkey is associated with the master key, it can still be used for decrypting files that were encrypted with it, even though it’s expired for encryption purposes.
+
+Once a GPG *secret key* has expired, you cannot directly renew or extend the expiration date.
+
+The expiration date is set at the time of key creation, and once the key has passed its expiration date,
+it is considered invalid for cryptographic operations.
+
 ## Key size
 
 The longer the key the more secure it is against brute-force attacks, but for almost all purposes the default keysize is
@@ -22,6 +35,8 @@ size can never be changed.
 A user ID should be created carefully since it cannot be edited after it is created.
 
 ## Revocation certificate
+
+- [gnupg.org](https://www.gnupg.org/gph/en/manual.html#AEN305)
 
 After your keypair is created you should immediately generate a revocation certificate for the primary public key using
 the option `--gen-revoke`.
