@@ -28,6 +28,9 @@ s2k-cipher-algo AES256
 
 # The digest algorithm which will be used to mangle passphrases used for symmetric encryption.
 s2k-digest-algo SHA512
+
+# Default key for signing and certifying operations.
+default-key <KEY_ID>
 ```
 
 ## gpg-agent.conf
