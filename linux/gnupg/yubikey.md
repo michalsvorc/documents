@@ -30,12 +30,14 @@ gpg --card-edit
 
 **IMPORTANT:**
 - `keytocard` command deletes the associated secret key from the system, and overwrites what is in that slot on the YubiKey. Ensure keys have been backed up before using this.
-- To move the key to the card, GPG key passphrase and card admin PIN are required.
+- *Note*: the keys are 0-indexed.
 
 ```bash
 gpg --expert --edit-key $KEY_ID
 gpg> key <N\>
 gpg> keytocard
+gpg> >provide gpg passphrase
+gpg> >provide smartcard admin PIN
 gpg> save
 ```
 
