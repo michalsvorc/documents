@@ -15,9 +15,6 @@ default-recipient-self
 # Assume that command line arguments are given as UTF8 strings.
 utf8-strings
 
-# Use a GPG agent to cache passphrases and manage unlocked key access.
-use-agent
-
 # Adjusts digest algorithm selection order, can be utilized to prefer stronger hash types when signing messages.
 personal-digest-preferences SHA512 SHA384 SHA256
 
