@@ -41,8 +41,7 @@ gpg> key {index}
 
 ```bash
 export GNUPGHOME=/path/to/dir
-mkdir -p $GNUPGHOME
-chmod 700 $GNUPGHOME
+mkdir -p -m 700 $GNUPGHOME
 gpg --list-secret-keys
 ```
 

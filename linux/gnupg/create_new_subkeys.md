@@ -8,8 +8,7 @@ Since your primary secret key is stored on a USB drive for safety, you'll need t
 
 ```bash
 export GNUPGHOME=/path/to/dir
-mkdir -p $GNUPGHOME
-chmod 700 $GNUPGHOME
+mkdir -p -m 700 $GNUPGHOME
 cp $HOME/.gnupg/{gpg.conf,gpg-agent.conf} $GNUPGHOME
 gpg --list-secret-keys
 ```
