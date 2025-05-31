@@ -24,7 +24,7 @@ gpg --import primary.gpg
 Necessary for exporting updated subkey set (old subkeys + new subkey) later.
 
 ```bash
-gpg --import subkeys-<timestamp>.gpg
+gpg --import subkeys.gpg
 ```
 
 ## 4. Create new subkey
@@ -57,7 +57,7 @@ gpg --list-secret-keys
 ## 7. Import back subkeys
 
 ```bash
-gpg --import subkeys-<timestamp>.gpg
+gpg --import subkeys.gpg
 ```
 
 Verify that only subkeys are present. Primary key should have `sec#`.
