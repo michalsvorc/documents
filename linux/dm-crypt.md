@@ -109,11 +109,20 @@ The sector image is already encrypted, but cannot be compressed and contains all
 A sector-image will contain the whole partition in encrypted form, for LUKS the LUKS header, the keys-slots and the data area.
 Note that compression is ineffective for encrypted data, hence it does not make sense to use it.
 
-### LUKS header only backup
+### LUKS header backup
 
 If anything damages the LUKS header or the key-stripe area then decrypting the LUKS device can become impossible.
+While the dd command will back up the entire partition (including the LUKS header), it’s generally recommended to also explicitly back up the LUKS header separately.
+This is a precaution in case you ever need to restore the LUKS header or recover the data without using the dd image.
+LUKS header backup is considered potentially sensitive data and should be backed up securely.
 
 Be aware, that if you do keep a LUKS header backup and subsequently revoke any of the keyslots, the old keys will still be usable to unlock the LUKS partition for those with an access to that header backup file.
+
+To back up the LUKS header, use the following command:
+
+```bash
+cryptsetup luksHeaderBackup /dev/sdX1 --header-backup-file /mnt/backup/luks-header.img
+```
 
 ## Restore
 
