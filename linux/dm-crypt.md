@@ -115,18 +115,34 @@ If anything damages the LUKS header or the key-stripe area then decrypting the L
 
 Be aware, that if you do keep a LUKS header backup and subsequently revoke any of the keyslots, the old keys will still be usable to unlock the LUKS partition for those with an access to that header backup file.
 
-## Restore
+## Mount backup
+
+### Mount from .img file
+
+1. Open the LUKS container from img file:
+
+```bash
+cryptsetup open /mnt/backup/sdx-backup.img backup
+```
+
+2. Mount the mapped container:
+
+```bash
+mount /dev/mapper/backup /mnt/dir
+```
+
+### Restore to USB device
 
 The size of the target device should be equal or larger than the backup image.
 
-Write the backup image onto the new device:
+1. Write the backup image onto the new device:
 
 ```bash
 dd if=/mnt/backup/sdx-backup.img of=/dev/sdX bs=4M status=progress conv=sync,noerror
 sync
 ```
 
-Verify that LUKS headers are present on the new device:
+2. Verify that LUKS headers are present on the new device:
 
 ```bash
 cryptsetup -v isLuks /dev/sdX
