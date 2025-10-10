@@ -26,20 +26,21 @@ ykman info
 
 Read using the [YubiKey Manager CLI](https://docs.yubico.com/software/yubikey/tools/ykman/Using_the_ykman_CLI.html).
 
-## New account
+## OATH
 
-- [URI string format](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html)
-
-```shell
-ykman oath accounts uri -t 'otpauth://totp/<user>?secret=<secret>&issuer=<issuer>'
-```
-
-## OTP
-
-Get the Base32 secret key from QR code.
-
-```shell
+```bash
 ykman oath accounts --help
 ```
 
+### New account
 
+- [URI string format](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html)
+
+```bash
+ykman oath accounts uri -t 'otpauth://totp/<user>?secret=<secret>&issuer=<issuer>'
+```
+
+- `uri`: This subcommand allows you to add a new account from an `otpauth://` URI.
+- `-t`: This option requires the user to touch the YubiKey to generate the code.
+
+*NOTE:* Backup the `otpauth://` URI to be able to re-generate the account.
