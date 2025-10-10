@@ -66,7 +66,6 @@ Verify that only subkeys are present. Primary key should have `sec#`.
 gpg --list-secret-keys
 ```
 
-
 ## 8.A (Optional) Move new subkey to a smartcard
 
 - [GnuPG Smart Card | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Smart_Card)

@@ -7,7 +7,10 @@
 
 ```bash
 # Default key for signing and certifying operations.
-default-key <KEY_ID>
+default-key {KEY_ID}
+
+# Always add yourself as recipient, even alongside other explicitly provided recipients.
+encrypt-to {KEY_ID}
 
 # Use the default key as default recipient for encryption operation.
 default-recipient-self

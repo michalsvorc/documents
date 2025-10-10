@@ -75,10 +75,10 @@ Re-import from the backup.
 - [Forcing presence detection for key usage](https://wiki.gentoo.org/wiki/YubiKey/GPG#Forcing_presence_detection_for_key_usage)
 
 ```bash
-ykman openpgp keys set-touch <KEY> ON
+ykman openpgp keys set-touch <KEY> {ON | OFF}
 ```
 
-Key values:
+<KEY> values:
 - `SIG`
 - `DEC`
 - `AUT`
