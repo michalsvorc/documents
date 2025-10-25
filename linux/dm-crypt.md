@@ -31,8 +31,8 @@ dd if=/dev/zero of=/dev/mapper/<mapped_name> status=progress bs=1M
 cryptsetup close <mapped_name>
 ```
 
-
 The operation should exit after it encounters: `dd: error writing '/dev/mapper/<mapped_name>': No space left on device`.
+This might take a while after the error is encountered.
 Use of `if=/dev/urandom` is not required as the encryption cipher is used for randomness.
 Setting the cipher during the temporary `cryptsetup open --type plain` (for wiping) does not affect later execution of `cryptsetup luksFormat`.
 
@@ -92,36 +92,38 @@ cryptsetup luksUUID /dev/sdX
 
 **NOTE**: Don't mount `/dev/sdX` or its mapper while backing it up, it must be *unmounted* and *inactive*.
 
-Backup device:
-
-```bash
-dd if=/dev/sdX of=/mnt/backup/backup.img bs=4M status=progress conv=sync,noerror
-```
-
-Verify the backup, should return empty output when everything is all right.
-
-```bash
-cmp -n $(blockdev --getsize64 /dev/sdX) /dev/sdX /mnt/backup/backup.img
-```
-
 The sector image is already encrypted, but cannot be compressed and contains all empty space.
 
 A sector-image will contain the whole partition in encrypted form, for LUKS the LUKS header, the keys-slots and the data area.
 Note that compression is ineffective for encrypted data, hence it does not make sense to use it.
 
+1. Backup device:
+
+```bash
+dd if=/dev/sdX of="/mnt/backup/backup-$(date +%s).img" bs=4M status=progress conv=sync,noerror
+```
+
+2. Verify the backup:
+
+```bash
+cmp -n $(blockdev --getsize64 /dev/sdX) /dev/sdX /mnt/backup/backup.img
+```
+
+This command should return *empty output* when everything is all right.
+
 ### LUKS header backup
 
 If anything damages the LUKS header or the key-stripe area then decrypting the LUKS device can become impossible.
-While the dd command will back up the entire partition (including the LUKS header), it’s generally recommended to also explicitly back up the LUKS header separately.
-This is a precaution in case you ever need to restore the LUKS header or recover the data without using the dd image.
+While the dd command will back up the entire partition (including the LUKS header), it’s generally recommended to also explicitly back up the LUKS header separately. This is a precaution in case you ever need to restore the LUKS header or recover the data without using the dd image.
+
 LUKS header backup is considered potentially sensitive data and should be backed up securely.
 
 Be aware, that if you do keep a LUKS header backup and subsequently revoke any of the keyslots, the old keys will still be usable to unlock the LUKS partition for those with an access to that header backup file.
 
-To back up the LUKS header, use the following command:
+To back up only LUKS header, use the following command:
 
 ```bash
-cryptsetup luksHeaderBackup /dev/sdX1 --header-backup-file /mnt/backup/luks-header.img
+cryptsetup luksHeaderBackup /dev/sdX1 --header-backup-file "/mnt/backup/luks-headers/$(cryptsetup luksUUID /dev/sdb1).header"
 ```
 
 ## Mount backup
