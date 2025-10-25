@@ -124,18 +124,34 @@ To back up the LUKS header, use the following command:
 cryptsetup luksHeaderBackup /dev/sdX1 --header-backup-file /mnt/backup/luks-header.img
 ```
 
-## Restore
+## Mount backup
+
+### Mount from .img file
+
+1. Open the LUKS container from img file:
+
+```bash
+cryptsetup open /mnt/backup/sdx-backup.img backup
+```
+
+2. Mount the mapped container:
+
+```bash
+mount /dev/mapper/backup /mnt/dir
+```
+
+### Restore to USB device
 
 The size of the target device should be equal or larger than the backup image.
 
-Write the backup image onto the new device:
+1. Write the backup image onto the new device:
 
 ```bash
 dd if=/mnt/backup/sdx-backup.img of=/dev/sdX bs=4M status=progress conv=sync,noerror
 sync
 ```
 
-Verify that LUKS headers are present on the new device:
+2. Verify that LUKS headers are present on the new device:
 
 ```bash
 cryptsetup -v isLuks /dev/sdX
