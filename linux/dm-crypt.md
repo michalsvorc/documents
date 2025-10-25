@@ -157,6 +157,45 @@ sync
 cryptsetup -v isLuks /dev/sdX
 ```
 
+## Create multiple encrypted partitions
+
+Example: Create 3 encrypted partitions on device.
+
+Advantages of this method:
+
+- You can back up/mount one partition independently.
+- You can set different passphrases or same one.
+- You avoid the complexity of LVM or container-based schemes.
+- You still benefit from full LUKS encryption per partition.
+- Allows for separate backups per partition.
+
+1. Partition the device
+
+```bash
+sudo fdisk /dev/sdX
+> g # create new empty GPT partition table
+> n # new partition (if separate partitions are required)
+...
+> w # write changes
+```
+
+Optional: override existing partition table
+
+```bash
+dd if=/dev/zero of=/dev/sdX bs=512 count=2048
+```
+
+2. Encrypt each partition
+
+```bash
+cryptsetup luksFormat /dev/sdX1
+cryptsetup open /dev/sdX1 enc_x1
+mkfs.ext4 /dev/mapper/enc_x1
+cryptsetup close enc_x1
+```
+
+3. Backup LUKS headers for each partition
+
 ## FAQ
 
 ### Can I resize a dm-crypt or LUKS container? [YES*]
