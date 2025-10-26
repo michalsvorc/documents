@@ -1,6 +1,6 @@
 # SSH Keys
 
-*If possible, prefer storing keys on hardware key devices. This guide is for client desktop stored key.*.
+This guide is for client desktop stored key.
 
 - [Arch Wiki](https://wiki.archlinux.org/title/SSH_keys)
 - [ssh-keygen](https://man.archlinux.org/man/ssh-keygen.1)

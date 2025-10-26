@@ -4,14 +4,25 @@
 - [Securing SSH with the YubiKey](https://developers.yubico.com/SSH/)
 - [FIDO commands](https://docs.yubico.com/software/yubikey/tools/ykman/FIDO_Commands.html?)
 
-*Read more:*
+Read more:
 - [Git Commit Signing](https://developers.yubico.com/SSH/Securing_git_with_SSH_and_FIDO2.html)
 - [passkey / credential storage limits and firmware differences](https://support.yubico.com/hc/en-us/articles/360013790319-How-many-accounts-can-I-register-my-YubiKey-with?utm_source=chatgpt.com)
+
+NOTE: Every push and pull in git requires touch to validate user presence. There is no official way to disable this touch prompt for FIDO2 resident keys. To avoid this, SSH multiplexing is used in ~/.ssh/config.
 
 ## Requirements
 
 - OpenSSH client >= 8.2 (8.3+ or 8.9+ recommended for some advanced options).
 - Set a FIDO2 PIN: `ykman fido access change-pin`
+  NOTE: FIDO2 PIN is separate from yubikey User and Admin PIN. It can not be changed using these PINs.
+
+## SSH multiplexing
+
+With SSH multiplexing, the YubiKey touch is required only once per master connection. After that, all subsequent SSH operations that reuse that connection (e.g., git pull, git push) do not trigger a touch, because the connection is already authenticated.
+
+- First connection: You initiate it manually or via Git; you’ll touch the YubiKey once.
+- Subsequent connections: Any new SSH sessions to the same host will reuse the master connection for the duration of ControlPersist (e.g., 10 minutes) without additional touches.
+- After ControlPersist expires: The master connection closes; the next SSH connection requires a new touch.
 
 ## Create key pair
 
@@ -21,7 +32,7 @@
 ssh-keygen \
   -t ed25519-sk \
   -O resident \
-  -C "service:user@device" \
+  -C "user@device" \
   -f ~/.ssh/id_ed25519_sk_identifier
 ```
 
@@ -34,6 +45,8 @@ ssh-keygen \
 `-O verify-required`: require PIN and physical touch for each operation (DOES NOT work with ssh-agent caching).
 
 ### 2. Upload PUBLIC KEY to the service
+
+View the public key:
 
 ```bash
 cat ~/.ssh/id_ed25519_sk_identifier.pub
@@ -51,24 +64,34 @@ Host <service.com>
   IdentityFile ~/.ssh/id_ed25519_sk_identifier
   IdentitiesOnly yes
   AddKeysToAgent yes
+  # SSH multiplexing
+  ControlMaster auto
+  ControlPath ~/.ssh/controlmasters/%r@%h:%p
+  ControlPersist 10m
 ```
 
 *Notes:*
 - `IdentitiesOnly` yes prevents the client from trying other keys and hitting server-side limits.
 - `AddKeysToAgent` yes will add the handle to your agent (and allow caching of PIN in the agent session).
 
-### 4. Test connection
+### 4. Create directory for SSH multiplexing
 
-Example:
+```bash
+mkdir -p ~/.ssh/controlmasters
+chmod 700 ~/.ssh/controlmasters
+```
+
+### 5. Test connection (github.com example)
 
 ```bash
 ssh -T git@github.com
 ```
 
-## Agent behaviour and PIN caching
+Optionally, kill the master connection:
 
-`ssh-add ~/.ssh/id_ed25519_sk_<service>` will add the handle to ssh-agent so the agent can cache the PIN for the session and reduce PIN prompts; touch (user presence) may still be required depending on verify-required. 
-Yubico Developers
+```bash
+ssh -O exit github.com
+```
 
 ## Managing multiple SSH keys
 
@@ -86,29 +109,8 @@ To delete a resident credential:
 ykman fido credentials delete <credential-id>
 ```
 
----
+## Troubleshooting
 
-Troubleshooting tips
+`Agent refused operation / signing failed`: ensure the YubiKey is present, the correct handle file (~/.ssh/id_...) is in ssh-agent and you used the correct IdentityFile in ~/.ssh/config. Try ssh-add -D then re-add the specific handle file. 
 
-“Agent refused operation” / “signing failed”: ensure the YubiKey is present, the correct handle file (~/.ssh/id_...) is in ssh-agent and you used the correct IdentityFile in ~/.ssh/config. Try ssh-add -D then re-add the specific handle file. 
-Yubico Developers
-
-If resident keys don’t appear on another machine, ensure that OpenSSH supports FIDO2 (and your OpenSSH is recent), and that the YubiKey PIN is set and you can touch it. 
-Yubico Developers
-openssh.com
-
-Quick checklist to run now
-
-ssh -V (confirm OpenSSH >= 8.2)
-
-ykman --version (install ykman if missing)
-
-ykman fido access change-pin (set FIDO2 PIN)
-
-ssh-keygen -t ed25519-sk -O resident -O verify-required -C "github:you@example.com" -f ~/.ssh/id_ed25519_sk_github
-
-cat ~/.ssh/id_ed25519_sk_github.pub → paste into GitHub
-
-Repeat for GitLab with different filename/comment.
-
-Edit ~/.ssh/config, then ssh -T git@github.com and ssh -T git@gitlab.com to test.
+If resident keys don't appear on another machine, ensure that OpenSSH supports FIDO2 (and your OpenSSH is recent), and that the YubiKey PIN is set and you can touch it.
