@@ -1,116 +1,129 @@
 # GnuPG: Concepts
 
-A symmetric cipher is a cipher that uses the same key for both encryption and decryption.
+## Keys and keypairs
 
-In a public-key system, each user has a pair of keys consisting of a private key and a public key. GnuPG uses a somewhat
-more sophisticated scheme in which a user has a primary keypair and then zero or more additional subordinate keypairs.
-The primary and subordinate keypairs are bundled to facilitate key management and the bundle can often be considered
-simply as one keypair.
+- Symmetric cipher: uses the same secret key for encryption and decryption (used by passphrase-only encryption).
+- Asymmetric (public-key) system: each user has a private key and a public key. The public key is shared; the private key is kept secret.
 
-A primary key must be capable of making signatures.it is possible to later add additional subkeys for encryption and
-signing.
+An OpenPGP certificate typically contains:
+- A primary keypair: the certification authority for the certificate. Its private component creates self-signatures over user IDs, subkey-binding signatures, and revocations.
+- Zero or more subkeys: subordinate keypairs bound to the primary key by binding signatures. Their capabilities are normally limited to encryption, data signing, and/or authentication.
 
-## Expiration date
+### Why two-level keys?
 
-- [Selecting expiration dates and using subkeys](https://www.gnupg.org/gph/en/manual.html#AEN526)
+- The main key is the identity anchor and should be kept offline as much as possible.
+- Subkeys can be replaced, given shorter expiration dates, and stored on hardware tokens (for example, a YubiKey). Compromise of a subkey does not compromise the primary key's certification authority, but it can expose ciphertext decryptable by that subkey or permit forged data signatures until relying parties receive and honor a revocation.
 
-It is almost always the case that you will not want the master key to expire.
+### Best practices
 
-As long as the expired subkey is associated with the master key, it can still be used for decrypting files that were encrypted with it, even though it’s expired for encryption purposes.
+- Keep the primary (main) key offline in secure storage. A certification-only primary key is common in an offline-primary-key design.
+- Create subkeys for encryption, signing, and authentication and use those for daily work.
+- Rotate or replace subkeys when needed (expiry, suspected compromise, algorithm or policy changes). Keep the primary key solely for certification, binding, expiration updates, and revocation.
 
-Once a GPG *secret key* has expired, you cannot directly renew or extend the expiration date.
+## Expiration dates
 
-The expiration date is set at the time of key creation, and once the key has passed its expiration date,
-it is considered invalid for cryptographic operations.
+- Primary keys and subkeys can have expiration dates. Expiration is encoded in self-signatures or subkey-binding signatures, not in immutable key material.
+- Changing a primary-key or subkey expiration requires access to the private primary/certification key. GnuPG creates an updated self-signature or binding signature.
+
+### Recommendation
+
+Use expirations intentionally: set shorter expirations for subkeys used daily and keep the main key long‑lived and offline. It is almost always the case that you will not want the main key to expire. Expiration limits the window in which compliant software will select a key for new operations, but it does not prevent an attacker who already copied a private key from using it against past ciphertexts or signatures.
+
+References:
+- [GnuPG: Selecting expiration dates and using subkeys](https://www.gnupg.org/gph/en/manual.html#AEN526)
 
 ## Key size
 
-The longer the key the more secure it is against brute-force attacks, but for almost all purposes the default keysize is
-adequate since it would be cheaper to circumvent the encryption than try to break it. Also, encryption and decryption
-will be slower as the key size is increased, and a larger key size may affect signature length. Once selected, the key
-size can never be changed.
+- Within one algorithm family, larger parameters generally increase the cost of generic attacks. Security strength is not comparable by raw parameter length across algorithm families.
+- For most practical purposes, default key sizes are sufficient — it is usually cheaper for an attacker to compromise an endpoint than to brute force a modern key.
+- Larger key sizes can increase operation time and signature size.
+- You cannot change an existing key's size; to use a different key length you must generate a new key or add new subkeys with different parameters.
+
+### Recommendation
+
+Prefer the modern algorithm choices provided by your installed GnuPG (many recent releases use ed25519/curve25519 or ed25519/cv25519 as the "future default"). When discussing "longer" keys note that comparisons are meaningful within an algorithm family (e.g., RSA). Do not directly compare RSA sizes to ECC curve names; they are different constructions with different security parameters.
+- GnuPG defaults and available algorithms can change between releases; consult your installed `gpg --version` output and the local documentation for the definitive defaults on your system.
 
 ## User ID
 
-A user ID should be created carefully since it cannot be edited after it is created.
+- A User ID (UID) is an immutable OpenPGP packet, conventionally formatted as a name, optional comment, and email address, bound to the primary key by self-signatures and third-party certifications.
+- A distributed UID cannot be edited or reliably deleted. Add a replacement UID and revoke the obsolete one; previously distributed copies may retain both packets.
+- Choose UIDs carefully, and include an email/identifier you control.
+
+References:
+- [GnuPG: How to Specify a User Id](https://www.gnupg.org/documentation/manuals/gnupg/Specify-a-User-ID.html)
 
 ## Revocation certificate
 
-- [gnupg.org](https://www.gnupg.org/gph/en/manual.html#AEN305)
+- A revocation certificate is a signed revocation statement that, when published/imported by others, indicates that the key should be treated as revoked. GnuPG and other OpenPGP implementations will show a key as revoked once they see the revocation.
+- Store the revocation certificate in an offline, secure place (safe, safe-deposit box, encrypted offline backup). Do not leave it where others can access it — anyone who obtains it can publish it and render your public key unusable.
+- Generate a revocation certificate immediately after creating your primary key and back it up offline.
 
-After your keypair is created you should immediately generate a revocation certificate for the primary public key using
-the option `--gen-revoke`.
+References:
+- [GnuPG: Generating and publishing revocations](https://www.gnupg.org/documentation/manuals/gnupg/OpenPGP-Key-Management.html)
 
-A revoked public key can still be used to verify signatures made by you in the past, but it cannot be used to encrypt
-future messages to you. It also does not affect your ability to decrypt messages sent to you in the past if you still do
-have access to the private key.
+### What revocation does and does not do
 
-Since the certificate is short, you may wish to print a hardcopy of the certificate to store somewhere safe such as your
-safe deposit box. The certificate should not be stored where others can access it since anybody can publish the
-revocation certificate and render the corresponding public key useless.
+- Importing a revocation causes software to display the key as revoked; revocation communicates intent and updates the key state for relying parties.
+- A revoked key still verifies past signatures — signatures remain cryptographically verifiable even after revocation.
+- Revocation does not prevent an attacker who already has a copy of the private key from decrypting earlier ciphertexts or producing signatures; it only signals to others that the key should no longer be trusted for new use.
+- The private primary key can revoke subkeys and create updated expiration self-signatures or binding signatures. The pre-generated primary-key revocation certificate is primarily for the scenario where the private primary key is unavailable.
 
-## Validation
+## Validation and trust model
 
-Once a public key is imported to your public keyring it should be validated. GnuPG uses a powerful and flexible trust
-model that does not require you to personally validate each key you import.
+GnuPG supports the Web of Trust (WoT) where key signatures indicate introductions or endorsements. In practice many users rely on direct fingerprint verification, TOFU, WKD/HTTPS, organizational keyservers, or explicit trust stores instead of an expansive WoT. Ownertrust (the local "ultimate" setting) is a local policy only and should normally be reserved for keys you control.
 
-A key is validated by verifying the key's fingerprint and then signing the key to certify it as a valid key. A key's
-fingerprint is verified with the key's owner. After checking the fingerprint, you may sign the key to validate it.
+Practical advice
+- Always verify fingerprints out-of-band before signing or otherwise trusting a key.
+- Inspect who signed a key to understand the provenance, but remember that signatures alone do not prove identity unless you trust the signers as introducers.
 
-Once signed you can check the key to list the signatures on it and see the signature that you have added. Every user ID
-on the key will have one or more self-signatures as well as a signature for each user that has validated the key.
+References:
+- [GnuPG: Trust values](https://www.gnupg.org/documentation/manuals/gnupg/Trust-Values.html)
 
-## Encrypting and decrypting documents
+## Encrypting and decrypting
 
-- [gnupg.org](https://www.gnupg.org/gph/en/manual/x110.html)
+- OpenPGP uses hybrid encryption: the implementation generates a fresh symmetric session key, encrypts the payload with it, and encrypts that session key to each recipient's public encryption key. Any holder of a corresponding private key can recover the session key and decrypt the payload.
+- If you want to decrypt a message you previously encrypted to yourself, you must have included your own public key in the recipient list when encrypting, or you must be the only recipient.
 
-A public key may be thought of as an open safe. When a correspondent encrypts a document using a public key, that
-document is put in the safe, the safe shut, and the combination lock spun several times.
+References:
+- [GnuPG: encryption and decryption commands](https://www.gnupg.org/documentation/manuals/gnupg/Operational-GPG-Commands.html)
+- [OpenPGP: Hybrid encryption construction](https://www.rfc-editor.org/rfc/rfc9580.html#section-2.1)
 
-The corresponding private key is the combination that can reopen the safe and retrieve the document. In other words,
-only the person who holds the private key can recover a document encrypted using the associated public key.
+### Symmetric encryption (passphrase-only)
 
-To encrypt a document the option `--encrypt` is used. You must have the public keys of the intended recipients.
+- You can encrypt data with only a passphrase (no public keys) using symmetric encryption:
+  `gpg --symmetric file.txt`
+- GnuPG derives a key-encryption key from the passphrase using an OpenPGP S2K specifier; that key protects the per-message session key. Use a strong, unique passphrase that is not reused to protect a private key or another secret.
 
-If you want to encrypt a message to Alice, you encrypt it using Alice's public key, and she decrypts it with her private
-key. In particular, you cannot decrypt a document encrypted by you unless you included your own public key in the
-recipient list.
+## Digital signatures
 
-## Symmetric encryption (passphrase only)
+- A valid digital signature establishes integrity of the signed byte stream and demonstrates that the signing private key was used. A signature creation-time subpacket, when present, is signer-supplied metadata and can be backdated or postdated; it is not independent proof of signing time. Identity authentication requires a separately trusted binding between the signing key and the asserted identity.
+- Create a signature with: `gpg --sign file.txt`
 
-Documents may also be encrypted without using public-key cryptography. Instead, only a symmetric cipher is used to
-encrypt the document. The key used to drive the symmetric cipher is derived from a passphrase supplied when the document
-is encrypted, and for good security, it should not be the same passphrase that you use to protect your private key.
+### Signed document formats
 
-## Digital signature
+- Signed (binary): `--sign` produces an OpenPGP signed message containing the original literal-data packet and signature packet(s).
+- Clearsigned: `--clearsign` produces a Cleartext Signature Framework message with a human-readable cleartext body and ASCII-armored signature. It applies dash escaping and canonical text processing, so it is not a byte-preserving format; prefer detached signatures when exact bytes matter.
+- Detached signature: `--detach-sig` produces a separate signature file so the document remains untouched; verification needs both the document and the signature.
 
-- [gnupg.org](https://www.gnupg.org/gph/en/manual/x135.html)
+References:
+- [GnuPG: Signature commands and verification caveats](https://www.gnupg.org/documentation/manuals/gnupg/Operational-GPG-Commands.html)
+- [OpenGPG: Cleartext Signature Framework](https://www.rfc-editor.org/rfc/rfc9580.html#section-7)
 
-A digital signature certifies and timestamps a document. A signature is created using the private key of the signer. The
-signature is verified using the corresponding public key.
+## Quick practical checklist
 
-### Signed document
+- After generating a keypair:
+  - Generate and securely store a revocation certificate.
+  - Add appropriate expiration dates (shorter for subkeys).
+  - Export and publish your public key where appropriate (direct sharing, WKD, or a keyserver). Be aware that keyserver publication is effectively permanent and may expose UIDs/email addresses — prefer direct sharing or WKD when privacy or the ability to remove data matters.
+- For daily use:
+  - Use subkeys for encryption/signing.
+  - Keep the main key offline.
+  - Replace subkeys on expiry, compromise, or an algorithm/policy transition; publish the updated certificate through the same discovery channels recipients use.
+- For sharing/trusting:
+  - Verify fingerprints out-of-band before signing others’ keys.
 
-- [gnupg.org](https://www.gnupg.org/gph/en/manual/r606.html)
+## References
 
-The command-line option `--sign` is used to make a digital signature. The document to sign is input, and the signed
-document is output.
-
-The document is compressed before signed, and the output is in binary format. Given a signed document, you can either
-check the signature or check the signature and recover the original document.
-
-### Clearsigned documents
-
-The option [--clearsign](https://www.gnupg.org/gph/en/manual/r684.html) causes the document to be wrapped in an
-ASCII-armored signature but otherwise does not modify the document.
-
-### Detached signatures
-
-A signed document has limited usefulness. Other users must recover the original document from the signed version, and
-even with clearsigned documents, the signed document must be edited to recover the original.
-
-Therefore, there is a third method for signing a document that creates a detached signature. A detached signature is
-created using the [--detach-sig](https://www.gnupg.org/gph/en/manual/r622.html) option.
-
-Both the document and detached signature are needed to verify the signature. The `--verify` option can be to check the
-signature.
+- [GnuPG: Manual](https://www.gnupg.org/documentation/manuals/gnupg)
+- [OpenPGP: RFC 9580](https://www.rfc-editor.org/rfc/rfc9580.html)
