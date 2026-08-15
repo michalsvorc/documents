@@ -6,20 +6,89 @@
 - [GnuPG | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG)
 - [GnuPG | archlinux.org](https://wiki.archlinux.org/title/GnuPG)
 
-## Usage
+## KEY_ID
 
-### Encrypt and sign file
+For convenience while working with the commands, we can export the key id to an env variable:
 
-```bash
-gpg --encrypt --sign --recipient $RECIPIENT_KEY_ID file.ext
+```ash
+export KEY_ID=<key_id>
 ```
 
-The signing key used is determined by:
-- The `default-key` setting in your GnuPG configuration file (~/.gnupg/gpg.conf), if present.
-- Otherwise, GnuPG selects the first suitable secret key it finds (one capable of signing).
-- To explicitly specify the signing key, use the `--local-user $SIGNING_KEY_ID` option.
+Prefer full key fingerprints (40 hex chars) as key identifiers instead of short key IDs (8 hex chars); short IDs are susceptible to collisions and ambiguity.
 
-### Edit key
+## Encrypt and sign file
+
+`$KEY_ID` is the recipient GnuPG key (public key identifier) that will be used to encrypt the file; only the corresponding private key can decrypt it.
+
+```bash
+gpg --encrypt --sign --recipient $KEY_ID file.txt
+```
+`--recipient`: selects the public key(s) used to encrypt the file.
+  Only the holder(s) of the corresponding private key(s) will be able to decrypt.
+`--sign`: signs the data with a secret key from your secret keyring.
+  The signature is embedded alongside the encrypted data.
+
+
+The signing key used is determined by:
+- The `default-key` setting in your GnuPG configuration file (`$GNUPGHOME/gpg.conf`), if present.
+- Otherwise, GnuPG selects the first suitable secret key it finds (one capable of signing).
+- To explicitly specify the signing key, use the `--local-user $KEY_ID` option.
+
+## List keys
+
+```bash
+gpg --list-public-keys --keyid-format long --with-keygrip
+gpg --list-secret-keys --keyid-format long --with-keygrip
+```
+
+You can also inspect a specific key to view its subkeys:
+
+```bash
+gpg --list-sercret-keys $KEY_ID
+```
+
+If you have multiplpe primary keys, the grouping of primary key and subkeys is visual (groups are separated by an empty line).
+
+## Key fields
+
+```ini
+sec   rsa4096/0123456789ABCDEF 2001-01-01 [C]
+      Key fingerprint = ABCD1234EF567890ABCD1234EF567890ABCD1234
+      Keygrip = 11223344556677889900AABBCCDDEEFF00112233
+```
+
+- `rsa4096`: Algorithm + key size
+- `0123456789ABCDEF`: Long key ID (16 hex chars = 64 bits), derived from the fingerprint (last 64 bits).
+  Historically used for identification, not collision-resistant anymore.
+- `2001-01-01`: Creation date
+- `[?]`: Capabilities
+- `Key fingerprint = ABCD1234EF567890ABCD1234EF567890ABCD1234`: Full fingerprint (160 bits for SHA-1-based OpenPGP v4 keys).
+  This is the real, canonical identifier, everything else is a shortcut.
+- `Keygrip = 11223344556677889900AABBCCDDEEFF00112233`: GnuPG-internal identifier, not part of OpenPGP.
+  Used by gpg-agent to locate private keys on disk, such as `$GNUPGHOME/private-keys-v1.d/`.
+
+### Capabilities
+
+- [C]ertify - Create and sign other keys
+  Grants the ability to issue certifications (signatures) that bind user IDs to a key or to sign someone else’s public key to vouch for its authenticity.
+- [S]ign data - Sign files or messages
+  Lets the key produce digital signatures over data (emails, files, commits) so recipients can verify the data’s integrity and the signer’s identity with the corresponding public key.
+- [E]ncrypt data - Encrypt for the key owner / decrypt with the private key
+  Means the public key can be used to encrypt data to the key owner (who uses the matching private key to decrypt).
+
+NOTE: both Certify and Sign use digital signatures, but Certify signs key bindings (who owns which key) while Sign signs content.
+
+### Primary sercret
+
+- `sec`: secret primary key is present on the system
+- `sec#`: secret primary key is not present (moved to a smartcard, only public part of the primary key is present)
+
+### Subkeys
+
+- `ssb`: secret subkey is present on the system
+- `ssb>`: secret subkey is a **stub** (moved to a smartcard)
+
+## Edit key
 
 ```bash
 gpg --expert --edit-key $KEY_ID
@@ -37,29 +106,7 @@ Select entry for additional operations:
 gpg> key {index}
 ```
 
-###  Ephemeral GnuPG directory
-
-```bash
-export GNUPGHOME=/path/to/dir
-mkdir -p -m 700 $GNUPGHOME
-gpg --list-secret-keys
-```
-
-You can also execute only certain commands in ephemeral GnuPG directory.
-
-```bash
-gpg {command} --homedir /path/to/dir
-```
-
-Once finished, you can delete the directory. All GnuPG backend services that were started will detect this and shut down.
-
-### Usage fields
-
-- [C]ertify (create and sign other keys)
-- [S]ign data
-- [E]ncrypt data
-
-## Change passphrase secret key password
+## Change secret key passphrase
 
 - [cyberciti.biz](https://www.cyberciti.biz/faq/linux-unix-gpg-change-passphrase-command/)
 
@@ -68,22 +115,3 @@ Once finished, you can delete the directory. All GnuPG backend services that wer
 Wiki suggests possibility to manage SSH keys with GPG agent to have unified key management.
 
 Skipped bc. it does not allow splitting to multiple SSH keys.
-
-## FAQ
-
-### Do the subkeys share password with primary key?
-
-*Yes* - by default, all subkeys are protected using the same passphrase as the primary key, because:
-The passphrase protects the entire private keyring entry (which includes the primary key and all its subkeys).
-When you unlock one (e.g. for decryption or signing), GnuPG unlocks access to the required subkey in memory, assuming you authenticated correctly.
-
-GnuPG does not support setting different passphrases per subkey in its normal keyring-based setup. The whole key block is encrypted with one passphrase.
-
-### Trust level is unknown after import in ephemeral GNUPGHOME.
-
-This behavior is expected. In GnuPG, trust is a local, per-keyring setting. GnuPG does not store the trust database
-(`trustdb.gpg`) information within the exported private key file.
-
-You can re-set the trust level manually in each new ephemeral GnuPG home directory. However, this is NOT necessary when
-only generating new subkey and exporting it, as long as you will import that key into your main GnuPG keyring and set
-the appropriate trust level there.
