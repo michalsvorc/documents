@@ -1,103 +1,97 @@
-# GnuPG: Create new keys (primary and subkeys)
+# GnuPG: Create an offline primary key
 
-In this ning and authentication are handled by subkeys. This separation of responsibilities justifies storing the *secret part of the primary key* on a separate, offline device (e.g., a flash drive) for safekeeping. The primary key is only needed for tasks like generating or renewing subkeys, or signing other people's keys.
+This guide creates an OpenPGP certificate whose primary key has only the certification (`[C]`) capability. The primary secret key is the long-term authority for the certificate: it creates and revokes subkeys, changes expirations, and certifies User IDs. Keep it offline except when performing those administrative tasks.
 
-*NOTE:*
-- The *public part* of your primary key remains on your system, while its *secret part* is securely stored on a flash drive.
-- The *current encryption subkey* remains active and available on your system, allowing you to decrypt new messages. Optionally, it can be moved to a secure hardware device like a YubiKey for added protection, under assumption it is backed up as well.
-- *Older encryption subkeys* have had their secret parts removed from your system and archived on the flash drive. To decrypt files encrypted with these older subkeys, you’ll need to temporarily import the relevant secrets.
-- As encryption subkeys expire, new encryption subkeys are generated and added incrementally.
+Daily work is performed with separate signing, encryption, and, if needed, authentication subkeys. This limits the impact of a compromised daily-use machine or hardware token: the attacker does not obtain the authority to create replacement subkeys or alter the certificate. [Create new subkeys](create_new_subkeys.md) covers their initial creation and later rotation.
 
-In scenario with multiple encryption subkeys:
-- GPG will only use active (non-expired) encryption subkeys.
-- It will pick the most recent valid encryption subkey.
-- GPG can still use expired subkeys for decryption, as long as their secret parts are present. You can decrypt messages encrypted with expired subkey.
+Perform key creation and backup handling in an offline GnuPG home on a trusted, fully updated computer. Ideally, use a dedicated air-gapped system. Do not create the primary secret key on a workstation that you use for email, web browsing, or other daily work.
 
-## 1. Generate new primary key
+## Before you begin
 
-- [Primary key | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Primary_key)
+- Use a current GnuPG 2.x release and confirm its supported algorithms with `gpg --version`.
+- Prepare at least two protected offline backup locations. The exported secret-key files are protected only by their GnuPG passphrase. Use encrypted removable media and keep the copies physically secure.
+- Use the complete primary-key fingerprint, never a short key ID.
 
-Created for *certification* only.
+## 1. Generate a certification-only primary key
+
+- [GnuPG manual: key generation](https://www.gnupg.org/documentation/manuals/gnupg/OpenPGP-Key-Management.html)
 
 ```bash
 gpg --expert --full-generate-key
 ```
 
-**Steps:**
-- Select `ECC (set your own capabilities)`.
-- Toggle capabilities so the primary key will only have the *certify* capability.
-- Selects elliptic curve, Gentoo Wiki suggests `Curve 25519`.
-- Select no expiration (see *Primary key* section in Gentoo Wiki).
-- No comment needed. Since the semantics of the comment field are not well-defined, it has limited value for identification.
-- Add a passphrase. Before hitting final `<OK>`, be prepared to provide random user interaction inputs (keyboard, mouse) for increased entropy.
+In the interactive prompts:
 
-After generating the primary key, be sure to backup the revocation certificate.
+1. Select `ECC (set your own capabilities)`. Menu wording varies slightly by GnuPG version.
+2. Toggle capabilities until the primary key has only `Current allowed actions: Certify` enabled. Disable `Sign`, `Encrypt`, and `Authenticate`.
+3. Choose the modern Curve25519 family offered by GnuPG, normally `Curve 25519`. This produces an Ed25519 certification key on current GnuPG versions.
+4. Choose the primary-key expiration deliberately. A long-lived or non-expiring offline primary key is common because renewing an expiration requires this key. A finite expiration is reasonable only if you have a dependable process for bringing the offline key online briefly to extend it before expiry.
+   NOTE: Gentoo Wiki suggests `Select no expiration`
+5. Enter an accurate, durable User name and email. User IDs are difficult to remove after distribution. Leave the comment field empty unless it has a specific purpose.
+6. Set the secret-key passphrase in pinentry.
 
-At this point, only the primary `[C]ertify` (signing key) should have been created.
+GnuPG uses its operating-system random-number generator. Modern systems normally do not need mouse or keyboard movement to collect entropy.
 
-Verify with `gpg --list-keys`.
-
-## 2. Generate subkeys
-
-- [Add an encryption key | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Add_an_encryption_key)
+Record and independently verify the fingerprint before distributing or trusting this certificate:
 
 ```bash
-gpg --expert --edit-key $KEY_ID
-gpg> addkey
-gpg> ...
-gpg> save
+gpg --fingerprint
 ```
 
-- generate separate subkeys for encryption and signing
-- add expiration date (1Y)
-
-A subkey is a cryptographic key attached to a primary (master) key in GPG. The primary key (also called the master key)
-is used to certify and manage subkeys, while subkeys can be used for encryption, signing, or authentication.
-
-Subkeys allow you to separate responsibilities and reduce risk. Instead of using your primary key for everything, you generate subkeys for specific tasks.
-
-## 3. Export and remove primary key
-
-- [Removing the secret primary key for safety | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG#Removing_the_secret_primary_key_for_safety)
-
-1. Extract the secret primary key (should be stored on another device):
+Set `KEY_FPR` to the displayed primary fingerprint for the remaining commands:
 
 ```bash
-gpg --armor --output primary.gpg --export-secret-key $KEY_ID
+KEY_FPR='0123456789ABCDEF0123456789ABCDEF01234567'
 ```
 
-2. Validate that the subkeys do not contain stubs (e.g. moved to smartcard)
+Confirm that the primary key is certification-only. The `pub` line should show `[C]` and no other capabilities:
 
 ```bash
-gpg --keyid-format long --list-secret-keys $KEY_ID
+gpg --list-keys --keyid-format long "$KEY_FPR"
 ```
 
-Look for stub symbol: `ssb>`. The regular subkeys should be: `ssb`.
+## 2. Backup the revocation certificate offline
 
+Store the initial revocation certificate generated by GnuPG in `openpgp-revocs.d` when generating the key, and keep it offline. Do not transfer the revocation file to a daily-use computer.
 
-3. Extract the secret subkeys:
+## 3. Back up the primary secret key offline
+
+Export the primary secret key before it is used to create subkeys. Keep this file offline; it is the long-term authority for the certificate and must never be imported into a daily-use GnuPG home.
 
 ```bash
-gpg --armor --output subkeys.gpg --export-secret-subkeys $KEY_ID
+gpg --output primary-secret.gpg --export-secret-keys "$KEY_FPR"
+gpg --output primary-public.gpg --export "$KEY_FPR"
 ```
 
-4. Remove all secret keys (primary and subkeys):
+Copy `primary-secret.asc` and `primary-public.asc` to each protected offline backup location. The public certificate is not secret, but retaining a copy makes recovery easier. Do not transfer `primary-secret.asc` to a daily-use computer.
+
+### Binary vs. ASCII-armored exports
+
+For offline key storage, binary OpenPGP exports (`.gpg`) are sufficient and slightly more compact. ASCII armor (`.asc`) is useful only when the key must be handled as text, such as when pasting or transferring it through text-based systems. Armor does not provide additional security; it only changes the representation. ASCII armor is **not** encryption.
+
+## 4. Test recovery
+
+Test recovery before relying on the backups.
+
+Use a temporary, offline GnuPG home and import the primary secret-key backup:
 
 ```bash
-gpg --delete-secret-keys $KEY_ID
+export GNUPGHOME="$(mktemp -d)"
+chmod 700 "$GNUPGHOME"
+
+gpg --import primary-secret.gpg
+gpg --list-secret-keys --keyid-format LONG
 ```
 
-5. Import the extracted secret subkeys (without the primary secret):
+Confirm that the expected primary key appears. You can also verify its fingerprint:
 
 ```bash
-gpg --import subkeys.gpg
+gpg --fingerprint "$KEY_FPR"
 ```
 
-6. Verify that the primary secret key is not present:
+Once the test succeeds, remove the temporary GnuPG home:
 
 ```bash
-gpg --list-secret-keys $KEY_ID
+rm -rfi "$GNUPGHOME"
+unset GNUPGHOME
 ```
-
-- `sec#`: primary secret key is not present (only public part of the primary key is present)
-- `sec`: primary secret key is present
