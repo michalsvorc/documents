@@ -43,6 +43,10 @@ verbose
 keyid-format long
 with-fingerprint
 with-subkey-fingerprints
+with-keygrip
+
+# Optional privacy metadata reduction.
+no-emit-version
 ```
 
 ## gpg-agent.conf
@@ -51,4 +55,5 @@ with-subkey-fingerprints
 pinentry-program /usr/bin/pinentry
 no-grab
 default-cache-ttl 1800
+max-cache-ttl 7200
 ```
