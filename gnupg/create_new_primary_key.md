@@ -35,10 +35,10 @@ GnuPG uses its operating-system random-number generator. Modern systems normally
 Record and independently verify the fingerprint before distributing or trusting this certificate:
 
 ```bash
-gpg --fingerprint
+gpg --fingerprint --with-colons
 ```
 
-Set `KEY_FPR` to the displayed primary fingerprint for the remaining commands:
+Set `KEY_FPR` to the displayed primary fingerprint (`fpr:`) for the remaining commands:
 
 ```bash
 KEY_FPR='0123456789ABCDEF0123456789ABCDEF01234567'
