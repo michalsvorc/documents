@@ -53,7 +53,8 @@ no-emit-version
 
 ```bash
 pinentry-program /usr/bin/pinentry
-no-grab
-default-cache-ttl 1800
-max-cache-ttl 7200
+grab
+ignore-cache-for-signing
+default-cache-ttl 900
+max-cache-ttl 3600
 ```
