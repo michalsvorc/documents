@@ -15,9 +15,6 @@ encrypt-to {KEY_FPR}
 # Use the default key as default recipient for encryption operation.
 default-recipient-self
 
-# Assume that command line arguments are given as UTF8 strings.
-utf8-strings
-
 # Adjusts digest algorithm selection order, can be utilized to prefer stronger hash types when signing messages.
 personal-digest-preferences SHA512 SHA384 SHA256
 
