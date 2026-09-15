@@ -6,22 +6,22 @@
 - [GnuPG | gentoo.org](https://wiki.gentoo.org/wiki/GnuPG)
 - [GnuPG | archlinux.org](https://wiki.archlinux.org/title/GnuPG)
 
-## KEY_ID
+## Key fingerprint
 
 For convenience while working with the commands, we can export the key id to an env variable:
 
-```ash
-export KEY_ID=<key_id>
+```bash
+export KEY_FPR='0123456789ABCDEF0123456789ABCDEF01234567'
 ```
 
 Prefer full key fingerprints (40 hex chars) as key identifiers instead of short key IDs (8 hex chars); short IDs are susceptible to collisions and ambiguity.
 
 ## Encrypt and sign file
 
-`$KEY_ID` is the recipient GnuPG key (public key identifier) that will be used to encrypt the file; only the corresponding private key can decrypt it.
+`$KEY_FPR` is the recipient GnuPG key (public key identifier) that will be used to encrypt the file; only the corresponding private key can decrypt it.
 
 ```bash
-gpg --encrypt --sign --recipient $KEY_ID file.txt
+gpg --encrypt --sign --recipient $KEY_FPR file.txt
 ```
 `--recipient`: selects the public key(s) used to encrypt the file.
   Only the holder(s) of the corresponding private key(s) will be able to decrypt.
@@ -32,7 +32,7 @@ gpg --encrypt --sign --recipient $KEY_ID file.txt
 The signing key used is determined by:
 - The `default-key` setting in your GnuPG configuration file (`$GNUPGHOME/gpg.conf`), if present.
 - Otherwise, GnuPG selects the first suitable secret key it finds (one capable of signing).
-- To explicitly specify the signing key, use the `--local-user $KEY_ID` option.
+- To explicitly specify the signing key, use the `--local-user $KEY_FPR` option.
 
 ## List keys
 
@@ -44,7 +44,7 @@ gpg --list-secret-keys --keyid-format long --with-keygrip
 You can also inspect a specific key to view its subkeys:
 
 ```bash
-gpg --list-sercret-keys $KEY_ID
+gpg --list-sercret-keys $KEY_FPR
 ```
 
 If you have multiplpe primary keys, the grouping of primary key and subkeys is visual (groups are separated by an empty line).
@@ -53,7 +53,7 @@ If you have multiplpe primary keys, the grouping of primary key and subkeys is v
 
 ```ini
 sec   rsa4096/0123456789ABCDEF 2001-01-01 [C]
-      Key fingerprint = ABCD1234EF567890ABCD1234EF567890ABCD1234
+      Key fingerprint = 0123 4567 89AB CDEF 0123 4567 89ABC
       Keygrip = 11223344556677889900AABBCCDDEEFF00112233
 ```
 
@@ -62,8 +62,9 @@ sec   rsa4096/0123456789ABCDEF 2001-01-01 [C]
   Historically used for identification, not collision-resistant anymore.
 - `2001-01-01`: Creation date
 - `[?]`: Capabilities
-- `Key fingerprint = ABCD1234EF567890ABCD1234EF567890ABCD1234`: Full fingerprint (160 bits for SHA-1-based OpenPGP v4 keys).
-  This is the real, canonical identifier, everything else is a shortcut.
+- `Key fingerprint = 0123 4567 89AB CDEF 0123 4567 89ABC`: Full fingerprint (160 bits for SHA-1-based OpenPGP v4 keys).
+  This is the real, canonical identifier, everything else is a shortcut. Use `--with-colons` to get the machine-readable
+  version without whitespaces.
 - `Keygrip = 11223344556677889900AABBCCDDEEFF00112233`: GnuPG-internal identifier, not part of OpenPGP.
   Used by gpg-agent to locate private keys on disk, such as `$GNUPGHOME/private-keys-v1.d/`.
 
@@ -91,7 +92,7 @@ NOTE: both Certify and Sign use digital signatures, but Certify signs key bindin
 ## Edit key
 
 ```bash
-gpg --expert --edit-key $KEY_ID
+gpg --expert --edit-key $KEY_FPR
 ```
 
 List subkeys:

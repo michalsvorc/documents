@@ -33,7 +33,7 @@ gpg --card-edit
 - *Note*: the keys are 0-indexed.
 
 ```bash
-gpg --expert --edit-key $KEY_ID
+gpg --expert --edit-key $KEY_FPR
 gpg> key <N\>
 gpg> keytocard
 gpg> >provide gpg passphrase
@@ -63,7 +63,7 @@ gpgconf --kill gpg-agent
 Get the keygrip of the subkey:
 
 ```bash
-gpg --with-keygrip --list-secret-keys $KEY_ID
+gpg --with-keygrip --list-secret-keys $KEY_FPR
 ```
 
 Remove the keygrip file from `$GNUPGHOME/private-keys-v1.d/<keygrip-id>.key`
