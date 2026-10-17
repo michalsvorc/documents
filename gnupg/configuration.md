@@ -34,6 +34,10 @@ s2k-cipher-algo AES256
 s2k-digest-algo SHA512
 
 # Output
+## Suppress the initial startup banner.
+no-greeting
+## Removes version metadata in ASCII-armored data.
+no-emit-version
 ## Print additional information during processing.
 verbose
 ## List keys options.
@@ -41,9 +45,6 @@ keyid-format long
 with-fingerprint
 with-subkey-fingerprints
 with-keygrip
-
-# Optional privacy metadata reduction.
-no-emit-version
 ```
 
 ## gpg-agent.conf
