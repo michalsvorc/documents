@@ -4,94 +4,122 @@ This guide creates an OpenPGP certificate whose primary key has only the certifi
 
 Daily work is performed with separate signing, encryption, and, if needed, authentication subkeys. This limits the impact of a compromised daily-use machine or hardware token: the attacker does not obtain the authority to create replacement subkeys or alter the certificate. [Create new subkeys](create_new_subkeys.md) covers their initial creation and later rotation.
 
-Perform key creation and backup handling in an offline GnuPG home on a trusted, fully updated computer. Ideally, use a dedicated air-gapped system. Do not create the primary secret key on a workstation that you use for email, web browsing, or other daily work.
+Perform key creation and backup handling in the isolated offline GnuPG home created below on a trusted, fully updated computer. Ideally, use a dedicated air-gapped system. Do not create the primary secret key on a workstation that you use for email, web browsing, or other daily work.
+
+Use the complete primary-key fingerprint, never a short key ID.
 
 ## Before you begin
 
 - Use a current GnuPG 2.x release and confirm its supported algorithms with `gpg --version`.
 - Prepare at least two protected offline backup locations. The exported secret-key files are protected only by their GnuPG passphrase. Use encrypted removable media and keep the copies physically secure.
-- Use the complete primary-key fingerprint, never a short key ID.
 
-## 1. Generate a certification-only primary key
+## 1. Create an isolated offline GnuPG home
 
-- [GnuPG manual: key generation](https://www.gnupg.org/documentation/manuals/gnupg/OpenPGP-Key-Management.html)
+Create a fresh GnuPG home, set permissions and create config files:
+
+```bash
+export GNUPGHOME="$(mktemp -d)"
+chmod 700 "$GNUPGHOME"
+umask 077
+
+# Validate config files afer their creation
+stat "$GNUPGHOME/gpg.conf"
+stat "$GNUPGHOME/gpg-agent.conf"
+
+# Restart gpg agent and set new home for further operations
+gpgconf --homedir "$GNUPGHOME" --kill gpg-agent
+
+# Validate the correct $GNUPGHOME in Home: output
+gpg --version
+```
+
+The offline `$GNUPGHOME/gpg.conf` must include the cryptographic policies from [configuration.md](configuration.md).
+Before the primary fingerprint exists, omit or comment out any references to keys in the configs.
+
+## 2. Generate a certification-only primary key
+
+- [Key generation | gnupg.org](https://www.gnupg.org/documentation/manuals/gnupg/OpenPGP-Key-Management.html)
 
 ```bash
 gpg --expert --full-generate-key
 ```
 
-In the interactive prompts:
+Follow the interactive prompt. Wording varies slightly by GnuPG version.
 
-1. Select `ECC (set your own capabilities)`. Menu wording varies slightly by GnuPG version.
-2. Toggle capabilities until the primary key has only `Current allowed actions: Certify` enabled. Disable `Sign`, `Encrypt`, and `Authenticate`.
-3. Choose the modern Curve25519 family offered by GnuPG, normally `Curve 25519`. This produces an Ed25519 certification key on current GnuPG versions.
-4. Choose the primary-key expiration deliberately. A long-lived or non-expiring offline primary key is common because renewing an expiration requires this key. A finite expiration is reasonable only if you have a dependable process for bringing the offline key online briefly to extend it before expiry.
-   NOTE: Gentoo Wiki suggests `Select no expiration`
-5. Enter an accurate, durable User name and email. User IDs are difficult to remove after distribution. Leave the comment field empty unless it has a specific purpose.
-6. Set the secret-key passphrase in pinentry.
+1. Select `ECC (set your own capabilities)`. 
+2. Toggle capabilities until the primary key has only `Certify` enabled as current allowed actions. Disable ALL others.
+3. Choose the modern `Curve25519` family offered by GnuPG, normally `Curve 25519`.
+   NOTE: This produces an `Ed25519` certification key on current GnuPG versions.
+4. Select `0 = key does not expire`. Choose the primary-key expiration deliberately. A long-lived or non-expiring offline primary key is common because renewing an expiration requires this key. A finite expiration is reasonable only if you have a dependable process for bringing the offline key online briefly to extend it before expiry.
+5. Enter an accurate, durable user name and email. User IDs are difficult to remove after distribution. Leave the comment field empty unless it has a specific purpose.
+6. Set the secret-key passphrase.
 
-GnuPG uses its operating-system random-number generator. Modern systems normally do not need mouse or keyboard movement to collect entropy.
+## 3. Verify created key
 
-Record and independently verify the fingerprint before distributing or trusting this certificate:
+Record and independently verify the fingerprint before distributing or trusting this certificate. 
 
-```bash
-gpg --fingerprint --with-colons
-```
-
-Set `KEY_FPR` to the displayed primary fingerprint (`fpr:`) for the remaining commands:
+The freshly created `$GNUPGHOME` home must contain exactly one `pub` record: the primary key just generated. Stop and investigate if the command shows another key.
 
 ```bash
-KEY_FPR='0123456789ABCDEF0123456789ABCDEF01234567'
+gpg --with-colons --list-keys
 ```
 
-Confirm that the primary key is certification-only. The `pub` line should show `[C]` and no other capabilities:
+Set `KEY_FPR` to the fingerprint in the `fpr` record immediately following that sole `pub` record:
 
 ```bash
-gpg --list-keys --keyid-format long "$KEY_FPR"
+KEY_FPR=0123456789ABCDEF0123456789ABCDEF01234567
 ```
 
-## 2. Backup the revocation certificate offline
-
-Store the initial revocation certificate generated by GnuPG in `openpgp-revocs.d` when generating the key, and keep it offline. Do not transfer the revocation file to a daily-use computer.
-
-## 3. Back up the primary secret key offline
-
-Export the primary secret key before it is used to create subkeys. Keep this file offline; it is the long-term authority for the certificate and must never be imported into a daily-use GnuPG home.
-
-```bash
-gpg --output primary-secret.gpg --export-secret-keys "$KEY_FPR"
-gpg --output primary-public.gpg --export "$KEY_FPR"
-```
-
-Copy `primary-secret.asc` and `primary-public.asc` to each protected offline backup location. The public certificate is not secret, but retaining a copy makes recovery easier. Do not transfer `primary-secret.asc` to a daily-use computer.
-
-### Binary vs. ASCII-armored exports
-
-For offline key storage, binary OpenPGP exports (`.gpg`) are sufficient and slightly more compact. ASCII armor (`.asc`) is useful only when the key must be handled as text, such as when pasting or transferring it through text-based systems. Armor does not provide additional security; it only changes the representation. ASCII armor is **not** encryption.
-
-## 4. Test recovery
-
-Test recovery before relying on the backups.
-
-Use a temporary, offline GnuPG home and import the primary secret-key backup:
-
-```bash
-export GNUPGHOME="$(mktemp -d)"
-chmod 700 "$GNUPGHOME"
-
-gpg --import primary-secret.gpg
-gpg --list-secret-keys --keyid-format LONG
-```
-
-Confirm that the expected primary key appears. You can also verify its fingerprint:
+Verify the selected fingerprint explicitly. Confirm that the primary key is certification-only. The `pub` line should show `[C]` and no other capabilities:
 
 ```bash
 gpg --fingerprint "$KEY_FPR"
 ```
 
-Once the test succeeds, remove the temporary GnuPG home:
+NOTE: Key is stored in `$GNUPGHOME/private-keys-v1.d/` by its keygrip value.
+
+### Randomness
+
+GnuPG obtains cryptographic randomness through system library from the operating system's random-number generator. On modern Linux systems, this is the kernel cryptographic random-number generator, normally accessed through `getrandom(2)` or `/dev/urandom`. A fully booted desktop or laptop normally has enough entropy for key generation; mouse and keyboard movement is legacy advice and is not usually necessary.
+
+Ensure the kernel random-number generator has initialized before a high-assurance key creation. This matters for a newly booted live system, fresh virtual machine, embedded device, or headless system with limited entropy sources.
+
+## 4. Backup the revocation certificate offline
+
+Store the initial revocation certificate generated by GnuPG in `$GNUPGHOME/openpgp-revocs.d/{KEY_FPR}.rev` when generating the key, and keep it stored offline. Do not transfer the revocation file to a daily-use computer.
+
+Some versions of GnuPG intentionally prefix the generated revocation certificate filenames with a colon to prevent accidental import.
+
+## 5. Back up the primary secret key offline
+
+Export the primary secret key before it is used to create subkeys. Keep this file offline; it is the long-term authority for the certificate and must never be imported into a daily-use GnuPG home.
 
 ```bash
-rm -rfi "$GNUPGHOME"
-unset GNUPGHOME
+export OUTPUT_DIR="$(mktemp -d)"
+gpg --output "${OUTPUT_DIR}/primary-secret.gpg" --export-secret-keys "$KEY_FPR"
+chmod 400 "${OUTPUT_DIR}/primary-secret.gpg"
+gpg --output "${OUTPUT_DIR}/primary-public.gpg" --export "$KEY_FPR"
+ls -alF "$OUTPUT_DIR"
 ```
+
+`primary-secret.gpg` must be readable only by its owner. Copy `primary-secret.gpg` and `primary-public.gpg` to each protected offline backup location. The public certificate is not secret, but retaining a copy makes recovery easier.
+
+### Binary vs. ASCII-armored exports
+
+For offline key storage, binary OpenPGP exports (`.gpg`) are sufficient and slightly more compact. ASCII armor (`.asc`) is useful only when the key must be handled as text, such as when pasting or transferring it through text-based systems. Armor does not provide additional security; it only changes the representation. ASCII armor is **not** encryption.
+
+## 6. Test recovery before relying on the backups
+
+Repeat the steps to create an isolated offline GnuPG home.
+Import the primary secret-key backup to the new `$GNUPGHOME`:
+
+```bash
+gpg --import /path/to/primary-secret.gpg
+gpg --list-secret-keys --keyid-format LONG
+```
+
+Confirm that the expected primary key appears and has the same fingerprint value.
+
+### 7. Cleanup
+
+After the recovery test, terminate and remove the recovery-test home. If the primary-key ceremony home was temporary, remove it only after securely storing `primary-secret.gpg`, `primary-public.gpg`, and the generated revocation certificate.
