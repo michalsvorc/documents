@@ -50,9 +50,14 @@ with-keygrip
 ## gpg-agent.conf
 
 ```bash
-pinentry-program /usr/bin/pinentry
 grab
 ignore-cache-for-signing
 default-cache-ttl 900
 max-cache-ttl 3600
+```
+
+Set default pinentry program only if you want to override gpg defaults:
+
+```bash
+pinentry-program /usr/bin/pinentry
 ```
